@@ -74,30 +74,46 @@
            <div itemprop="articleBody">
              
   <h1>Source code for nsaph_gis.constants</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains Enums used by configuration for</span>
+<span class="sd">processing of GIS information</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 
 
 <div class="viewcode-block" id="RasterizationStrategy"><a class="viewcode-back" href="../../common/gridmet/doc/strategy.html#nsaph_gis.constants.RasterizationStrategy">[docs]</a><span class="k">class</span> <span class="nc">RasterizationStrategy</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Rasterization Strategy, see details at</span>
-<span class="sd">    https://pythonhosted.org/rasterstats/manual.html#rasterization-strategy</span>
+<span class="sd">    `Rasterization Strategy  &lt;https://pythonhosted.org/rasterstats/manual.html#rasterization-strategy&gt;`_</span>
+<span class="sd">    to rasterize a vector</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># The default strategy is to include all pixels along the line render path</span>
-    <span class="c1"># (for lines), or cells where the center point is within the polygon</span>
-    <span class="c1"># (for polygons).</span>
     <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The default strategy is to include all pixels along the line render path</span>
+<span class="sd">    (for lines), or cells where the center point is within the polygon</span>
+<span class="sd">    (for polygons).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Alternate, all_touched strategy, rasterizes the geometry</span>
-    <span class="c1"># by including all pixels that it touches.</span>
     <span class="n">all_touched</span> <span class="o">=</span> <span class="s1">&#39;all_touched&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Alternate, all_touched strategy, rasterizes the geometry</span>
+<span class="sd">    by including all pixels that it touches.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Calculate statistics using both default and all_touched strategy and</span>
-    <span class="c1"># combine results, e.g. using arithmetic means</span>
     <span class="n">combined</span> <span class="o">=</span> <span class="s1">&#39;combined&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate statistics using both default and all_touched strategy and</span>
+<span class="sd">    combine results, e.g. using arithmetic means</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Equivalent of &quot;default&quot; startegy with factor = 5</span>
-    <span class="n">downscale</span> <span class="o">=</span> <span class="s1">&#39;downscale&#39;</span></div>
+    <span class="n">downscale</span> <span class="o">=</span> <span class="s1">&#39;downscale&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A combination of &quot;default&quot; rasterization strategy with </span>
+<span class="sd">    affine transformation with downscaling factor = 5</span>
+<span class="sd">    </span>
+<span class="sd">    See `get_affine_transform &lt;../../../gridmet/doc/gridmet_tools.html#gridmet.gridmet_tools.get_affine_transform&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="Geography"><a class="viewcode-back" href="../../common/gridmet/doc/geo.html#nsaph_gis.constants.Geography">[docs]</a><span class="k">class</span> <span class="nc">Geography</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>

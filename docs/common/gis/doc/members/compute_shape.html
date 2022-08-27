@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The compute_shape Module &mdash; NSAPH Data Platform 0.0.2 documentation</title>
+  <title>Observation values aggregation over shapes &mdash; NSAPH Data Platform 0.0.2 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="The constants Module" href="constants.html" />
-    <link rel="prev" title="The annotator Module" href="annotator.html" /> 
+    <link rel="next" title="GIS Related Enums" href="constants.html" />
+    <link rel="prev" title="GIS Annotator" href="annotator.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,20 +48,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../packages.html">Python Packages</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../utils/doc/index.html">General purpose utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../core-platform/doc/CoreLibrary.html">Data platform components</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">GIS utilities</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../python_components.html">Python Components</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="annotator.html">The annotator Module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">The compute_shape Module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="constants.html">The constants Module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="downloader.html">The downloader Module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="geometry.html">The geometry Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../python_components.html">GIS utilities</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="annotator.html">GIS Annotator</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Observation values aggregation over shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants.html">GIS Related Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="downloader.html">Shapefiles downloader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry.html">A point in a raster class</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#gis-library-overview">GIS Library Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#how-to-use">How to use</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/index.html">gridMET tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/python_components.html">gridMET tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/index.html">EPA tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/CMSLibrary.html">Health data manipulation tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../census/doc/index.html">Census data manipulation tools</a></li>
@@ -87,9 +82,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../../packages.html">Python Packages Included in the Platform</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH GIS python package</a> &raquo;</li>
-          <li><a href="../python_components.html">Python Components</a> &raquo;</li>
-      <li>The compute_shape Module</li>
+          <li><a href="../python_components.html">GIS Python Modules</a> &raquo;</li>
+      <li>Observation values aggregation over shapes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gis/doc/members/compute_shape.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,7 +94,12 @@
            <div itemprop="articleBody">
              
   <div class="section" id="module-nsaph_gis.compute_shape">
-<span id="the-compute-shape-module"></span><h1>The compute_shape Module<a class="headerlink" href="#module-nsaph_gis.compute_shape" title="Permalink to this heading"></a></h1>
+<span id="observation-values-aggregation-over-shapes"></span><h1>Observation values aggregation over shapes<a class="headerlink" href="#module-nsaph_gis.compute_shape" title="Permalink to this heading"></a></h1>
+<p>This module processes layers of data containing geographic coordinates
+and observed values for a certain parameter (band)
+and returns records containing
+an identifier for a geographic shape and the value of the band
+aggregated over the shape.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nsaph_gis.compute_shape.Record">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#Record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.Record" title="Permalink to this definition"></a></dt>
@@ -122,7 +121,28 @@
 <dd><dl class="py method">
 <dt class="sig sig-object py" id="nsaph_gis.compute_shape.StatsCounter.process">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/strategy.html#nsaph_gis.constants.RasterizationStrategy" title="nsaph_gis.constants.RasterizationStrategy"><span class="pre">RasterizationStrategy</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">shapefile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Affine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geography</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/geo.html#nsaph_gis.constants.Geography" title="nsaph_gis.constants.Geography"><span class="pre">Geography</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nsaph_gis.compute_shape.Record" title="nsaph_gis.compute_shape.Record"><span class="pre">Record</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#StatsCounter.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.StatsCounter.process" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Given a layer, i.e. a slice of a dataframe, and a shapefile 
+returns an iterable of records, containing aggregated values
+of the observations over the shapes in the shapefile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process.params.strategy"></span><strong>strategy</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process.params.strategy">¶</a> – Rasterization strategy to be used</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process.params.shapefile"></span><strong>shapefile</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process.params.shapefile">¶</a> – A path to shapefile to be used</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process.params.affine"></span><strong>affine</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process.params.affine">¶</a> – An optional affine transformation to be applied to
+the coordinates</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process.params.layer"></span><strong>layer</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process.params.layer">¶</a> – A slice of dataframe, containing coordinates and values</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process.params.geography"></span><strong>geography</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process.params.geography">¶</a> – WHat type of geography is to be used: zip codes
+or counties</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterable of records, containing an identifier
+of a certain shape with the aggregated value of teh observation
+for this shape</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -132,8 +152,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="annotator.html" class="btn btn-neutral float-left" title="The annotator Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="constants.html" class="btn btn-neutral float-right" title="The constants Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="annotator.html" class="btn btn-neutral float-left" title="GIS Annotator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="constants.html" class="btn btn-neutral float-right" title="GIS Related Enums" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

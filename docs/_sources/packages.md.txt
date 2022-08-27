@@ -7,8 +7,8 @@ caption: Contents
 ---
 General purpose utilities <common/utils/doc/index>
 Data platform components <common/core-platform/doc/CoreLibrary>
-GIS utilities <common/gis/doc/index>
-gridMET tools <common/gridmet/doc/index>
+GIS utilities <common/gis/doc/python_components>
+gridMET tools <common/gridmet/doc/python_components>
 EPA tools <common/epa/doc/index>
 Health data manipulation tools <common/cms/doc/CMSLibrary>
 Census data manipulation tools <common/census/doc/index>

@@ -74,7 +74,12 @@
            <div itemprop="articleBody">
              
   <h1>Source code for gridmet.task</h1><div class="highlight"><pre>
-<span></span><span class="c1">#  Copyright (c) 2021. Harvard University</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains classes used to define, schedule and execute</span>
+<span class="sd">long running computations used by gridMET pipelines</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#  Copyright (c) 2021. Harvard University</span>
 <span class="c1">#</span>
 <span class="c1">#  Developed by Research Software Engineering,</span>
 <span class="c1">#  Faculty of Arts and Sciences, Research Computing (FAS RC)</span>
@@ -173,8 +178,7 @@
 <div class="viewcode-block" id="ComputeGridmetTask"><a class="viewcode-back" href="../../common/gridmet/doc/members/task.html#gridmet.task.ComputeGridmetTask">[docs]</a><span class="k">class</span> <span class="nc">ComputeGridmetTask</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    An abstract class for a computational task that processes data in</span>
-<span class="sd">    Unidata netCDF (Version 4) format:</span>
-<span class="sd">    https://www.unidata.ucar.edu/software/netcdf/</span>
+<span class="sd">    `Unidata netCDF (Version 4) format &lt;https://www.unidata.ucar.edu/software/netcdf/&gt;`_</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">origin</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="mi">1900</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>

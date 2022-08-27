@@ -74,7 +74,34 @@
            <div itemprop="articleBody">
              
   <h1>Source code for nsaph_gis.compute_shape</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module processes layers of data containing geographic coordinates</span>
+<span class="sd">and observed values for a certain parameter (band)</span>
+<span class="sd">and returns records containing</span>
+<span class="sd">an identifier for a geographic shape and the value of the band</span>
+<span class="sd">aggregated over the shape.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#  Copyright (c) 2021. Harvard University</span>
+<span class="c1">#</span>
+<span class="c1">#  Developed by Research Software Engineering,</span>
+<span class="c1">#  Faculty of Arts and Sciences, Research Computing (FAS RC)</span>
+<span class="c1">#  Author: Michael A Bouzinier</span>
+<span class="c1">#</span>
+<span class="c1">#  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">#  you may not use this file except in compliance with the License.</span>
+<span class="c1">#  You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#         http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1">#  Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">#  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">#  See the License for the specific language governing permissions and</span>
+<span class="c1">#  limitations under the License.</span>
+<span class="c1">#</span>
+
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">rasterio</span>
@@ -102,6 +129,23 @@
         <span class="n">layer</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
         <span class="n">geography</span><span class="p">:</span> <span class="n">Geography</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Record</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given a layer, i.e. a slice of a dataframe, and a shapefile </span>
+<span class="sd">        returns an iterable of records, containing aggregated values</span>
+<span class="sd">        of the observations over the shapes in the shapefile. </span>
+<span class="sd">        </span>
+<span class="sd">        :param strategy: Rasterization strategy to be used</span>
+<span class="sd">        :param shapefile: A path to shapefile to be used</span>
+<span class="sd">        :param affine: An optional affine transformation to be applied to</span>
+<span class="sd">            the coordinates</span>
+<span class="sd">        :param layer: A slice of dataframe, containing coordinates and values</span>
+<span class="sd">        :param geography: WHat type of geography is to be used: zip codes</span>
+<span class="sd">            or counties</span>
+<span class="sd">        :return: An iterable of records, containing an identifier</span>
+<span class="sd">            of a certain shape with the aggregated value of teh observation</span>
+<span class="sd">            for this shape</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">non_all_touched_strategies</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">RasterizationStrategy</span><span class="o">.</span><span class="n">default</span><span class="p">,</span>
             <span class="n">RasterizationStrategy</span><span class="o">.</span><span class="n">combined</span><span class="p">,</span>

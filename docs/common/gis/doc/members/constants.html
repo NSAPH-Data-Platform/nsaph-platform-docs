@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The constants Module &mdash; NSAPH Data Platform 0.0.2 documentation</title>
+  <title>GIS Related Enums &mdash; NSAPH Data Platform 0.0.2 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="The downloader Module" href="downloader.html" />
-    <link rel="prev" title="The compute_shape Module" href="compute_shape.html" /> 
+    <link rel="next" title="Shapefiles downloader" href="downloader.html" />
+    <link rel="prev" title="Observation values aggregation over shapes" href="compute_shape.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,20 +48,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../packages.html">Python Packages</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../utils/doc/index.html">General purpose utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../core-platform/doc/CoreLibrary.html">Data platform components</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">GIS utilities</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../python_components.html">Python Components</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="annotator.html">The annotator Module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="compute_shape.html">The compute_shape Module</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">The constants Module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="downloader.html">The downloader Module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="geometry.html">The geometry Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../python_components.html">GIS utilities</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="annotator.html">GIS Annotator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compute_shape.html">Observation values aggregation over shapes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GIS Related Enums</a></li>
+<li class="toctree-l3"><a class="reference internal" href="downloader.html">Shapefiles downloader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geometry.html">A point in a raster class</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#gis-library-overview">GIS Library Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#how-to-use">How to use</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/index.html">gridMET tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/python_components.html">gridMET tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/index.html">EPA tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/CMSLibrary.html">Health data manipulation tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../census/doc/index.html">Census data manipulation tools</a></li>
@@ -87,9 +82,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../../packages.html">Python Packages Included in the Platform</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH GIS python package</a> &raquo;</li>
-          <li><a href="../python_components.html">Python Components</a> &raquo;</li>
-      <li>The constants Module</li>
+          <li><a href="../python_components.html">GIS Python Modules</a> &raquo;</li>
+      <li>GIS Related Enums</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gis/doc/members/constants.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,31 +94,43 @@
            <div itemprop="articleBody">
              
   <div class="section" id="module-nsaph_gis.constants">
-<span id="the-constants-module"></span><h1>The constants Module<a class="headerlink" href="#module-nsaph_gis.constants" title="Permalink to this heading"></a></h1>
+<span id="gis-related-enums"></span><h1>GIS Related Enums<a class="headerlink" href="#module-nsaph_gis.constants" title="Permalink to this heading"></a></h1>
+<p>This module contains Enums used by configuration for
+processing of GIS information</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nsaph_gis.constants.RasterizationStrategy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RasterizationStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph_gis/constants.html#RasterizationStrategy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.constants.RasterizationStrategy" title="Permalink to this definition"></a></dt>
-<dd><p>Rasterization Strategy, see details at
-<a class="reference external" href="https://pythonhosted.org/rasterstats/manual.html#rasterization-strategy">https://pythonhosted.org/rasterstats/manual.html#rasterization-strategy</a></p>
+<dd><p><a class="reference external" href="https://pythonhosted.org/rasterstats/manual.html#rasterization-strategy">Rasterization Strategy</a>
+to rasterize a vector</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nsaph_gis.constants.RasterizationStrategy.default">
 <span class="sig-name descname"><span class="pre">default</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'default'</span></em><a class="headerlink" href="#nsaph_gis.constants.RasterizationStrategy.default" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The default strategy is to include all pixels along the line render path
+(for lines), or cells where the center point is within the polygon
+(for polygons).</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nsaph_gis.constants.RasterizationStrategy.all_touched">
 <span class="sig-name descname"><span class="pre">all_touched</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'all_touched'</span></em><a class="headerlink" href="#nsaph_gis.constants.RasterizationStrategy.all_touched" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Alternate, all_touched strategy, rasterizes the geometry
+by including all pixels that it touches.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nsaph_gis.constants.RasterizationStrategy.combined">
 <span class="sig-name descname"><span class="pre">combined</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'combined'</span></em><a class="headerlink" href="#nsaph_gis.constants.RasterizationStrategy.combined" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Calculate statistics using both default and all_touched strategy and
+combine results, e.g. using arithmetic means</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nsaph_gis.constants.RasterizationStrategy.downscale">
 <span class="sig-name descname"><span class="pre">downscale</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'downscale'</span></em><a class="headerlink" href="#nsaph_gis.constants.RasterizationStrategy.downscale" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>A combination of “default” rasterization strategy with 
+affine transformation with downscaling factor = 5</p>
+<p>See <a class="reference external" href="../../../gridmet/doc/gridmet_tools.html#gridmet.gridmet_tools.get_affine_transform">get_affine_transform</a></p>
+</dd></dl>
 
 </dd></dl>
 
@@ -155,8 +161,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="compute_shape.html" class="btn btn-neutral float-left" title="The compute_shape Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="downloader.html" class="btn btn-neutral float-right" title="The downloader Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="compute_shape.html" class="btn btn-neutral float-left" title="Observation values aggregation over shapes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="downloader.html" class="btn btn-neutral float-right" title="Shapefiles downloader" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

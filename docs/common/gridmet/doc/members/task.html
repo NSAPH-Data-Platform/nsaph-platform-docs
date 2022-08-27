@@ -19,7 +19,9 @@
         <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Uploader of the gridMET Data to the database" href="../pipeline/add_data.html" />
+    <link rel="prev" title="The shapes Module" href="shapes.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,12 +40,30 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Documentation Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../domains.html">Data Domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../packages.html">Python Packages</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../packages.html">Python Packages</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../utils/doc/index.html">General purpose utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core-platform/doc/CoreLibrary.html">Data platform components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gis/doc/python_components.html">GIS utilities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../python_components.html">gridMET tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../classes.html">Main Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../enums.html">Parameters (Enums)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="config.html">The config Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gridmet_tools.html">The gridmet_tools Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launcher.html">The launcher Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shapes.html">The shapes Module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The task Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/index.html">EPA tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/CMSLibrary.html">Health data manipulation tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../census/doc/index.html">Census data manipulation tools</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../guts.html">Data Platform Internals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Terms and Acronyms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../docindices.html">Indices</a></li>
@@ -63,6 +83,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
+          <li><a href="../index.html">Gridmet Computational Utilities</a> &raquo;</li>
+          <li><a href="../python_components.html">gridMET Python Modules</a> &raquo;</li>
       <li>The task Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gridmet/doc/members/task.rst.txt" rel="nofollow"> View page source</a>
@@ -75,6 +98,8 @@
              
   <div class="section" id="module-gridmet.task">
 <span id="the-task-module"></span><h1>The task Module<a class="headerlink" href="#module-gridmet.task" title="Permalink to this heading"></a></h1>
+<p>This module contains classes used to define, schedule and execute
+long running computations used by gridMET pipelines</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="gridmet.task.count_lines">
 <span class="sig-name descname"><span class="pre">count_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/task.html#count_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.task.count_lines" title="Permalink to this definition"></a></dt>
@@ -155,8 +180,7 @@
 <dt class="sig sig-object py" id="gridmet.task.ComputeGridmetTask">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ComputeGridmetTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="config.html#gridmet.config.GridmetVariable" title="gridmet.config.GridmetVariable"><span class="pre">GridmetVariable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">infile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/task.html#ComputeGridmetTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.task.ComputeGridmetTask" title="Permalink to this definition"></a></dt>
 <dd><p>An abstract class for a computational task that processes data in
-Unidata netCDF (Version 4) format:
-<a class="reference external" href="https://www.unidata.ucar.edu/software/netcdf/">https://www.unidata.ucar.edu/software/netcdf/</a></p>
+<a class="reference external" href="https://www.unidata.ucar.edu/software/netcdf/">Unidata netCDF (Version 4) format</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -490,7 +514,10 @@ tasks are executed</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="shapes.html" class="btn btn-neutral float-left" title="The shapes Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../pipeline/add_data.html" class="btn btn-neutral float-right" title="Uploader of the gridMET Data to the database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

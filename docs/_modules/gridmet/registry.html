@@ -74,7 +74,12 @@
            <div itemprop="articleBody">
              
   <h1>Source code for gridmet.registry</h1><div class="highlight"><pre>
-<span></span><span class="c1">#  Copyright (c) 2021. Harvard University</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A utility to create skeleton data model (database schema)</span>
+<span class="sd">for gridMET data</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1">#  Copyright (c) 2021. Harvard University</span>
 <span class="c1">#</span>
 <span class="c1">#  Developed by Research Software Engineering,</span>
 <span class="c1">#  Faculty of Arts and Sciences, Research Computing (FAS RC)</span>
@@ -106,10 +111,8 @@
 
 <div class="viewcode-block" id="Registry"><a class="viewcode-back" href="../../common/gridmet/doc/members/registry.html#gridmet.registry.Registry">[docs]</a><span class="k">class</span> <span class="nc">Registry</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This class parses File Transfer Summary files and</span>
-<span class="sd">    creates YAML data model. It can either</span>
-<span class="sd">    update built-in registry or write</span>
-<span class="sd">    the model to a designated path</span>
+<span class="sd">    This class</span>
+<span class="sd">    creates YAML data model for gridMET tables.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
