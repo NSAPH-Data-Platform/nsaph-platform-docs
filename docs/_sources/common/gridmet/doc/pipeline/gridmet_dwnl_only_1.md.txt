@@ -1,4 +1,4 @@
-# gridmet_dwnl_only_1.cwl
+# Sub-workflow *process* from gridmet_dwnl_only.cwl
 
 ![](gridmet_dwnl_only_1.png)
 

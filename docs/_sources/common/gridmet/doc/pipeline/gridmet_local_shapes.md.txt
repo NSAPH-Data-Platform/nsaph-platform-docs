@@ -47,8 +47,8 @@ Downloads, processes gridMET data and ingests it into the database
 
 ## Steps
 
-| Name     | Runs                                                    | Description                                   | 
-|:---------|:--------------------------------------------------------|:----------------------------------------------|
-| registry | [registry.cwl](registry.md)                             | Writes down YAML file with the database model | 
-| process  | [gridmet_local_shapes_1.cwl](gridmet_local_shapes_1.md) |                                               | 
+| Name     | Runs                                      | Description                                   | 
+|:---------|:------------------------------------------|:----------------------------------------------|
+| registry | [registry.cwl](registry.md)               | Writes down YAML file with the database model | 
+| process  | [sub-workflow](gridmet_local_shapes_1.md) |                                               | 
 

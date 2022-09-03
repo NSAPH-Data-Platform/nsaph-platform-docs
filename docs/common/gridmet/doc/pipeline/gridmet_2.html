@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>gridmet_2.cwl &mdash; NSAPH Data Platform 0.0.2 documentation</title>
+  <title>Sub-workflow process from gridmet.cwl &mdash; NSAPH Data Platform 0.0.2 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="gridMET Pipeline" href="gridmet_dwnl_only.html" />
-    <link rel="prev" title="gridmet_1.cwl" href="gridmet_1.html" /> 
+    <link rel="prev" title="Sub-workflow init_tables from gridmet.cwl" href="gridmet_1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,17 +55,17 @@
 <li class="toctree-l4"><a class="reference internal" href="download.html">Downloader of gridMET Data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="get_shapes.html">Downloader of AirNow Data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gridmet.html">gridMET Pipeline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gridmet_1.html">gridmet_1.cwl</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">gridmet_2.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_1.html">Sub-workflow <em>init_tables</em> from gridmet.cwl</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Sub-workflow <em>process</em> from gridmet.cwl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gridmet_dwnl_only.html">gridMET Pipeline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gridmet_dwnl_only_1.html">gridmet_dwnl_only_1.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_dwnl_only_1.html">Sub-workflow <em>process</em> from gridmet_dwnl_only.cwl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gridmet_humidity.html">gridMET Pipeline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gridmet_humidity_1.html">gridmet_humidity_1.cwl</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gridmet_humidity_2.html">gridmet_humidity_2.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_humidity_1.html">Sub-workflow <em>init_tables</em> from gridmet_humidity.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_humidity_2.html">Sub-workflow <em>process</em> from gridmet_humidity.cwl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gridmet_incremental.html">gridMET Pipeline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gridmet_incremental_1.html">gridmet_incremental_1.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_incremental_1.html">Sub-workflow <em>process</em> from gridmet_incremental.cwl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="gridmet_local_shapes.html">gridMET Pipeline</a></li>
-<li class="toctree-l4"><a class="reference internal" href="gridmet_local_shapes_1.html">gridmet_local_shapes_1.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_local_shapes_1.html">Sub-workflow <em>process</em> from gridmet_local_shapes.cwl</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html">Index Builder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ingest.html">Uploader of the gridMET Data to the database</a></li>
 <li class="toctree-l4"><a class="reference internal" href="process.html">Downloader of gridMET Data</a></li>
@@ -104,7 +104,7 @@
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
           <li><a href="../index.html">Gridmet Computational Utilities</a> &raquo;</li>
-      <li>gridmet_2.cwl</li>
+      <li>Sub-workflow <em>process</em> from gridmet.cwl</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gridmet/doc/pipeline/gridmet_2.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,8 +114,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="gridmet-2-cwl">
-<h1>gridmet_2.cwl<a class="headerlink" href="#gridmet-2-cwl" title="Permalink to this heading"></a></h1>
+  <div class="section" id="sub-workflow-process-from-gridmet-cwl">
+<h1>Sub-workflow <em>process</em> from gridmet.cwl<a class="headerlink" href="#sub-workflow-process-from-gridmet-cwl" title="Permalink to this heading"></a></h1>
 <p><img alt="" src="../../../../_images/gridmet_2.png" /></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -282,7 +282,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="gridmet_1.html" class="btn btn-neutral float-left" title="gridmet_1.cwl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gridmet_1.html" class="btn btn-neutral float-left" title="Sub-workflow init_tables from gridmet.cwl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="gridmet_dwnl_only.html" class="btn btn-neutral float-right" title="gridMET Pipeline" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

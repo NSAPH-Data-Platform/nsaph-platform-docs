@@ -1,4 +1,4 @@
-# census_ingest_1.cwl
+# Sub-workflow *store* from census_ingest.cwl
 
 ![](census_ingest_1.png)
 

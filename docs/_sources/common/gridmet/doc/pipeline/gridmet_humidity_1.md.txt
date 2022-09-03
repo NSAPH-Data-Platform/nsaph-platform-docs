@@ -1,4 +1,4 @@
-# gridmet_humidity_1.cwl
+# Sub-workflow *init_tables* from gridmet_humidity.cwl
 
 ![](gridmet_humidity_1.png)
 

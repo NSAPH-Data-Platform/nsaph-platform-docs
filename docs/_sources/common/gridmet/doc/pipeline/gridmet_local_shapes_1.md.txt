@@ -1,4 +1,4 @@
-# gridmet_local_shapes_1.cwl
+# Sub-workflow *process* from gridmet_local_shapes.cwl
 
 ![](gridmet_local_shapes_1.png)
 

@@ -32,7 +32,7 @@ local:
 
 ## Steps
 
-| Name  | Runs                                      | Description | 
-|:------|:------------------------------------------|:------------|
-| store | [census_ingest_1.cwl](census_ingest_1.md) |             | 
+| Name  | Runs                               | Description | 
+|:------|:-----------------------------------|:------------|
+| store | [sub-workflow](census_ingest_1.md) |             | 
 

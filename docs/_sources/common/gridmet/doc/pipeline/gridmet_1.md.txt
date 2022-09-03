@@ -1,4 +1,4 @@
-# gridmet_1.cwl
+# Sub-workflow *init_tables* from gridmet.cwl
 
 ![](gridmet_1.png)
 
