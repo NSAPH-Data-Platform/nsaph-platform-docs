@@ -1,4 +1,4 @@
-# Index Builder
+# Table tuner tool (running VACUUM)
 
 ```{contents}
 ---

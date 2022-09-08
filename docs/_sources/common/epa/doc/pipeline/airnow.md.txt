@@ -51,6 +51,7 @@ cwl-runner --parallel /opt/airflow/project/epa/src/cwl/airnow.cwl --database /op
 | download_log  | File   |             | 
 | ingest_log    | File   |             | 
 | index_log     | File   |             | 
+| vacuum_log    | File   |             | 
 | download_data | File   |             | 
 | model         | File   |             | 
 
@@ -63,4 +64,5 @@ cwl-runner --parallel /opt/airflow/project/epa/src/cwl/airnow.cwl --database /op
 | introspect | [introspect.cwl](introspect.md)           |                                | 
 | ingest     | [ingest.cwl](ingest.md)                   | Uploads data into the database | 
 | index      | [index.cwl](index.md)                     |                                | 
+| vacuum     | [vacuum.cwl](vacuum.md)                   |                                | 
 

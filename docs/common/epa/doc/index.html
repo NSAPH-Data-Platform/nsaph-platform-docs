@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="EPA Toolkit Usage" href="usage.html" />
-    <link rel="prev" title="Index Builder" href="../../gridmet/doc/pipeline/vacuum.html" /> 
+    <link rel="prev" title="Table tuner tool (running VACUUM)" href="../../gridmet/doc/pipeline/vacuum.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,6 +57,11 @@
 <li class="toctree-l4"><a class="reference internal" href="cwl_tools.html">CWL Tools and Common Workflows</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#querying-data">Querying Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#airnow">AirNow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aqs">AQS</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../cms/doc/CMSLibrary.html">Health data manipulation tools</a></li>
@@ -64,6 +69,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../guts.html">Data Platform Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../adding_data.html">Adding more data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Terms and Acronyms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../docindices.html">Indices</a></li>
 </ul>
@@ -226,9 +232,809 @@ than AQS</p>
 <li class="toctree-l3"><a class="reference internal" href="pipeline/setup_airnow.html#outputs">Outputs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline/vacuum.html">Table tuner tool (running VACUUM)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/vacuum.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/vacuum.html#inputs">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline/vacuum.html#outputs">Outputs</a></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="querying-data">
+<h2>Querying Data<a class="headerlink" href="#querying-data" title="Permalink to this heading"></a></h2>
+<div class="section" id="airnow">
+<h3>AirNow<a class="headerlink" href="#airnow" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Note: Negative values indicate missing data, therefore
+we need to specify a condition (value &gt; 0)</p>
+</div></blockquote>
+<div class="section" id="columns">
+<h4>Columns<a class="headerlink" href="#columns" title="Permalink to this heading"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>COLUMN_NAME</p></th>
+<th class="head"><p>TYPE_NAME</p></th>
+<th class="head"><p>IS_NULLABLE</p></th>
+<th class="head"><p>IS_AUTOINCREMENT</p></th>
+<th class="head"><p>IS_GENERATEDCOLUMN</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>fullaqscode</p></td>
+<td><p>text</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>latitude</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>utc</p></td>
+<td><p>timestamp</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>parameter</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>unit</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>aqi</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>category</p></td>
+<td><p>int4</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>sitename</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>agencyname</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>intlaqscode</p></td>
+<td><p>text</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>zcta</p></td>
+<td><p>int4</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>state</p></td>
+<td><p>int4</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>fips5</p></td>
+<td><p>int4</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>statefp</p></td>
+<td><p>int4</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>countyfp</p></td>
+<td><p>int4</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>county</p></td>
+<td><p>int4</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>stusps</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>record</p></td>
+<td><p>varchar</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>monitor</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="sample-airnow-query-by-date">
+<h4>Sample AirNow query by date<a class="headerlink" href="#sample-airnow-query-by-date" title="Permalink to this heading"></a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+    <span class="n">utc</span><span class="p">::</span><span class="nb">date</span><span class="p">,</span>
+    <span class="k">AVG</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">mean_value</span><span class="p">,</span>
+    <span class="k">MIN</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">minimum</span><span class="p">,</span>
+    <span class="k">MAX</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">maximum</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span> 
+    <span class="n">epa</span><span class="p">.</span><span class="n">airnow_pm25_2022</span>
+<span class="k">WHERE</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span>    
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sample-airnow-query-aggregating-monthly">
+<h4>Sample AirNow query, aggregating monthly<a class="headerlink" href="#sample-airnow-query-aggregating-monthly" title="Permalink to this heading"></a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+    <span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span> <span class="k">FROM</span> <span class="n">utc</span><span class="p">),</span>
+    <span class="k">AVG</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">mean_value</span><span class="p">,</span>
+    <span class="k">MIN</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">minimum</span><span class="p">,</span>
+    <span class="k">MAX</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">maximum</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span> 
+    <span class="n">epa</span><span class="p">.</span><span class="n">airnow_pm25_2022</span>
+<span class="k">WHERE</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span>    
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sample-airnow-query-aggregating-by-state">
+<h4>Sample AirNow query, aggregating by State<a class="headerlink" href="#sample-airnow-query-aggregating-by-state" title="Permalink to this heading"></a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> 
+    <span class="n">stusps</span><span class="p">,</span>
+    <span class="k">AVG</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">mean_value</span><span class="p">,</span>
+    <span class="k">MIN</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">minimum</span><span class="p">,</span>
+    <span class="k">MAX</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">maximum</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span> 
+    <span class="n">epa</span><span class="p">.</span><span class="n">airnow_pm25_2022</span>
+<span class="k">WHERE</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span>    
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">2</span> <span class="k">desc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aqs">
+<h3>AQS<a class="headerlink" href="#aqs" title="Permalink to this heading"></a></h3>
+<p>See <a class="reference external" href="https://aqs.epa.gov/aqsweb/documents/AQS_Data_Dictionary.html">AQS Data Dictionary</a>
+for the description of the columns</p>
+<div class="section" id="annual-columns">
+<h4>Annual Columns<a class="headerlink" href="#annual-columns" title="Permalink to this heading"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>COLUMN_NAME</p></th>
+<th class="head"><p>TYPE_NAME</p></th>
+<th class="head"><p>IS_NULLABLE</p></th>
+<th class="head"><p>IS_AUTOINCREMENT</p></th>
+<th class="head"><p>IS_GENERATEDCOLUMN</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>state_code</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>county_code</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>site_num</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>parameter_code</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>poc</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>latitude</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>datum</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>parameter_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>sample_duration</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>pollutant_standard</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>metric_used</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>method_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>year</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>units_of_measure</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>event_type</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>observation_count</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>observation_percent</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>completeness_indicator</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>valid_day_count</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>required_day_count</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>exceptional_data_count</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>null_data_count</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>primary_exceedance_count</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>secondary_exceedance_count</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>certification_indicator</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>num_obs_below_mdl</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>arithmetic_mean</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>arithmetic_standard_dev</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_1st_max_value</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_1st_max_datetime</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_2nd_max_value</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_2nd_max_datetime</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_3rd_max_value</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_3rd_max_datetime</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_4th_max_value</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_4th_max_datetime</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_1st_max_non_overlapping_value</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_1st_no_max_datetime</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_2nd_max_non_overlapping_value</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_2nd_no_max_datetime</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_99th_percentile</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_98th_percentile</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_95th_percentile</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_90th_percentile</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_75th_percentile</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_50th_percentile</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_10th_percentile</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>local_site_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>address</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>state_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>county_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>city_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>cbsa_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>date_of_last_change</p></td>
+<td><p>date</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>monitor</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>record</p></td>
+<td><p>varchar</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="daily-columns">
+<h4>Daily columns<a class="headerlink" href="#daily-columns" title="Permalink to this heading"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>COLUMN_NAME</p></th>
+<th class="head"><p>TYPE_NAME</p></th>
+<th class="head"><p>IS_NULLABLE</p></th>
+<th class="head"><p>SCOPE_TABLE</p></th>
+<th class="head"><p>IS_AUTOINCREMENT</p></th>
+<th class="head"><p>IS_GENERATEDCOLUMN</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>state_code</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>county_code</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>site_num</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>parameter_code</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>poc</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>latitude</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>datum</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>parameter_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>sample_duration</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>pollutant_standard</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>date_local</p></td>
+<td><p>date</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>units_of_measure</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>event_type</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>observation_count</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>observation_percent</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>arithmetic_mean</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>c_1st_max_value</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>c_1st_max_hour</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>aqi</p></td>
+<td><p>numeric</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>method_code</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>method_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>local_site_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>address</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>state_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>county_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>city_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>cbsa_name</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>date_of_last_change</p></td>
+<td><p>date</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-odd"><td><p>monitor</p></td>
+<td><p>varchar</p></td>
+<td><p>YES</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+<tr class="row-even"><td><p>record</p></td>
+<td><p>varchar</p></td>
+<td><p>NO</p></td>
+<td><p>(null)</p></td>
+<td><p>NO</p></td>
+<td><p>NO</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -237,7 +1043,7 @@ than AQS</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../gridmet/doc/pipeline/vacuum.html" class="btn btn-neutral float-left" title="Index Builder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../gridmet/doc/pipeline/vacuum.html" class="btn btn-neutral float-left" title="Table tuner tool (running VACUUM)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="usage.html" class="btn btn-neutral float-right" title="EPA Toolkit Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -11,6 +11,7 @@ domains
 pipelines
 Python Packages <packages>
 guts
+Adding more data <adding_data>
 Terms and Acronyms <glossary>
 docindices
 ```
