@@ -1,0 +1,53 @@
+# Workflow to aggregate and ingest one file in NetCDF format
+
+![](wustl_one_file.png)
+
+```{contents}
+---
+local:
+---
+```
+
+**Workflow**
+
+## Description
+
+Sub-workflow that aggregates a single NetCDF file over a given
+geography (zip codes or counties) and ingest the
+aggregated data into the database
+
+
+## Inputs
+
+| Name            | Type      | Default | Description            | 
+|:----------------|:----------|:--------|:-----------------------|
+| depends_on      | Any?      |         |                        | 
+| downloads       | Directory |         |                        | 
+| geography       | string    |         |                        | 
+| year            | int       |         |                        | 
+| month           | int       |         |                        | 
+| band            | string    | `pm25`  |                        | 
+| table           | string    |         |                        | 
+| shape_files     | File[]    |         | Paths to shape files   | 
+| strategy        | string    |         | Rasterization strategy | 
+| database        | File      |         |                        | 
+| connection_name | string    |         |                        | 
+
+## Outputs
+
+| Name           | Type | Description | 
+|:---------------|:-----|:------------|
+| aggregate_data | File |             | 
+| aggregate_log  | File |             | 
+| aggregate_err  | File |             | 
+| ingest_log     | File |             | 
+| ingest_err     | File |             | 
+
+## Steps
+
+| Name      | Runs                                      | Description                                   | 
+|:----------|:------------------------------------------|:----------------------------------------------|
+| findfile  | command                                   |                                               | 
+| aggregate | [wustl_aggregate.cwl](wustl_aggregate.md) | Aggregate data over gographies                | 
+| ingest    | [add_data.cwl](add_data.md)               | Ingests the aggregated data into the database | 
+

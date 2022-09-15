@@ -108,6 +108,8 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
+<span class="kn">from</span> <span class="nn">nsaph.loader.index_builder</span> <span class="kn">import</span> <span class="n">IndexBuilder</span>
+
 <span class="kn">from</span> <span class="nn">cms.mcr_data_loader</span> <span class="kn">import</span> <span class="n">MedicareDataLoader</span>
 <span class="kn">from</span> <span class="nn">cms.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
 
@@ -117,6 +119,7 @@
 <span class="kn">from</span> <span class="nn">nsaph.loader.data_loader</span> <span class="kn">import</span> <span class="n">DataLoader</span>
 
 <span class="kn">from</span> <span class="nn">nsaph.loader</span> <span class="kn">import</span> <span class="n">LoaderConfig</span>
+<span class="kn">from</span> <span class="nn">nsaph.loader.vacuum</span> <span class="kn">import</span> <span class="n">Vacuum</span>
 
 
 <div class="viewcode-block" id="MedicareLoader"><a class="viewcode-back" href="../../../common/cms/doc/members/mcr_fts2db.html#cms.tools.mcr_fts2db.MedicareLoader">[docs]</a><span class="k">class</span> <span class="nc">MedicareLoader</span><span class="p">:</span>
@@ -190,7 +193,9 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">dryrun</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dry run: &quot;</span> <span class="o">+</span> <span class="n">fts_path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">loader</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></div>
+            <span class="n">loader</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+            <span class="n">IndexBuilder</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+            <span class="n">Vacuum</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MedicareLoader.loader_for_csv"><a class="viewcode-back" href="../../../common/cms/doc/members/mcr_fts2db.html#cms.tools.mcr_fts2db.MedicareLoader.loader_for_csv">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">loader_for_csv</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">LoaderConfig</span><span class="p">,</span> <span class="n">data_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataLoader</span><span class="p">:</span>

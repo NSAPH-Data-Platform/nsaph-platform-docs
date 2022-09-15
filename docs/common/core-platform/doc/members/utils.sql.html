@@ -123,6 +123,8 @@
 <span class="c1">--  limitations under the License.</span>
 <span class="c1">--</span>
 
+<span class="k">CREATE</span> <span class="k">EXTENSION</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span>  <span class="n">hll</span><span class="p">;</span>
+
 <span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="s s-Name">&quot;public&quot;</span><span class="mf">.</span><span class="s s-Name">&quot;count_rows&quot;</span> <span class="p">(</span>
     <span class="n">schema_name</span> <span class="nb">character</span> <span class="k">varying</span><span class="p">,</span> <span class="n">table_name</span> <span class="nb">character</span> <span class="k">varying</span>
 <span class="p">)</span>  <span class="k">RETURNS</span> <span class="nb">bigint</span>
@@ -130,8 +132,24 @@
 <span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
 <span class="k">DECLARE</span> <span class="n">cnt</span> <span class="nb">bigint</span><span class="p">;</span>
 <span class="k">BEGIN</span>
-<span class="k">EXECUTE</span> <span class="n">format</span><span class="p">(</span><span class="s1">&#39;SELECT COUNT(*) FROM %I.%I&#39;</span><span class="p">,</span> <span class="n">schema_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span> <span class="k">into</span> <span class="n">cnt</span><span class="p">;</span>
-<span class="k">RETURN</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="k">EXECUTE</span> <span class="n">format</span><span class="p">(</span><span class="s1">&#39;SELECT COUNT(*) FROM %I.%I&#39;</span><span class="p">,</span> <span class="n">schema_name</span><span class="p">,</span> <span class="n">table_name</span><span class="p">)</span> <span class="k">into</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="k">RETURN</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
+<span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="s s-Name">&quot;public&quot;</span><span class="mf">.</span><span class="s s-Name">&quot;estimate_rows&quot;</span> <span class="p">(</span>
+    <span class="n">schema_name</span> <span class="nb">character</span> <span class="k">varying</span><span class="p">,</span> <span class="n">table_name</span> <span class="nb">character</span> <span class="k">varying</span>
+<span class="p">)</span>  <span class="k">RETURNS</span> <span class="nb">bigint</span>
+  <span class="k">VOLATILE</span>
+<span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
+<span class="k">DECLARE</span> <span class="n">cnt</span> <span class="nb">bigint</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">SELECT</span> <span class="n">reltuples</span><span class="o">::</span><span class="nb">bigint</span>
+        <span class="k">FROM</span> <span class="n">pg_class</span>
+        <span class="k">WHERE</span> <span class="n">oid</span> <span class="o">=</span> <span class="p">(</span><span class="n">schema_name</span> <span class="o">||</span> <span class="s1">&#39;.&#39;</span> <span class="o">||</span> <span class="n">table_name</span><span class="p">)</span><span class="o">::</span><span class="n">regclass</span>
+        <span class="k">INTO</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="k">RETURN</span> <span class="n">cnt</span><span class="p">;</span>
 <span class="k">END</span><span class="p">;</span>
 <span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
 <span class="p">;</span>
@@ -182,7 +200,6 @@
 <span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">PROCEDURE</span> <span class="n">public</span><span class="mf">.</span><span class="n">grant_select</span><span class="p">(</span>
         <span class="n">username</span> <span class="nb">varchar</span>
     <span class="p">)</span>
-    <span class="k">VOLATILE</span>
 <span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
 <span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
 <span class="k">DECLARE</span>

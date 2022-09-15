@@ -111,30 +111,32 @@
 <li><p><a class="reference internal" href="#ingesting-raw-files" id="id1">Ingesting Raw Files</a></p>
 <ul>
 <li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
-<li><p><a class="reference internal" href="#storing-in-the-database" id="id3">Storing in the Database</a></p></li>
+<li><p><a class="reference internal" href="#storing-raw-data-in-the-database" id="id3">Storing raw data in the Database</a></p></li>
 <li><p><a class="reference internal" href="#files-for-1999-to-2010" id="id4">Files for 1999 to 2010</a></p></li>
 <li><p><a class="reference internal" href="#files-for-years-2011-and-later" id="id5">Files for Years 2011 and later</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#combining-raw-files-into-a-single-view" id="id6">Combining raw files into a single view</a></p>
 <ul>
-<li><p><a class="reference internal" href="#creating-federated-patient-summary" id="id7">Creating Federated Patient Summary</a></p>
+<li><p><a class="reference internal" href="#eventual-database-schema" id="id7">Eventual database schema</a></p></li>
+<li><p><a class="reference internal" href="#cwl-workflows" id="id8">CWL workflows</a></p></li>
+<li><p><a class="reference internal" href="#creating-federated-patient-summary" id="id9">Creating Federated Patient Summary</a></p>
 <ul>
-<li><p><a class="reference internal" href="#first-step-initial-in-database-data-conditioning" id="id8">First step: Initial in-database data conditioning</a></p></li>
-<li><p><a class="reference internal" href="#second-step-mapping-to-county-fips-codes" id="id9">Second step: Mapping to county FIPS codes</a></p></li>
+<li><p><a class="reference internal" href="#first-step-initial-in-database-data-conditioning" id="id10">First step: Initial in-database data conditioning</a></p></li>
+<li><p><a class="reference internal" href="#second-step-mapping-to-county-fips-codes" id="id11">Second step: Mapping to county FIPS codes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#creating-beneficiaries-table" id="id10">Creating Beneficiaries table</a></p></li>
-<li><p><a class="reference internal" href="#creating-enrollments-table" id="id11">Creating Enrollments table</a></p>
+<li><p><a class="reference internal" href="#creating-beneficiaries-table" id="id12">Creating Beneficiaries table</a></p></li>
+<li><p><a class="reference internal" href="#creating-enrollments-table" id="id13">Creating Enrollments table</a></p>
 <ul>
-<li><p><a class="reference internal" href="#enrollments-overview" id="id12">Enrollments overview</a></p></li>
-<li><p><a class="reference internal" href="#enrollments-primary-key-unique-identifier" id="id13">Enrollments Primary key (unique identifier)</a></p></li>
-<li><p><a class="reference internal" href="#enrollments-data-cleansing" id="id14">Enrollments data cleansing</a></p></li>
-<li><p><a class="reference internal" href="#enrollments-columns-definitions" id="id15">Enrollments columns definitions</a></p></li>
+<li><p><a class="reference internal" href="#enrollments-overview" id="id14">Enrollments overview</a></p></li>
+<li><p><a class="reference internal" href="#enrollments-primary-key-unique-identifier" id="id15">Enrollments Primary key (unique identifier)</a></p></li>
+<li><p><a class="reference internal" href="#enrollments-data-cleansing" id="id16">Enrollments data cleansing</a></p></li>
+<li><p><a class="reference internal" href="#enrollments-columns-definitions" id="id17">Enrollments columns definitions</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#creating-federated-admissions-view" id="id16">Creating Federated Admissions view</a></p></li>
-<li><p><a class="reference internal" href="#creating-inpatient-admissions-table" id="id17">Creating Inpatient Admissions table</a></p></li>
+<li><p><a class="reference internal" href="#creating-federated-admissions-view" id="id18">Creating Federated Admissions view</a></p></li>
+<li><p><a class="reference internal" href="#creating-inpatient-admissions-table" id="id19">Creating Inpatient Admissions table</a></p></li>
 </ul>
 </li>
 </ul>
@@ -167,8 +169,8 @@ have original files, but preprocessed files with patient summary
 (called denominators) and admissions. They are in SAS 7BDAT format,
 however columns are also different for different years.</p>
 </div>
-<div class="section" id="storing-in-the-database">
-<h3><a class="toc-backref" href="#id3">Storing in the Database</a><a class="headerlink" href="#storing-in-the-database" title="Permalink to this heading"></a></h3>
+<div class="section" id="storing-raw-data-in-the-database">
+<h3><a class="toc-backref" href="#id3">Storing raw data in the Database</a><a class="headerlink" href="#storing-raw-data-in-the-database" title="Permalink to this heading"></a></h3>
 <p>Given the difference in file structures we create a separate table
 for every file. However, to make it easier to join these tables we:</p>
 <ul class="simple">
@@ -231,20 +233,37 @@ extarcted by the parser is used to:</p>
 </div>
 <div class="section" id="combining-raw-files-into-a-single-view">
 <h2><a class="toc-backref" href="#id6">Combining raw files into a single view</a><a class="headerlink" href="#combining-raw-files-into-a-single-view" title="Permalink to this heading"></a></h2>
+<div class="section" id="eventual-database-schema">
+<h3><a class="toc-backref" href="#id7">Eventual database schema</a><a class="headerlink" href="#eventual-database-schema" title="Permalink to this heading"></a></h3>
 <p>Once all raw files are ingested into the database they are combined
 into two views:</p>
 <ol class="arabic simple">
 <li><p>Patient summary (aka MBSF, aka Beneficiary summary)</p></li>
 <li><p>Inpatient Admissions (aka hospitalizations, aka medpar)</p></li>
 </ol>
-<div class="section" id="creating-federated-patient-summary">
-<h3><a class="toc-backref" href="#id7">Creating Federated Patient Summary</a><a class="headerlink" href="#creating-federated-patient-summary" title="Permalink to this heading"></a></h3>
+<p>The figure below visualizes teh database schema.</p>
 <a class="reference internal image-reference" href="../../../_images/medicare-db.png"><img alt="../../../_images/medicare-db.png" src="../../../_images/medicare-db.png" style="width: 600px;" /></a>
-<p>The federated patient summary is created in two steps.
-The division into two steps is purely because of technical reasons
+<p>The tables above are defined in
+<a class="reference internal" href="members/medicare_yaml.html"><span class="doc std std-doc">Medicare data model definition</span></a>.</p>
+</div>
+<div class="section" id="cwl-workflows">
+<h3><a class="toc-backref" href="#id8">CWL workflows</a><a class="headerlink" href="#cwl-workflows" title="Permalink to this heading"></a></h3>
+<p>The
+<a class="reference internal" href="pipeline/medicare.html"><span class="doc std std-doc">full pipeline</span></a> consists of two steps:</p>
+<ol class="arabic simple">
+<li><p>Creating <a class="reference internal" href="pipeline/medicare_beneficiaries.html"><span class="doc std std-doc">beneficiary federated summary and enrollments table</span></a></p></li>
+<li><p>Creating <a class="reference internal" href="pipeline/medicare_admissions.html"><span class="doc std std-doc">inpatient admissions table</span></a></p></li>
+</ol>
+</div>
+<div class="section" id="creating-federated-patient-summary">
+<h3><a class="toc-backref" href="#id9">Creating Federated Patient Summary</a><a class="headerlink" href="#creating-federated-patient-summary" title="Permalink to this heading"></a></h3>
+<p>The federated patient summary view is created in two steps, though the division
+into steps is purely technical. The reasons are
 given some limitations of readability in SQL.</p>
+<p>These steps are part of
+<a class="reference internal" href="pipeline/medicare_beneficiaries.html"><span class="doc std std-doc">Medicare Beneficiaries data in-database processing pipeline</span></a></p>
 <div class="section" id="first-step-initial-in-database-data-conditioning">
-<h4><a class="toc-backref" href="#id8">First step: Initial in-database data conditioning</a><a class="headerlink" href="#first-step-initial-in-database-data-conditioning" title="Permalink to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id10">First step: Initial in-database data conditioning</a><a class="headerlink" href="#first-step-initial-in-database-data-conditioning" title="Permalink to this heading"></a></h4>
 <p>The first step creates a view called <code class="docutils literal notranslate"><span class="pre">medicare.ps</span></code>.</p>
 <p>This step technically combines all <code class="docutils literal notranslate"><span class="pre">cms.mbsf_ab*</span></code> and <code class="docutils literal notranslate"><span class="pre">cms.mcr_bene_*</span></code>
 tables into a single view using <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">VIEW</span></code> SQL statement.</p>
@@ -273,7 +292,7 @@ from either character or SAS numeric form</p></li>
 is responsible to perform it.</p>
 </div>
 <div class="section" id="second-step-mapping-to-county-fips-codes">
-<h4><a class="toc-backref" href="#id9">Second step: Mapping to county FIPS codes</a><a class="headerlink" href="#second-step-mapping-to-county-fips-codes" title="Permalink to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id11">Second step: Mapping to county FIPS codes</a><a class="headerlink" href="#second-step-mapping-to-county-fips-codes" title="Permalink to this heading"></a></h4>
 <p>At the second step, a view called <code class="docutils literal notranslate"><span class="pre">medicare._ps</span></code> is created.<br />
 The only difference between  <code class="docutils literal notranslate"><span class="pre">medicare.ps</span></code> and <code class="docutils literal notranslate"><span class="pre">medicare._ps</span></code>
 is that the latter has county FIPS code (<code class="docutils literal notranslate"><span class="pre">fips3</span></code> column)
@@ -288,7 +307,9 @@ based on the
 </div>
 </div>
 <div class="section" id="creating-beneficiaries-table">
-<h3><a class="toc-backref" href="#id10">Creating Beneficiaries table</a><a class="headerlink" href="#creating-beneficiaries-table" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12">Creating Beneficiaries table</a><a class="headerlink" href="#creating-beneficiaries-table" title="Permalink to this heading"></a></h3>
+<p>This is also part of
+<a class="reference internal" href="pipeline/medicare_beneficiaries.html"><span class="doc std std-doc">Medicare Beneficiaries data in-database processing pipeline</span></a></p>
 <p>See also <a class="reference internal" href="Medicaid.html#beneficiaries"><span class="std std-doc">creating Medicaid Beneficiaries table</span></a></p>
 <p>This is also a two steps operation. The first step
 creates an SQL view and the second step stores the data
@@ -318,14 +339,18 @@ there is a discrepancy in the data for this beneficiary</p></li>
 beneficiary. The value of this column is NULL for consistent records</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dod_earliest</span></code>: the earliest DOD found in the records for this
 beneficiary. The value of this column is NULL for consistent records</p></li>
+<li><p>Beneficiary id HLL hash (<code class="docutils literal notranslate"><span class="pre">bene</span></code> column), to be used for
+<code class="docutils literal notranslate"><span class="pre">approximate</span> <span class="pre">count</span> <span class="pre">distinct</span></code> queries. <a class="reference internal" href="UsingHLL.html"><span class="doc std std-doc">See more</span></a></p></li>
 </ul>
 <p>This topic is discussed in more details in the
 <a class="reference internal" href="Medicaid.html#deduplication-and-data-cleansing"><span class="std std-doc">Medicaid documentation</span></a></p>
 </div>
 <div class="section" id="creating-enrollments-table">
-<h3><a class="toc-backref" href="#id11">Creating Enrollments table</a><a class="headerlink" href="#creating-enrollments-table" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id13">Creating Enrollments table</a><a class="headerlink" href="#creating-enrollments-table" title="Permalink to this heading"></a></h3>
+<p>This is also part of
+<a class="reference internal" href="pipeline/medicare_beneficiaries.html"><span class="doc std std-doc">Medicare Beneficiaries data in-database processing pipeline</span></a></p>
 <div class="section" id="enrollments-overview">
-<h4><a class="toc-backref" href="#id12">Enrollments overview</a><a class="headerlink" href="#enrollments-overview" title="Permalink to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id14">Enrollments overview</a><a class="headerlink" href="#enrollments-overview" title="Permalink to this heading"></a></h4>
 <p>Enrollments table contains information about yearly beneficiaries
 enrollments in different states and tracks changes in eligibility
 (i.e. beginning of the eligibility and beneficiaries death) and
@@ -342,7 +367,7 @@ as a real table, adds primary key and builds indices to make queries
 more efficient.</p>
 </div>
 <div class="section" id="enrollments-primary-key-unique-identifier">
-<h4><a class="toc-backref" href="#id13">Enrollments Primary key (unique identifier)</a><a class="headerlink" href="#enrollments-primary-key-unique-identifier" title="Permalink to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id15">Enrollments Primary key (unique identifier)</a><a class="headerlink" href="#enrollments-primary-key-unique-identifier" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>bene_id</p></li>
 <li><p>year</p></li>
@@ -356,7 +381,7 @@ a beneficiary will be created in the table. This is consistent with
 makes less sense for Medicare.</p>
 </div>
 <div class="section" id="enrollments-data-cleansing">
-<h4><a class="toc-backref" href="#id14">Enrollments data cleansing</a><a class="headerlink" href="#enrollments-data-cleansing" title="Permalink to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id16">Enrollments data cleansing</a><a class="headerlink" href="#enrollments-data-cleansing" title="Permalink to this heading"></a></h4>
 <p>Beneficiaries can move during a year therefore address columns can have
 multiple values. These columns are:</p>
 <ul class="simple">
@@ -395,7 +420,7 @@ of county code is consistent with the values of state code and zip code.</p></li
 </ul>
 </div>
 <div class="section" id="enrollments-columns-definitions">
-<h4><a class="toc-backref" href="#id15">Enrollments columns definitions</a><a class="headerlink" href="#enrollments-columns-definitions" title="Permalink to this heading"></a></h4>
+<h4><a class="toc-backref" href="#id17">Enrollments columns definitions</a><a class="headerlink" href="#enrollments-columns-definitions" title="Permalink to this heading"></a></h4>
 <p>The following columns are created for Enrollments:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ssa2</span></code>: SSA state code</p></li>
@@ -430,11 +455,15 @@ ResDac record, hence, the county code was inferred from other data
 (in most cases, zip code)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fips3_valdiated</span></code>: A boolean column indicating that the value
 of county code is consistent with the values of state code and zip code.</p></li>
+<li><p>Beneficiary id HLL hash (<code class="docutils literal notranslate"><span class="pre">bene</span></code> column), to be used for
+<code class="docutils literal notranslate"><span class="pre">approximate</span> <span class="pre">count</span> <span class="pre">distinct</span></code> queries. <a class="reference internal" href="UsingHLL.html"><span class="doc std std-doc">See more</span></a></p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="creating-federated-admissions-view">
-<h3><a class="toc-backref" href="#id16">Creating Federated Admissions view</a><a class="headerlink" href="#creating-federated-admissions-view" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id18">Creating Federated Admissions view</a><a class="headerlink" href="#creating-federated-admissions-view" title="Permalink to this heading"></a></h3>
+<p>This step is part of
+<a class="reference internal" href="pipeline/medicare_admissions.html"><span class="doc std std-doc">Process Medicare inpatient admissions data inside the database</span></a></p>
 <p>This step technically combines all <code class="docutils literal notranslate"><span class="pre">cms.medpar*</span></code> and <code class="docutils literal notranslate"><span class="pre">cms.mcr_ip_*</span></code>
 tables into a single view using <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">VIEW</span></code> SQL statement.</p>
 <p>It also cleanses and conditions data from the following columns:</p>
@@ -462,9 +491,47 @@ from either character or SAS numeric form</p></li>
 </ul>
 </div>
 <div class="section" id="creating-inpatient-admissions-table">
-<h3><a class="toc-backref" href="#id17">Creating Inpatient Admissions table</a><a class="headerlink" href="#creating-inpatient-admissions-table" title="Permalink to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id19">Creating Inpatient Admissions table</a><a class="headerlink" href="#creating-inpatient-admissions-table" title="Permalink to this heading"></a></h3>
+<p>This step is also part of
+<a class="reference internal" href="pipeline/medicare_admissions.html"><span class="doc std std-doc">Process Medicare inpatient admissions data inside the database</span></a></p>
 <p>Table with all inpatient admissions billed to Medicare with
 admission and discharge dates and ICD codes.</p>
+<p>During this step the following major operations are performed:</p>
+<ul class="simple">
+<li><p>Added the following columns:</p>
+<ul>
+<li><p>Admission year, extracted from admission date</p></li>
+<li><p>Added <a class="reference internal" href="UsingHLL.html"><span class="doc std std-doc">HLL hashes</span></a> for:</p>
+<ul>
+<li><p>Beneficiary id (<code class="docutils literal notranslate"><span class="pre">bene</span></code> column)</p></li>
+<li><p>Primary diagnosis at admission  (<code class="docutils literal notranslate"><span class="pre">pd_hll_hash</span></code>)</p></li>
+<li><p>All diagnoses, used for admission (<code class="docutils literal notranslate"><span class="pre">icd_hll</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Performed validation of admission data. Records that failed
+validation are excluded from the resulting <code class="docutils literal notranslate"><span class="pre">Admissions</span></code> table but are stored
+in a special <code class="docutils literal notranslate"><span class="pre">medicare_audit.admissions</span></code> table, together with teh reason
+for validation failure. We distinguish three reasons for validation failure:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Primary</span> <span class="pre">key</span></code>: this indicates missing data, for example:</p>
+<ul>
+<li><p>Missing beneficiary id</p></li>
+<li><p>Missing admission or discharge date</p></li>
+<li><p>Missing US State, where the admission happened</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Foreign</span> <span class="pre">key</span></code>: means that the beneficiary referred in the admission
+record was not eligible for Medicare in the given year</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Duplicate</span></code>: a duplicate record was found. Only one record out of
+several duplicates is stored in the <code class="docutils literal notranslate"><span class="pre">admissions</span></code> table, others are
+copied to <code class="docutils literal notranslate"><span class="pre">medicare_audit.admissions</span></code> table.</p></li>
+</ul>
+</li>
+</ul>
+<p>See more information about handling records that have failed validation in:
+<a class="reference internal" href="../../core-platform/doc/Datamodels.html#invalid-record"><span class="std std-doc">Data Modeling</span></a></p>
 </div>
 </div>
 </div>

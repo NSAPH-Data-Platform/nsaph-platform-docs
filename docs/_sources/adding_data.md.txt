@@ -69,7 +69,7 @@ in a file (CSV, JSON, FST and some other
 formats) and then running the 
 [Data Loader](common/core-platform/doc/DataLoader.md).
 
-## AAutomatically ingesting multiple files from a file system
+## Automatically ingesting multiple files from a file system
 
 See [Project Loader Tool](common/core-platform/doc/ProjectLoader.md)
 for details.

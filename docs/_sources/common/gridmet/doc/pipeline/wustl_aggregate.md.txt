@@ -1,0 +1,34 @@
+# Aggregates data in NetCDF file over given geographies
+
+```{contents}
+---
+local:
+---
+```
+
+**Tool** [](pollution.wustl_file_processor)
+
+## Description
+
+This tool aggregates data in NetCDF file over provided shapes
+(zip codes or counties). It produces mean values
+
+
+## Inputs
+
+| Name        | Type       | Default     | Description                               | 
+|:------------|:-----------|:------------|:------------------------------------------|
+| strategy    | string     | `downscale` | Rasterization strategy                    | 
+| shapes      | Directory? |             |                                           | 
+| geography   | string     |             | Type of geography: zip codes or counties  | 
+| netcdf_data | File       |             | Path to downloaded file                   | 
+| shape_files | File[]     |             | Paths to shape files                      | 
+
+## Outputs
+
+| Name     | Type   | Description                                                                                                                                               | 
+|:---------|:-------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| log      | File   |                                                                                                                                                           | 
+| csv_data | File   | The output CSV file, containing mean values of the given variable over given geographies. Each line contains date, geo id (zip or county FIPS) and value  | 
+| errors   | stderr |                                                                                                                                                           | 
+

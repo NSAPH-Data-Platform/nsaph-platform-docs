@@ -303,6 +303,9 @@
         <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
             <span class="n">path</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">FWFReader</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">open_fwf</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">path</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">path</span><span class="o">.</span><span class="n">name</span>
             <span class="n">nlower</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">nlower</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.fst&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">nlower</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.sas7bdat&quot;</span><span class="p">):</span>
@@ -310,10 +313,10 @@
                     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                         <span class="s2">&quot;Not implemented: reading FST or SAS files from archive&quot;</span>
                     <span class="p">)</span>
-            <span class="k">elif</span> <span class="s2">&quot;.json&quot;</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;.json&quot;</span> <span class="ow">in</span> <span class="n">path</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">open_json</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
                 <span class="n">opened</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">else</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">open_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
                 <span class="n">opened</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">opened</span><span class="p">:</span>
