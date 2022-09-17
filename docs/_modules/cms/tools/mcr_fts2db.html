@@ -81,6 +81,14 @@
 <span class="sd">Used for 2011 and later years. Looks for FTS files, parses them to generate</span>
 <span class="sd">database model and extract</span>
 <span class="sd">metadata required to read DAT files. Then loads data into the database.</span>
+
+<span class="sd">This module looks for FTS files, parses them, then looks for corresponding</span>
+<span class="sd">DAT files. It copies FTS files to destination directory and selects a few</span>
+<span class="sd">random records from DAT files.</span>
+
+<span class="sd">Please note, that if the destination to be used with Medicare</span>
+<span class="sd">ingestion pipeline, the full path to resulting FTS and DAT files must include</span>
+<span class="sd">a directory named with the year, e.g. my_data/medicare/2018/*.fts</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
@@ -171,7 +179,14 @@
 <div class="viewcode-block" id="MedicareLoader.handle"><a class="viewcode-back" href="../../../common/cms/doc/members/mcr_fts2db.html#cms.tools.mcr_fts2db.MedicareLoader.handle">[docs]</a>    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fts_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">basedir</span><span class="p">,</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">fts_path</span><span class="p">)</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">ydir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">basedir</span><span class="p">)</span>
-        <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ydir</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">year</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ydir</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Immediate parent directory &#39;</span><span class="si">{}</span><span class="s2">&#39; of </span><span class="si">{}</span><span class="s2"> was expected to be named&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot; as 4 digit year (YYYY), e.g. 2011 or 2018&quot;</span>
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ydir</span><span class="p">,</span> <span class="n">fts_path</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="n">f</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">fts_path</span><span class="p">)</span>
         <span class="n">ttype</span> <span class="o">=</span> <span class="n">mcr_type</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
         <span class="n">ctxt</span> <span class="o">=</span> <span class="n">CMSSchema</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span>

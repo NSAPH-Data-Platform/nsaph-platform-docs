@@ -80,6 +80,12 @@
 <p>Used for 2011 and later years. Looks for FTS files, parses them to generate
 database model and extract
 metadata required to read DAT files. Then loads data into the database.</p>
+<p>This module looks for FTS files, parses them, then looks for corresponding
+DAT files. It copies FTS files to destination directory and selects a few
+random records from DAT files.</p>
+<p>Please note, that if the destination to be used with Medicare
+ingestion pipeline, the full path to resulting FTS and DAT files must include
+a directory named with the year, e.g. my_data/medicare/2018/<a href="#id1"><span class="problematic" id="id2">*</span></a>.fts</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="cms.tools.mcr_fts2db.MedicareLoader">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MedicareLoader</span></span><a class="reference internal" href="../../../../_modules/cms/tools/mcr_fts2db.html#MedicareLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.tools.mcr_fts2db.MedicareLoader" title="Permalink to this definition"></a></dt>

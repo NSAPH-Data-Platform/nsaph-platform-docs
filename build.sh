@@ -47,6 +47,10 @@ do
   then
      collector doc/common/$name/src/python doc/common/$name/doc/members
   fi
+  if [ "$name" = "utils" ]
+  then
+     collector doc/common/$name doc/common/$name/doc/members
+  fi
 
   # prepare markdown templates for CWL files
   if [ -d doc/common/$name/src/cwl ]

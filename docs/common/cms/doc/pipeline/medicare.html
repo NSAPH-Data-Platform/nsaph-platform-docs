@@ -109,6 +109,21 @@
 for each year is in a separate set of SAS DAT files accompanied by FTS.
 For each year we expect at least
 two tables: patient summary and inpatient admissions.</p>
+<blockquote>
+<div><p>NB: Input files must be organized within teh dicrectory given in
+the <code class="docutils literal notranslate"><span class="pre">input</span></code> parameter in a certain way. Immediate parent folder for
+each file should be named as the year of the data it contains. Example:</p>
+</div></blockquote>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>data/
+  a/
+    b/
+      2011/
+      2013/
+    d/
+      2017/
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../Medicare.html"><span class="doc std std-doc">Medicare Files Handling</span></a> for data processing details.</p>
 </div>
 <div class="section" id="inputs">
 <h2><a class="toc-backref" href="#id2">Inputs</a><a class="headerlink" href="#inputs" title="Permalink to this heading"></a></h2>
@@ -134,7 +149,7 @@ two tables: patient summary and inpatient admissions.</p>
 <tr class="row-even"><td class="text-left"><p>input</p></td>
 <td class="text-left"><p>Directory</p></td>
 <td class="text-left"><p></p></td>
-<td class="text-left"><p>A path to directory, containing unpacked CMS files. The tool will recursively look for data files according to provided pattern</p></td>
+<td class="text-left"><p>A path to directory, containing folders with unpacked CMS files. The tool will recursively look for data files according to provided pattern. Immediate parent folder for each file should be named as the year of the data it contains, e.g. a/b/c/2017/mbsf_abcd_xyzacdfrtwe_request12345.fts</p></td>
 </tr>
 </tbody>
 </table>

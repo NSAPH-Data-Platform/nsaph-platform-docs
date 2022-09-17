@@ -8,7 +8,7 @@ local:
                          
 ## What data are you adding?
 
-There are many ways to add data to teh database. We review the following 
+There are many ways to add data to the database. We review the following 
 options:
 
 - Creating a new data domain with its own pipelines and, optionally,
