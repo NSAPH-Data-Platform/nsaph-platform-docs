@@ -6,6 +6,7 @@ maxdepth: 1
 caption: Data Processing Pipelines
 ---
 common/gridmet/doc/pipeline/gridmet
+common/gridmet/doc/pipeline/wustl
 common/epa/doc/pipeline/aqs
 common/epa/doc/pipeline/airnow
 common/cms/doc/pipeline/medicare
