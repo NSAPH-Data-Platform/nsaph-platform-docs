@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](cms.init_cms_db)
+**Tool**. Runs: [cms.init_cms_db](../../../cms/doc/members/init_cms_db)
 
 ## Description
 

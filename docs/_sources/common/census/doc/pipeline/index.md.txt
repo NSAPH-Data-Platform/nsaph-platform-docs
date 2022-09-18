@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](nsaph.loader.index_builder)
+**Tool**. Runs: [nsaph.loader.index_builder](../../../core-platform/doc/members/index_builder)
 
 ## Description
 

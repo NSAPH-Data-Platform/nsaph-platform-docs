@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](nsaph.loader.data_loader)
+**Tool**. Runs: [nsaph.loader.data_loader](../../../core-platform/doc/members/data_loader)
 
 ## Description
 

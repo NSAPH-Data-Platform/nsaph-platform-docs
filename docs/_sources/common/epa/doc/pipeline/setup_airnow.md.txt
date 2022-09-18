@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](epa.airnow_setup)
+**Tool**. Runs: [epa.airnow_setup](../../../epa/doc/members/airnow_setup)
 
 ## Description
 

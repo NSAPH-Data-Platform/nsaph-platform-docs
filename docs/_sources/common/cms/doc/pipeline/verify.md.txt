@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](cms.aggregates)
+**Tool**. Runs: [cms.aggregates](../../../cms/doc/members/aggregates)
 
 ## Description
 

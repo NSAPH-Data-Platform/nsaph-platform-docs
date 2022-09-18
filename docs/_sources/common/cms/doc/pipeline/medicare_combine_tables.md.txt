@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](cms.tools.mcr_combine_tables)
+**Tool**. Runs: [cms.tools.mcr_combine_tables](../../../cms/doc/members/mcr_combine_tables)
 
 ## Description
 

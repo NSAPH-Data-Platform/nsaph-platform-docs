@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](cms.registry)
+**Tool**. Runs: [cms.registry](../../../cms/doc/members/registry)
 
 ## Description
 

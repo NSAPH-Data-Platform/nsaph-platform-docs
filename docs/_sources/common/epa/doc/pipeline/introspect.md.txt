@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](epa.registry)
+**Tool**. Runs: [epa.registry](../../../epa/doc/members/registry)
 
 ## Description
 

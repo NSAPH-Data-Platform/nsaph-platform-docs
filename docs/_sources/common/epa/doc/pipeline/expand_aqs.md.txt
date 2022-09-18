@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](epa.aqs_expand)
+**Tool**. Runs: [epa.aqs_expand](../../../epa/doc/members/aqs_expand)
 
 ## Description
 

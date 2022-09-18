@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](census.interpolate_data)
+**Tool**. Runs: [census.interpolate_data](../../../census/doc/members/interpolate_data)
 
 ## Inputs
 

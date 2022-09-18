@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](census.write_data)
+**Tool**. Runs: [census.write_data](../../../census/doc/members/write_data)
 
 ## Inputs
 

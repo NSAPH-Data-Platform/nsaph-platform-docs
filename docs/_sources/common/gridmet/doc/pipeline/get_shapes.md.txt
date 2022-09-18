@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](gridmet.shapes)
+**Tool**. Runs: [gridmet.shapes](../../../gridmet/doc/members/shapes)
 
 ## Description
 

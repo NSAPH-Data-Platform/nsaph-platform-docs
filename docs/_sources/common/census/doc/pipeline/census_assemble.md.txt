@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](census.cli)
+**Tool**. Runs: [census.cli](../../../census/doc/members/cli)
 
 ## Inputs
 

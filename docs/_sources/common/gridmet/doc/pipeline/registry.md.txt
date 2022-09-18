@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](gridmet.registry)
+**Tool**. Runs: [gridmet.registry](../../../gridmet/doc/members/registry)
 
 ## Description
 

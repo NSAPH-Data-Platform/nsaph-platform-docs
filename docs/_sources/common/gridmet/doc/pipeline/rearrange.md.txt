@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](mv)
+**Tool**. Runs: mv
 
 ## Description
 

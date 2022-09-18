@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](census.calculate_density)
+**Tool**. Runs: [census.calculate_density](../../../census/doc/members/calculate_density)
 
 ## Inputs
 

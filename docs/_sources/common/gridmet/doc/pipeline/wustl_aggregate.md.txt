@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](pollution.wustl_file_processor)
+**Tool**. Runs: pollution.wustl_file_processor
 
 ## Description
 

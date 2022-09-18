@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](wget)
+**Tool**. Runs: wget
 
 ## Description
 

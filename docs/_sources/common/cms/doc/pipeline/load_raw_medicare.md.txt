@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](cms.tools.mcr_fts2db)
+**Tool**. Runs: [cms.tools.mcr_fts2db](../../../cms/doc/members/mcr_fts2db)
 
 ## Description
 

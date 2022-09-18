@@ -6,7 +6,7 @@ local:
 ---
 ```
 
-**Tool** [](nsaph.util.pg_json_dump)
+**Tool**. Runs: [nsaph.util.pg_json_dump](../../../core-platform/doc/members/pg_json_dump)
 
 ## Description
 

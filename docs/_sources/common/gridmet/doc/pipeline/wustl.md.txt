@@ -52,7 +52,7 @@ aggregated data into the database
 
 | Name            | Runs                                    | Description                                                           | 
 |:----------------|:----------------------------------------|:----------------------------------------------------------------------|
-| make_table_name | command                                 |                                                                       | 
+| make_table_name | Evaluates JavaScript expression         |                                                                       | 
 | init_tables     | [reset.cwl](reset.md)                   | creates or recreates database tables, one for each band and geography | 
 | process         | [wustl_one_year.cwl](wustl_one_year.md) | Downloads raw data and aggregates it over shapes and time             | 
 | index           | [index.cwl](index.md)                   |                                                                       | 
