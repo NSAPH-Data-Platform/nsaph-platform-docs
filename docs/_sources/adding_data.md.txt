@@ -21,7 +21,7 @@ options:
 - Bulk ingesting multiple CSV-like files (we support many formats) from
     local file system to create a lightweight data domain
 
-For creating new tables in teh database, there is a choice between
+For creating new tables in the database, there is a choice between
 manually creating a data model and required data conversions and
 transformations or automatically inferring data structure based on 
 data sampling.
