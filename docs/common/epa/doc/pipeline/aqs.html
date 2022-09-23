@@ -110,9 +110,16 @@
 <h2><a class="toc-backref" href="#id1">Description</a><a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
 <p>This workflow downloads AQS data from the government
 servers, introspects it to infer the database schema
-and ingests the data into the database
-Example run:
-cwl-runner aqs.cwl sample_aqs.yml</p>
+and ingests the data into the database</p>
+<p>Example run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cwl-runner aqs.cwl sample_aqs_annual.yml
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="sample_aqs.html"><span class="doc std std-doc">sample_aqs_annual.yml</span></a></p>
+<p>Or</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cwl-runner /opt/airflow/project/epa/src/cwl/aqs.cwl --database /opt/airflow/project/database.ini --connection_name nsaph2 --agregation annual --parameter_code PM25 --table pm25_annual --proxy <span class="nv">$HTTP_PROXY</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="inputs">
 <h2><a class="toc-backref" href="#id2">Inputs</a><a class="headerlink" href="#inputs" title="Permalink to this heading"></a></h2>
