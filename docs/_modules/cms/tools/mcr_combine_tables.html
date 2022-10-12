@@ -17,6 +17,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -103,6 +104,8 @@
 <span class="sd">such as: year, state, DO[B/D], zip codes, state and county codes.</span>
 
 <span class="sd">The actual schema is defined in ../models/medicare.yaml</span>
+
+<span class="sd">This utility uses extended syntax compared with the general data modelling</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -213,10 +216,7 @@
         <span class="n">cc</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
             <span class="n">target</span><span class="p">,</span> <span class="n">src</span> <span class="o">=</span> <span class="n">column</span>
-            <span class="k">if</span> <span class="n">src</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">cc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;NULL AS &quot;</span> <span class="o">+</span> <span class="n">target</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">cc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> AS </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
+            <span class="n">cc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> AS </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
         <span class="n">sql</span> <span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;,</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cc</span><span class="p">),</span> <span class="n">schema</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sql</span></div>
 
@@ -246,8 +246,14 @@
             <span class="n">source_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_column</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">ctype</span><span class="p">)</span>
             <span class="c1"># if &quot;clean&quot; in c:</span>
             <span class="c1">#     source_column = c[&quot;clean&quot;].format(n=source_column)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">opt</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">source_column</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">source_column</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">opt</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s2">&quot;type&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
+                        <span class="n">source_column</span> <span class="o">=</span> <span class="s2">&quot;NULL::&quot;</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">source_column</span> <span class="o">=</span> <span class="s2">&quot;NULL&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
             <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">source_column</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">columns</span></div>
 

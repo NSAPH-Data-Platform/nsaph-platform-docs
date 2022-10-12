@@ -17,6 +17,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -97,11 +98,67 @@
 <h1>GIS Python Modules<a class="headerlink" href="#gis-python-modules" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="members/annotator.html">GIS Annotator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="members/compute_shape.html">Observation values aggregation over shapes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="members/constants.html">GIS Related Enums</a></li>
-<li class="toctree-l1"><a class="reference internal" href="members/downloader.html">Shapefiles downloader</a></li>
-<li class="toctree-l1"><a class="reference internal" href="members/geometry.html">A point in a raster class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="members/annotator.html">GIS Annotator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="members/annotator.html#nsaph_gis.annotator.GISAnnotator"><code class="docutils literal notranslate"><span class="pre">GISAnnotator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="members/annotator.html#nsaph_gis.annotator.GISAnnotator.join"><code class="docutils literal notranslate"><span class="pre">GISAnnotator.join()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/annotator.html#nsaph_gis.annotator.GISAnnotator.matches"><code class="docutils literal notranslate"><span class="pre">GISAnnotator.matches()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="members/compute_shape.html">Observation values aggregation over shapes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="members/compute_shape.html#nsaph_gis.compute_shape.Record"><code class="docutils literal notranslate"><span class="pre">Record</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="members/compute_shape.html#nsaph_gis.compute_shape.Record.mean"><code class="docutils literal notranslate"><span class="pre">Record.mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/compute_shape.html#nsaph_gis.compute_shape.Record.prop"><code class="docutils literal notranslate"><span class="pre">Record.prop</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="members/compute_shape.html#nsaph_gis.compute_shape.StatsCounter"><code class="docutils literal notranslate"><span class="pre">StatsCounter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="members/compute_shape.html#nsaph_gis.compute_shape.StatsCounter.process"><code class="docutils literal notranslate"><span class="pre">StatsCounter.process()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="members/constants.html">GIS Related Enums</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.RasterizationStrategy"><code class="docutils literal notranslate"><span class="pre">RasterizationStrategy</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.RasterizationStrategy.default"><code class="docutils literal notranslate"><span class="pre">RasterizationStrategy.default</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.RasterizationStrategy.all_touched"><code class="docutils literal notranslate"><span class="pre">RasterizationStrategy.all_touched</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.RasterizationStrategy.combined"><code class="docutils literal notranslate"><span class="pre">RasterizationStrategy.combined</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.RasterizationStrategy.downscale"><code class="docutils literal notranslate"><span class="pre">RasterizationStrategy.downscale</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.Geography"><code class="docutils literal notranslate"><span class="pre">Geography</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.Geography.zip"><code class="docutils literal notranslate"><span class="pre">Geography.zip</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.Geography.county"><code class="docutils literal notranslate"><span class="pre">Geography.county</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/constants.html#nsaph_gis.constants.Geography.custom"><code class="docutils literal notranslate"><span class="pre">Geography.custom</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="members/downloader.html">Shapefiles downloader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="members/downloader.html#nsaph_gis.downloader.GISDownloader"><code class="docutils literal notranslate"><span class="pre">GISDownloader</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="members/downloader.html#nsaph_gis.downloader.GISDownloader.COUNTY_TEMPLATE"><code class="docutils literal notranslate"><span class="pre">GISDownloader.COUNTY_TEMPLATE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/downloader.html#nsaph_gis.downloader.GISDownloader.ZIP_TEMPLATE"><code class="docutils literal notranslate"><span class="pre">GISDownloader.ZIP_TEMPLATE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/downloader.html#nsaph_gis.downloader.GISDownloader.download_shapes"><code class="docutils literal notranslate"><span class="pre">GISDownloader.download_shapes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/downloader.html#nsaph_gis.downloader.GISDownloader.download_zip"><code class="docutils literal notranslate"><span class="pre">GISDownloader.download_zip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/downloader.html#nsaph_gis.downloader.GISDownloader.download_county"><code class="docutils literal notranslate"><span class="pre">GISDownloader.download_county()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="members/geometry.html">A point in a raster class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster"><code class="docutils literal notranslate"><span class="pre">PointInRaster</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster.COMPLETELY_MASKED"><code class="docutils literal notranslate"><span class="pre">PointInRaster.COMPLETELY_MASKED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster.PARTIALLY_MASKED"><code class="docutils literal notranslate"><span class="pre">PointInRaster.PARTIALLY_MASKED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster.window"><code class="docutils literal notranslate"><span class="pre">PointInRaster.window</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster.x"><code class="docutils literal notranslate"><span class="pre">PointInRaster.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster.y"><code class="docutils literal notranslate"><span class="pre">PointInRaster.y</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster.is_masked"><code class="docutils literal notranslate"><span class="pre">PointInRaster.is_masked()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster.array"><code class="docutils literal notranslate"><span class="pre">PointInRaster.array()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/geometry.html#nsaph_gis.geometry.PointInRaster.bilinear"><code class="docutils literal notranslate"><span class="pre">PointInRaster.bilinear()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

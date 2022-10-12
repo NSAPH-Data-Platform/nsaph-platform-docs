@@ -17,6 +17,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -237,7 +238,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">delimiter</span> <span class="o">=</span> <span class="n">delimiter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">buffer_size</span> <span class="o">=</span> <span class="n">buffer_size</span>
         <span class="k">if</span> <span class="n">quoting</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">quoting</span> <span class="o">=</span> <span class="n">quoting</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">quoting</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">quoting</span> <span class="o">=</span> <span class="n">quoting</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">quoting</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">quoting</span> <span class="o">=</span> <span class="n">quoting</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">quoting</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;QUOTE_ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">quoting</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_ALL</span>
+                <span class="k">elif</span> <span class="n">quoting</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;QUOTE_MINIMAL&quot;</span><span class="p">,</span> <span class="s2">&quot;MINIMAL&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">quoting</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span>
+                <span class="k">elif</span> <span class="n">quoting</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;QUOTE_NONNUMERIC&quot;</span><span class="p">,</span> <span class="s2">&quot;NONNUMERIC&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">quoting</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_NONNUMERIC</span>
+                <span class="k">elif</span> <span class="n">quoting</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;QUOTE_NONE&quot;</span><span class="p">,</span> <span class="s2">&quot;NONE&quot;</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">quoting</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_NONE</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">quoting</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_NONNUMERIC</span>
         <span class="k">if</span> <span class="n">has_header</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

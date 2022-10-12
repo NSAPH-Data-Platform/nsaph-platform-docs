@@ -17,6 +17,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -250,11 +251,11 @@ cwl-runner /dependencies/examples/rpi.cwl --script /dependencies/r_sample_projec
 <ol class="arabic" start="4">
 <li><p>Click Play button to the right of the DAG name <code class="docutils literal notranslate"><span class="pre">1st-tool</span></code></p></li>
 <li><p>Enter the following code into  box:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
-       <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;job&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
@@ -267,11 +268,11 @@ cwl-runner /dependencies/examples/rpi.cwl --script /dependencies/r_sample_projec
 <ol class="arabic" start="8">
 <li><p>Click Play button to the right of the DAG name <code class="docutils literal notranslate"><span class="pre">pi</span></code></p></li>
 <li><p>Enter the following code into  box:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;iterations&quot;</span><span class="p">:</span> <span class="s2">&quot;1000&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;job&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;iterations&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1000&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Note, that the number of iterations must be a quoted string.</p>
@@ -285,15 +286,15 @@ cwl-runner /dependencies/examples/rpi.cwl --script /dependencies/r_sample_projec
 <ol class="arabic" start="8">
 <li><p>Click Play button to the right of the DAG name <code class="docutils literal notranslate"><span class="pre">rpi</span></code></p></li>
 <li><p>Enter the following code into  box:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
-       <span class="nt">&quot;script&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;File&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;/dependencies/r_sample_project/rpi.R&quot;</span>
-       <span class="p">},</span>
-       <span class="nt">&quot;iterations&quot;</span><span class="p">:</span> <span class="s2">&quot;1000&quot;</span>
-   <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="nt">&quot;job&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;script&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;File&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/dependencies/r_sample_project/rpi.R&quot;</span><span class="w"></span>
+<span class="w">       </span><span class="p">},</span><span class="w"></span>
+<span class="w">       </span><span class="nt">&quot;iterations&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1000&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Note, that the number of iterations must be a quoted string.</p>

@@ -17,6 +17,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -55,6 +56,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configuration-options">Configuration options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#usage-from-command-line">Usage from command line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-command">Sample command</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dry-runs-introspect-only">Dry runs (introspect only)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#api-usage">API Usage</a></li>
 </ul>
@@ -109,8 +111,9 @@
 <li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
 <li><p><a class="reference internal" href="#configuration-options" id="id2">Configuration options</a></p></li>
 <li><p><a class="reference internal" href="#usage-from-command-line" id="id3">Usage from command line</a></p></li>
-<li><p><a class="reference internal" href="#dry-runs-introspect-only" id="id4">Dry runs (introspect only)</a></p></li>
-<li><p><a class="reference internal" href="#api-usage" id="id5">API Usage</a></p></li>
+<li><p><a class="reference internal" href="#sample-command" id="id4">Sample command</a></p></li>
+<li><p><a class="reference internal" href="#dry-runs-introspect-only" id="id5">Dry runs (introspect only)</a></p></li>
+<li><p><a class="reference internal" href="#api-usage" id="id6">API Usage</a></p></li>
 </ul>
 </div>
 <div class="section" id="overview">
@@ -120,12 +123,16 @@ is a command line tool to introspect and ingest into a database
 a directory, containing CSV (or CSV-like, e.g. FST, JSON, SAS, etc.) files.
 The directory can be structured, e.g. have nested subdirectories. All files
 matching a certain name pattern at any nested subdirectory level
-are included in the data set.</p>
+are included in the data set. It can also load a single file if a file
+rather than a directory is given as <code class="docutils literal notranslate"><span class="pre">--data</span></code> argument.</p>
 <p>In the database, a schema is crated based on the given project name.
 For each file in the data set a table is created. The name
 of the table is constructed from the relative path of the
 incoming data file with OS path separators (e.g. ‘/’) being
 replaced with underscores (‘_’).</p>
+<p>It might be a good idea, before actually ingesting data into the database to
+do a <a class="reference internal" href="#dry-runs-introspect-only"><span class="std std-doc">dry run</span></a> and visually examine the
+database schema created by Introspection utility.</p>
 <p>Loading into the database is performed using
 <a class="reference internal" href="members/data_loader.html"><span class="doc std std-doc">Data Loader</span></a> functionality.</p>
 </div>
@@ -135,6 +142,20 @@ replaced with underscores (‘_’).</p>
 <a class="reference internal" href="members/loader_config.html"><span class="doc std std-doc">LoaderConfig</span></a> object.
 Usually, they are provided as command line arguments but can also be provided
 via an API call.</p>
+<p>Some configuration options can be provided in the registry YAML
+file. By default, if registry does not exist, a new YAML file
+will be created with the following parameters:</p>
+<ul class="simple">
+<li><p>header:  True ## i.e. CSV files are expected to have header line</p></li>
+<li><p>quoting: QUOTE_MINIMAL, ## i.e. only strings with whitespaces are
+expected to be quoted</p></li>
+<li><p>index:   “unless excluded”  ## We will build indices for every column
+unless it is explicitly excluded</p></li>
+</ul>
+<p>See <a class="reference internal" href="Datamodels.html#domain"><span class="std std-doc">Domain options</span></a> for the descriptions
+of these parameters.</p>
+<p>When a registry file is created it can be manually edited by user. The
+manual modifications will be preserved for subsequent runs.</p>
 </div>
 <div class="section" id="usage-from-command-line">
 <h2><a class="toc-backref" href="#id3">Usage from command line</a><a class="headerlink" href="#usage-from-command-line" title="Permalink to this heading"></a></h2>
@@ -203,15 +224,48 @@ via an API call.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="sample-command">
+<h2><a class="toc-backref" href="#id4">Sample command</a><a class="headerlink" href="#sample-command" title="Permalink to this heading"></a></h2>
+<p>The following command creates a schema named <code class="docutils literal notranslate"><span class="pre">my_schema</span></code> and loads
+tables from all files with extension <code class="docutils literal notranslate"><span class="pre">.csv</span></code> found recursively under the
+directory <code class="docutils literal notranslate"><span class="pre">/data/incoming/valuable/data/</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -u -m nsaph.loader.project_loader --domain my_schema --data /data/incoming/valuable/data/ --registry my_temp_schema.yaml --reset --pattern *.csv --db database.ini --connection postgres
+</pre></div>
+</div>
+<p>It uses <code class="docutils literal notranslate"><span class="pre">database.ini</span></code> file in the current directory
+(where the program is started) and a section named <code class="docutils literal notranslate"><span class="pre">postgres</span></code> inside it.
+It creates temporary file
+<code class="docutils literal notranslate"><span class="pre">my_temp_schema.yaml</span></code> also in the current directory. If such a file
+already exists, it will be loaded and the settings found in it will override
+the defaults. Option <code class="docutils literal notranslate"><span class="pre">--reset</span></code> would delete all existing tables with
+the same names and recreate them.</p>
+<p>The following is the same command but with parallel execution using 4
+threads writing into the database and with increased page size for writing
+into the database. It is optimized for hosts with more RAM.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -u -m nsaph.loader.project_loader --domain my_schema --data /data/incoming/valuable/data/ --reset --registry my_temp_schema.yaml --pattern *.csv --db database.ini --connection postgres --threads 4 --page 10000
+</pre></div>
+</div>
+<p>To load a single file one can use a command like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -u -m nsaph.loader.project_loader --domain my_schema --data /data/incoming/valuable/test_file.csv --registry my_temp_schema.yaml --reset --db database.ini --connection postgres
+</pre></div>
+</div>
+</div>
 <div class="section" id="dry-runs-introspect-only">
-<h2><a class="toc-backref" href="#id4">Dry runs (introspect only)</a><a class="headerlink" href="#dry-runs-introspect-only" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id5">Dry runs (introspect only)</a><a class="headerlink" href="#dry-runs-introspect-only" title="Permalink to this heading"></a></h2>
 <p>To just introspect files in a directory and generate YAML schema for
 the project (see <a class="reference internal" href="Datamodels.html"><span class="doc std std-doc">domain schema specification</span></a> for
 the description of the format) without modifications in the database,
 use dry run. On the command line, just give :code:<code class="docutils literal notranslate"><span class="pre">--dryrun</span></code> option.</p>
+<p>Dry run will create “registry” file that can be manually examined and
+modified. The following command described <a class="reference internal" href="#sample-command"><span class="std std-doc">above</span></a>
+will perform dry run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -u -m nsaph.loader.project_loader --domain my_schema --data /data/incoming/valuable/data/ --registry my_temp_schema.yaml --dryrun --pattern *.csv 
+</pre></div>
+</div>
+<p>This command will create file named <code class="docutils literal notranslate"><span class="pre">my_temp_schema.yaml</span></code>.</p>
 </div>
 <div class="section" id="api-usage">
-<h2><a class="toc-backref" href="#id5">API Usage</a><a class="headerlink" href="#api-usage" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6">API Usage</a><a class="headerlink" href="#api-usage" title="Permalink to this heading"></a></h2>
 <p>Example of API usage retrieving command line arguments:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">loader</span> <span class="o">=</span> <span class="n">ProjectLoader</span><span class="p">()</span>
     <span class="n">loader</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>

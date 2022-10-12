@@ -67,7 +67,11 @@ pipeline that first
 [introspects the data](common/core-platform/doc/members/introspector.rst) 
 in a file (CSV, JSON, FST and some other
 formats) and then running the 
-[Data Loader](common/core-platform/doc/DataLoader.md).
+[Data Loader](common/core-platform/doc/DataLoader.md). 
+However, for simple cases one can use 
+[Project Loader Tool](common/core-platform/doc/ProjectLoader.md)
+to either ingest or just to introspect the data 
+(introspection can be done by using `--dryrun` argument).
 
 ## Automatically ingesting multiple files from a file system
 

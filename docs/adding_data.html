@@ -17,6 +17,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -156,7 +157,11 @@ pipeline that first
 <a class="reference internal" href="common/core-platform/doc/members/introspector.html"><span class="doc std std-doc">introspects the data</span></a>
 in a file (CSV, JSON, FST and some other
 formats) and then running the
-<a class="reference internal" href="common/core-platform/doc/DataLoader.html"><span class="doc std std-doc">Data Loader</span></a>.</p>
+<a class="reference internal" href="common/core-platform/doc/DataLoader.html"><span class="doc std std-doc">Data Loader</span></a>.
+However, for simple cases one can use
+<a class="reference internal" href="common/core-platform/doc/ProjectLoader.html"><span class="doc std std-doc">Project Loader Tool</span></a>
+to either ingest or just to introspect the data
+(introspection can be done by using <code class="docutils literal notranslate"><span class="pre">--dryrun</span></code> argument).</p>
 </div>
 <div class="section" id="automatically-ingesting-multiple-files-from-a-file-system">
 <h2><a class="toc-backref" href="#id6">Automatically ingesting multiple files from a file system</a><a class="headerlink" href="#automatically-ingesting-multiple-files-from-a-file-system" title="Permalink to this heading"></a></h2>

@@ -17,6 +17,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -230,7 +231,7 @@
             <span class="k">if</span> <span class="n">l</span> <span class="o">-</span> <span class="n">l1</span> <span class="o">&gt;=</span> <span class="n">log_step</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">log_progress</span><span class="p">()</span>
                 <span class="n">l1</span> <span class="o">=</span> <span class="n">l</span>
-            <span class="k">if</span> <span class="n">limit</span> <span class="ow">and</span> <span class="n">l</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">limit</span> <span class="ow">and</span> <span class="n">l</span> <span class="o">&gt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">limit</span><span class="p">):</span>
                 <span class="k">break</span>
         <span class="k">return</span> <span class="n">l</span>
 
@@ -511,6 +512,12 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">value</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                 <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Error for column #</span><span class="si">{:d}</span><span class="s2"> (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapping</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="p">)</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span>
+                        <span class="n">msg</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">While processing row: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+                    <span class="p">)</span>
                     <span class="k">raise</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">SpecialValues</span><span class="o">.</span><span class="n">is_missing</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
                     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pk</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">audit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

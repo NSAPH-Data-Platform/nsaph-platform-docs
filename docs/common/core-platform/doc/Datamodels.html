@@ -17,6 +17,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -139,7 +140,7 @@ the <code class="docutils literal notranslate"><span class="pre">src/yml</span><
 <p>Each model is represented by a “forest”: a set of treelike
 structures of tables. It can contain one or several root tables</p>
 <p>Domain should be the first entry in the YAML file:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">my_domain</span><span class="p">:</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">my_domain</span><span class="p">:</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The following parameters can be defined fro domain:</p>
@@ -181,7 +182,7 @@ structures of tables. It can contain one or several root tables</p>
 </tr>
 <tr class="row-odd"><td><p>quoting</p></td>
 <td><p>no</p></td>
-<td><p>Numeric value, passed to CSV loader. Describes input source rather than data model itself (QUOTE_MINIMAL=0, QUOTE_ALL=1, QUOTE_NONNUMERIC=2, QUOTE_NONE=3)</p></td>
+<td><p>One of the following values: QUOTE_MINIMAL (or MINIMAL), QUOTE_ALL (or ALL), QUOTE_NONNUMERIC (or NONNUMERIC), QUOTE_NONE (or NONE), passed to CSV loader. Describes input source rather than data model itself. Numeric values are accepted for compatibility (QUOTE_MINIMAL=0, QUOTE_ALL=1, QUOTE_NONNUMERIC=2, QUOTE_NONE=3)</p></td>
 </tr>
 </tbody>
 </table>
@@ -427,25 +428,25 @@ columns in the data file. To reference columns in the
 database use parameters.
 Referenced them by a number in curly brackets in the compute code.</p>
 <p>Here is an example of a computed column:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">admission_date</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="s">&quot;DATE&quot;</span>
-    <span class="nt">source</span><span class="p">:</span>
-        <span class="nt">type</span><span class="p">:</span> <span class="s">&quot;compute&quot;</span>
-        <span class="nt">columns</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="s">&quot;ADMSN_DT&quot;</span>
-        <span class="nt">code</span><span class="p">:</span> <span class="s">&quot;datetime.strptime({1},</span><span class="nv"> </span><span class="s">&#39;%Y%m%d&#39;).date()&quot;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">admission_date</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DATE&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;compute&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">columns</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;ADMSN_DT&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;datetime.strptime({1},</span><span class="nv"> </span><span class="s">&#39;%Y%m%d&#39;).date()&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Here in <code class="docutils literal notranslate"><span class="pre">code</span></code> the pattern <code class="docutils literal notranslate"><span class="pre">{1}</span></code> is replaced with the name of the
 first (and only) column in the list: <code class="docutils literal notranslate"><span class="pre">ADMSN_DT</span></code>.</p>
 <p>Another example, using database columns:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">fips5</span><span class="p">:</span>
-    <span class="nt">source</span><span class="p">:</span>
-      <span class="nt">type</span><span class="p">:</span> <span class="s">&quot;compute&quot;</span>
-      <span class="nt">parameters</span><span class="p">:</span>
-        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
-        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">residence_county</span>
-      <span class="nt">code</span><span class="p">:</span> <span class="s">&quot;fips_dict[{1}]</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1000</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">int({2})&quot;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">fips5</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;compute&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">parameters</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">state</span><span class="w"></span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">residence_county</span><span class="w"></span>
+<span class="w">      </span><span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fips_dict[{1}]</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1000</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">int({2})&quot;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">{1}</span></code> references the value that would be inserted into the

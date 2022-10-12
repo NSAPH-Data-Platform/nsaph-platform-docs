@@ -17,6 +17,7 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -138,13 +139,31 @@
 <span class="sd">    Base class for tools responsible for data loading and processing</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="LoaderBase.get_domain"><a class="viewcode-back" href="../../common/core-platform/doc/members/loader.html#nsaph.loader.LoaderBase.get_domain">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_domain</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Domain</span><span class="p">:</span>
+<div class="viewcode-block" id="LoaderBase.find_file_in_path"><a class="viewcode-back" href="../../common/core-platform/doc/members/loader.html#nsaph.loader.LoaderBase.find_file_in_path">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">find_file_in_path</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+            <span class="n">files</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s2">&quot;**&quot;</span><span class="p">,</span> <span class="n">fname</span><span class="p">),</span>
+                <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File </span><span class="si">{}</span><span class="s2"> not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">diff</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Ambiguous files </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">files</span><span class="p">)))</span>
+        <span class="k">return</span>  <span class="n">files</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="LoaderBase.get_domain"><a class="viewcode-back" href="../../common/core-platform/doc/members/loader.html#nsaph.loader.LoaderBase.get_domain">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_domain</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Domain</span><span class="p">:</span>
         <span class="n">src</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">registry_path</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">registry</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">is_yaml_or_json</span><span class="p">(</span><span class="n">registry</span><span class="p">):</span>
-                <span class="n">registry_path</span> <span class="o">=</span> <span class="n">registry</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">registry</span><span class="p">):</span>
+                    <span class="n">registry_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">registry_path</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">find_file_in_path</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">registry_path</span><span class="p">):</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> - is not a file&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">registry_path</span><span class="p">))</span>
             <span class="k">elif</span> <span class="ow">not</span> <span class="n">is_dir</span><span class="p">(</span><span class="n">registry</span><span class="p">):</span>
@@ -158,18 +177,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">registry_path</span><span class="p">:</span>
             <span class="n">registry_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="s2">&quot;yml&quot;</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.yaml&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">registry_path</span><span class="p">):</span>
-            <span class="n">files</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
-                <span class="n">files</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span>
-                    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s2">&quot;**&quot;</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.yaml&quot;</span><span class="p">),</span>
-                    <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span>
-                <span class="p">))</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File </span><span class="si">{}</span><span class="s2"> not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.yaml&quot;</span><span class="p">))</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">diff</span><span class="p">(</span><span class="n">files</span><span class="p">):</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Ambiguous files </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">files</span><span class="p">)))</span>
-            <span class="n">registry_path</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">registry_path</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">find_file_in_path</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.yaml&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">registry_path</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File </span><span class="si">{}</span><span class="s2"> does not exist&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">registry_path</span><span class="p">)))</span>
         <span class="n">domain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="n">registry_path</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>

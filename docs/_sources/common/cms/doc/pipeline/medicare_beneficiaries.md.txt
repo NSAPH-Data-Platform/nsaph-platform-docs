@@ -36,6 +36,10 @@ columns.
 | ps_create_err          | File |             | 
 | ps2_create_log         | File |             | 
 | ps2_create_err         | File |             | 
+| ps2_index_log          | File |             | 
+| ps2_vacuum_log         | File |             | 
+| ps2_index_err          | File |             | 
+| ps2_vacuum_err         | File |             | 
 | bene_view_log          | File |             | 
 | bene_view_err          | File |             | 
 | bene_table_create_log  | File |             | 
@@ -58,7 +62,7 @@ columns.
 | Name               | Runs                                                      | Description                                                                                       | 
 |:-------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------|
 | create_ps          | [medicare_combine_tables.cwl](medicare_combine_tables.md) | Combines patient summaries from disparate summary tables (one table per year) into a single view  | 
-| create__ps_view    | [create.cwl](create.md)                                   | Create _ps view from ps                                                                           | 
+| create__ps_view    | [matview.cwl](matview.md)                                 | Create _ps materialized view from ps                                                              | 
 | create_bene_view   | [create.cwl](create.md)                                   | Creates preliminary beneficiaries view                                                            | 
 | create_bene_table  | [matview.cwl](matview.md)                                 | Creates `Beneficiaries` Table from the view                                                       | 
 | create_enrlm_view  | [create.cwl](create.md)                                   | Creates preliminary _enrollments view                                                             | 

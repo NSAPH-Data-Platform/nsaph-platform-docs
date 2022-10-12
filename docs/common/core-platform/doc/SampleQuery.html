@@ -17,6 +17,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -144,18 +145,18 @@ python -m pip install git+https://github.com/NSAPH-Data-Platform/nsaph-core-plat
 <h2><a class="toc-backref" href="#id4">Create connection definition file</a><a class="headerlink" href="#create-connection-definition-file" title="Permalink to this heading"></a></h2>
 <p>We need to create or update a database.ini file that stores connections
 to the database. Here is a sample file I use:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[mimic]</span>
-<span class="na">host</span><span class="o">=</span><span class="s">localhost</span>
-<span class="na">database</span><span class="o">=</span><span class="s">mimicii</span>
-<span class="na">user</span><span class="o">=</span><span class="s">postgres</span>
-<span class="na">password</span><span class="o">=</span><span class="s">*****</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[mimic]</span><span class="w"></span>
+<span class="na">host</span><span class="o">=</span><span class="s">localhost</span><span class="w"></span>
+<span class="na">database</span><span class="o">=</span><span class="s">mimicii</span><span class="w"></span>
+<span class="na">user</span><span class="o">=</span><span class="s">postgres</span><span class="w"></span>
+<span class="na">password</span><span class="o">=</span><span class="s">*****</span><span class="w"></span>
 
-<span class="k">[nsaph2]</span>
-<span class="na">host</span><span class="o">=</span><span class="s">nsaph.cluster.uni.edu</span>
-<span class="na">database</span><span class="o">=</span><span class="s">nsaph</span>
-<span class="na">user</span><span class="o">=</span><span class="s">dbuser</span>
-<span class="na">password</span><span class="o">=</span><span class="s">*********</span>
-<span class="na">ssh_user</span><span class="o">=</span><span class="s">johndoe</span>
+<span class="k">[nsaph2]</span><span class="w"></span>
+<span class="na">host</span><span class="o">=</span><span class="s">nsaph.cluster.uni.edu</span><span class="w"></span>
+<span class="na">database</span><span class="o">=</span><span class="s">nsaph</span><span class="w"></span>
+<span class="na">user</span><span class="o">=</span><span class="s">dbuser</span><span class="w"></span>
+<span class="na">password</span><span class="o">=</span><span class="s">*********</span><span class="w"></span>
+<span class="na">ssh_user</span><span class="o">=</span><span class="s">johndoe</span><span class="w"></span>
 </pre></div>
 </div>
 <blockquote>
