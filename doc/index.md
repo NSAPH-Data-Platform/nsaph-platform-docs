@@ -5,7 +5,7 @@
 maxdepth: 2
 caption: Contents
 ---
-Documentation Home <home>
+Introduction <home>
 What is Data Platform <rationale>
 domains
 pipelines
