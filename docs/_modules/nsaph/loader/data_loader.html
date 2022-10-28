@@ -177,6 +177,11 @@
         <span class="k">for</span> <span class="n">ddl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">indices_by_table</span><span class="p">[</span><span class="n">fqn</span><span class="p">]:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">ddl</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="DataLoader.execute_sql"><a class="viewcode-back" href="../../../common/core-platform/doc/members/data_loader.html#nsaph.loader.data_loader.DataLoader.execute_sql">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">execute_sql</span><span class="p">(</span><span class="n">sql</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">connxn</span><span class="p">):</span>
+        <span class="k">with</span> <span class="p">(</span><span class="n">connxn</span><span class="o">.</span><span class="n">cursor</span><span class="p">())</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="DataLoader.insert_from_select"><a class="viewcode-back" href="../../../common/core-platform/doc/members/data_loader.html#nsaph.loader.data_loader.DataLoader.insert_from_select">[docs]</a>    <span class="k">def</span> <span class="nf">insert_from_select</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">table</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Table name is required for INSERT FROM SELECT&quot;</span><span class="p">)</span>
@@ -186,8 +191,10 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">act</span><span class="p">:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">connxn</span><span class="p">:</span>
-                <span class="k">with</span> <span class="p">(</span><span class="n">connxn</span><span class="o">.</span><span class="n">cursor</span><span class="p">())</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
-                    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">execute_with_monitor</span><span class="p">(</span>
+                    <span class="n">what</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">execute_sql</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">connxn</span><span class="p">),</span>
+                    <span class="n">connxn</span><span class="o">=</span><span class="n">connxn</span>
+                <span class="p">)</span>
         <span class="k">return</span></div>
 
 <div class="viewcode-block" id="DataLoader.is_parallel"><a class="viewcode-back" href="../../../common/core-platform/doc/members/data_loader.html#nsaph.loader.data_loader.DataLoader.is_parallel">[docs]</a>    <span class="k">def</span> <span class="nf">is_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>

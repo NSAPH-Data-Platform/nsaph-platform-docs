@@ -62,6 +62,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#quick-start-deployment">Quick Start Deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updating-project-packages">Updating project packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-are-project-packages">What are project packages?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#option-1-rebuild-all-docker-containers">Option 1: Rebuild all docker containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#option-2-install-updates-inside-docker-containers">Option 2: Install updates inside docker containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#option-3-map-packages-from-host">Option 3: Map packages from host</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -107,6 +114,14 @@
 <li><p><a class="reference internal" href="#installation" id="id2">Installation</a></p></li>
 <li><p><a class="reference internal" href="#quick-start-deployment" id="id3">Quick Start Deployment</a></p></li>
 <li><p><a class="reference internal" href="#testing" id="id4">Testing</a></p></li>
+<li><p><a class="reference internal" href="#updating-project-packages" id="id5">Updating project packages</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-are-project-packages" id="id6">What are project packages?</a></p></li>
+<li><p><a class="reference internal" href="#option-1-rebuild-all-docker-containers" id="id7">Option 1: Rebuild all docker containers</a></p></li>
+<li><p><a class="reference internal" href="#option-2-install-updates-inside-docker-containers" id="id8">Option 2: Install updates inside docker containers</a></p></li>
+<li><p><a class="reference internal" href="#option-3-map-packages-from-host" id="id9">Option 3: Map packages from host</a></p></li>
+</ul>
+</li>
 </ul>
 </div>
 <p>Deployment of NSAPH Data Platform is based on<br />
@@ -168,7 +183,70 @@ The third example requires Conda.</p>
 </div>
 <div class="section" id="testing">
 <h2><a class="toc-backref" href="#id4">Testing</a><a class="headerlink" href="#testing" title="Permalink to this heading"></a></h2>
-<p>Testing is described in the <a class="reference internal" href="Testing.html"><span class="doc std std-doc">Test Guide</span></a>.</p>
+<p>Basic testing is described in the <a class="reference internal" href="Testing.html"><span class="doc std std-doc">Test Guide</span></a>. The
+guide describes how to test both command line commands and Airflow UI.</p>
+</div>
+<div class="section" id="updating-project-packages">
+<h2><a class="toc-backref" href="#id5">Updating project packages</a><a class="headerlink" href="#updating-project-packages" title="Permalink to this heading"></a></h2>
+<div class="section" id="what-are-project-packages">
+<h3><a class="toc-backref" href="#id6">What are project packages?</a><a class="headerlink" href="#what-are-project-packages" title="Permalink to this heading"></a></h3>
+<p>The code that performs actual data processing lives in <code class="docutils literal notranslate"><span class="pre">project</span></code>
+subdirectory. From there it is installed in all Docker containers
+that are used by the platform. In this documentation we also refer
+to it as ‘user code’, meaning that it is not part of infrastructure
+but code developed by researchers and engineers for their specific
+projects.</p>
+<p>Obviously, from time to time the runtime environment requires to be
+updated with the latest version of this user code. In this section we describe
+how it can be done by system administrator.</p>
+<p>There are three options to update user code in the runtime environment:</p>
+<ul class="simple">
+<li><p>Rebuild all docker containers</p></li>
+<li><p>Install updates inside docker containers</p></li>
+<li><p>Map packages from container to the host</p></li>
+</ul>
+</div>
+<div class="section" id="option-1-rebuild-all-docker-containers">
+<h3><a class="toc-backref" href="#id7">Option 1: Rebuild all docker containers</a><a class="headerlink" href="#option-1-rebuild-all-docker-containers" title="Permalink to this heading"></a></h3>
+<p>This is the most straightforward and proper option. It follows the
+best practices guidelines but have a few caveats.</p>
+<p>Executing this option is equivalent to following the instructions
+in <a class="reference internal" href="#quick-start-deployment"><span class="std std-doc">Quick Start</span></a>. There is also a helper script
+<a class="reference internal" href="members/rebuild.html"><span class="doc std std-doc">hardreset.sh</span></a></p>
+<p>There are, however, a few caveats associated with this option:</p>
+<ol class="arabic simple">
+<li><p>The process might take several hours, depending on the Internet speed
+and hardware.</p></li>
+<li><p>If build fails for some reason (e.g. some third-party packages have been
+updated and some dependencies are broken), it will take time and effort
+even to get back to the working version</p></li>
+</ol>
+</div>
+<div class="section" id="option-2-install-updates-inside-docker-containers">
+<h3><a class="toc-backref" href="#id8">Option 2: Install updates inside docker containers</a><a class="headerlink" href="#option-2-install-updates-inside-docker-containers" title="Permalink to this heading"></a></h3>
+<p>This is quick and easy option which is also relatively safe. It can
+be performed by running <a class="reference internal" href="members/refresh.html"><span class="doc std std-doc">refresh.sh</span></a> script or
+by executing similar commands.</p>
+<p>The main downside of this option is that changes affect containers only
+while they are running. If any of the containers are restarted, all changes
+will be lost. However, this is not as awful as it sounds, just:</p>
+<blockquote>
+<div><p>Do not forget to rerun <a class="reference internal" href="members/refresh.html"><span class="doc std std-doc">refresh.sh</span></a> script every
+time you restart the containers!</p>
+</div></blockquote>
+</div>
+<div class="section" id="option-3-map-packages-from-host">
+<h3><a class="toc-backref" href="#id9">Option 3: Map packages from host</a><a class="headerlink" href="#option-3-map-packages-from-host" title="Permalink to this heading"></a></h3>
+<p>We can map packages on the host machine to the library path in the containers.
+File
+<a class="reference internal" href="members/docker-compose-mapped-packages.yaml.html"><span class="doc std std-doc">docker-compose.mapped-packages.yaml</span></a>
+illustrates how to do it. Look at lines 64-70.</p>
+<p>If this option is used, just refreshing packages on the host
+(e.g. by executing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>) will automatically update packages
+inside the container.</p>
+<p>However, keep in mind that you are bypassing normal installation with
+unpredictable consequences.</p>
+</div>
 </div>
 </div>
 

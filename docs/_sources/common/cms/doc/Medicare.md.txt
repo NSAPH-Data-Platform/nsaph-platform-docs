@@ -20,12 +20,68 @@ local:
 ```
 
 ## Processing pipeline
+                                      
+### Medicare Pipeline Steps
+
+Current pipeline consists of 5 steps, each represented as a sub-workflow:
+
+1. [Ingest raw data](pipeline/load_raw_medicare)
+2. [Process beneficiaries and their enrollment in Medicare](pipeline/medicare_beneficiaries)
+3. [Process Admissions](pipeline/medicare_admissions)
+4. [Create QC Tables](pipeline/medicare_qc)
+5. [Grant `SELECT`](pipeline/grant_read_access) 
+   privileges (i.e., read access) to all newly created tables
+   (this step is actually a command line tool, not a workflow)
+                                   
+### Ingestion of raw data
+
+Ingestion of raw data is incremental, i.e. tables that are already in 
+the database
+will not be dropped (deleted). However, any table with the name found
+in input path will be replaced. Please note, that every raw record
+is identified by the tuple consisting of the original file name and
+the line number in that file.
+                                   
+```{note}
+If no raw data is given or `--input` parameters points
+to a non-existent or empty directory, the pipeline will skip ingestion
+step and will process the raw data that is already in the database. 
+```
+                                                             
+Ingestion as a part of the data pipeline is only implemented for
+data in the format as it comes from ResDac. Metadata for ingestion
+is taken from [FTS](../../fts) files that accompany ResDac deliverables. 
+
+```{important}
+In case of Medicare data in posession of NSAPH organization, we 
+only have original ResDac data for years 2011-2014 and 2016-2018. 
+Therefore, the pipeline is unable to ingest the data for other years
+(1999-2010 and 2015).
+```
+See [](#files-for-1999-to-2010) for more information.
+
+See [](#ingesting-raw-files) for processing details
+
+### Processing Data in the Database
+                                               
+During in-database processing all tables, views and materialized views 
+are completely replaced. Old tables are dropped and new ones are created
+from scratch.
+
+See [](#combining-raw-files-into-a-single-view) for processing details.
+                      
+### Medicare Pipeline References
 
 See [](pipeline/medicare) for the pipeline code
 
+See [Medicare data model definition](members/medicare_yaml.md) for formal
+data model definition.
+
 ## Ingesting Raw Files
 
-### Overview
+[Pipeline](pipeline/load_raw_medicare)
+
+### Overview of Ingesting Raw Medicare Files 
                                                                    
 There are two types of tables:
 
@@ -102,7 +158,7 @@ See the code for handling these files:
 
 ### Files for Years 2011 and later
 
-These files are original files from Resdac. They come in Fixed Width Format
+These files are original files from ResDac. They come in Fixed Width Format
 (FWF). For each file the structure is described in File Transfer 
 Summary (FTS) file. Unfortunately these files are intended for reading by 
 a human and is difficult to parse automatically. A 
@@ -114,6 +170,8 @@ extarcted by the parser is used to:
 * Generate metadata for the FWF Reader
 
 ## Combining raw files into a single view
+
+[Pipeline](pipeline/medicare_beneficiaries)
 
 ### Eventual database schema
 
@@ -169,19 +227,26 @@ It also cleanses and conditions data from the following columns:
 * `year` 
   * If it is a string in original file, it is converted to integer
   * If it is two-digit, it is converted to 4 digit
+* `dob`: converted to SQL `DATE` type, from either character or
+  SAS numeric form
+* `dod` (date of death): converted to SQL `DATE` type,
+  from either character or SAS numeric form
+* `age` as recorded in the raw data. It is the beneficiary's age on the last day of the prior year
+* `sex` 
+* `race`
+* `rti_race` Research Triangle Institute race code
+* `hmo_indicators` Monthly Medicare Advantage (MA) enrollment indicator
+* `hmo_cvg_count` Number of months the beneficiary was enrolled
+* `yob` year of birth calculated with the age variable (year - age)
 * `state`: added a column with text state id
+* `ssa2`: Social Security Administration (SSA) two digit code for state
+* `ssa3`: Social Security Administration (SSA) three digit code for county
 * `fips2`: added a column with two digit state FIPS code
 * `zip`: if original file uses 9-digit zip code, it is split
   into two separate columns, 5 digit `zip` and 4-digit `zip4`.
   The value is also converted to integer value.
 * `zip4`: added, when available - the last four digits of 9-digit
   zip code
-* `dob`: converted to SQL `DATE` type, from either character or
-  SAS numeric form
-* `dod` (date of death): converted to SQL `DATE` type,
-  from either character or SAS numeric form
- 
-
 
 The following 
 [CWL tool](pipeline/medicare_combine_tables)
@@ -220,6 +285,7 @@ discrepancies in the data related to:
 * dob
 * dod
 * race
+* race_rti
 * sex
 
 If there is any discrepancy for a given `bene_id`, then:
@@ -227,6 +293,7 @@ If there is any discrepancy for a given `bene_id`, then:
 * The earliest _**DOB**_ is selected as `dob`
 * The latest _**DOD**_ (date of death) is selected  as `dod`
 * A comma-separated string containing all race codes is used for `race`
+* A comma-separated string containing all race codes is used for `race_rti`
 * comma-separated string containing all sex codes is used for `sex`
 
 The following columns are added:
@@ -330,28 +397,30 @@ The following columns are created for Enrollments:
 * `ssa2`: SSA state code
 * `ssa3`: SSA county code
 * `ssa2_list`: list of all SSA county codes 
-* state_iso: ISO code of the state, used for mapping
-* residence_county: one of the "latest" residence 
+* `state_iso`: ISO code of the state, used for mapping
+* `residence_county`: one of the "latest" residence 
   counties where 
   the beneficiary was registered, latest in 
   alphabetical order
-* residence_counties: comma separated list of all 
+* `residence_counties`: comma separated list of all 
   "latest" residence counties, where a beneficiary was
   registered during the year
-* fips5: 5 digit FIPS code of the `residence_county`
-* zip: one of the "latest" zip codes where 
+* `fips5`: 5 digit FIPS code of the `residence_county`
+* `zip`: one of the "latest" zip codes where 
   the beneficiary was registered, latest in 
   numerical order
-* zips: comma separated list of all 
+* `zips`: comma separated list of all 
   "latest" zip codes, where a beneficiary was
   registered during the year
-* state_count: number of states, where the beneficiary
+* `state_count`: number of states, where the beneficiary
   was enrolled in medicaid during the year. Note,
   this is also the number of records for this beneficiary and this year
   in the Enrollments` table.
-* died: a boolean flag indicating that the beneficiary has 
+* `died`: a boolean flag indicating that the beneficiary has 
   died during this year while being registered
   for medicaid in this state.
+* `hmo_indicators`: the maximum value of all the monthly hmo indicators
+* `hmo_cvg_count`: the number of months the beneficiary was enrolled in a Medicare Advantage (MA) 
 * `fips3_is_approximated`: A boolean column, indicating whether the value 
   was taken from original record as is or approximated. 
   If true, it means that there was no valid county code in the original
@@ -423,3 +492,197 @@ During this step the following major operations are performed:
 
 See more information about handling records that have failed validation in:
 [Data Modeling](../../core-platform/doc/Datamodels.md#invalid-record)
+
+## Creating QC Tables
+                             
+[Pipeline](pipeline/medicare_qc)
+      
+### Medicare QC approach
+
+QC tables (materialized views to be precise) are created by
+[Medicare QC Pipeline](pipeline/medicare_qc)
+
+Two tables are created:
+
+* Enrollments QC
+* Admissions QC
+
+These are aggregate tables, defined in 
+[Medicare data model definition](members/medicare_yaml.md) 
+(qc_enrollments and qc_admissions).
+
+In these tables we define dimensions and measures, including count measures 
+and percent measures.
+
+### Enrollments QC Table
+                            
+####  Enrollments QC Table Definition
+
+Enrollment QC is roughly defined by the following SQL:
+
+```sql
+SELECT 
+    year,
+    state,
+    zip,
+    fips3,
+    CASE
+        WHEN ( 
+                beneficiaries.dob IS NULL) 
+        THEN 'MISSING'::TEXT
+        WHEN ( 
+                beneficiaries.dob_latest IS NOT NULL) 
+        THEN 'AMBIGUOUS':: TEXT
+        ELSE 'CONSISTENT'::TEXT
+    END AS consistent_dob,
+    CASE
+        WHEN ( 
+                beneficiaries.dod IS NULL) 
+        THEN 'NONE'::TEXT
+        WHEN ( 
+                beneficiaries.dod_earliest IS NOT NULL) 
+        THEN 'AMBIGUOUS':: TEXT
+        ELSE 'CONSISTENT'::TEXT
+    END AS consistent_dod,
+    CASE
+        WHEN ( 
+                beneficiaries.sex ~~ '%,%'::TEXT) 
+        THEN 'AMBIGUOUS':: TEXT
+        ELSE 'CONSISTENT'::TEXT
+    END AS consistent_sex,
+    CASE
+        WHEN ( 
+                beneficiaries.race ~~ '%,%'::TEXT) 
+        THEN 'AMBIGUOUS':: TEXT
+        ELSE 'CONSISTENT'::TEXT
+    END AS consistent_race
+    fips3_is_approximated,
+    fips3_valdiated,
+    state_iso,
+    COUNT(*)                        AS numrecords,
+    ((# hll_add_agg(bene)))::bigint AS numdistinctbeneficaries,
+    hll_add_agg(bene)               AS bene_hll
+FROM 
+    medicare.enrollments natural join medicare.beneficiaries
+GROUP BY 
+    year, 
+    state, 
+    zip, 
+    fips3, 
+    consistent_dob, 
+    consistent_dod, 
+    consistent_sex, 
+    consistent_race, 
+    fips3_is_approximated, 
+    fips3_valdiated;
+```
+
+####  Enrollments QC Table Dimensions 
+
+Therefore, the following QC dimensions are defined:
+
+* year, 
+* state, 
+* zip, 
+* fips3, 
+* consistent_dob, 
+* consistent_dod, 
+* consistent_sex, 
+* consistent_race, 
+* fips3_is_approximated, 
+* fips3_valdiated
+
+
+####  Enrollments QC Table Measures
+
+In Apache Superset, the following metrics are defined for this table:
+
+* Number of consistent beneficiaries:
+  ```sql
+  (#(hll_union_agg(bene_hll) FILTER (
+          WHERE consistent_dob = 'CONSISTENT'
+          AND consistent_dod <> 'AMBIGUOUS'
+          AND consistent_race = 'CONSISTENT'
+          AND consistent_sex = 'CONSISTENT'
+          ))
+          ) * 100.0 / (#(hll_union_agg(bene_hll)))
+  ```
+* Number of distinct beneficiaries
+  ```sql
+  (#(hll_union_agg(bene_hll)))::INT
+  ```
+* Number of enrollment records
+  ```sql
+  SUM(numrecords)
+  ```                                     
+
+### Admissions QC Table
+
+####  Admissions QC Table Definition
+
+Enrollment QC is roughly defined by the following SQL:
+
+```sql
+SELECT 
+    year,
+    state,
+    zip,
+    reason,
+    state_iso,
+    COUNT(*)                        AS numrecords,
+    ((# hll_add_agg(bene)))::bigint AS numdistinctbeneficaries,
+    hll_add_agg(bene)               AS bene_hll
+FROM 
+    medicare.admissions UNION ALL medicare_audit.admissions
+GROUP BY 
+    year, 
+    state, 
+    zip, 
+    reason;
+```
+
+####  Admissions QC Table Dimensions 
+
+Therefore, the following QC dimensions are defined:
+
+* year, 
+* state, 
+* zip, 
+* reason (reason is either literal 'OK' or a reason why a 
+  record failed validation)
+
+####  Admissions QC Table Measures
+ 
+In Apache Superset, the following metrics are defined for this table:
+ 
+Count metrics:
+
+* Number of admission records
+    ```sql  
+    SUM(numrecords)
+    ```
+* Number of distinct beneficiaries
+    ```sql
+    (#(hll_union_agg(bene_hll)))::INT
+    ```
+        
+Percent metrics:
+
+* Percent of valid records (passed validation)
+    ```sql
+    (SUM(numrecords) FILTER (WHERE reason = 'OK'))*100.0/SUM(numrecords)
+    ```
+* Percent of admission records, for which corresponding enrollment data 
+  was not found (failed validation)
+    ```sql
+    (SUM(numrecords) FILTER (WHERE reason = 'FOREIGN KEY'))*100.0/SUM(numrecords)
+    ```
+* Percent of duplicate records (failed validation, one apparent 
+  admission recorded more than once)
+    ```sql
+    (SUM(numrecords) FILTER (WHERE reason = 'DUPLICATE'))*100.0/SUM(numrecords)
+    ```
+* Percent of valid records with missing data (failed validation)
+    ```sql
+    (SUM(numrecords) FILTER (WHERE reason = 'PRIMARY KEY'))*100.0/SUM(numrecords)
+    ```

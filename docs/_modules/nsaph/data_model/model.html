@@ -116,7 +116,7 @@
 
 <span class="n">METADATA_TYPE_KEY</span> <span class="o">=</span> <span class="s2">&quot;type&quot;</span>
 <span class="n">METADATA_TYPE_MODEL</span> <span class="o">=</span> <span class="s2">&quot;model_specification&quot;</span>
-<span class="n">INDEX_DDL_PATTERN</span> <span class="o">=</span> <span class="s2">&quot;CREATE INDEX </span><span class="si">{option}</span><span class="s2"> </span><span class="si">{name}</span><span class="s2"> ON </span><span class="si">{table}</span><span class="s2"> USING </span><span class="si">{method}</span><span class="s2"> (</span><span class="si">{column}</span><span class="s2">);&quot;</span>
+<span class="n">INDEX_DDL_PATTERN</span> <span class="o">=</span> <span class="s2">&quot;CREATE INDEX </span><span class="si">{option}</span><span class="s2"> </span><span class="si">{name}</span><span class="s2"> ON </span><span class="si">{table}</span><span class="s2"> USING </span><span class="si">{method}</span><span class="s2"> (</span><span class="si">{column}</span><span class="s2">) </span><span class="si">{include}</span><span class="s2">;&quot;</span>
 <span class="n">UNIQUE_INDEX_DDL_PATTERN</span> <span class="o">=</span> <span class="s2">&quot;CREATE UNIQUE INDEX </span><span class="si">{option}</span><span class="s2"> </span><span class="si">{name}</span><span class="s2"> ON </span><span class="si">{table}</span><span class="s2"> USING </span><span class="si">{method}</span><span class="s2"> (</span><span class="si">{column}</span><span class="s2">);&quot;</span>
 <span class="n">INDEX_NAME_PATTERN</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{table}</span><span class="s2">_</span><span class="si">{column}</span><span class="s2">_idx&quot;</span>
 
@@ -276,7 +276,7 @@
                     <span class="n">name</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span>
                     <span class="n">table</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
                     <span class="n">column</span><span class="o">=</span><span class="n">column</span><span class="p">,</span>
-                    <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="p">)</span>
+                    <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="p">,</span> <span class="n">include</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">ddl</span></div>
 
 <div class="viewcode-block" id="Table.add_column"><a class="viewcode-back" href="../../../common/core-platform/doc/members/model.html#nsaph.data_model.model.Table.add_column">[docs]</a>    <span class="k">def</span> <span class="nf">add_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">extraction_method</span><span class="p">):</span>

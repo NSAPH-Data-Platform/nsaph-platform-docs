@@ -42,50 +42,70 @@ See [](../Medicare) for data processing details.
 
 ## Outputs
 
-| Name                   | Type | Description | 
-|:-----------------------|:-----|:------------|
-| initdb_log             | File |             | 
-| initdb_err             | File |             | 
-| load_raw_log           | File |             | 
-| load_raw_err           | File |             | 
-| registry               | File |             | 
-| ps_create_log          | File |             | 
-| ps_create_err          | File |             | 
-| ps2_create_log         | File |             | 
-| ps2_create_err         | File |             | 
-| bene_view_log          | File |             | 
-| bene_view_err          | File |             | 
-| bene_table_create_log  | File |             | 
-| bene_table_index_log   | File |             | 
-| bene_table_vacuum_log  | File |             | 
-| bene_table_create_err  | File |             | 
-| bene_table_index_err   | File |             | 
-| bene_table_vacuum_err  | File |             | 
-| enrlm_view_log         | File |             | 
-| enrlm_view_err         | File |             | 
-| enrlm_table_create_log | File |             | 
-| enrlm_table_index_log  | File |             | 
-| enrlm_table_vacuum_log | File |             | 
-| enrlm_table_create_err | File |             | 
-| enrlm_table_index_err  | File |             | 
-| enrlm_table_vacuum_err | File |             | 
-| ip_create_log          | File |             | 
-| ip_create_err          | File |             | 
-| adm_create_log         | File |             | 
-| adm_create_err         | File |             | 
-| adm_populate_log       | File |             | 
-| adm_populate_err       | File |             | 
-| adm_index_log          | File |             | 
-| adm_index_err          | File |             | 
-| adm_vacuum_log         | File |             | 
-| adm_vacuum_err         | File |             | 
+| Name                       | Type | Description | 
+|:---------------------------|:-----|:------------|
+| initdb_log                 | File |             | 
+| initdb_err                 | File |             | 
+| load_raw_log               | File |             | 
+| load_raw_err               | File |             | 
+| registry                   | File |             | 
+| ps_create_log              | File |             | 
+| ps_create_err              | File |             | 
+| ps2_create_log             | File |             | 
+| ps2_create_err             | File |             | 
+| bene_view_log              | File |             | 
+| bene_view_err              | File |             | 
+| bene_table_create_log      | File |             | 
+| bene_table_index_log       | File |             | 
+| bene_table_vacuum_log      | File |             | 
+| bene_table_create_err      | File |             | 
+| bene_table_index_err       | File |             | 
+| bene_table_vacuum_err      | File |             | 
+| enrlm_view_log             | File |             | 
+| enrlm_view_err             | File |             | 
+| enrlm_table_create_log     | File |             | 
+| enrlm_table_index_log      | File |             | 
+| enrlm_table_vacuum_log     | File |             | 
+| enrlm_table_create_err     | File |             | 
+| enrlm_table_index_err      | File |             | 
+| enrlm_table_vacuum_err     | File |             | 
+| ip_create_log              | File |             | 
+| ip_create_err              | File |             | 
+| adm_create_log             | File |             | 
+| adm_create_err             | File |             | 
+| adm_populate_log           | File |             | 
+| adm_populate_err           | File |             | 
+| adm_index_log              | File |             | 
+| adm_index_err              | File |             | 
+| adm_vacuum_log             | File |             | 
+| adm_vacuum_err             | File |             | 
+| qc_ev_create_log           | File |             | 
+| qc_ev_create_err           | File |             | 
+| qc_av_create_log           | File |             | 
+| qc_av_create_err           | File |             | 
+| qc_enrollmen343_create_log | File |             | 
+| qc_enrollmen343_index_log  | File |             | 
+| qc_enrollmen343_vacuum_log | File |             | 
+| qc_enrollmen343_create_err | File |             | 
+| qc_enrollmen343_index_err  | File |             | 
+| qc_enrollmen343_vacuum_err | File |             | 
+| qc_admission697_create_log | File |             | 
+| qc_admission697_index_log  | File |             | 
+| qc_admission697_vacuum_log | File |             | 
+| qc_admission697_create_err | File |             | 
+| qc_admission697_index_err  | File |             | 
+| qc_admission697_vacuum_err | File |             | 
+| grant_log                  | File |             | 
+| grant_err                  | File |             | 
 
 ## Steps
 
-| Name          | Runs                                                    | Description                                                | 
-|:--------------|:--------------------------------------------------------|:-----------------------------------------------------------|
-| initdb        | [initdb.cwl](initdb.md)                                 | Ensure that database utilities are at their latest version | 
-| load_raw_data | [load_raw_medicare.cwl](load_raw_medicare.md)           | Load raw CMS Medicare data into the database               | 
-| enrollments   | [medicare_beneficiaries.cwl](medicare_beneficiaries.md) | Process beneficiaries enrollment data                      | 
-| admissions    | [medicare_admissions.cwl](medicare_admissions.md)       | Process medicare inpatient admissions (aka Medpar) data    | 
+| Name          | Runs                                                    | Description                                                                           | 
+|:--------------|:--------------------------------------------------------|:--------------------------------------------------------------------------------------|
+| initdb        | [initdb.cwl](initdb.md)                                 | Ensure that database utilities are at their latest version                            | 
+| load_raw_data | [load_raw_medicare.cwl](load_raw_medicare.md)           | Load raw CMS Medicare data into the database                                          | 
+| enrollments   | [medicare_beneficiaries.cwl](medicare_beneficiaries.md) | Process beneficiaries enrollment data                                                 | 
+| admissions    | [medicare_admissions.cwl](medicare_admissions.md)       | Process medicare inpatient admissions (aka Medpar) data                               | 
+| qc            | [medicare_qc.cwl](medicare_qc.md)                       | Build QC Tables                                                                       | 
+| grant         | [grant_read_access.cwl](grant_read_access.md)           | Grants read access to the members of NSAPH group for newly created or updated tables  | 
 

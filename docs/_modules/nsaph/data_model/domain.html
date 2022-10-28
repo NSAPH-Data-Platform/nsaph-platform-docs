@@ -312,9 +312,14 @@
         <span class="k">return</span> <span class="n">s</span></div>
 
 <div class="viewcode-block" id="Domain.fqn"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.fqn">[docs]</a>    <span class="k">def</span> <span class="nf">fqn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="ow">and</span> <span class="s1">&#39;.&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">table</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">table</span>
         <span class="k">return</span> <span class="n">table</span></div>
+
+<div class="viewcode-block" id="Domain.ufqn"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.ufqn">[docs]</a>    <span class="k">def</span> <span class="nf">ufqn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)]</span>
+        <span class="n">pp</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parts</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pp</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Domain.find"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.find">[docs]</a>    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
@@ -323,6 +328,7 @@
             <span class="n">tables</span> <span class="o">=</span> <span class="n">root</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufqn</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">tables</span><span class="p">[</span><span class="n">table</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
@@ -471,12 +477,13 @@
             <span class="c1">#     WHERE {id} IS NOT NULL</span>
             <span class="c1">#     GROUP BY {id}</span>
 
+
             <span class="n">create_table</span> <span class="o">=</span> <span class="n">CREATE_VIEW</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="n">OBJECT</span><span class="o">=</span><span class="n">object_type</span><span class="p">,</span>
                 <span class="n">name</span><span class="o">=</span><span class="n">table</span><span class="p">,</span>
                 <span class="n">flag</span> <span class="o">=</span> <span class="s2">&quot;IF NOT EXISTS&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sloppy</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
                 <span class="n">features</span> <span class="o">=</span> <span class="s2">&quot;,</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">features</span><span class="p">),</span>
-                <span class="n">source</span><span class="o">=</span><span class="n">create</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">]</span>
+                <span class="n">source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fqn</span><span class="p">(</span><span class="n">create</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">])</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="s2">&quot;group by&quot;</span> <span class="ow">in</span> <span class="n">create</span><span class="p">:</span>
                 <span class="n">group_by</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">create</span><span class="p">[</span><span class="s2">&quot;group by&quot;</span><span class="p">])</span>
@@ -618,11 +625,26 @@
 
 <div class="viewcode-block" id="Domain.create_object_from"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.create_object_from">[docs]</a>    <span class="k">def</span> <span class="nf">create_object_from</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">definition</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">obj_type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">create</span> <span class="o">=</span> <span class="n">definition</span><span class="p">[</span><span class="s2">&quot;create&quot;</span><span class="p">]</span>
-        <span class="n">frm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fqn</span><span class="p">(</span><span class="n">create</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">])</span>
+        <span class="n">create_from</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">create</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">]</span>
+        <span class="n">join</span> <span class="o">=</span> <span class="s2">&quot;natural join&quot;</span>
+        <span class="k">if</span> <span class="n">join</span> <span class="ow">in</span> <span class="n">create_from</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">frm</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">create_from</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">join</span><span class="p">)]</span>
+            <span class="n">from_clause</span> <span class="o">=</span> <span class="s1">&#39; </span><span class="si">{}</span><span class="s1"> &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">join</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fqn</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">frm</span>
+            <span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">from_clause</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fqn</span><span class="p">(</span><span class="n">create_from</span><span class="p">)</span>
+            <span class="n">frm</span> <span class="o">=</span> <span class="p">[</span><span class="n">from_clause</span><span class="p">]</span>
         <span class="k">if</span> <span class="s2">&quot;select&quot;</span> <span class="ow">in</span> <span class="n">create</span><span class="p">:</span>
             <span class="n">select</span> <span class="o">=</span> <span class="n">create</span><span class="p">[</span><span class="s2">&quot;select&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">select</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span>
+        <span class="k">if</span> <span class="n">obj_type</span> <span class="o">!=</span> <span class="s2">&quot;table&quot;</span> <span class="ow">and</span> <span class="s2">&quot;columns&quot;</span> <span class="ow">in</span> <span class="n">definition</span><span class="p">:</span>
+            <span class="n">add_columns</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">feature</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_constraint</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="n">select</span> <span class="o">+=</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">add_columns</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;populate&quot;</span> <span class="ow">in</span> <span class="n">create</span> <span class="ow">and</span> <span class="n">create</span><span class="p">[</span><span class="s2">&quot;populate&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="n">condition</span> <span class="o">=</span> <span class="s2">&quot;WHERE 1 = 0&quot;</span>
         <span class="k">else</span><span class="p">:</span>
@@ -631,23 +653,40 @@
             <span class="n">obj_type</span><span class="p">,</span>
             <span class="n">table</span><span class="p">,</span>
             <span class="n">select</span><span class="p">,</span>
-            <span class="n">frm</span><span class="p">,</span>
+            <span class="n">from_clause</span><span class="p">,</span>
             <span class="n">condition</span>
         <span class="p">)</span>
-        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_constraint</span><span class="p">(</span><span class="n">feature</span><span class="p">):</span>
-                <span class="n">feature</span> <span class="o">=</span> <span class="s2">&quot;COLUMN &quot;</span> <span class="o">+</span> <span class="n">feature</span>
-            <span class="n">create_table</span> <span class="o">+=</span> <span class="s2">&quot;ALTER </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> ADD </span><span class="si">{}</span><span class="s2">;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">obj_type</span><span class="p">,</span>
-                <span class="n">table</span><span class="p">,</span>
-                <span class="n">feature</span>
-            <span class="p">)</span>
-        <span class="n">pdef</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">create</span><span class="p">[</span><span class="s2">&quot;from&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">obj_type</span> <span class="o">==</span> <span class="s2">&quot;table&quot;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">is_constraint</span><span class="p">(</span><span class="n">feature</span><span class="p">):</span>
+                    <span class="n">feature</span> <span class="o">=</span> <span class="s2">&quot;COLUMN &quot;</span> <span class="o">+</span> <span class="n">feature</span>
+                <span class="n">create_table</span> <span class="o">+=</span> <span class="s2">&quot;ALTER </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> ADD </span><span class="si">{}</span><span class="s2">;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">obj_type</span><span class="p">,</span>
+                    <span class="n">table</span><span class="p">,</span>
+                    <span class="n">feature</span>
+                <span class="p">)</span>
         <span class="n">selected_columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_select_from</span><span class="p">(</span><span class="n">definition</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">selected_columns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">cc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_selected_columns</span><span class="p">(</span><span class="n">selected_columns</span><span class="p">,</span> <span class="n">definition</span><span class="p">,</span> <span class="n">pdef</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">cc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_columns</span><span class="p">(</span><span class="n">pdef</span><span class="p">)</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">frm</span><span class="p">:</span>
+            <span class="n">pdef</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pdef</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Table </span><span class="si">{}</span><span class="s2"> is not defined in domain </span><span class="si">{}</span><span class="s2">&quot;</span>
+                    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">selected_columns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">cc</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">map_selected_columns</span><span class="p">(</span>
+                        <span class="n">selected_columns</span><span class="p">,</span> <span class="n">definition</span><span class="p">,</span> <span class="n">pdef</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">pdef</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">cc</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_columns</span><span class="p">(</span><span class="n">pdef</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;For </span><span class="si">{}</span><span class="s2">: neither columns to select are specified, nor &quot;</span>
+                    <span class="s2">&quot;a parent &#39;</span><span class="si">{}</span><span class="s2">&#39; is found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+                <span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;columns&quot;</span> <span class="ow">in</span> <span class="n">definition</span><span class="p">:</span>
             <span class="n">definition</span><span class="p">[</span><span class="s2">&quot;columns&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -721,6 +760,7 @@
         <span class="n">iname</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">onload</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">cname</span><span class="p">,</span> <span class="n">column</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+        <span class="n">included</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="k">if</span> <span class="s2">&quot;index&quot;</span> <span class="ow">in</span> <span class="n">column</span><span class="p">:</span>
             <span class="n">index</span> <span class="o">=</span> <span class="n">column</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">index</span> <span class="o">!=</span> <span class="s1">&#39;true&#39;</span><span class="p">:</span>
@@ -732,6 +772,12 @@
                     <span class="n">method</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="s2">&quot;using&quot;</span><span class="p">]</span>
                 <span class="k">if</span> <span class="s2">&quot;required_before_loading_data&quot;</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
                     <span class="n">onload</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="s2">&quot;include&quot;</span> <span class="ow">in</span> <span class="n">index</span><span class="p">:</span>
+                    <span class="n">inc</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="s2">&quot;include&quot;</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                        <span class="n">inc</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">inc</span><span class="p">])</span>
+                    <span class="n">included</span> <span class="o">=</span> <span class="s2">&quot;INCLUDE (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inc</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="n">method</span><span class="p">:</span>
             <span class="k">pass</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
@@ -745,7 +791,8 @@
             <span class="n">name</span> <span class="o">=</span> <span class="n">iname</span><span class="p">,</span>
             <span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="p">,</span>
             <span class="n">column</span> <span class="o">=</span> <span class="n">cname</span><span class="p">,</span>
-            <span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="p">,</span>
+            <span class="n">include</span><span class="o">=</span><span class="n">included</span>
         <span class="p">),</span> <span class="n">onload</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Domain.add_index_by_ddl"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.add_index_by_ddl">[docs]</a>    <span class="k">def</span> <span class="nf">add_index_by_ddl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ddl</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -772,13 +819,21 @@
             <span class="n">pattern</span> <span class="o">=</span> <span class="n">UNIQUE_INDEX_DDL_PATTERN</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">pattern</span> <span class="o">=</span> <span class="n">INDEX_DDL_PATTERN</span>
+        <span class="k">if</span> <span class="s2">&quot;include&quot;</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+            <span class="n">inc</span> <span class="o">=</span> <span class="n">definition</span><span class="p">[</span><span class="s2">&quot;include&quot;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">inc</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">inc</span><span class="p">])</span>
+            <span class="n">included</span> <span class="o">=</span> <span class="s2">&quot;INCLUDE (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inc</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">included</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="k">return</span> <span class="n">pattern</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">INDEX_NAME_PATTERN</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
                                              <span class="n">column</span> <span class="o">=</span> <span class="n">name</span><span class="p">),</span>
             <span class="n">option</span> <span class="o">=</span> <span class="n">option</span><span class="p">,</span>
             <span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="p">,</span>
             <span class="n">column</span> <span class="o">=</span> <span class="n">columns</span><span class="p">,</span>
-            <span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="p">,</span>
+            <span class="n">include</span> <span class="o">=</span> <span class="n">included</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Domain.add_index"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.add_index">[docs]</a>    <span class="k">def</span> <span class="nf">add_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">definition</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
