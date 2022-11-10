@@ -17,7 +17,6 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -40,7 +39,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../home.html">Documentation Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../home.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../domains.html">Data Domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pipelines.html">Data Processing Pipelines</a></li>
@@ -91,14 +90,14 @@ will look for columns named either <code class="docutils literal notranslate"><s
 is found, a new column will be created and filled with NULL values.</p>
 <p>Without <code class="docutils literal notranslate"><span class="pre">optional:</span> <span class="pre">true</span></code>, if an appropriate source column is not found,
 an exception will be raised.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ssa3</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">optional</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Social Security Administration (SSA) three digit code for county</span><span class="w"></span>
-<span class="w">    </span><span class="nt">reference</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.nber.org/research/data/ssa-federal-information-processing-series-fips-state-and-county-crosswalk</span><span class="w"></span>
-<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cnty_cd</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bene_county_cd</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssa_county</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">ssa3</span><span class="p">:</span>
+    <span class="nt">optional</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Social Security Administration (SSA) three digit code for county</span>
+    <span class="nt">reference</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://www.nber.org/research/data/ssa-federal-information-processing-series-fips-state-and-county-crosswalk</span>
+    <span class="nt">source</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cnty_cd</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_county_cd</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ssa_county</span>
 </pre></div>
 </div>
 </div>
@@ -109,14 +108,14 @@ view.</p>
 <p>The following example creates a view by combining all tables matching either
 <code class="docutils literal notranslate"><span class="pre">cms.mbsf_ab*</span></code> or <code class="docutils literal notranslate"><span class="pre">cms.mcr_bene_*</span></code> pattern, but excluding the table named
 <code class="docutils literal notranslate"><span class="pre">mbsf_ab_2015</span></code>:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ps</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">create</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">view</span><span class="w"></span>
-<span class="w">    </span><span class="nt">from</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cms.mbsf_ab*</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cms.mcr_bene_*</span><span class="w"></span>
-<span class="w">    </span><span class="nt">exclude</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mbsf_ab_2015</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ps</span><span class="p">:</span>
+  <span class="nt">create</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">view</span>
+    <span class="nt">from</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cms.mbsf_ab*</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cms.mcr_bene_*</span>
+    <span class="nt">exclude</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mbsf_ab_2015</span>
 </pre></div>
 </div>
 </div>
@@ -126,12 +125,12 @@ view.</p>
 to be combined into a single view have columns containing corresponding data
 but of different types, it is possible to cast all of them to the same type.</p>
 <p>In the following example:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dob</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span><span class="w"></span>
-<span class="w">    </span><span class="nt">cast</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="s">&quot;character</span><span class="nv"> </span><span class="s">varying&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;public.parse_date({column_name})&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="nt">numeric</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;to_date(to_char({column_name},</span><span class="nv"> </span><span class="s">&#39;00000000&#39;),</span><span class="nv"> </span><span class="s">&#39;YYYYMMDD&#39;)&quot;</span><span class="w"></span>
-<span class="w">      </span><span class="nt">*</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">column_name</span><span class="p p-Indicator">}</span><span class="l l-Scalar l-Scalar-Plain">::DATE</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">dob</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">date</span>
+    <span class="nt">cast</span><span class="p">:</span>
+      <span class="s">&quot;character</span><span class="nv"> </span><span class="s">varying&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;public.parse_date({column_name})&quot;</span>
+      <span class="nt">numeric</span><span class="p">:</span> <span class="s">&quot;to_date(to_char({column_name},</span><span class="nv"> </span><span class="s">&#39;00000000&#39;),</span><span class="nv"> </span><span class="s">&#39;YYYYMMDD&#39;)&quot;</span>
+      <span class="nt">*</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nv">column_name</span><span class="p p-Indicator">}</span><span class="l l-Scalar l-Scalar-Plain">::DATE</span>
 </pre></div>
 </div>
 <ul>

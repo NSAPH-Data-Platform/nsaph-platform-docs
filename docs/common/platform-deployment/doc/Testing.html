@@ -17,7 +17,6 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -42,13 +41,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../home.html">Documentation Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../home.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../domains.html">Data Domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pipelines.html">Data Processing Pipelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../packages.html">Python Packages</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../guts.html">Data Platform Internals</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../utils/doc/index.html">NSAPH Utils python package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../core-platform/doc/index.html">NSAPH Core Data Platform</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NSAPH Data Platform Deployment</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="Introduction.html">Introduction to Deployment of NSAPH Data Platform</a></li>
@@ -252,11 +250,11 @@ cwl-runner /dependencies/examples/rpi.cwl --script /dependencies/r_sample_projec
 <ol class="arabic" start="4">
 <li><p>Click Play button to the right of the DAG name <code class="docutils literal notranslate"><span class="pre">1st-tool</span></code></p></li>
 <li><p>Enter the following code into  box:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;job&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello World&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -269,11 +267,11 @@ cwl-runner /dependencies/examples/rpi.cwl --script /dependencies/r_sample_projec
 <ol class="arabic" start="8">
 <li><p>Click Play button to the right of the DAG name <code class="docutils literal notranslate"><span class="pre">pi</span></code></p></li>
 <li><p>Enter the following code into  box:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;job&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;iterations&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1000&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;iterations&quot;</span><span class="p">:</span> <span class="s2">&quot;1000&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Note, that the number of iterations must be a quoted string.</p>
@@ -287,15 +285,15 @@ cwl-runner /dependencies/examples/rpi.cwl --script /dependencies/r_sample_projec
 <ol class="arabic" start="8">
 <li><p>Click Play button to the right of the DAG name <code class="docutils literal notranslate"><span class="pre">rpi</span></code></p></li>
 <li><p>Enter the following code into  box:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">   </span><span class="nt">&quot;job&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">       </span><span class="nt">&quot;script&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;File&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">          </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/dependencies/r_sample_project/rpi.R&quot;</span><span class="w"></span>
-<span class="w">       </span><span class="p">},</span><span class="w"></span>
-<span class="w">       </span><span class="nt">&quot;iterations&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1000&quot;</span><span class="w"></span>
-<span class="w">   </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;job&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;script&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;File&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;/dependencies/r_sample_project/rpi.R&quot;</span>
+       <span class="p">},</span>
+       <span class="nt">&quot;iterations&quot;</span><span class="p">:</span> <span class="s2">&quot;1000&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Note, that the number of iterations must be a quoted string.</p>

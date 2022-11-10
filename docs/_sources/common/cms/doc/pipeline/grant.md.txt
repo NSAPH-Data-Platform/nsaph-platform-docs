@@ -14,7 +14,7 @@ local:
 
 This workflow executes an SQL statement in the database to grant
 read priviligies to NSAPH users (memebrs of group nsaph_admin)
-This is a wrapper around teh tool to be called from Airflow DAG.
+This is a wrapper around the tool to be called from Airflow DAG.
 
 
 ## Inputs
@@ -34,7 +34,7 @@ This is a wrapper around teh tool to be called from Airflow DAG.
 
 ## Steps
 
-| Name  | Runs                                          | Description                                                                           | 
-|:------|:----------------------------------------------|:--------------------------------------------------------------------------------------|
-| grant | [grant_read_access.cwl](grant_read_access.md) | Grants read access to the members of NSAPH group for newly created or updated tables  | 
+| Name  | Runs                                    | Description                                                                           | 
+|:------|:----------------------------------------|:--------------------------------------------------------------------------------------|
+| grant | [alter_database.cwl](alter_database.md) | Grants read access to the members of NSAPH group for newly created or updated tables  | 
 

@@ -11,8 +11,6 @@ local:
 
 ## Introduction to Data Platform
 
-### What is Data Platform?  
-                                               
 This data platform is intended for development and deployment of 
 ETL/ELT pipelines that includes complex data processing and data 
 cleansing workflows. Complex workflows require a workflow language, 
@@ -36,25 +34,8 @@ and a number of data ingestion pipelines.
 [Data ingestion pipelines](#data-ingestion-and-processing-packages-and-pipelines)
 process data from external sources and load it into the database.
 
-More details are provided in the following
-[discussion](rationale) 
-of the platform.
-
-### Using the Database
-
-For a sample to query the database, please look at
-[Sample Query](common/core-platform/doc/SampleQuery)
-
-A discussion of querying of health data can be found in 
-[this document](common/cms/doc/QueringMedicaid)
-
-### Terms and Acronyms 
-
-Included 
-[Glossary](glossary.md) provides some information about
-acronyms and other terms used throughout this documentation.
-               
-## Deploying the Platform
+A discussion on what are the aims of this data platform and how reproducible research can benefit from such product is provided in the
+[What is Data Platform](rationale) section.
 
 The data platform is deployed as a set of Docker containers orchestrated by
 Docker-Compose. Conda (package manager) environment files and Python
@@ -62,45 +43,23 @@ requirements are used to build Docker containers satisfying the dependencies.
 Specific parameters can be customized via environment files and shell script
 callbacks.
 
-See [deployment](#deployment) section.
-                                      
-## Building Platform documentation
-
-The [documentation](https://github.com/NSAPH-Data-Platform/nsaph-platform-docs)
-contains general documentation pages in 
-[MarkDown](https://www.markdownguide.org/) 
-format and a build script that goes over all other platform 
-repositories in the platform
-and creates a combined [GitHub Pages](https://pages.github.com/) site.
-The script supports links between repositories. 
-
-Documentation utilities are contained in 
-[nsaph-utils](https://github.com/NSAPH-Data-Platform/nsaph-utils)
-in 
-[docutils](https://github.com/NSAPH-Data-Platform/nsaph-utils/tree/master/nsaph_utils/docutils)
-package. 
-
+## Building Blocks
         
-## Repositories Overview
+The building blocks of the data platform are packaged in several repositories:
 
-### Deployment
+* The **NSAPH utilities** repository https://github.com/NSAPH-Data-Platform/nsaph-utils
+* The **core platform** repository https://github.com/NSAPH-Data-Platform/nsaph-core-platform
+* The **GIS utilities** repository https://github.com/NSAPH-Data-Platform/nsaph-gis
+* The **pipeline** repositories. Five pipelines, each focused in a different data domain have been implemented:
+    + The **cms** repository https://github.com/NSAPH-Data-Platform/nsaph-cms
+    + The **EPA** repository https://github.com/NSAPH-Data-Platform/nsaph-epa
+    + The **gridmet** repository https://github.com/NSAPH-Data-Platform/nsaph-gridmet
+    + The **census** repository https://github.com/NSAPH-Data-Platform/nsaph-census
+* The **deployment** repository https://github.com/NSAPH-Data-Platform/nsaph-platform-deployment
 
-[Deployment repository](common/platform-deployment/doc/index) is based on  
-CWL-Airflow Docker Deployment developed
-by Harvard FAS RC in collaboration with Forome Association. Essentially, this is a fork of: 
-[Apache Airflow + CWL in Docker with Optional Conda and R](https://github.com/ForomePlatform/airflow-cwl-docker)
-It follows 
-[Infrastructure as Code (IaC)](https://en.wikipedia.org/wiki/Infrastructure_as_code) 
-approach.
+General details of the building blocks are provided next. 
 
-[Harvard FAS RC Superset] repository is a fork of 
-[Apache Superset](https://superset.apache.org/) 
-customized for Harvard FAS RC environment.
-
-
-### General Packages
-
-#### NSAPH Utilities
+### NSAPH Utilities
 
 <!-- section overview from nsaph_utils -->
 
@@ -125,10 +84,7 @@ Included utilities:
 
 <!-- end of section overview from nsaph_utils -->
 
-[NSAPH Utils Package Description](common/utils/doc/index)
-
-
-#### Core Platform
+### Core Platform
 
 <!-- section overview from nsaph -->
 
@@ -140,10 +96,7 @@ DBMS (version 13 or later) and CWL runtime environment.
 
 <!-- end of section overview from nsaph -->
 
-[Core Platform Package Description](common/core-platform/doc/index)
-
-
-#### GIS Utilities
+### GIS Utilities
 
 <!-- section overview from gis -->
 
@@ -152,24 +105,66 @@ This library contains several packages, aimed to work with census shape files.
 
 <!-- end of section overview from gis -->
 
-[NSAPH GIS Package Description](common/gis/doc/index)
+### Pipelines
 
-   
-### Data Ingestion and Processing Packages and Pipelines
-
-Pipelines processing data from Environmental Protection Agency and climate data
-from gridMET are ready to be used by any interested party. The pipeline to
-process claims data from Medicaid which cannot be made publicly available can be
+Ingestion and Processing pipelines for the **EPA** Environmental Protection Agency and **gridMET** datasets are ready to be used by any interested party. The pipeline that
+processes claims data from Medicaid which cannot be made publicly available can be
 tested only by users who have their own data user agreement with the Centers for
-Medicare and Medicaid Services (CMS) and have access to their own Medicaid
+Medicare and Medicaid Services **CMS** and have access to their own Medicaid
 claims data from ResDAC. The pipeline we publish processes Medicaid MAX (
 Medicaid Analytic Extract) Personal Summary (PS) and The Medicaid MAX (Medicaid
 Analytic Extract) Inpatient (IP) files. The following table 
-summarizes the included data processing pipelines.
+summarizes the included data processing pipelines. **Census** data is requested via the US Census Bureau data API.
 
-| Pipeline | Documentation                                                                      |
-|----------|------------------------------------------------------------------------------------|
-| EPA      | [EPA Pipelines](common/epa/doc/index) (AQS and AirNow)                             |
-| Census   | [Census Package](common/census/doc/index) (Ingesting demographics data)            |
-| Gridmet  | [Gridmet package](common/gridmet/doc/index) (Climate data pipelines and utilities) |
-| CMS      | [CMS Piepline](common/cms/doc/index) (Medicare and Medicaid)                       |
+Details of each of the data domains and corresponding pipelines are covered in the [Data Domains](domains) and [Data Processing Pipelines](pipelines) sections. 
+
+To include additional data in a deployed data-platform instance go to [Adding more data](adding_data) section.
+
+## Deployment
+
+The deployment repository is based on  
+CWL-Airflow Docker Deployment developed
+by Harvard FAS RC in collaboration with Forome Association. Essentially, this is a fork of: 
+[Apache Airflow + CWL in Docker with Optional Conda and R](https://github.com/ForomePlatform/airflow-cwl-docker)
+It follows 
+[Infrastructure as Code (IaC)](https://en.wikipedia.org/wiki/Infrastructure_as_code) 
+approach.
+
+[Harvard FAS RC Superset] repository is a fork of 
+[Apache Superset](https://superset.apache.org/) 
+customized for Harvard FAS RC environment.
+
+Detailed description of this deployment is covered in the [NSAPH Data Platform Deployment](common/platform-deployment/doc/index) subsection of the [Data Platform Internals](guts) section.
+
+### Using the Database
+
+For a sample to query the database, please look at
+[Sample Query](common/core-platform/doc/SampleQuery)
+
+A discussion of querying of health data can be found in 
+[this document](common/cms/doc/QueringMedicaid)
+
+## Terms and Acronyms 
+
+Included 
+[Glossary](glossary.md) provides some information about
+acronyms and other terms used throughout this documentation.
+
+Additionaly, [General Index](genindex) and [Python Module Index](modindex) englobe all the pieces of the Data Platform together.
+
+
+## Building Platform documentation
+
+The [documentation](https://github.com/NSAPH-Data-Platform/nsaph-platform-docs)
+contains general documentation pages in 
+[MarkDown](https://www.markdownguide.org/) 
+format and a build script that goes over all other platform 
+repositories in the platform
+and creates a combined [GitHub Pages](https://pages.github.com/) site.
+The script supports links between repositories. 
+
+Documentation utilities are contained in 
+[nsaph-utils](https://github.com/NSAPH-Data-Platform/nsaph-utils)
+in 
+[docutils](https://github.com/NSAPH-Data-Platform/nsaph-utils/tree/master/nsaph_utils/docutils)
+package. 

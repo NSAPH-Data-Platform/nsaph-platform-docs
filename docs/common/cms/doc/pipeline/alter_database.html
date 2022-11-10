@@ -17,7 +17,6 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -40,7 +39,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Documentation Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../domains.html">Data Domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a></li>
@@ -67,7 +66,7 @@
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Utility to grant read (SELECT) privilege to all users in NSAPH admin role</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../_sources/common/cms/doc/pipeline/grant_read_access.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../_sources/common/cms/doc/pipeline/alter_database.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -118,7 +117,7 @@ read priviligies to NSAPH users (memebrs of group nsaph_admin)</p>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>sql</p></td>
 <td class="text-left"><p>string[]</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[&quot;call</span> <span class="pre">public.grant_select('nsaph_admin');&quot;]</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">['call</span> <span class="pre">public.grant_access();']</span></code></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 </tbody>

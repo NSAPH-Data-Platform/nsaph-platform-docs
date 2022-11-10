@@ -17,7 +17,6 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -40,7 +39,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Documentation Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../domains.html">Data Domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a></li>
@@ -82,18 +81,18 @@ in the example below connect directly to the database, while the
 second block uses ssh tunnel to connect to database host.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Example of database.ini file</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">[mimic]</span><span class="w"></span>
-<span class="w"> </span><span class="na">host</span><span class="o">=</span><span class="s">localhost</span><span class="w"></span>
-<span class="w"> </span><span class="na">database</span><span class="o">=</span><span class="s">mimicii</span><span class="w"></span>
-<span class="w"> </span><span class="na">user</span><span class="o">=</span><span class="s">postgres</span><span class="w"></span>
-<span class="w"> </span><span class="na">password</span><span class="o">=</span><span class="s">*****</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span> <span class="k">[mimic]</span>
+ <span class="na">host</span><span class="o">=</span><span class="s">localhost</span>
+ <span class="na">database</span><span class="o">=</span><span class="s">mimicii</span>
+ <span class="na">user</span><span class="o">=</span><span class="s">postgres</span>
+ <span class="na">password</span><span class="o">=</span><span class="s">*****</span>
 
-<span class="w"> </span><span class="k">[nsaph2]</span><span class="w"></span>
-<span class="w"> </span><span class="na">host</span><span class="o">=</span><span class="s">nsaph.cluster.uni.edu</span><span class="w"></span>
-<span class="w"> </span><span class="na">database</span><span class="o">=</span><span class="s">nsaph</span><span class="w"></span>
-<span class="w"> </span><span class="na">user</span><span class="o">=</span><span class="s">dbuser</span><span class="w"></span>
-<span class="w"> </span><span class="na">password</span><span class="o">=</span><span class="s">*********</span><span class="w"></span>
-<span class="w"> </span><span class="na">ssh_user</span><span class="o">=</span><span class="s">johndoe</span><span class="w"></span>
+ <span class="k">[nsaph2]</span>
+ <span class="na">host</span><span class="o">=</span><span class="s">nsaph.cluster.uni.edu</span>
+ <span class="na">database</span><span class="o">=</span><span class="s">nsaph</span>
+ <span class="na">user</span><span class="o">=</span><span class="s">dbuser</span>
+ <span class="na">password</span><span class="o">=</span><span class="s">*********</span>
+ <span class="na">ssh_user</span><span class="o">=</span><span class="s">johndoe</span>
 </pre></div>
 </div>
 </div>

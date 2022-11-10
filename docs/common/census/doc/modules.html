@@ -17,7 +17,6 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -42,17 +41,17 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../home.html">Documentation Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../home.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../domains.html">Data Domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pipelines.html">Data Processing Pipelines</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../packages.html">Python Packages</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../utils/doc/index.html">General purpose utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../core-platform/doc/CoreLibrary.html">Data platform components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../gis/doc/python_components.html">GIS utilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../gridmet/doc/python_components.html">gridMET tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../epa/doc/index.html">EPA tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gis/doc/index.html">GIS utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cms/doc/CMSLibrary.html">Health data manipulation tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../epa/doc/index.html">EPA tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gridmet/doc/python_components.html">gridMET tools</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Census data manipulation tools</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="about.html">About</a></li>
 <li class="toctree-l3"><a class="reference internal" href="env_set_up.html">Setting Up Environment</a></li>
@@ -62,27 +61,12 @@
 <li class="toctree-l3"><a class="reference internal" href="contributing_checklist.html">Contributing Checklist</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Modules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#query-py">query.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.query.get_census_data"><code class="docutils literal notranslate"><span class="pre">get_census_data()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.query.api_geography"><code class="docutils literal notranslate"><span class="pre">api_geography()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#assemble-data-py">assemble_data.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.assemble_data.DataPlan"><code class="docutils literal notranslate"><span class="pre">DataPlan</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.assemble_data.VariableDef"><code class="docutils literal notranslate"><span class="pre">VariableDef</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#census-info-py">census_info.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.census_info.get_endpoint"><code class="docutils literal notranslate"><span class="pre">get_endpoint()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.census_info.get_varlist"><code class="docutils literal notranslate"><span class="pre">get_varlist()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.census_info.set_api_key"><code class="docutils literal notranslate"><span class="pre">set_api_key()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.census_info.census_years"><code class="docutils literal notranslate"><span class="pre">census_years()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#tigerweb-py">tigerweb.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.tigerweb.get_area"><code class="docutils literal notranslate"><span class="pre">get_area()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.tigerweb.download_geometry"><code class="docutils literal notranslate"><span class="pre">download_geometry()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cli-py">cli.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.cli.CensusContext"><code class="docutils literal notranslate"><span class="pre">CensusContext</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#exceptions-py">exceptions.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.exceptions.CensusException"><code class="docutils literal notranslate"><span class="pre">CensusException</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.data.load_data.load_county_codes"><code class="docutils literal notranslate"><span class="pre">load_county_codes()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.data.load_data.load_state_codes"><code class="docutils literal notranslate"><span class="pre">load_state_codes()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#utils-py">utils.py</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#census.utils.show_api_keys"><code class="docutils literal notranslate"><span class="pre">show_api_keys()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="glossary.html">Glossary</a></li>
@@ -144,7 +128,6 @@
 <span class="target" id="module-census.query"></span><div class="section" id="query-py">
 <h2>query.py<a class="headerlink" href="#query-py" title="Permalink to this heading"></a></h2>
 <p>Functions for Requesting Data from the Census API</p>
-</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="census.query.get_census_data">
 <span class="sig-name descname"><span class="pre">get_census_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geography</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">county</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/census/query.html#get_census_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#census.query.get_census_data" title="Permalink to this definition"></a></dt>
@@ -181,10 +164,10 @@
 </dl>
 </dd></dl>
 
+</div>
 <span class="target" id="module-census.assemble_data"></span><div class="section" id="assemble-data-py">
 <h2>assemble_data.py<a class="headerlink" href="#assemble-data-py" title="Permalink to this heading"></a></h2>
 <p>Core module for assembling a census plan</p>
-</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="census.assemble_data.DataPlan">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DataPlan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">yaml_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[2000,</span> <span class="pre">2009,</span> <span class="pre">2010,</span> <span class="pre">2011,</span> <span class="pre">2012,</span> <span class="pre">2013,</span> <span class="pre">2014,</span> <span class="pre">2015,</span> <span class="pre">2016,</span> <span class="pre">2017,</span> <span class="pre">2018,</span> <span class="pre">2019]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">county</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/census/assemble_data.html#DataPlan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#census.assemble_data.DataPlan" title="Permalink to this definition"></a></dt>
@@ -381,10 +364,10 @@ Members:
 
 </dd></dl>
 
+</div>
 <span class="target" id="module-census.census_info"></span><div class="section" id="census-info-py">
 <h2>census_info.py<a class="headerlink" href="#census-info-py" title="Permalink to this heading"></a></h2>
 <p>Core module for handling census metadata</p>
-</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="census.census_info.get_endpoint">
 <span class="sig-name descname"><span class="pre">get_endpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/census/census_info.html#get_endpoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#census.census_info.get_endpoint" title="Permalink to this definition"></a></dt>
@@ -452,13 +435,13 @@ every session you can also permanently set CENSUS_API_KEY to your key in your en
 </dl>
 </dd></dl>
 
+</div>
 <span class="target" id="module-census.tigerweb"></span><div class="section" id="tigerweb-py">
 <h2>tigerweb.py<a class="headerlink" href="#tigerweb-py" title="Permalink to this heading"></a></h2>
 <dl class="simple">
 <dt>Code for interacting with the Census TIGERWEb API, query area and download shape</dt><dd><p>files.</p>
 </dd>
 </dl>
-</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="census.tigerweb.get_area">
 <span class="sig-name descname"><span class="pre">get_area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sq_mi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/census/tigerweb.html#get_area"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#census.tigerweb.get_area" title="Permalink to this definition"></a></dt>
@@ -496,10 +479,10 @@ downloads, tract and block group downloads will create a directory if no out_dir
 </dl>
 </dd></dl>
 
+</div>
 <span class="target" id="module-census.cli"></span><div class="section" id="cli-py">
 <h2>cli.py<a class="headerlink" href="#cli-py" title="Permalink to this heading"></a></h2>
 <p>Command Line Interface for the census python package</p>
-</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="census.cli.CensusContext">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CensusContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/census/cli.html#CensusContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#census.cli.CensusContext" title="Permalink to this definition"></a></dt>
@@ -537,15 +520,16 @@ of command line arguments</p>
 
 </dd></dl>
 
+</div>
 <span class="target" id="module-census.exceptions"></span><div class="section" id="exceptions-py">
 <h2>exceptions.py<a class="headerlink" href="#exceptions-py" title="Permalink to this heading"></a></h2>
 <p>census exceptions</p>
-</div>
 <dl class="py exception">
 <dt class="sig sig-object py" id="census.exceptions.CensusException">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CensusException</span></span><a class="reference internal" href="../../../_modules/census/exceptions.html#CensusException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#census.exceptions.CensusException" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</div>
 <span class="target" id="module-census.data.load_data"></span><dl class="py function">
 <dt class="sig sig-object py" id="census.data.load_data.load_county_codes">
 <span class="sig-name descname"><span class="pre">load_county_codes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/census/data/load_data.html#load_county_codes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#census.data.load_data.load_county_codes" title="Permalink to this definition"></a></dt>
@@ -571,13 +555,13 @@ of command line arguments</p>
 <span class="target" id="module-census.utils"></span><div class="section" id="utils-py">
 <h2>utils.py<a class="headerlink" href="#utils-py" title="Permalink to this heading"></a></h2>
 <p>Census utility functions</p>
-</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="census.utils.show_api_keys">
 <span class="sig-name descname"><span class="pre">show_api_keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/census/utils.html#show_api_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#census.utils.show_api_keys" title="Permalink to this definition"></a></dt>
 <dd><p>Prints out api keys.</p>
 </dd></dl>
 
+</div>
 </div>
 
 

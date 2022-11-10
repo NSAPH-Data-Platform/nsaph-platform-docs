@@ -17,7 +17,6 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -42,15 +41,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Documentation Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../domains.html">Data Domains</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../packages.html">Python Packages</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../utils/doc/index.html">General purpose utilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../core-platform/doc/CoreLibrary.html">Data platform components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../gis/doc/python_components.html">GIS utilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/python_components.html">gridMET tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gis/doc/index.html">GIS utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/CMSLibrary.html">Health data manipulation tools</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">EPA tools</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#package-contents">Package Contents</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../usage.html">EPA Toolkit Usage</a></li>
@@ -61,7 +60,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../index.html#querying-data">Querying Data</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/CMSLibrary.html">Health data manipulation tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/python_components.html">gridMET tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../census/doc/index.html">Census data manipulation tools</a></li>
 </ul>
 </li>
@@ -102,35 +101,35 @@
 <h1>Sample arguments to AQS pipeline<a class="headerlink" href="#sample-arguments-to-aqs-pipeline" title="Permalink to this heading"></a></h1>
 <div class="section" id="for-annual-no2-nitrogen-data">
 <h2>For annual NO2 (nitrogen) data<a class="headerlink" href="#for-annual-no2-nitrogen-data" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">database</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/airflow/dags/epa/database.ini</span><span class="w"></span>
-<span class="w">  </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">File</span><span class="w"></span>
-<span class="nt">connection_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nsaph</span><span class="w"></span>
-<span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no2_annual</span><span class="w"></span>
-<span class="nt">aggregation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">annual</span><span class="w"></span>
-<span class="nt">parameter_code</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;42602&quot;</span><span class="w"></span>
-<span class="nt">years</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2019&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2020&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2021&quot;</span><span class="w"></span>
-<span class="nt">proxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://10.240.64.17:3128</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">database</span><span class="p">:</span>
+  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/airflow/dags/epa/database.ini</span>
+  <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+<span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nsaph</span>
+<span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no2_annual</span>
+<span class="nt">aggregation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">annual</span>
+<span class="nt">parameter_code</span><span class="p">:</span> <span class="s">&quot;42602&quot;</span>
+<span class="nt">years</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;2019&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;2020&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;2021&quot;</span>
+<span class="nt">proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://10.240.64.17:3128</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="for-daily-pm25-small-particles-data">
 <h2>For daily PM25 (small particles) data<a class="headerlink" href="#for-daily-pm25-small-particles-data" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">database</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/airflow/dags/epa/database.ini</span><span class="w"></span>
-<span class="w">  </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">File</span><span class="w"></span>
-<span class="nt">connection_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nsaph</span><span class="w"></span>
-<span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pm25_daily</span><span class="w"></span>
-<span class="nt">aggregation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">daily</span><span class="w"></span>
-<span class="nt">parameter_code</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;88101&quot;</span><span class="w"></span>
-<span class="nt">years</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2019&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2020&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2021&quot;</span><span class="w"></span>
-<span class="nt">proxy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://10.240.64.17:3128</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">database</span><span class="p">:</span>
+  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/airflow/dags/epa/database.ini</span>
+  <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+<span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nsaph</span>
+<span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pm25_daily</span>
+<span class="nt">aggregation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">daily</span>
+<span class="nt">parameter_code</span><span class="p">:</span> <span class="s">&quot;88101&quot;</span>
+<span class="nt">years</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;2019&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;2020&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&quot;2021&quot;</span>
+<span class="nt">proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://10.240.64.17:3128</span>
 </pre></div>
 </div>
 </div>

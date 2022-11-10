@@ -63,6 +63,7 @@ General details of the building blocks are provided next.
 
 <!-- section overview from nsaph_utils -->
 
+
 The nsaph_utils package is intended to hold python 
 code that will be useful
 across multiple portions of the NSAPH pipelines.
@@ -80,7 +81,6 @@ Included utilities:
 * Documentation utilities to simplify creation of consistent 
  documentation for NSAPH platform 
 
-A detailed description of the **NSAPH utilities** is found in the [General Purpose Utilities](common/utils/doc/index) subsection of the [Python Packages](packages) section.
 
 <!-- end of section overview from nsaph_utils -->
 
@@ -88,22 +88,20 @@ A detailed description of the **NSAPH utilities** is found in the [General Purpo
 
 <!-- section overview from nsaph -->
 
-The core platform provides generic infrastructure for NSAPH Data Platform
+The data platform provides generic infrastructure for NSAPH Data Platform
 It depends on nsaph_util package, but it augments it
 with APIs and command line utilities dependent on the infrastructure 
 and the environment. For instance, its components assume presence of PostgreSQL
 DBMS (version 13 or later) and CWL runtime environment.
-
-The description of the **core platform** is in [NSAPH Core Data Platform](common/core-platform/doc/index) subsection of the [Data Platform Internals](guts) section.
 
 <!-- end of section overview from nsaph -->
 
 ### GIS Utilities
 
 <!-- section overview from gis -->
-This library contains several packages, aimed to work with census shape files.
 
-More details are in the [GIS utilities](common/gis/doc/index) subsection of the [Python Packages](packges) section.
+
+This library contains several packages, aimed to work with census shape files.
 
 <!-- end of section overview from gis -->
 

@@ -107,5 +107,5 @@ See [](../Medicare) for data processing details.
 | enrollments   | [medicare_beneficiaries.cwl](medicare_beneficiaries.md) | Process beneficiaries enrollment data                                                 | 
 | admissions    | [medicare_admissions.cwl](medicare_admissions.md)       | Process medicare inpatient admissions (aka Medpar) data                               | 
 | qc            | [medicare_qc.cwl](medicare_qc.md)                       | Build QC Tables                                                                       | 
-| grant         | [grant_read_access.cwl](grant_read_access.md)           | Grants read access to the members of NSAPH group for newly created or updated tables  | 
+| grant         | [alter_database.cwl](alter_database.md)                 | Grants read access to the members of NSAPH group for newly created or updated tables  | 
 
