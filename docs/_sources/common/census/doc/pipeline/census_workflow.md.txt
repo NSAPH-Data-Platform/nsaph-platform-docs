@@ -1,5 +1,9 @@
 # census_workflow.cwl
 
+
+ [Source code](census_workflowcwl_src.md) 
+
+
 ![](census_workflow.png)
 
 ```{contents}

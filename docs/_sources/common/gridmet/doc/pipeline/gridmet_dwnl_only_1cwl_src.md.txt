@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# tmp61etoz5ngridmet_dwnl_only.cwl
+
+```{literalinclude} ../../src/cwl/tmp61etoz5ngridmet_dwnl_only.cwl
+---
+language: yaml
+---
+```
+

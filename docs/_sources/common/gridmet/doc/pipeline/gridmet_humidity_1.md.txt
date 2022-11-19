@@ -1,5 +1,9 @@
 # Sub-workflow *init_tables* from gridmet_humidity.cwl
 
+
+ [Source code](gridmet_humidity_1cwl_src.md) 
+
+
 ![](gridmet_humidity_1.png)
 
 ```{contents}

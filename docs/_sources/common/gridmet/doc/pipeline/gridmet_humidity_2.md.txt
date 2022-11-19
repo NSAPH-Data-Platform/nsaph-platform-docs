@@ -1,5 +1,9 @@
 # Sub-workflow *process* from gridmet_humidity.cwl
 
+
+ [Source code](gridmet_humidity_2cwl_src.md) 
+
+
 ![](gridmet_humidity_2.png)
 
 ```{contents}

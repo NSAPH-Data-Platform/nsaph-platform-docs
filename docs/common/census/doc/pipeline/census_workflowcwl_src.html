@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>census_workflow.cwl &mdash; NSAPH Data Platform 0.0.2 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/nsaph.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="census_write.cwl" href="census_write.html" />
+    <link rel="prev" title="census_workflow.cwl" href="census_workflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rationale.html">What is Data Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../domains.html">Data Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../packages.html">Python Packages</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../utils/doc/index.html">General purpose utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../core-platform/doc/CoreLibrary.html">Data platform components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gis/doc/index.html">GIS utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/CMSLibrary.html">Health data manipulation tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/index.html">EPA tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/python_components.html">gridMET tools</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Census data manipulation tools</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../env_set_up.html">Setting Up Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quick_start.html">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../census_yaml.html">Census Variable File Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cached_data.html">Stored Data Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contributing_checklist.html">Contributing Checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules.html">Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../contact.html">Contant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../CHANGELOG.html">Changelog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../start_guide.html">Working with the <code class="docutils literal notranslate"><span class="pre">census</span></code> Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_assemble.html">census_assemble.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_assemblecwl_src.html">census_assemble.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_density.html">census_density.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_densitycwl_src.html">census_density.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_ingest.html">census_ingest.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_ingest_1.html">Sub-workflow <em>store</em> from census_ingest.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_ingest_1cwl_src.html">tmpyqtemnzhcensus_ingest.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_ingestcwl_src.html">census_ingest.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_interpolate.html">census_interpolate.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_interpolatecwl_src.html">census_interpolate.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_qc.html">census_qc.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_qccwl_src.html">census_qc.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_workflow.html">census_workflow.cwl</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">census_workflow.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_write.html">census_write.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_writecwl_src.html">census_write.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html">Index Builder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="indexcwl_src.html">index.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ingest.html">Uploader of the gridMET Data to the database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ingestcwl_src.html">ingest.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vacuum.html">Table tuner tool (running VACUUM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vacuumcwl_src.html">vacuum.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guts.html">Data Platform Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../adding_data.html">Adding more data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Terms and Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docindices.html">Indices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NSAPH Data Platform</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
+          <li><a href="../index.html">NSAPH Census Pipelines</a> &raquo;</li>
+      <li>census_workflow.cwl</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/common/census/doc/pipeline/census_workflowcwl_src.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="census-workflow-cwl">
+<h1>census_workflow.cwl<a class="headerlink" href="#census-workflow-cwl" title="Permalink to this heading"></a></h1>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/env cwl-runner</span>
+
+<span class="nt">cwlVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1.1</span>
+<span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Workflow</span>
+
+<span class="nt">requirements</span><span class="p">:</span>
+  <span class="nt">SubworkflowFeatureRequirement</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+  <span class="nt">StepInputExpressionRequirement</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+
+
+<span class="nt">inputs</span><span class="p">:</span>
+  <span class="nt">api_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># API Key for the Census API</span>
+  <span class="nt">http_proxy</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&quot;&quot;</span>
+  <span class="nt">var_file</span><span class="p">:</span>  <span class="c1"># YML File specifying the census variables</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+  <span class="nt">geometry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># Census geometry to use</span>
+  <span class="nt">years</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># Years to download census for, written &lt;min_year&gt;:&lt;max_year&gt;</span>
+  <span class="nt">interpolate_years</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>  <span class="c1"># Years to interpolate census over, written &lt;min_year&gt;:&lt;max_year&gt;</span>
+  <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># name of the main log file</span>
+  <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string?</span> <span class="c1"># state fips code, if you want to download only a single state</span>
+  <span class="nt">county</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string?</span> <span class="c1"># county fips code, if you want to download only a single county, requires state</span>
+  <span class="nt">density_vars</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string[]</span> <span class="c1"># List of variables to calculate area density for</span>
+  <span class="nt">assemble_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># pkl file to store results of initial download</span>
+  <span class="nt">interpolate_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># pkl file to store object with interpolated data</span>
+  <span class="nt">density_interp_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># pkl file to store object with interpolated data and calculated densities</span>
+  <span class="nt">density_no_interp_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># pkl file to store object with uninterpolated data and calculated densities</span>
+  <span class="nt">interp_out</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># csv file to store output with interpolated data</span>
+  <span class="nt">interp_tablename</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># table name for interpolated data</span>
+  <span class="nt">interp_schema</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># File name for interpolated data schema (.yml)</span>
+  <span class="nt">no_interp_out</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1">#csv file to store uninterpolated data in</span>
+  <span class="nt">no_interp_tablename</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># table name for uninterpolated data</span>
+  <span class="nt">no_interp_schema</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># File name for uninterpolated data schema (.yml)</span>
+  <span class="nt">qc_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span> <span class="c1"># YAML File specifying QC</span>
+  <span class="nt">interp_qc_log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># Place to log QC for interpolated data</span>
+  <span class="nt">no_interp_qc_log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span> <span class="c1"># Place to log QC for uninterpolated data</span>
+  <span class="nt">database</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Path to database connection file, usually database.ini</span>
+  <span class="nt">connection_name</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The name of the section in the database.ini file</span>
+  <span class="nt">table</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+
+<span class="nt">outputs</span><span class="p">:</span>
+  <span class="nt">assemble_pkl</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">assemble/pkl</span>
+  <span class="nt">log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+  <span class="nt">interp_pkl</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interpolate/pkl</span>
+  <span class="nt">density_no_interp_pkl</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no_interp_density/pkl</span>
+  <span class="nt">density_interp_pkl</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interp_density/pkl</span>
+  <span class="nt">interp_qc_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interp_qc/qc_log</span>
+  <span class="nt">no_interp_qc_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no_interp_qc/qc_log</span>
+  <span class="nt">interp_data</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File[]</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">write_interp/data</span>
+  <span class="nt">interp_schema</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">write_interp/schema</span>
+  <span class="nt">no_interp_data</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File[]</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">write_no_interp/data</span>
+  <span class="nt">no_interp_schema</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">write_no_interp/schema</span>
+  <span class="nt">ingest_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest/log</span>
+  <span class="nt">index_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index/log</span>
+  <span class="nt">vacuum_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vacuum/log</span>
+  <span class="nt">ingest_errors</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest/errors</span>
+  <span class="nt">index_errors</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index/errors</span>
+  <span class="nt">vacuum_errors</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vacuum/errors</span>
+
+<span class="nt">steps</span><span class="p">:</span>
+  <span class="nt">make_log</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span>
+      <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CommandLineTool</span>
+      <span class="nt">baseCommand</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">touch</span>
+      <span class="nt">inputs</span><span class="p">:</span>
+        <span class="nt">log</span><span class="p">:</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+          <span class="nt">inputBinding</span><span class="p">:</span>
+            <span class="nt">position</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+      <span class="nt">outputs</span><span class="p">:</span>
+        <span class="nt">log</span><span class="p">:</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+          <span class="nt">outputBinding</span><span class="p">:</span>
+            <span class="nt">glob</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">$(inputs.log)</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">log</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">]</span>
+
+  <span class="nt">assemble</span><span class="p">:</span> <span class="c1"># Download and calculate census variables</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">census_assemble.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">api_key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">api_key</span>
+      <span class="nt">http_proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http_proxy</span>
+      <span class="nt">var_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">var_file</span>
+      <span class="nt">geometry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">geometry</span>
+      <span class="nt">years</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">years</span>
+      <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+      <span class="nt">pkl_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">assemble_pkl</span>
+      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
+      <span class="nt">county</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">county</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">pkl</span><span class="p p-Indicator">]</span>
+  <span class="nt">interpolate</span><span class="p">:</span> <span class="c1"># Interpolate data for missing years</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">census_interpolate.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">interpolate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interpolate_years</span>
+      <span class="nt">log</span><span class="p">:</span>
+        <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+      <span class="nt">in_pkl</span><span class="p">:</span>
+        <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">assemble/pkl</span>
+      <span class="nt">out_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interpolate_pkl</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">pkl</span><span class="p p-Indicator">]</span>
+  <span class="nt">no_interp_density</span><span class="p">:</span> <span class="c1"># Calculate densities for uninterpolated data</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">census_density.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">http_proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http_proxy</span>
+      <span class="nt">densities</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">density_vars</span>
+      <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+      <span class="nt">in_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">assemble/pkl</span>
+      <span class="nt">out_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">density_no_interp_pkl</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">pkl</span><span class="p p-Indicator">]</span>
+  <span class="nt">interp_density</span><span class="p">:</span>  <span class="c1"># Calculate densities for interpolated data</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">census_density.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">http_proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http_proxy</span>
+      <span class="nt">densities</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">density_vars</span>
+      <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+      <span class="nt">in_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interpolate/pkl</span>
+      <span class="nt">out_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">density_interp_pkl</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">pkl</span><span class="p p-Indicator">]</span>
+  <span class="nt">no_interp_qc</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">census_qc.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+      <span class="nt">in_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no_interp_density/pkl</span>
+      <span class="nt">qc_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">qc_file</span>
+      <span class="nt">qc_log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no_interp_qc_log</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">qc_log</span><span class="p p-Indicator">]</span>
+  <span class="nt">interp_qc</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">census_qc.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+      <span class="nt">in_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interp_density/pkl</span>
+      <span class="nt">qc_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">qc_file</span>
+      <span class="nt">qc_log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interp_qc_log</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">qc_log</span><span class="p p-Indicator">]</span>
+  <span class="nt">write_interp</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">census_write.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+      <span class="nt">in_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interp_density/pkl</span>
+      <span class="nt">out_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interp_out</span>
+      <span class="nt">schema_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interp_schema</span>
+      <span class="nt">table_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">interp_tablename</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">data</span><span class="p p-Indicator">,</span> <span class="nv">schema</span><span class="p p-Indicator">]</span>
+  <span class="nt">write_no_interp</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">census_write.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">make_log/log</span>
+      <span class="nt">in_pkl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no_interp_density/pkl</span>
+      <span class="nt">out_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no_interp_out</span>
+      <span class="nt">schema_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no_interp_schema</span>
+      <span class="nt">table_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no_interp_tablename</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">data</span><span class="p p-Indicator">,</span> <span class="nv">schema</span><span class="p p-Indicator">]</span>
+  <span class="nt">ingest</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest.cwl</span>
+    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Uploads data into the database</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">registry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">write_interp/schema</span>
+      <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
+      <span class="nt">input</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">write_interp/data</span>
+      <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
+      <span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">connection_name</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">,</span> <span class="nv">errors</span><span class="p p-Indicator">]</span>
+  <span class="nt">index</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">depends_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest/log</span>
+      <span class="nt">registry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">write_interp/schema</span>
+      <span class="nt">domain</span><span class="p">:</span>
+        <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;census&quot;</span>
+      <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
+      <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
+      <span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">connection_name</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">,</span> <span class="nv">errors</span><span class="p p-Indicator">]</span>
+  <span class="nt">vacuum</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vacuum.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">depends_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index/log</span>
+      <span class="nt">domain</span><span class="p">:</span>
+        <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;census&quot;</span>
+      <span class="nt">registry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">write_interp/schema</span>
+      <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
+      <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
+      <span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">connection_name</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">,</span> <span class="nv">errors</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="census_workflow.html" class="btn btn-neutral float-left" title="census_workflow.cwl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="census_write.html" class="btn btn-neutral float-right" title="census_write.cwl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Harvard University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

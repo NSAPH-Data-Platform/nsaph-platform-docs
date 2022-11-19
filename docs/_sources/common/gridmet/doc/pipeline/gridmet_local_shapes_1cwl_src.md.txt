@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# tmpu8xuvxs6gridmet_local_shapes.cwl
+
+```{literalinclude} ../../src/cwl/tmpu8xuvxs6gridmet_local_shapes.cwl
+---
+language: yaml
+---
+```
+

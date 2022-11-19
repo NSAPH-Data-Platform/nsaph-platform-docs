@@ -106,6 +106,21 @@
 <span class="kn">from</span> <span class="nn">nsaph_utils.docutils.md_creator</span> <span class="kn">import</span> <span class="n">MDCreator</span>
 
 
+<span class="n">cwl_src_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;---</span>
+<span class="s2">orphan: true</span>
+<span class="s2">---</span>
+
+<span class="s2"># </span><span class="si">{name}</span><span class="s2"></span>
+
+<span class="s2">```</span><span class="si">{literalinclude}</span><span class="s2"> ../../src/cwl/</span><span class="si">{path}</span><span class="s2"></span>
+<span class="s2">---</span>
+<span class="s2">language: yaml</span>
+<span class="s2">---</span>
+<span class="s2">```</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)</span>
 <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">())</span>
 
@@ -136,6 +151,7 @@
 
 <div class="viewcode-block" id="CWLParser.parse"><a class="viewcode-back" href="../../../common/utils/doc/members/cwl2md.html#nsaph_utils.docutils.cwl2md.CWLParser.parse">[docs]</a>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_title</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_source</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_image</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_contents</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_header</span><span class="p">()</span>
@@ -149,6 +165,17 @@
     <span class="k">def</span> <span class="nf">_add_title</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_title</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_content</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_filename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.md&#39;</span><span class="p">,</span> <span class="s1">&#39;.cwl&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">md_file</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">of</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_file_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">,</span> <span class="s2">&quot;cwl_src.md&quot;</span><span class="p">)</span>
+        <span class="n">inf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_file_path</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">cwl_src_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">inf</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">inf</span><span class="p">,</span>
+                                          <span class="n">literalinclude</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{literalinclude}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">of</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">md_file</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> [Source code](</span><span class="si">{}</span><span class="s2">) </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">of</span><span class="p">)</span>
+        <span class="p">))</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_find_title</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>

@@ -1,5 +1,9 @@
 # Sub-workflow *init_tables* from gridmet.cwl
 
+
+ [Source code](gridmet_1cwl_src.md) 
+
+
 ![](gridmet_1.png)
 
 ```{contents}

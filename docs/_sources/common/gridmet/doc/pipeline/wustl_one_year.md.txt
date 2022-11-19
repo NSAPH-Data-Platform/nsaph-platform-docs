@@ -1,5 +1,9 @@
 # Workflow to aggregate and ingest NetCDF files for one year
 
+
+ [Source code](wustl_one_yearcwl_src.md) 
+
+
 ![](wustl_one_year.png)
 
 ```{contents}

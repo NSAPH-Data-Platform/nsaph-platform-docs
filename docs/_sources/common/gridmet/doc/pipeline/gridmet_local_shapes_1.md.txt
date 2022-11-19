@@ -1,5 +1,9 @@
 # Sub-workflow *process* from gridmet_local_shapes.cwl
 
+
+ [Source code](gridmet_local_shapes_1cwl_src.md) 
+
+
 ![](gridmet_local_shapes_1.png)
 
 ```{contents}

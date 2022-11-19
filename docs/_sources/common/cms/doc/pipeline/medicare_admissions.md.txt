@@ -1,5 +1,9 @@
 # Process Medicare inpatient admissions data inside the database
 
+
+ [Source code](medicare_admissionscwl_src.md) 
+
+
 ![](medicare_admissions.png)
 
 ```{contents}

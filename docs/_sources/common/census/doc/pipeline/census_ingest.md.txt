@@ -1,5 +1,9 @@
 # census_ingest.cwl
 
+
+ [Source code](census_ingestcwl_src.md) 
+
+
 ![](census_ingest.png)
 
 ```{contents}

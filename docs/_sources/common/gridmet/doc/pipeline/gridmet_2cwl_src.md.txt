@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# tmpgz7ygkydgridmet.cwl
+
+```{literalinclude} ../../src/cwl/tmpgz7ygkydgridmet.cwl
+---
+language: yaml
+---
+```
+

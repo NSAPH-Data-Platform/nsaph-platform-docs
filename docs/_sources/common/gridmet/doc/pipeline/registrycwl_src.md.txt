@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# registry.cwl
+
+```{literalinclude} ../../src/cwl/registry.cwl
+---
+language: yaml
+---
+```
+

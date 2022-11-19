@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# wustl_aggregate.cwl
+
+```{literalinclude} ../../src/cwl/wustl_aggregate.cwl
+---
+language: yaml
+---
+```
+
