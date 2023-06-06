@@ -29,15 +29,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../../index.html" class="icon icon-home">
-            NSAPH Data Platform
+            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -85,10 +81,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Gridmet Computational Utilities</a></li>
-      <li class="breadcrumb-item active">Pipeline to ingest Pollution downloaded from WashU Box</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
+          <li><a href="../index.html">Gridmet Computational Utilities</a> &raquo;</li>
+      <li>Pipeline to ingest Pollution downloaded from WashU Box</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gridmet/doc/pipeline/wustl.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,7 +96,7 @@
              
   <div class="section" id="pipeline-to-ingest-pollution-downloaded-from-washu-box">
 <h1>Pipeline to ingest Pollution downloaded from WashU Box<a class="headerlink" href="#pipeline-to-ingest-pollution-downloaded-from-washu-box" title="Permalink to this heading"></a></h1>
-<p><a class="reference internal" href="wustlcwl_src.html"><span class="std std-doc">Source code</span></a></p>
+<p><a class="reference internal" href="wustlcwl_src.html"><span class="doc std std-doc">Source code</span></a></p>
 <p><img alt="" src="../../../../_images/wustl.png" /></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -253,19 +249,19 @@ aggregated data into the database</p>
 <td class="text-left"><p>Given variable and geography type (zip/county) evaluates table name</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>init_tables</p></td>
-<td class="text-left"><p><a class="reference internal" href="reset.html"><span class="std std-doc">reset.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="reset.html"><span class="doc std std-doc">reset.cwl</span></a></p></td>
 <td class="text-left"><p>creates or recreates database tables, one for each band and geography</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>process</p></td>
-<td class="text-left"><p><a class="reference internal" href="wustl_one_year.html"><span class="std std-doc">wustl_one_year.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="wustl_one_year.html"><span class="doc std std-doc">wustl_one_year.cwl</span></a></p></td>
 <td class="text-left"><p>Downloads raw data and aggregates it over shapes and time</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>index</p></td>
-<td class="text-left"><p><a class="reference internal" href="index.html"><span class="std std-doc">index.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="index.html"><span class="doc std std-doc">index.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>vacuum</p></td>
-<td class="text-left"><p><a class="reference internal" href="vacuum.html"><span class="std std-doc">vacuum.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="vacuum.html"><span class="doc std std-doc">vacuum.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 </tbody>

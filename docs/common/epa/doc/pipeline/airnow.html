@@ -29,15 +29,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../../index.html" class="icon icon-home">
-            NSAPH Data Platform
+            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -85,11 +81,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
-          <li class="breadcrumb-item"><a href="../index.html">NSAPH EPA Package Description</a></li>
-          <li class="breadcrumb-item"><a href="../cwl_tools.html">CWL Tools and Common Workflows</a></li>
-      <li class="breadcrumb-item active">Full EPA AirNow Processing Pipeline (including downloading shapefiles)</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
+          <li><a href="../index.html">NSAPH EPA Package Description</a> &raquo;</li>
+          <li><a href="../cwl_tools.html">CWL Tools and Common Workflows</a> &raquo;</li>
+      <li>Full EPA AirNow Processing Pipeline (including downloading shapefiles)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/epa/doc/pipeline/airnow.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,7 +97,7 @@
              
   <div class="section" id="full-epa-airnow-processing-pipeline-including-downloading-shapefiles">
 <h1>Full EPA AirNow Processing Pipeline (including downloading shapefiles)<a class="headerlink" href="#full-epa-airnow-processing-pipeline-including-downloading-shapefiles" title="Permalink to this heading"></a></h1>
-<p><a class="reference internal" href="airnowcwl_src.html"><span class="std std-doc">Source code</span></a></p>
+<p><a class="reference internal" href="airnowcwl_src.html"><span class="doc std std-doc">Source code</span></a></p>
 <p><img alt="" src="../../../../_images/airnow.png" /></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -121,7 +117,7 @@ and ingests the data into the database</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cwl-runner airnow.cwl sample_airnow.yml
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="sample_airnow.html"><span class="std std-doc">sample_airnow.yml</span></a></p>
+<p>See <a class="reference internal" href="sample_airnow.html"><span class="doc std std-doc">sample_airnow.yml</span></a></p>
 <p>Or</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cwl-runner --parallel /opt/airflow/project/epa/src/cwl/airnow.cwl --database /opt/airflow/project/database.ini --connection_name nsaph2 --proxy <span class="nv">$HTTP_PROXY</span>  --api-key XXXXXXXX-YYYY-ZZZZ-XXXX-YYYYYYYYY --from <span class="m">2022</span>-01-01 --to <span class="m">2022</span>-08-31 --parameter_code pm25 --table airnow_pm25_2022
 </pre></div>
@@ -233,27 +229,27 @@ and ingests the data into the database</p>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p>get_shapes</p></td>
-<td class="text-left"><p><a class="reference internal" href="get_shapes.html"><span class="std std-doc">get_shapes.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="get_shapes.html"><span class="doc std std-doc">get_shapes.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>download</p></td>
-<td class="text-left"><p><a class="reference internal" href="download_airnow.html"><span class="std std-doc">download_airnow.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="download_airnow.html"><span class="doc std std-doc">download_airnow.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>introspect</p></td>
-<td class="text-left"><p><a class="reference internal" href="introspect.html"><span class="std std-doc">introspect.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="introspect.html"><span class="doc std std-doc">introspect.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>ingest</p></td>
-<td class="text-left"><p><a class="reference internal" href="ingest.html"><span class="std std-doc">ingest.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="ingest.html"><span class="doc std std-doc">ingest.cwl</span></a></p></td>
 <td class="text-left"><p>Uploads data into the database</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>index</p></td>
-<td class="text-left"><p><a class="reference internal" href="index.html"><span class="std std-doc">index.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="index.html"><span class="doc std std-doc">index.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>vacuum</p></td>
-<td class="text-left"><p><a class="reference internal" href="vacuum.html"><span class="std std-doc">vacuum.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="vacuum.html"><span class="doc std std-doc">vacuum.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 </tbody>

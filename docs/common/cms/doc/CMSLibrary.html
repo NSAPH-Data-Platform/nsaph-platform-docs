@@ -29,15 +29,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../index.html" class="icon icon-home">
-            NSAPH Data Platform
+            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -86,9 +82,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../../packages.html">Python Packages Included in the Platform</a></li>
-      <li class="breadcrumb-item active">Python package to manipulate health (CMS) data</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../packages.html">Python Packages Included in the Platform</a> &raquo;</li>
+      <li>Python package to manipulate health (CMS) data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/cms/doc/CMSLibrary.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,19 +103,19 @@
 <div class="section" id="package-cms">
 <h2>Package cms<a class="headerlink" href="#package-cms" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="members/fts2yaml.html"><span class="std std-doc">fts2yaml</span></a> is a generic
-parser for <a class="reference internal" href="#parsing-fts">FTS</a> format for both Medicaid and Medicare.</p></li>
-<li><p><a class="reference internal" href="members/create_schema_config.html"><span class="std std-doc">create_schema_config</span></a> is used
+<li><p><a class="reference internal" href="members/fts2yaml.html"><span class="doc std std-doc">fts2yaml</span></a> is a generic
+parser for <a class="reference internal" href="#parsing-fts"><span class="std std-doc">FTS</span></a> format for both Medicaid and Medicare.</p></li>
+<li><p><a class="reference internal" href="members/create_schema_config.html"><span class="doc std std-doc">create_schema_config</span></a> is used
 to interpret options to introspect raw files or parse FTS</p></li>
-<li><p><a class="reference internal" href="members/registry.html"><span class="std std-doc">registry</span></a> Command line tool to create and/or update
+<li><p><a class="reference internal" href="members/registry.html"><span class="doc std std-doc">registry</span></a> Command line tool to create and/or update
 data models for raw CMS data (See
-<a class="reference internal" href="members/create_schema_config.html"><span class="std std-doc">create_schema_config</span></a> for options)</p></li>
-<li><p><a class="reference internal" href="members/random_selector.html"><span class="std std-doc">random_selector</span></a> Selects random lines
+<a class="reference internal" href="members/create_schema_config.html"><span class="doc std std-doc">create_schema_config</span></a> for options)</p></li>
+<li><p><a class="reference internal" href="members/random_selector.html"><span class="doc std std-doc">random_selector</span></a> Selects random lines
 from a CSV-like file</p></li>
 <li><p><a class="reference internal" href="members/mcr_create_test_data.html"><span class="doc std std-doc">random_selector</span></a> Selects random lines
 from a set of CMS files described by an <a class="reference internal" href="../../../fts.html"><span class="doc std std-doc">FTS file</span></a></p></li>
-<li><p><a class="reference internal" href="members/mcr_data_loader.html"><span class="std std-doc">medicare data loader</span></a>  Subclass of generic
-<a class="reference internal" href="../../core-platform/doc/members/data_loader.html"><span class="std std-doc">Data Loader</span></a>
+<li><p><a class="reference internal" href="members/mcr_data_loader.html"><span class="doc std std-doc">medicare data loader</span></a>  Subclass of generic
+<a class="reference internal" href="../../core-platform/doc/members/data_loader.html"><span class="doc std std-doc">Data Loader</span></a>
 aware of the raw Medicare CMS
 data structure. Matches FTS and DAT files.</p></li>
 </ul>
@@ -129,24 +125,24 @@ data structure. Matches FTS and DAT files.</p></li>
 <ul class="simple">
 <li><p><a class="reference internal" href="members/mcr_create_test_data.html"><span class="doc std std-doc">CMS Test data generator</span></a> Selects random lines
 from a set of CMS files described by an <a class="reference internal" href="../../../fts.html"><span class="doc std std-doc">FTS file</span></a></p></li>
-<li><p><a class="reference internal" href="members/mcr_combine_tables.html"><span class="std std-doc">mcr_combine_tables</span></a> Command-line
+<li><p><a class="reference internal" href="members/mcr_combine_tables.html"><span class="doc std std-doc">mcr_combine_tables</span></a> Command-line
 tool to combine disparate tables with raw medicare CMS data
 into a single consolidated view.
-See <a class="reference internal" href="Medicare.html#combining-raw-files-into-a-single-view"><span class="std std-ref">details</span></a></p></li>
-<li><p><a class="reference internal" href="members/medpar_converter.html"><span class="std std-doc">medpar_converter</span></a> Converter for CMS <code class="docutils literal notranslate"><span class="pre">DAT</span></code>
+See <a class="reference internal" href="Medicare.html#combining-raw-files-into-a-single-view"><span class="std std-doc">details</span></a></p></li>
+<li><p><a class="reference internal" href="members/medpar_converter.html"><span class="doc std std-doc">medpar_converter</span></a> Converter for CMS <code class="docutils literal notranslate"><span class="pre">DAT</span></code>
 files described by <code class="docutils literal notranslate"><span class="pre">FTS</span></code> to <code class="docutils literal notranslate"><span class="pre">CSV</span></code></p></li>
-<li><p><a class="reference internal" href="members/mcr_file.html"><span class="std std-doc">mcr_file</span></a> Module to manipulate with a single
+<li><p><a class="reference internal" href="members/mcr_file.html"><span class="doc std std-doc">mcr_file</span></a> Module to manipulate with a single
 Medicare CMS DAT file</p></li>
-<li><p><a class="reference internal" href="members/mcr_fts2csv.html"><span class="std std-doc">mcr_fts2csv</span></a> Simple converter from FWF format to CSV</p></li>
-<li><p><a class="reference internal" href="members/mcr_fts2db.html"><span class="std std-doc">mcr_fts2db</span></a> Loader of FWF data into the database</p></li>
-<li><p><a class="reference internal" href="members/mcr_registry.html"><span class="std std-doc">mcr_registry</span></a> Common content for the
+<li><p><a class="reference internal" href="members/mcr_fts2csv.html"><span class="doc std std-doc">mcr_fts2csv</span></a> Simple converter from FWF format to CSV</p></li>
+<li><p><a class="reference internal" href="members/mcr_fts2db.html"><span class="doc std std-doc">mcr_fts2db</span></a> Loader of FWF data into the database</p></li>
+<li><p><a class="reference internal" href="members/mcr_registry.html"><span class="doc std std-doc">mcr_registry</span></a> Common content for the
 Medicare data model YAML file</p></li>
-<li><p><a class="reference internal" href="members/mcr_sas.html"><span class="std std-doc">mcr_sas</span></a> Abstract class to look for and process
+<li><p><a class="reference internal" href="members/mcr_sas.html"><span class="doc std std-doc">mcr_sas</span></a> Abstract class to look for and process
 Medicare files from 1999 to 2010</p></li>
-<li><p><a class="reference internal" href="members/mcr_sas2db.html"><span class="std std-doc">mcr_sas2db</span></a> Loader looks for SAS 7BDAT files</p></li>
-<li><p><a class="reference internal" href="members/mcr_sas2yaml.html"><span class="std std-doc">mcr_sas2yaml</span></a> Introspector for SAS 7BDAT
+<li><p><a class="reference internal" href="members/mcr_sas2db.html"><span class="doc std std-doc">mcr_sas2db</span></a> Loader looks for SAS 7BDAT files</p></li>
+<li><p><a class="reference internal" href="members/mcr_sas2yaml.html"><span class="doc std std-doc">mcr_sas2yaml</span></a> Introspector for SAS 7BDAT
 files, generating
-<a class="reference internal" href="../../core-platform/doc/Datamodels.html"><span class="std std-doc">YAML data model</span></a> for each file</p></li>
+<a class="reference internal" href="../../core-platform/doc/Datamodels.html"><span class="doc std std-doc">YAML data model</span></a> for each file</p></li>
 </ul>
 <blockquote>
 <div><blockquote>

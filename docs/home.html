@@ -29,15 +29,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            NSAPH Data Platform
+            <a href="index.html" class="icon icon-home"> NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -85,8 +81,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">NSAPH Data Platform: Documentation Home</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>NSAPH Data Platform: Documentation Home</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/home.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -138,7 +134,7 @@ and CWL. Beside tools written in widely used languages such as
 Python, C/C++ and
 Java, the platform also supports tools written in R and PL/pgSQL.
 Data platform consists of several <a class="reference internal" href="packages.html"><span class="doc std std-doc">python packages</span></a>,
-a <a class="reference internal" href="#deployment">package to deploy the platform</a>
+a <a class="reference internal" href="#deployment"><span class="std std-doc">package to deploy the platform</span></a>
 using <a class="reference external" href="https://cwl-airflow.readthedocs.io/en/latest/">CWL-Airflow</a>
 and a number of data ingestion pipelines.
 <a class="reference internal" href="#pipelines"><span class="std std-ref">Data ingestion pipelines</span></a>
@@ -250,7 +246,7 @@ customized for Harvard FAS RC environment.</p>
 <div class="section" id="terms-and-acronyms">
 <h2><a class="toc-backref" href="#id9">Terms and Acronyms</a><a class="headerlink" href="#terms-and-acronyms" title="Permalink to this heading"></a></h2>
 <p>Included
-<a class="reference internal" href="glossary.html"><span class="std std-doc">Glossary</span></a> provides some information about
+<a class="reference internal" href="glossary.html"><span class="doc std std-doc">Glossary</span></a> provides some information about
 acronyms and other terms used throughout this documentation.</p>
 <p>Additionaly, <a class="reference internal" href="genindex.html"><span class="std std-ref">General Index</span></a> and <a class="reference internal" href="py-modindex.html"><span class="std std-ref">Python Module Index</span></a> englobe all the pieces of the Data Platform together.</p>
 </div>
@@ -262,7 +258,11 @@ contains general documentation pages in
 format and a build script that goes over all other platform
 repositories in the platform
 and creates a combined <a class="reference external" href="https://pages.github.com/">GitHub Pages</a> site.
-The script supports links between repositories.</p>
+The script supports links between repositories. The
+<a class="reference external" href="https://github.com/NSAPH-Data-Platform/nsaph-platform-docs/blob/main/README.md">README.md</a> file contains
+Build instructions.</p>
+<p>To integrate Markdown with <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>
+processing we use <a class="reference external" href="https://jupyterbook.org/en/stable/content/myst.html">MyST Parser</a>.</p>
 <p>Documentation utilities are contained in
 <a class="reference external" href="https://github.com/NSAPH-Data-Platform/nsaph-utils">nsaph-utils</a>
 in

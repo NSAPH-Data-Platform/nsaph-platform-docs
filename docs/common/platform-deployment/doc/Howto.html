@@ -29,15 +29,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../index.html" class="icon icon-home">
-            NSAPH Data Platform
+            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -93,10 +89,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../../guts.html">Data Platform Internals</a></li>
-          <li class="breadcrumb-item"><a href="index.html">NSAPH Data Platform Deployment</a></li>
-      <li class="breadcrumb-item active">Howto</li>
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../guts.html">Data Platform Internals</a> &raquo;</li>
+          <li><a href="index.html">NSAPH Data Platform Deployment</a> &raquo;</li>
+      <li>Howto</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/platform-deployment/doc/Howto.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -123,7 +119,7 @@
 </ul>
 </div>
 <p>For a simple quick start with the most common options for test
-environment see the <a class="reference internal" href="index.html#quick-start-deployment"><span class="std std-ref">Quick Start</span></a> section
+environment see the <a class="reference internal" href="index.html#quick-start-deployment"><span class="std std-doc">Quick Start</span></a> section
 of README. It will allow you to quickly crete an environment</p>
 <p>where you can try whether it works for you.</p>
 <p>To keep in mind: a few <a class="reference internal" href="UsefulCommands.html"><span class="doc std std-doc">useful commands</span></a>.</p>
@@ -139,19 +135,19 @@ with your custom options, you will need to follow these steps:</p>
 </div>
 </li>
 <li><p>Init git submodules (<em>simple command below is required to fetch CWL-airflow,
-see <a class="reference internal" href="Configuration.html#configure-git-submodules"><span class="std std-ref">Configuration</span></a>
+see <a class="reference internal" href="Configuration.html#configure-git-submodules"><span class="std std-doc">Configuration</span></a>
 for advanced options</em>):</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git submodule update --init --recursive
 </pre></div>
 </div>
 </li>
-<li><p><strong>[Optional]</strong> <a class="reference internal" href="Configuration.html#configurations-related-to-postgresql"><span class="std std-ref">Configure PostgreSQL</span></a>
+<li><p><strong>[Optional]</strong> <a class="reference internal" href="Configuration.html#configurations-related-to-postgresql"><span class="std std-doc">Configure PostgreSQL</span></a>
 and how Airflow connects to it.</p></li>
-<li><p><strong>[Optional]</strong> <a class="reference internal" href="Configuration.html#configuring-installation-of-third-party-requirements"><span class="std std-ref">Configure prerequisites</span></a></p></li>
-<li><p><strong>[Optional]</strong> Configure <a class="reference internal" href="Configuration.html#configuring-user-projects"><span class="std std-ref">your own projects</span></a>
+<li><p><strong>[Optional]</strong> <a class="reference internal" href="Configuration.html#configuring-installation-of-third-party-requirements"><span class="std std-doc">Configure prerequisites</span></a></p></li>
+<li><p><strong>[Optional]</strong> Configure <a class="reference internal" href="Configuration.html#configuring-user-projects"><span class="std std-doc">your own projects</span></a>
 that have to be installed
 in the workflow execution environment.</p></li>
-<li><p>Copy <a class="reference internal" href="Configuration.html#selecting-base-configuration"><span class="std std-ref">environment template</span></a>
+<li><p>Copy <a class="reference internal" href="Configuration.html#selecting-base-configuration"><span class="std std-doc">environment template</span></a>
 to <code class="docutils literal notranslate"><span class="pre">.env</span></code> file. Sample command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cp .env_example_postgres_noconda .env
 </pre></div>
@@ -159,18 +155,18 @@ to <code class="docutils literal notranslate"><span class="pre">.env</span></cod
 </li>
 <li><p><strong>[Optional]</strong> Adjust environment settings:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="Configuration.html#overriding-base-url"><span class="std std-ref">Base URL</span></a></p></li>
+<li><p><a class="reference internal" href="Configuration.html#overriding-base-url"><span class="std std-doc">Base URL</span></a></p></li>
 <li><p>How Airflow connects to PostgreSQL</p></li>
-<li><p><a class="reference internal" href="Configuration.html#airflow-admin-username-and-password"><span class="std std-ref">Airflow admin username and password</span></a></p></li>
-<li><p><a class="reference internal" href="Configuration.html#full-list-of-available-environment-variables"><span class="std std-ref">Anything else</span></a></p></li>
+<li><p><a class="reference internal" href="Configuration.html#airflow-admin-username-and-password"><span class="std std-doc">Airflow admin username and password</span></a></p></li>
+<li><p><a class="reference internal" href="Configuration.html#full-list-of-available-environment-variables"><span class="std std-doc">Anything else</span></a></p></li>
 </ul>
 </li>
-<li><p>Build the containers. Sample command (see <a class="reference internal" href="#building-containers">advanced options</a>):</p>
+<li><p>Build the containers. Sample command (see <a class="reference internal" href="#building-containers"><span class="std std-doc">advanced options</span></a>):</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">DOCKER_BUILDKIT</span><span class="o">=</span><span class="m">1</span> <span class="nv">BUILDKIT_PROGRESS</span><span class="o">=</span>plain docker-compose --env-file ./.env build
 </pre></div>
 </div>
 </li>
-<li><p><a class="reference internal" href="#copying-dags-to-airflow-folder">Copy DAGs</a> from examples
+<li><p><a class="reference internal" href="#copying-dags-to-airflow-folder"><span class="std std-doc">Copy DAGs</span></a> from examples
 to a directory in Airflow path (and your own DAGs)
 Sample command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir -p ./dags <span class="o">&amp;&amp;</span> cp -rf ./project/examples/* ./dags
@@ -184,7 +180,7 @@ configuration or authentication
 (<code class="docutils literal notranslate"><span class="pre">POSTGRE_DB</span></code>/<code class="docutils literal notranslate"><span class="pre">POSTGRE_USER</span></code>/<code class="docutils literal notranslate"><span class="pre">POSTGRE_PASS</span></code>),<br />
 and you are using PostgreSQL in a container (not on the host).</p>
 </div></blockquote>
-<p>See <a class="reference internal" href="UsefulCommands.html#to-delete-postgresql-volumes"><span class="std std-ref">commands</span></a>
+<p>See <a class="reference internal" href="UsefulCommands.html#to-delete-postgresql-volumes"><span class="std std-doc">commands</span></a>
 to be executed.</p>
 </li>
 <li><p>Start the containers:</p>
@@ -214,7 +210,7 @@ the Airflow starts up</p>
 </li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="Testing.html"><span class="std std-doc">Test your deployment</span></a></p></li>
+<li><p><a class="reference internal" href="Testing.html"><span class="doc std std-doc">Test your deployment</span></a></p></li>
 </ol>
 </div>
 <div class="section" id="building-containers">

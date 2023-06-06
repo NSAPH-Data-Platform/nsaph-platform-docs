@@ -27,15 +27,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="../../../../index.html" class="icon icon-home">
-            NSAPH Data Platform
+            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,8 +63,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">The table_population Module</li>
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>The table_population Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/cms/doc/members/table_population.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,8 +74,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="the-table-population-module">
-<h1>The table_population Module<a class="headerlink" href="#the-table-population-module" title="Permalink to this heading"></a></h1>
+  <div class="section" id="module-cms.table_population">
+<span id="the-table-population-module"></span><h1>The table_population Module<a class="headerlink" href="#module-cms.table_population" title="Permalink to this heading"></a></h1>
+<p>Executes PL/pgSQL procedure from a file.</p>
+<p>Primarily used to populate a table from a view</p>
+<p>File has to be loaded before executing procedure, but
+cannot be loaded in advance, because some tables
+are created dynamically just before the execution</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="cms.table_population.PopulateConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PopulateConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subclass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/cms/table_population.html#PopulateConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.table_population.PopulateConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a new object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="cms.table_population.PopulateConfig.params.subclass"></span><strong>subclass</strong><a class="paramlink headerlink reference internal" href="#cms.table_population.PopulateConfig.params.subclass">¶</a> – A concrete class containing configuration information
+Configuration options must be defined as class memebers with names,
+starting with one ‘_’ characters and values be instances of
+:class Argument:</p></li>
+<li><p><span class="target" id="cms.table_population.PopulateConfig.params.description"></span><strong>description</strong><a class="paramlink headerlink reference internal" href="#cms.table_population.PopulateConfig.params.description">¶</a> – Optional text to use as description.
+If not specified, then it is extracted from subclass documentation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cms.table_population.TablePopulator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TablePopulator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cms.table_population.PopulateConfig" title="cms.table_population.PopulateConfig"><span class="pre">PopulateConfig</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/cms/table_population.html#TablePopulator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.table_population.TablePopulator" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="cms.table_population.init_cms">
+<span class="sig-name descname"><span class="pre">init_cms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/cms/table_population.html#init_cms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.table_population.init_cms" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </div>
 
 

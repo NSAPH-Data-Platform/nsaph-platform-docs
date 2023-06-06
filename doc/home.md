@@ -169,7 +169,12 @@ contains general documentation pages in
 format and a build script that goes over all other platform 
 repositories in the platform
 and creates a combined [GitHub Pages](https://pages.github.com/) site.
-The script supports links between repositories. 
+The script supports links between repositories. The 
+[README.md](https://github.com/NSAPH-Data-Platform/nsaph-platform-docs/blob/main/README.md) file contains
+Build instructions.
+
+To integrate Markdown with [Sphinx](https://www.sphinx-doc.org/en/master/) 
+processing we use [MyST Parser](https://jupyterbook.org/en/stable/content/myst.html). 
 
 Documentation utilities are contained in 
 [nsaph-utils](https://github.com/NSAPH-Data-Platform/nsaph-utils)
