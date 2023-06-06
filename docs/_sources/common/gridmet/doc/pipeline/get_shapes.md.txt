@@ -19,11 +19,12 @@ This tool downloads AirNow data from EPA website
 
 ## Inputs
 
-| Name  | Type    | Default | Description                                            | 
-|:------|:--------|:--------|:-------------------------------------------------------|
-| proxy | string? |         | HTTP/HTTPS Proxy if required                           | 
-| year  | string  |         | Calendar year, for which we are downloading shape file | 
-| geo   | string  |         | geography type, zip or county                          | 
+| Name       | Type    | Default | Description                                                                           | 
+|:-----------|:--------|:--------|:--------------------------------------------------------------------------------------|
+| proxy      | string? |         | HTTP/HTTPS Proxy if required                                                          | 
+| year       | string  |         | Calendar year, for which we are downloading shape file                                | 
+| geo        | string  |         | geography type, zip, zcta or county                                                   | 
+| collection | string  | `tiger` | [Collection of shapefiles](https://www2.census.gov/geo/tiger),  either GENZ or TIGER  | 
 
 ## Outputs
 

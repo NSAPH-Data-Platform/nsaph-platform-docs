@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -95,10 +99,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../guts.html">Data Platform Internals</a> &raquo;</li>
-          <li><a href="index.html">NSAPH Data Platform Deployment</a> &raquo;</li>
-      <li>Configuration Guide</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../guts.html">Data Platform Internals</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NSAPH Data Platform Deployment</a></li>
+      <li class="breadcrumb-item active">Configuration Guide</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/platform-deployment/doc/Configuration.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -162,13 +166,13 @@
 </li>
 </ul>
 </div>
-<p>To keep in mind: a few <a class="reference internal" href="UsefulCommands.html"><span class="doc std std-doc">useful commands</span></a>.</p>
+<p>To keep in mind: a few <a class="reference internal" href="UsefulCommands.html"><span class="std std-doc">useful commands</span></a>.</p>
 <div class="section" id="what-can-be-configured">
 <h2><a class="toc-backref" href="#id1">What can be configured</a><a class="headerlink" href="#what-can-be-configured" title="Permalink to this heading"></a></h2>
 <p>The following options can be configured:</p>
 <ul class="simple">
-<li><p>Quick Options (see <a class="reference internal" href="index.html#quick-start-deployment"><span class="std std-doc">Quick Start</span></a>
-and <a class="reference internal" href="#selecting-base-configuration"><span class="std std-doc">Selecting base configuration</span></a>):</p>
+<li><p>Quick Options (see <a class="reference internal" href="index.html#quick-start-deployment"><span class="std std-ref">Quick Start</span></a>
+and <a class="reference internal" href="#selecting-base-configuration">Selecting base configuration</a>):</p>
 <ul>
 <li><p>To install Conda or not</p></li>
 <li><p>Use Existing PostgreSQL or install a new container
@@ -178,12 +182,12 @@ and <a class="reference internal" href="#selecting-base-configuration"><span cla
 <li><p>Custom configuration</p>
 <ul>
 <li><p>How Airflow connects to PostgreSQL</p></li>
-<li><p>What <a class="reference internal" href="#configuring-installation-of-third-party-requirements"><span class="std std-doc">prerequisites and requirements</span></a>
+<li><p>What <a class="reference internal" href="#configuring-installation-of-third-party-requirements">prerequisites and requirements</a>
 are installed into the runtime workflow execution environment</p></li>
-<li><p>What <a class="reference internal" href="#configuring-user-projects"><span class="std std-doc">user projects</span></a>
+<li><p>What <a class="reference internal" href="#configuring-user-projects">user projects</a>
 are installed into the runtime workflow execution environment</p></li>
 <li><p>Username and password used by Airflow administrator</p></li>
-<li><p><a class="reference internal" href="#overriding-base-url"><span class="std std-doc">Public Airflow URL</span></a></p></li>
+<li><p><a class="reference internal" href="#overriding-base-url">Public Airflow URL</a></p></li>
 </ul>
 </li>
 </ul>
@@ -298,7 +302,7 @@ and restart webserver <strong><em>without</em></strong> rebuilding it.</p>
 <h3><a class="toc-backref" href="#id8">R libraries</a><a class="headerlink" href="#r-libraries" title="Permalink to this heading"></a></h3>
 <p>We are using Conda as an execution environment for R scripts,
 therefore R requirements should be part of your
-<a class="reference internal" href="#setting-conda-environment-used-during-workflow-executions"><span class="std std-doc">Conda environment</span></a>.</p>
+<a class="reference internal" href="#setting-conda-environment-used-during-workflow-executions">Conda environment</a>.</p>
 <p>If any R packages have to be installed from GitHub, they should be
 listed in
 <a class="reference internal" href="members/r-github-packages.txt.html"><span class="doc std std-doc">r-github-packages.txt</span></a>
@@ -319,7 +323,7 @@ written in Python and R.</p>
 <p>Python projects can be installed inside CWL-Airflow and hence can
 be used by workflows. The automatic configuration assumes that all
 Python projects must be placed in project folder under the source tree.
-It can be done either by using <a class="reference internal" href="#configure-git-submodules"><span class="std std-doc">Git submodules</span></a>
+It can be done either by using <a class="reference internal" href="#configure-git-submodules">Git submodules</a>
 utility, or, simply by copying the project content under projects folder.
 Each Python project must contain <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file.
 An included example, <code class="docutils literal notranslate"><span class="pre">project/python_sample_project</span></code> shows how it can be done.</p>

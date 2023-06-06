@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 read -r -d '' help_text <<- EOM
 Usage:
@@ -8,6 +8,13 @@ EOM
 
 branch="develop"
 namespace="NSAPH-Data-Platform"
+
+dot -V
+if [ $? -ne 0 ]
+then
+  echo "Graphviz `dot` utility is required to build this documentation. Please install: https://graphviz.org/download/"
+  exit 1
+fi
 
 while getopts b:n: flag
 do

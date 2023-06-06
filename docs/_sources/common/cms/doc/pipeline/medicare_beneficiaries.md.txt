@@ -36,6 +36,12 @@ columns.
 
 | Name                   | Type | Description | 
 |:-----------------------|:-----|:------------|
+| d_create_log           | File |             | 
+| d_index_log            | File |             | 
+| d_vacuum_log           | File |             | 
+| d_create_err           | File |             | 
+| d_index_err            | File |             | 
+| d_vacuum_err           | File |             | 
 | ps_create_log          | File |             | 
 | ps_create_err          | File |             | 
 | ps2_create_log         | File |             | 
@@ -65,6 +71,9 @@ columns.
 
 | Name               | Runs                                                      | Description                                                                                       | 
 |:-------------------|:----------------------------------------------------------|:--------------------------------------------------------------------------------------------------|
+| create_d           | [medicare_combine_tables.cwl](medicare_combine_tables.md) | Combines patient summaries from disparate summary tables (one table per year) into a single view  | 
+| index_d            | [index.cwl](index.md)                                     | Build indices                                                                                     | 
+| vacuum_d           | [vacuum.cwl](vacuum.md)                                   | Vacuum the view                                                                                   | 
 | create_ps          | [medicare_combine_tables.cwl](medicare_combine_tables.md) | Combines patient summaries from disparate summary tables (one table per year) into a single view  | 
 | create__ps_view    | [matview.cwl](matview.md)                                 | Create _ps materialized view from ps                                                              | 
 | create_bene_view   | [create.cwl](create.md)                                   | Creates preliminary beneficiaries view                                                            | 

@@ -24,6 +24,7 @@ This tool aggregates data in NetCDF file over provided shapes
 |:------------|:-----------|:------------|:------------------------------------------|
 | strategy    | string     | `downscale` | Rasterization strategy                    | 
 | shapes      | Directory? |             |                                           | 
+| band        | string     | `pm25`      |                                           | 
 | geography   | string     |             | Type of geography: zip codes or counties  | 
 | netcdf_data | File       |             | Path to downloaded file                   | 
 | shape_files | File[]     |             | Paths to shape files                      | 

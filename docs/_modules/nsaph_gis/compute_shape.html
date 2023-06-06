@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,9 +67,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>nsaph_gis.compute_shape</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nsaph_gis.compute_shape</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -108,6 +112,7 @@
 <span class="kn">import</span> <span class="nn">rasterio</span>
 <span class="kn">from</span> <span class="nn">rasterstats</span> <span class="kn">import</span> <span class="n">zonal_stats</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">shapefile</span>
 
 <span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">RasterizationStrategy</span><span class="p">,</span> <span class="n">Geography</span>
 
@@ -121,11 +126,26 @@
 
 
 <div class="viewcode-block" id="StatsCounter"><a class="viewcode-back" href="../../common/gis/doc/members/compute_shape.html#nsaph_gis.compute_shape.StatsCounter">[docs]</a><span class="k">class</span> <span class="nc">StatsCounter</span><span class="p">:</span>
+<div class="viewcode-block" id="StatsCounter.get_key_for_geography"><a class="viewcode-back" href="../../common/gis/doc/members/compute_shape.html#nsaph_gis.compute_shape.StatsCounter.get_key_for_geography">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_key_for_geography</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">shpfile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">geography</span><span class="p">:</span> <span class="n">Geography</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">shapefile</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">shpfile</span><span class="p">)</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">shape</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">geography</span> <span class="o">==</span> <span class="n">Geography</span><span class="o">.</span><span class="n">zip</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_determine_zip_key</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">geography</span> <span class="o">==</span> <span class="n">Geography</span><span class="o">.</span><span class="n">zcta</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_determine_zcta_key</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">geography</span> <span class="o">==</span> <span class="n">Geography</span><span class="o">.</span><span class="n">county</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_determine_county_key</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unsupported geography: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">geography</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">key</span></div>
+
 <div class="viewcode-block" id="StatsCounter.process"><a class="viewcode-back" href="../../common/gis/doc/members/compute_shape.html#nsaph_gis.compute_shape.StatsCounter.process">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">process</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">strategy</span><span class="p">:</span> <span class="n">RasterizationStrategy</span><span class="p">,</span>
-        <span class="n">shapefile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">shpfile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">affine</span><span class="p">:</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">Affine</span><span class="p">,</span>
         <span class="n">layer</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
         <span class="n">geography</span><span class="p">:</span> <span class="n">Geography</span>
@@ -136,7 +156,7 @@
 <span class="sd">        of the observations over the shapes in the shapefile. </span>
 <span class="sd">        </span>
 <span class="sd">        :param strategy: Rasterization strategy to be used</span>
-<span class="sd">        :param shapefile: A path to shapefile to be used</span>
+<span class="sd">        :param shpfile: A path to shapefile to be used</span>
 <span class="sd">        :param affine: An optional affine transformation to be applied to</span>
 <span class="sd">            the coordinates</span>
 <span class="sd">        :param layer: A slice of dataframe, containing coordinates and values</span>
@@ -146,6 +166,8 @@
 <span class="sd">            of a certain shape with the aggregated value of the observation</span>
 <span class="sd">            for this shape</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_key_for_geography</span><span class="p">(</span><span class="n">shpfile</span><span class="p">,</span> <span class="n">geography</span><span class="p">)</span>
 
         <span class="n">non_all_touched_strategies</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">RasterizationStrategy</span><span class="o">.</span><span class="n">default</span><span class="p">,</span>
@@ -161,7 +183,7 @@
         <span class="k">if</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">non_all_touched_strategies</span><span class="p">:</span>
             <span class="n">stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="n">zonal_stats</span><span class="p">(</span>
-                    <span class="n">shapefile</span><span class="p">,</span>
+                    <span class="n">shpfile</span><span class="p">,</span>
                     <span class="n">layer</span><span class="p">,</span>
                     <span class="n">stats</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
                     <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span>
@@ -173,7 +195,7 @@
         <span class="k">if</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">all_touched_strategies</span><span class="p">:</span>
             <span class="n">stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="n">zonal_stats</span><span class="p">(</span>
-                    <span class="n">shapefile</span><span class="p">,</span>
+                    <span class="n">shpfile</span><span class="p">,</span>
                     <span class="n">layer</span><span class="p">,</span>
                     <span class="n">stats</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
                     <span class="n">affine</span><span class="o">=</span><span class="n">affine</span><span class="p">,</span>
@@ -187,12 +209,6 @@
             <span class="k">return</span>
 
         <span class="n">row</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">geography</span> <span class="o">==</span> <span class="n">Geography</span><span class="o">.</span><span class="n">zip</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_determine_zip_key</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">geography</span> <span class="o">==</span> <span class="n">Geography</span><span class="o">.</span><span class="n">county</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_determine_county_key</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unsupported geography: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">geography</span><span class="p">))</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -208,7 +224,12 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">_determine_zip_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
-        <span class="n">candidates</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ZIP&quot;</span><span class="p">,</span> <span class="s2">&quot;ZCTA5&quot;</span><span class="p">,</span> <span class="s2">&quot;ZCTA5CE10&quot;</span><span class="p">,</span> <span class="s2">&quot;ZCTA5CE20&quot;</span><span class="p">)</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ZIP&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_determine_key</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">candidates</span><span class="p">),</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_determine_zcta_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ZCTA5&quot;</span><span class="p">,</span> <span class="s2">&quot;ZCTA5CE00&quot;</span><span class="p">,</span> <span class="s2">&quot;ZCTA5CE10&quot;</span><span class="p">,</span> <span class="s2">&quot;ZCTA5CE20&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_determine_key</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">candidates</span><span class="p">),</span>
 
     <span class="nd">@classmethod</span>
@@ -220,10 +241,19 @@
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_determine_key</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">candidates</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">props</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="n">candidate</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown shape format, no expected fields &#39;</span><span class="si">{</span> <span class="n">candidates</span> <span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]:</span>
+                    <span class="k">return</span> <span class="n">candidate</span>
+                <span class="n">props</span> <span class="o">=</span> <span class="nb">str</span><span class="p">([</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]])</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">candidate</span>
+                <span class="n">props</span> <span class="o">=</span> <span class="n">row</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unknown type of row: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of the expected properties found (&#39;</span><span class="si">{</span> <span class="n">candidates</span> <span class="si">}</span><span class="s2">&#39;). Available: &#39;</span><span class="si">{</span><span class="n">props</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_combine</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Record</span><span class="p">:</span>

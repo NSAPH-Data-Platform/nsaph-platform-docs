@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,6 +67,7 @@
 <li class="toctree-l3"><a class="reference internal" href="SQLDocumentation.html">SQL Documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#tool-examples">Tool Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#territorial-codes-mappings">Territorial Codes Mappings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#documentation-indices">Documentation Indices</a></li>
 </ul>
 </li>
@@ -87,10 +92,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../guts.html">Data Platform Internals</a> &raquo;</li>
-          <li><a href="index.html">NSAPH Core Data Platform</a> &raquo;</li>
-      <li>Mapping between different territorial codes</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../guts.html">Data Platform Internals</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NSAPH Core Data Platform</a></li>
+      <li class="breadcrumb-item active">Mapping between different territorial codes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/core-platform/doc/TerritorialCodes.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -174,17 +179,30 @@ sources and load them into the database:</p>
 </div>
 <div class="section" id="functions">
 <span id="territorial-codes-functions"></span><h3><a class="toc-backref" href="#id6">Functions</a><a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
+<p>The functions below are defined in <a class="reference internal" href="members/zip2fips.sql.html"><span class="doc std std-doc">zip2fips.sql</span></a>
+and used to map zip codes to county FIPS codes or to validate that a given
+combination of zip code and county code exists.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">public.zip_to_fips(year</span> <span class="pre">int,</span> <span class="pre">zip</span> <span class="pre">int)</span> <span class="pre">RETURNS</span> <span class="pre">int</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">public.zip_to_fips(year</span> <span class="pre">int,</span> <span class="pre">zip</span> <span class="pre">int)</span> <span class="pre">RETURNS</span> <span class="pre">varchar</span></code> - the same as
-the above, just a different return type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public.zip_to_fips(year</span> <span class="pre">int,</span> <span class="pre">zip</span> <span class="pre">int)</span> <span class="pre">RETURNS</span> <span class="pre">int</span></code>. This function
+looks for all counties that intersected the provided zip code area in
+the given year. The intersecting counties are then sorted
+by the ratio of county residential addresses within the zip code area:
+the number of residential addresses in the intersection of the<br />
+ZIP code area and the county divided by the total number
+of residential addresses in the entire ZIP. The
+county with the highest ratio is selected as the return value. The FIPS
+code for such county is returned as an integer (e.g., 12).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public.zip_to_fips3(year</span> <span class="pre">int,</span> <span class="pre">zip</span> <span class="pre">int)</span> <span class="pre">RETURNS</span> <span class="pre">varchar(3)</span></code> - the same as
+the above, but return value is a 3-character string (<code class="docutils literal notranslate"><span class="pre">VARCHAR(3)</span></code>)
+padded by zeros (e.g., ‘012’).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">public.is_zip_to_fips_exact(year</span> <span class="pre">int,</span> <span class="pre">zip</span> <span class="pre">int)</span> <span class="pre">RETURNS</span> <span class="pre">bool</span></code> returns
 <code class="docutils literal notranslate"><span class="pre">true</span></code> if county fips code can be unambiguously inferred from the given
 zip code in the given year, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise. In particular this function
 return <code class="docutils literal notranslate"><span class="pre">false</span></code> if a <code class="docutils literal notranslate"><span class="pre">year</span></code> is missing from mapping files.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">public.validate_zip_fips(zip</span> <span class="pre">int,</span> <span class="pre">fips2</span> <span class="pre">varchar,</span> <span class="pre">fips3</span> <span class="pre">varchar)</span> <span class="pre">RETURNS</span> <span class="pre">bool</span></code>
 returns true if a given combination of the codes is a valid combination,
-i.e. if there are places that in the given state and county that have the
+i.e. if there are exist (or ever existed) any residential, business or
+other addresses in the given state and county that have the
 given zip code.</p></li>
 </ul>
 </div>

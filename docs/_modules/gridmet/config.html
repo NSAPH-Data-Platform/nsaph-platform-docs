@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,9 +67,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>gridmet.config</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">gridmet.config</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -186,6 +190,7 @@
 <div class="viewcode-block" id="GridmetVariable"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridmetVariable">[docs]</a><span class="k">class</span> <span class="nc">GridmetVariable</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    `Gridmet Bands &lt;https://gee.stac.cloud/WUtw2spmec7AM9rk6xMXUtStkMtbviDtHK?t=bands&gt;`_</span>
+<span class="sd">    and additional exposure variable types</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">bi</span> <span class="o">=</span> <span class="s2">&quot;bi&quot;</span>
     <span class="sd">&quot;&quot;&quot;Burning index: NFDRS fire danger index&quot;&quot;&quot;</span>
@@ -218,7 +223,18 @@
     <span class="n">vpd</span> <span class="o">=</span> <span class="s2">&quot;vpd&quot;</span>
     <span class="sd">&quot;&quot;&quot;Mean vapor pressure deficit: kPa&quot;&quot;&quot;</span>
     <span class="n">vs</span> <span class="o">=</span> <span class="s2">&quot;vs&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Wind velocity at 10m: m/s&quot;&quot;&quot;</span></div>
+    <span class="sd">&quot;&quot;&quot;Wind velocity at 10m: m/s&quot;&quot;&quot;</span>
+
+    <span class="c1"># PM25 and components</span>
+    <span class="n">pm25</span> <span class="o">=</span> <span class="s2">&quot;pm25&quot;</span>
+    <span class="sd">&quot;&quot;&quot;PM25 exposure data&quot;&quot;&quot;</span>
+    <span class="n">BCp</span> <span class="o">=</span> <span class="s2">&quot;BCp&quot;</span>
+    <span class="n">NH4p</span> <span class="o">=</span> <span class="s2">&quot;NH4p&quot;</span>
+    <span class="n">NITp</span> <span class="o">=</span> <span class="s2">&quot;NITp&quot;</span>
+    <span class="n">OMp</span> <span class="o">=</span> <span class="s2">&quot;OMp&quot;</span>
+    <span class="n">SO4p</span> <span class="o">=</span> <span class="s2">&quot;SO4p&quot;</span>
+    <span class="n">SOILp</span> <span class="o">=</span> <span class="s2">&quot;SOILp&quot;</span>
+    <span class="n">SSp</span> <span class="o">=</span> <span class="s2">&quot;SSp&quot;</span></div>
 
 
 <div class="viewcode-block" id="GridmetContext"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridmetContext">[docs]</a><span class="k">class</span> <span class="nc">GridmetContext</span><span class="p">(</span><span class="n">Context</span><span class="p">):</span>
@@ -299,7 +315,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gridmet bands or variables </span>
 <span class="sd">        </span>
-<span class="sd">        :type: GridmetVariable </span>
+<span class="sd">        :type: List[GridmetVariable] </span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="kc">None</span>

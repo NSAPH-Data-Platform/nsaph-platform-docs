@@ -19,7 +19,7 @@ and we have chosen
 For deployment, we have selected CWL-Airflow to take advantage of the excellent
 user interface allowing for the control of the actual execution process. 
 The data is eventually stored in a PostgreSQL DBMS; many processing steps 
-in the [included data processing pipelines](#data-ingestion-and-processing-packages-and-pipelines) 
+in the [included data processing pipelines](pipelines) 
 are being run inside the database itself. 
 
 The data platform is based on a combination of an 
@@ -27,11 +27,11 @@ The data platform is based on a combination of an
 and CWL. Beside tools written in widely used languages such as 
 Python, C/C++ and
 Java, the platform also supports tools written in R and PL/pgSQL.
-Data platform consists of several [general packages](#general-packages), 
-a [package to deploy the platform](#deploying-the-platform)
+Data platform consists of several [python packages](packages), 
+a [package to deploy the platform](#deployment)
 using [CWL-Airflow](https://cwl-airflow.readthedocs.io/en/latest/)
 and a number of data ingestion pipelines. 
-[Data ingestion pipelines](#data-ingestion-and-processing-packages-and-pipelines)
+[Data ingestion pipelines](pipelines)
 process data from external sources and load it into the database.
 
 A discussion on what are the aims of this data platform and how reproducible research can benefit from such product is provided in the
@@ -93,6 +93,14 @@ It depends on nsaph_util package, but it augments it
 with APIs and command line utilities dependent on the infrastructure 
 and the environment. For instance, its components assume presence of PostgreSQL
 DBMS (version 13 or later) and CWL runtime environment.
+
+Some mapping (or crosswalk) tables are also included in the Core
+Platform module. These tables include between different
+territorial codes, such as USPS ZIP codes, Census ZCTA codes,
+FIPS codes for US states
+and counties, SSA codes for codes for US states
+and counties. See more information in the
+[Mapping between different territorial codes](https://nsaph-data-platform.github.io/nsaph-platform-docs/common/core-platform/doc/TerritorialCodes.html)
 
 <!-- end of section overview from nsaph -->
 

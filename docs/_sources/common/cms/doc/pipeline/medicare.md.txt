@@ -53,6 +53,12 @@ See [](../Medicare) for data processing details.
 | load_raw_log               | File |             | 
 | load_raw_err               | File |             | 
 | registry                   | File |             | 
+| d_create_log               | File |             | 
+| d_create_err               | File |             | 
+| d_index_log                | File |             | 
+| d_index_err                | File |             | 
+| d_vacuum_log               | File |             | 
+| d_vacuum_err               | File |             | 
 | ps_create_log              | File |             | 
 | ps_create_err              | File |             | 
 | ps2_create_log             | File |             | 

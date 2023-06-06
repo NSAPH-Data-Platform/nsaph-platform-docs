@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -91,11 +95,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">Health Data</a> &raquo;</li>
-          <li><a href="../Medicare.html">Medicare Files Handling</a> &raquo;</li>
-      <li>Medicare.yaml</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Health Data</a></li>
+          <li class="breadcrumb-item"><a href="../Medicare.html">Medicare Files Handling</a></li>
+      <li class="breadcrumb-item active">Medicare.yaml</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/cms/doc/members/medicare_yaml.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -116,6 +120,37 @@
   <span class="nt">schema.audit</span><span class="p">:</span> <span class="s">&quot;medicare_audit&quot;</span>
   <span class="nt">description</span><span class="p">:</span> <span class="s">&quot;Data</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">Medicare&quot;</span>
   <span class="nt">tables</span><span class="p">:</span>
+    <span class="nt">mbsf_d</span><span class="p">:</span>
+      <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">Data from mbsf_d* files that is used to create beneficiary and</span>
+        <span class="no">enrollment tables</span>
+      <span class="nt">create</span><span class="p">:</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">materialized view</span>
+        <span class="nt">from</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cms.mbsf_*d*</span>
+      <span class="nt">columns</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_id</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
+        <span class="p p-Indicator">-</span> <span class="nt">dual_mo</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span>  <span class="s">&#39;{column_name}::INT&#39;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">dual_indicators</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CHAR(1)[12]</span>
+            <span class="nt">optional</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+            <span class="nt">m</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;01&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;02&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;03&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;04&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;05&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;06&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;07&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;08&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;09&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;10&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;11&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;12&#39;</span><span class="p p-Indicator">]</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dual_$m</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="s">&#39;character</span><span class="nv"> </span><span class="s">varying&#39;</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">string_to_array({column_name}, NULL)</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">file</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">record</span>
+      <span class="nt">indices</span><span class="p">:</span>
+        <span class="nt">d_sy_idx</span><span class="p">:</span>
+          <span class="nt">columns</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_id</span>
+
     <span class="nt">ps</span><span class="p">:</span>
       <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
         <span class="no">Patient Summary view. Combines multiple patient summary (aka MBSF)</span>
@@ -175,15 +210,8 @@
             <span class="nt">source</span><span class="p">:</span>
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">age</span>
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_age_at_beg_ref_yr</span>
-        <span class="p p-Indicator">-</span> <span class="nt">yob</span><span class="p">:</span>
-            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT</span>
-            <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Year, claculated from age</span>
-            <span class="nt">optional</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-            <span class="nt">source</span><span class="p">:</span>
-              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">age</span>
-              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_age_at_beg_ref_yr</span>
             <span class="nt">cast</span><span class="p">:</span>
-              <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span>  <span class="s">&quot;(year::INT</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">{column_name}::INT)&quot;</span>
+              <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;{column_name}::INT&quot;</span>
         <span class="p p-Indicator">-</span> <span class="nt">dod</span><span class="p">:</span>
             <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">date</span>
             <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Date of beneficiary death, if available</span>
@@ -254,6 +282,54 @@
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_hmo_cvrage_tot_mons</span>
             <span class="nt">cast</span><span class="p">:</span>
               <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;CASE</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">{column_name}</span><span class="nv"> </span><span class="s">IS</span><span class="nv"> </span><span class="s">NULL</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">ELSE</span><span class="nv"> </span><span class="s">{column_name}::INT</span><span class="nv"> </span><span class="s">END&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">buyin_indicators</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CHAR(1)[12]</span>
+            <span class="nt">optional</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+            <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+              <span class="no">Array of indicators if the beneficiary’s state of residence paid his/her monthly</span>
+              <span class="no">premium for Part B coverage (and Part A if necessary). State Medicaid programs</span>
+              <span class="no">can pay those premiums for certain dual eligibles; this action is called</span>
+              <span class="no">“buying in” and so this variable is the “buy-in code.”</span>
+            <span class="nt">reference</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://resdac.org/cms-data/variables/medicare-entitlementbuy-indicator</span>
+            <span class="nt">m</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;01&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;02&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;03&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;04&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;05&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;06&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;07&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;08&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;09&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;10&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;11&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;12&#39;</span><span class="p p-Indicator">]</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medicare_buy_in</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">buyin$m</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">buyin12</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_mdcr_entlmt_buyin_ind_$m</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="s">&#39;character</span><span class="nv"> </span><span class="s">varying&#39;</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">string_to_array({column_name}, NULL)</span>
+        <span class="p p-Indicator">-</span> <span class="nt">buyin_cvg_count</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT</span>
+            <span class="nt">optional</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+            <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Number of months during a given year, during the year when the beneficiary premium was paid by the state.</span> 
+            <span class="nt">reference</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://resdac.org/cms-data/variables/state-buy-coverage-count</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">buyin_mo</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">buycovg</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">state_buy_in_mo</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_state_buyin_tot_mons</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dual</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;CASE</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">{column_name}</span><span class="nv"> </span><span class="s">IS</span><span class="nv"> </span><span class="s">NULL</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">2015</span><span class="nv"> </span><span class="s">AND</span><span class="nv"> </span><span class="s">{column_name}</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">&#39;1&#39;</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">12</span><span class="nv"> </span><span class="s">ELSE</span><span class="nv"> </span><span class="s">{column_name}::INT</span><span class="nv"> </span><span class="s">END&quot;</span>
+
+        <span class="p p-Indicator">-</span> <span class="nt">orec</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT</span>
+            <span class="nt">optional</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span> <span class="c1"># no data for 2015</span>
+            <span class="nt">source</span><span class="p">:</span>
+               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">orec</span>
+               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">orig_ent</span>
+               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_entlmt_rsn_orig</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;{column_name}::INT&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">curec</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT</span>
+            <span class="nt">optional</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+            <span class="nt">source</span><span class="p">:</span>
+               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cur_ent</span>
+               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_entlmt_rsn_curr</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;{column_name}::INT&quot;</span>
 
     <span class="nt">ip</span><span class="p">:</span>
       <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
@@ -337,6 +413,13 @@
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">admsn_day_cd</span>
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">admsnday</span>
 
+        <span class="p p-Indicator">-</span> <span class="nt">dschrgcd</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CHAR(1)</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dschrgcd</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_dschrg_stus_cd</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_bene_dschrg_stus_cd</span>
+
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">diag[$n=1:25]</span><span class="p p-Indicator">:</span>
             <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">varchar</span>
             <span class="nt">optional</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -346,6 +429,64 @@
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dgns_cd$n</span>
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dgns_$n_cd</span>
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dgnscd$n</span>
+
+        <span class="c1"># Expenditure variables</span>
+        <span class="p p-Indicator">-</span> <span class="nt">los_day_cnt</span><span class="p">:</span>
+            <span class="nt">reference</span><span class="p">:</span> <span class="s">&quot;https://resdac.org/cms-data/variables/days-beneficiarys-stay-hospitalsnf&quot;</span>
+            <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The count in days of the total length of a beneficiary&#39;s stay in a hospital</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="s">&quot;*&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;{column_name}::INT&quot;</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">los_day_cnt</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">loscnt</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_los_day_cnt</span>
+
+        <span class="p p-Indicator">-</span> <span class="nt">drg_price_amt</span><span class="p">:</span>
+            <span class="nt">reference</span><span class="p">:</span> <span class="s">&quot;https://resdac.org/cms-data/variables/drg-price-amount&quot;</span>
+            <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+              <span class="no">The amount (called the &#39;DRG price&#39; for purposes of MEDPAR analysis) </span>
+              <span class="no">that would have been paid if no deductibles, coinsurance, primary payers, or outliers </span>
+              <span class="no">were involved (rounded to whole dollars).</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NUMERIC</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">drg_price_amt</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">drgprice</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_drg_price_amt</span>
+
+        <span class="p p-Indicator">-</span> <span class="nt">drg_outlier_pmt_amt</span><span class="p">:</span>
+            <span class="nt">reference</span><span class="p">:</span> <span class="s">&quot;https://resdac.org/cms-data/variables/drg-outlier-approved-payment-amount&quot;</span>
+            <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+              <span class="no">The amount of additional payment (rounded to whole dollars) approved due </span>
+              <span class="no">to an outlier situation over the DRG allowance for the stay.</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NUMERIC</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">drg_outlier_pmt_amt</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">outlramt</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_drg_outlier_pmt_amt</span>
+
+        <span class="p p-Indicator">-</span> <span class="nt">pass_thru_amt</span><span class="p">:</span>
+            <span class="nt">reference</span><span class="p">:</span> <span class="s">&quot;https://resdac.org/cms-data/variables/pass-thru-diem-amount-stay&quot;</span>
+            <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+              <span class="no">The total of all claim pass through per diem amounts (rounded to whole dollars) for the stay.</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NUMERIC</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pass_thru_amt</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">passthru</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_pass_thru_amt</span>
+
+        <span class="p p-Indicator">-</span> <span class="nt">mdcr_pmt_amt</span><span class="p">:</span>
+            <span class="nt">reference</span><span class="p">:</span> <span class="s">&quot;https://resdac.org/cms-data/variables/total-medicare-payment-amount&quot;</span>
+            <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+              <span class="no">Amount of payment made from the Medicare trust fund for the services covered by the claim record.</span>
+              <span class="no">For hospital services, this amount does not include the claim pass-through per diem payments </span>
+              <span class="no">made by Medicare.</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NUMERIC</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mdcr_pmt_amt</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pmt_amt</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_mdcr_pmt_amt</span>
+
     <span class="nt">_ps</span><span class="p">:</span>
       <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">internal intermediate view adding some data conversions</span>
       <span class="nt">create</span><span class="p">:</span>
@@ -367,7 +508,8 @@
               <span class="no">(SELECT NOT public.is_zip_to_fips_exact(year, zip))</span>
           <span class="no">END AS fips3_is_approximated,</span>
           <span class="no">CASE WHEN year &gt; 2010 THEN (SELECT string_agg(distinct fips3::varchar, &#39;,&#39;) from public.ssa as s where ps.ssa3 = s.ssa3 and ps.year = s.year and ps.fips2 = s.fips2)</span>
-              <span class="no">ELSE (SELECT string_agg(distinct fips3::varchar, &#39;,&#39;) from public.ssa as s where ps.ssa3 = s.ssa3 and 2003 = s.year and ps.fips2 = s.fips2) END AS fips3_list</span>
+              <span class="no">ELSE (SELECT string_agg(distinct fips3::varchar, &#39;,&#39;) from public.ssa as s where ps.ssa3 = s.ssa3 and 2003 = s.year and ps.fips2 = s.fips2) END AS fips3_list,</span>
+          <span class="no">CASE WHEN age is not NULL THEN (year - age) ELSE NULL END as yob</span>
         <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ps</span>
       <span class="nt">indices</span><span class="p">:</span>
         <span class="nt">ps_to_enrl_idx</span><span class="p">:</span>
@@ -375,12 +517,25 @@
             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_id</span>
             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
+        <span class="nt">pelg_yo_idx</span><span class="p">:</span>
+          <span class="nt">columns</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">orec</span>
+        <span class="nt">pelg_so_idx</span><span class="p">:</span>
+          <span class="nt">columns</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">orec</span>
+        <span class="nt">pelg_yso_idx</span><span class="p">:</span>
+          <span class="nt">columns</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">orec</span>
 
     <span class="nt">_beneficiaries</span><span class="p">:</span>
       <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">internal intermediate view adding some data conversions</span>
       <span class="nt">create</span><span class="p">:</span>
         <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">view</span>
-        <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">medicare.ps</span>
+        <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">medicare._ps</span>
         <span class="nt">group by</span><span class="p">:</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene_id</span>
       <span class="nt">columns</span><span class="p">:</span>
@@ -392,6 +547,13 @@
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MIN(yob)&quot;</span>
         <span class="p p-Indicator">-</span> <span class="nt">dod</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MAX(dod)&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">first_enrollment_year</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MIN(year)&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">last_enrollment_year</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MAX(year)&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">all_enrollment_years</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT[]</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;ARRAY_AGG(DISTINCT</span><span class="nv"> </span><span class="s">year</span><span class="nv"> </span><span class="s">ORDER</span><span class="nv"> </span><span class="s">BY</span><span class="nv"> </span><span class="s">year)&quot;</span>
         <span class="p p-Indicator">-</span> <span class="nt">race</span><span class="p">:</span>
             <span class="nt">reference</span><span class="p">:</span> <span class="s">&quot;https://resdac.org/cms-data/variables/raceethnicity-msis&quot;</span>
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;string_agg(distinct</span><span class="nv"> </span><span class="s">race,</span><span class="nv"> </span><span class="s">&#39;,&#39;)&quot;</span>
@@ -402,11 +564,19 @@
         <span class="p p-Indicator">-</span> <span class="nt">sex</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;string_agg(distinct</span><span class="nv"> </span><span class="s">sex,</span><span class="nv"> </span><span class="s">&#39;,&#39;)&quot;</span>
             <span class="nt">identifier</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-        <span class="p p-Indicator">-</span> <span class="nt">duplicates</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">orec</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MAX(orec)</span>
+        <span class="p p-Indicator">-</span> <span class="nt">discrepancies</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="p p-Indicator">&gt;</span>
-              <span class="no">COUNT(distinct {identifiers}) +</span>
-              <span class="no">CASE (COUNT(DISTINCT dod) FILTER (WHERE dod is not null)) WHEN 0 THEN 0 ELSE COUNT(DISTINCT dod) FILTER (WHERE dod is not null) - 1 END</span>
-            <span class="nt">description</span><span class="p">:</span> <span class="s">&quot;number</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">duplicate</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">beneficiary&quot;</span>
+              <span class="no">(</span>
+                <span class="no">COUNT(distinct {identifiers}) - 1 +</span>
+                <span class="no">CASE</span>
+                  <span class="no">(COUNT(DISTINCT dod) FILTER (WHERE dod is not null))</span>
+                  <span class="no">WHEN 0 THEN 0</span>
+                  <span class="no">ELSE COUNT(DISTINCT dod) FILTER (WHERE dod is not null) - 1</span>
+                <span class="no">END</span>
+              <span class="no">)</span>
+            <span class="nt">description</span><span class="p">:</span> <span class="s">&quot;Number</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">possible</span><span class="nv"> </span><span class="s">discrepancies</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">beneficiary,</span><span class="nv"> </span><span class="s">.i.e.,</span><span class="nv"> </span><span class="s">records</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">alternative</span><span class="nv"> </span><span class="s">DOB,</span><span class="nv"> </span><span class="s">race,</span><span class="nv"> </span><span class="s">ethnicity</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">DOD&quot;</span>
         <span class="p p-Indicator">-</span> <span class="nt">dob_latest</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="p p-Indicator">|</span>
               <span class="no">CASE</span>
@@ -444,6 +614,10 @@
               <span class="no">CASE</span>
                 <span class="no">WHEN MIN(age) &lt;&gt; MAX(age) THEN MIN(age)</span>
               <span class="no">END</span>
+        <span class="p p-Indicator">-</span> <span class="nt">orec</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MAX(orec)</span>
+        <span class="p p-Indicator">-</span> <span class="nt">curec</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MAX(curec)</span>
         <span class="p p-Indicator">-</span> <span class="nt">state_iso</span><span class="p">:</span>
             <span class="nt">type</span><span class="p">:</span> <span class="s">&quot;char(5)&quot;</span>
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;(&#39;US-&#39;</span><span class="nv"> </span><span class="s">||</span><span class="nv"> </span><span class="s">state)</span><span class="nv"> </span><span class="s">&quot;</span>
@@ -477,6 +651,20 @@
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MAX(hmo_indicators)&quot;</span>
         <span class="p p-Indicator">-</span> <span class="nt">hmo_cvg_count</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MAX(hmo_cvg_count)&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">buyin_indicators</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MAX(buyin_indicators)&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">buyin_cvg_count</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MAX(buyin_cvg_count)&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">dual_indicators</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;(SELECT</span><span class="nv"> </span><span class="s">MAX(dual_indicators)</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">medicare.mbsf_d</span><span class="nv"> </span><span class="s">AS</span><span class="nv"> </span><span class="s">d</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">medicare._ps.year</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">d.year</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">medicare._ps.bene_id</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">d.bene_id)&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="nt">dual_cvg_count</span><span class="p">:</span>
+            <span class="nt">source</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+              <span class="no">(CASE</span>
+                 <span class="no">WHEN EXISTS (SELECT * FROM medicare.mbsf_d AS d WHERE medicare._ps.year = d.year and medicare._ps.bene_id = d.bene_id)</span>
+                 <span class="no">THEN</span>
+                     <span class="no">COALESCE((SELECT MAX(dual_mo) FROM medicare.mbsf_d AS d WHERE medicare._ps.year = d.year and medicare._ps.bene_id = d.bene_id), 0)</span>
+                 <span class="no">ELSE NULL</span>
+              <span class="no">END)</span>
         <span class="p p-Indicator">-</span> <span class="nt">state_count</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="p p-Indicator">|</span>
               <span class="no">(</span>
@@ -505,6 +693,11 @@
         <span class="nt">select</span><span class="p">:</span> <span class="s">&quot;*&quot;</span>
         <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">_beneficiaries</span>
       <span class="nt">columns</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">number_of_gap_years</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generated</span>
+              <span class="nt">code</span><span class="p">:</span> <span class="s">&quot;GENERATED</span><span class="nv"> </span><span class="s">ALWAYS</span><span class="nv"> </span><span class="s">AS</span><span class="nv"> </span><span class="s">(last_enrollment_year</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">first_enrollment_year</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">CARDINALITY(all_enrollment_years))</span><span class="nv"> </span><span class="s">STORED&quot;</span>
         <span class="p p-Indicator">-</span> <span class="nt">bene</span><span class="p">:</span>
             <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">HLL_HASHVAL</span>
             <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
@@ -523,7 +716,7 @@
           <span class="nt">columns</span><span class="p">:</span>
             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">race</span>
             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">sex</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">duplicates</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">discrepancies</span>
       <span class="nt">children</span><span class="p">:</span>
         <span class="nt">enrollments</span><span class="p">:</span>
           <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
@@ -536,6 +729,21 @@
             <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">_enrollments</span>
             <span class="nt">populate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
           <span class="nt">columns</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="nt">hmo</span><span class="p">:</span>
+                <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">boolean</span>
+                <span class="nt">source</span><span class="p">:</span>
+                  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generated</span>
+                  <span class="nt">code</span><span class="p">:</span> <span class="s">&quot;GENERATED</span><span class="nv"> </span><span class="s">ALWAYS</span><span class="nv"> </span><span class="s">AS</span><span class="nv"> </span><span class="s">(CASE</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">hmo_cvg_count</span><span class="nv"> </span><span class="s">IS</span><span class="nv"> </span><span class="s">NULL</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">NULL</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">hmo_cvg_count</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">TRUE</span><span class="nv"> </span><span class="s">ELSE</span><span class="nv"> </span><span class="s">FALSE</span><span class="nv"> </span><span class="s">END)</span><span class="nv"> </span><span class="s">STORED&quot;</span>
+            <span class="p p-Indicator">-</span> <span class="nt">buyin</span><span class="p">:</span>
+                <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">boolean</span>
+                <span class="nt">source</span><span class="p">:</span>
+                  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generated</span>
+                  <span class="nt">code</span><span class="p">:</span> <span class="s">&quot;GENERATED</span><span class="nv"> </span><span class="s">ALWAYS</span><span class="nv"> </span><span class="s">AS</span><span class="nv"> </span><span class="s">(CASE</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">buyin_cvg_count</span><span class="nv"> </span><span class="s">IS</span><span class="nv"> </span><span class="s">NULL</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">NULL</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">buyin_cvg_count</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">TRUE</span><span class="nv"> </span><span class="s">ELSE</span><span class="nv"> </span><span class="s">FALSE</span><span class="nv"> </span><span class="s">END)</span><span class="nv"> </span><span class="s">STORED&quot;</span>
+            <span class="p p-Indicator">-</span> <span class="nt">dual</span><span class="p">:</span>
+                <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">boolean</span>
+                <span class="nt">source</span><span class="p">:</span>
+                  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generated</span>
+                  <span class="nt">code</span><span class="p">:</span> <span class="s">&quot;GENERATED</span><span class="nv"> </span><span class="s">ALWAYS</span><span class="nv"> </span><span class="s">AS</span><span class="nv"> </span><span class="s">(CASE</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">dual_cvg_count</span><span class="nv"> </span><span class="s">IS</span><span class="nv"> </span><span class="s">NULL</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">NULL</span><span class="nv"> </span><span class="s">WHEN</span><span class="nv"> </span><span class="s">dual_cvg_count</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">THEN</span><span class="nv"> </span><span class="s">TRUE</span><span class="nv"> </span><span class="s">ELSE</span><span class="nv"> </span><span class="s">FALSE</span><span class="nv"> </span><span class="s">END)</span><span class="nv"> </span><span class="s">STORED&quot;</span>
             <span class="p p-Indicator">-</span> <span class="nt">bene</span><span class="p">:</span>
                 <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">HLL_HASHVAL</span>
                 <span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
@@ -603,32 +811,41 @@
                   <span class="no">admission_date,</span>
                   <span class="no">discharge_date,</span>
                   <span class="no">adm_day_of_week,</span>
-                  <span class="no">diag1 As primary_diagnosis,</span>
-                  <span class="no">array_remove(ARRAY[diag1,</span>
-                  <span class="no">diag2,</span>
-                  <span class="no">diag3,</span>
-                  <span class="no">diag4,</span>
-                  <span class="no">diag5,</span>
-                  <span class="no">diag6,</span>
-                  <span class="no">diag7,</span>
-                  <span class="no">diag8,</span>
-                  <span class="no">diag9,</span>
-                  <span class="no">diag10,</span>
-                  <span class="no">diag11,</span>
-                  <span class="no">diag12,</span>
-                  <span class="no">diag13,</span>
-                  <span class="no">diag14,</span>
-                  <span class="no">diag15,</span>
-                  <span class="no">diag16,</span>
-                  <span class="no">diag17,</span>
-                  <span class="no">diag18,</span>
-                  <span class="no">diag19,</span>
-                  <span class="no">diag20,</span>
-                  <span class="no">diag21,</span>
-                  <span class="no">diag22,</span>
-                  <span class="no">diag23,</span>
-                  <span class="no">diag24,</span>
-                  <span class="no">diag25], NULL) As diagnoses</span>
+                  <span class="no">dschrgcd,</span>
+                  <span class="no">btrim(diag1) As primary_diagnosis,</span>
+                  <span class="no">array_remove(ARRAY[</span>
+                  <span class="no">btrim(btrim(diag1)),</span>
+                  <span class="no">btrim(diag2),</span>
+                  <span class="no">btrim(diag3),</span>
+                  <span class="no">btrim(diag4),</span>
+                  <span class="no">btrim(diag5),</span>
+                  <span class="no">btrim(diag6),</span>
+                  <span class="no">btrim(diag7),</span>
+                  <span class="no">btrim(diag8),</span>
+                  <span class="no">btrim(diag9),</span>
+                  <span class="no">btrim(diag10),</span>
+                  <span class="no">btrim(diag11),</span>
+                  <span class="no">btrim(diag12),</span>
+                  <span class="no">btrim(diag13),</span>
+                  <span class="no">btrim(diag14),</span>
+                  <span class="no">btrim(diag15),</span>
+                  <span class="no">btrim(diag16),</span>
+                  <span class="no">btrim(diag17),</span>
+                  <span class="no">btrim(diag18),</span>
+                  <span class="no">btrim(diag19),</span>
+                  <span class="no">btrim(diag20),</span>
+                  <span class="no">btrim(diag21),</span>
+                  <span class="no">btrim(diag22),</span>
+                  <span class="no">btrim(diag23),</span>
+                  <span class="no">btrim(diag24),</span>
+                  <span class="no">btrim(diag25)</span>
+                  <span class="no">], NULL) As diagnoses,</span>
+                  <span class="no">los_day_cnt,</span>
+                  <span class="no">drg_price_amt,</span>
+                  <span class="no">drg_outlier_pmt_amt,</span>
+                  <span class="no">pass_thru_amt,</span>
+                  <span class="no">mdcr_pmt_amt </span>
+
                 <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ip</span>
                 <span class="nt">populate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
               <span class="nt">columns</span><span class="p">:</span>
@@ -642,7 +859,9 @@
                     <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">None</span>
                 <span class="p p-Indicator">-</span> <span class="nt">state_iso</span><span class="p">:</span>
                     <span class="nt">type</span><span class="p">:</span> <span class="s">&quot;char(5)&quot;</span>
-                    <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;(&#39;US-&#39;</span><span class="nv"> </span><span class="s">||</span><span class="nv"> </span><span class="s">state)</span><span class="nv"> </span><span class="s">&quot;</span>
+                    <span class="nt">source</span><span class="p">:</span>
+                      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">generated</span>
+                      <span class="nt">code</span><span class="p">:</span> <span class="s">&quot;GENERATED</span><span class="nv"> </span><span class="s">ALWAYS</span><span class="nv"> </span><span class="s">AS</span><span class="nv"> </span><span class="s">(&#39;US-&#39;</span><span class="nv"> </span><span class="s">||</span><span class="nv"> </span><span class="s">state)</span><span class="nv">  </span><span class="s">STORED&quot;</span>
                     <span class="nt">index</span><span class="p">:</span>
                       <span class="nt">include</span><span class="p">:</span>
                         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bene</span>
@@ -740,11 +959,16 @@
       <span class="nt">create</span><span class="p">:</span>
         <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">materialized view</span>
         <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">qc_enrl_bene</span>
-        <span class="nt">group by</span><span class="p">:</span>
+        <span class="nt">nullable group by</span><span class="p">:</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">zip</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">fips3</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">orec</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">curec</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">hmo</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dual</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">buyin</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">consistent_dob</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">consistent_dod</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">consistent_sex</span>
@@ -756,6 +980,11 @@
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">zip</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">fips3</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">orec</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">curec</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">hmo</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dual</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">buyin</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">consistent_dob</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">consistent_dod</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">consistent_sex</span>
@@ -824,7 +1053,7 @@
       <span class="nt">create</span><span class="p">:</span>
         <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">materialized view</span>
         <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">qc_adm_union</span>
-        <span class="nt">group by</span><span class="p">:</span>
+        <span class="nt">nullable group by</span><span class="p">:</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">state</span>
           <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">zip</span>

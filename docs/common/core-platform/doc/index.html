@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -64,6 +68,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#sql-utilities">SQL Utilities</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#territorial-codes-mappings">Territorial Codes Mappings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#documentation-indices">Documentation Indices</a></li>
 </ul>
 </li>
@@ -88,9 +93,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../guts.html">Data Platform Internals</a> &raquo;</li>
-      <li>NSAPH Core Data Platform</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../guts.html">Data Platform Internals</a></li>
+      <li class="breadcrumb-item active">NSAPH Core Data Platform</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/core-platform/doc/index.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -129,7 +134,8 @@
 <li><p><a class="reference internal" href="#sql-utilities" id="id13">SQL Utilities</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#documentation-indices" id="id14">Documentation Indices</a></p></li>
+<li><p><a class="reference internal" href="#territorial-codes-mappings" id="id14">Territorial Codes Mappings</a></p></li>
+<li><p><a class="reference internal" href="#documentation-indices" id="id15">Documentation Indices</a></p></li>
 </ul>
 </div>
 <div class="section" id="tool-examples">
@@ -140,7 +146,7 @@
 <li><p>A <a class="reference internal" href="members/monitor.html"><span class="doc std std-doc">utility to monitor progress of long-running database</span></a> processes like indexing.</p></li>
 <li><p>A <a class="reference internal" href="members/introspector.html"><span class="doc std std-doc">utility to infer database schema and generate DDL</span></a> from a CSV file</p></li>
 <li><p>A <a class="reference internal" href="members/link_gis.html"><span class="doc std std-doc">utility to link a table to GIS</span></a> from a CSV file</p></li>
-<li><p>A <a class="reference internal" href="#module-database-connection-wrapper"><span class="std std-doc">wrapper around database connection to PostgreSQL</span></a></p></li>
+<li><p>A <a class="reference internal" href="#module-database-connection-wrapper">wrapper around database connection to PostgreSQL</a></p></li>
 <li><p>A <a class="reference internal" href="members/pg_json_dump.html"><span class="doc std std-doc">utility to import/export JSONLines</span></a> files into/from PostgreSQL</p></li>
 <li><p>An <a class="reference internal" href="members/executors.html"><span class="doc std std-doc">Executor with a bounded queue</span></a></p></li>
 </ul>
@@ -158,7 +164,7 @@
 <p>Resource directory contains resources that must be loaded in
 the data platform for its normal functioning. For example,
 they contain mappings between US states, counties, fips and zip codes.
-See details in <a class="reference internal" href="#resources"><span class="std std-doc">Resources</span></a> section.</p>
+See details in <a class="reference internal" href="#resources">Resources</a> section.</p>
 <p>Src directory contains software source code.
 See details in <a class="reference internal" href="#core-software-sources"><span class="std std-ref">Software Sources</span></a> section.</p>
 <div class="section" id="software-sources">
@@ -191,7 +197,7 @@ Superset datasource.</p></li>
 <li><p><strong>html</strong> is a deprecated directory for HTML documents</p></li>
 <li><p><strong>plpgsql</strong> contains PostgreSQL procedures and functions
 implemented in PL/pgSQL language</p></li>
-<li><p><strong>python</strong> contains Python code. See <a class="reference internal" href="#python-packages"><span class="std std-doc">more details</span></a>.</p></li>
+<li><p><strong>python</strong> contains Python code. See <a class="reference internal" href="#python-packages">more details</a>.</p></li>
 <li><p><strong>r</strong> contains R utilities. Probably will be deprecated</p></li>
 <li><p><strong>superset</strong> contains definitions of reusable Superset datasets and dashboards</p></li>
 <li><p><strong>yml</strong> contains various YAML files used by the platform.</p></li>
@@ -277,7 +283,7 @@ from a YAML request definition.</p>
 </ul>
 <p>Package <code class="docutils literal notranslate"><span class="pre">nsaph.util</span></code> contains:</p>
 <ul class="simple">
-<li><p>Support for packaging <a class="reference internal" href="#resources"><span class="std std-doc">resources</span></a>
+<li><p>Support for packaging <a class="reference internal" href="#resources">resources</a>
 in two modules <a class="reference internal" href="members/resources.html"><span class="doc std std-doc">resources</span></a>
 and <a class="reference internal" href="members/pg_json_dump.html"><span class="doc std std-doc">pg_json_dump</span></a>. The
 latter module imports and exports PostgreSQL (pg) tables
@@ -354,13 +360,26 @@ to a user on all NSAPH tables</p></li>
 <a class="reference internal" href="members/map_to_foreign_database.ddl.html"><span class="doc std std-doc">to map tables from another database</span></a>
 This can be used to map public tables available to anybody
 to a more secure database, containing health data</p></li>
+<li><p><a class="reference internal" href="members/zip2fips.sql.html"><span class="doc std std-doc">Tables and functions</span></a> to
+<a class="reference internal" href="#territorial-codes-mappings">map between different territorial codes</a>,
+including USPS ZIP codes, Census ZCTA codes,
+FIPS codes for US states
+and counties, SSA codes for codes for US states
+and counties.</p></li>
 </ul>
-<p>Utilities used to map territorial codes are described in
-<a class="reference internal" href="TerritorialCodes.html"><span class="doc std std-doc">this document</span></a></p>
 </div>
+</div>
+<div class="section" id="territorial-codes-mappings">
+<h2><a class="toc-backref" href="#id14">Territorial Codes Mappings</a><a class="headerlink" href="#territorial-codes-mappings" title="Permalink to this heading"></a></h2>
+<p>An important part of the data platform is the mappings between different
+territorial codes, such as USPS ZIP codes, Census ZCTA codes,
+FIPS codes for US states and counties, SSA codes for codes for US states
+and counties. See more information in the
+<a class="reference internal" href="TerritorialCodes.html"><span class="doc std std-doc">Mapping between different territorial codes</span></a>
+page.</p>
 </div>
 <div class="section" id="documentation-indices">
-<span id="core-soft-idx"></span><h2><a class="toc-backref" href="#id14">Documentation Indices</a><a class="headerlink" href="#documentation-indices" title="Permalink to this heading"></a></h2>
+<span id="core-soft-idx"></span><h2><a class="toc-backref" href="#id15">Documentation Indices</a><a class="headerlink" href="#documentation-indices" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../../genindex.html"><span class="std std-ref">genindex</span></a></p></li>
 <li><p><a class="reference internal" href="../../../py-modindex.html"><span class="std std-ref">modindex</span></a></p></li>

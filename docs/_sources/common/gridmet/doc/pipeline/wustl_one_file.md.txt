@@ -52,6 +52,6 @@ aggregated data into the database
 | Name      | Runs                                      | Description                                                                                                   | 
 |:----------|:------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
 | findfile  | Evaluates JavaScript expression           | Given input directory, variable (band), year and month, evaluates the exepected file name for the input data  | 
-| aggregate | [wustl_aggregate.cwl](wustl_aggregate.md) | Aggregate data over gographies                                                                                | 
+| aggregate | [wustl_aggregate.cwl](wustl_aggregate.md) | Aggregate data over geographies                                                                               | 
 | ingest    | [add_data.cwl](add_data.md)               | Ingests the aggregated data into the database                                                                 | 
 

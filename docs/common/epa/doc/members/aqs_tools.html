@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,11 +87,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH EPA Package Description</a> &raquo;</li>
-          <li><a href="../python_components.html">Python Components</a> &raquo;</li>
-      <li>Internal scripts used for download tasks</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH EPA Package Description</a></li>
+          <li class="breadcrumb-item"><a href="../python_components.html">Python Components</a></li>
+      <li class="breadcrumb-item active">Internal scripts used for download tasks</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/epa/doc/members/aqs_tools.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -439,18 +443,6 @@ that should be omitted</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListCollector</span></span><a class="reference internal" href="../../../../_modules/nsaph_utils/utils/io_utils.html#ListCollector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_utils.utils.io_utils.ListCollector" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="nsaph_utils.utils.io_utils.CSVFileWrapper">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CSVFileWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_like_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_replacement</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NA'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph_utils/utils/io_utils.html#CSVFileWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_utils.utils.io_utils.CSVFileWrapper" title="Permalink to this definition"></a></dt>
-<dd><p>A wrapper around CSV reader that does:</p>
-<ul class="simple">
-<li><p>Counts characters and line read</p></li>
-<li><p>Logging of the progress of the file being read</p></li>
-<li><p>Performs on-the-fly replacement of null and special
-values</p></li>
-</ul>
-</dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="nsaph_utils.utils.io_utils.basename">
 <span class="sig-name descname"><span class="pre">basename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph_utils/utils/io_utils.html#basename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_utils.utils.io_utils.basename" title="Permalink to this definition"></a></dt>
@@ -523,6 +515,18 @@ and archives</p>
 <dd class="field-even"><p>True if specification refers to a collection of files</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nsaph_utils.utils.io_utils.CSVFileWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CSVFileWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_like_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_replacement</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NA'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph_utils/utils/io_utils.html#CSVFileWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_utils.utils.io_utils.CSVFileWrapper" title="Permalink to this definition"></a></dt>
+<dd><p>A wrapper around CSV reader that does:</p>
+<ul class="simple">
+<li><p>Counts characters and line read</p></li>
+<li><p>Logging of the progress of the file being read</p></li>
+<li><p>Performs on-the-fly replacement of null and special
+values</p></li>
+</ul>
 </dd></dl>
 
 </div>

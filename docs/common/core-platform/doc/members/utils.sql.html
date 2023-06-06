@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,6 +67,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#tool-examples">Tool Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#territorial-codes-mappings">Territorial Codes Mappings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#documentation-indices">Documentation Indices</a></li>
 </ul>
 </li>
@@ -87,11 +92,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../guts.html">Data Platform Internals</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH Core Data Platform</a> &raquo;</li>
-          <li><a href="../SQLDocumentation.html">SQL Documentation</a> &raquo;</li>
-      <li>Utility functions</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../guts.html">Data Platform Internals</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH Core Data Platform</a></li>
+          <li class="breadcrumb-item"><a href="../SQLDocumentation.html">SQL Documentation</a></li>
+      <li class="breadcrumb-item active">Utility functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/core-platform/doc/members/utils.sql.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,6 +141,51 @@
 <span class="k">END</span><span class="p">;</span>
 <span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
 <span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">public</span><span class="mf">.</span><span class="n">count_rows</span> <span class="p">(</span>
+    <span class="n">schema_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">table_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">column_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">column_value</span> <span class="nb">INT</span>
+<span class="p">)</span>  <span class="k">RETURNS</span> <span class="nb">int8</span>
+    <span class="k">VOLATILE</span>
+<span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
+<span class="k">DECLARE</span>
+    <span class="n">cnt</span> <span class="nb">INT8</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">EXECUTE</span> <span class="n">format</span><span class="p">(</span><span class="s1">&#39;SELECT COUNT(*) FROM %I.%I WHERE %I = %s&#39;</span><span class="p">,</span>
+            <span class="n">schema_name</span><span class="p">,</span>
+            <span class="n">table_name</span><span class="p">,</span>
+            <span class="n">column_name</span><span class="p">,</span>
+            <span class="n">column_value</span>
+        <span class="p">)</span>
+        <span class="k">into</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="k">RETURN</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">public</span><span class="mf">.</span><span class="n">count_rows</span> <span class="p">(</span>
+    <span class="n">schema_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">table_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">column_name</span> <span class="nb">varchar</span><span class="p">,</span>
+    <span class="n">column_value</span> <span class="nb">VARCHAR</span>
+<span class="p">)</span>  <span class="k">RETURNS</span> <span class="nb">int8</span>
+    <span class="k">VOLATILE</span>
+<span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
+<span class="k">DECLARE</span>
+    <span class="n">cnt</span> <span class="nb">INT8</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">EXECUTE</span> <span class="n">format</span><span class="p">(</span><span class="s1">&#39;SELECT COUNT(*) FROM %I.%I WHERE %I = %L&#39;</span><span class="p">,</span>
+            <span class="n">schema_name</span><span class="p">,</span>
+            <span class="n">table_name</span><span class="p">,</span>
+            <span class="n">column_name</span><span class="p">,</span>
+            <span class="n">column_value</span>
+        <span class="p">)</span>
+        <span class="k">into</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="k">RETURN</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span><span class="p">;</span>
+
 
 <span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="s s-Name">&quot;public&quot;</span><span class="mf">.</span><span class="s s-Name">&quot;estimate_rows&quot;</span> <span class="p">(</span>
     <span class="n">schema_name</span> <span class="nb">character</span> <span class="k">varying</span><span class="p">,</span> <span class="n">table_name</span> <span class="nb">character</span> <span class="k">varying</span>

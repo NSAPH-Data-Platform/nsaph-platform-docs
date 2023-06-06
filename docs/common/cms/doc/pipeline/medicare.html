@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,6 +51,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/pipeline/gridmet.html">gridMET Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/pipeline/wustl.html">Pipeline to ingest Pollution downloaded from WashU Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/pipeline/pm25_yearly_download.html">Pipeline to to aggregate data in NetCDF format over given geographies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/pipeline/aqs.html">Full EPA AQS Processing Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/pipeline/airnow.html">Full EPA AirNow Processing Pipeline (including downloading shapefiles)</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Medicare data ingestion and processing pipeline</a><ul>
@@ -80,9 +85,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../pipelines.html">Data Processing Pipelines</a> &raquo;</li>
-      <li>Medicare data ingestion and processing pipeline</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../pipelines.html">Data Processing Pipelines</a></li>
+      <li class="breadcrumb-item active">Medicare data ingestion and processing pipeline</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/cms/doc/pipeline/medicare.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,7 +99,7 @@
              
   <div class="section" id="medicare-data-ingestion-and-processing-pipeline">
 <h1>Medicare data ingestion and processing pipeline<a class="headerlink" href="#medicare-data-ingestion-and-processing-pipeline" title="Permalink to this heading"></a></h1>
-<p><a class="reference internal" href="medicarecwl_src.html"><span class="doc std std-doc">Source code</span></a></p>
+<p><a class="reference internal" href="medicarecwl_src.html"><span class="std std-doc">Source code</span></a></p>
 <p><img alt="" src="../../../../_images/medicare.png" /></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -183,6 +188,30 @@ each file should be named as the year of the data it contains. Example:</p>
 <td class="text-left"><p></p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>registry</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>d_create_log</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>d_create_err</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>d_index_log</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>d_index_err</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>d_vacuum_log</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>d_vacuum_err</p></td>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 </tr>
@@ -392,27 +421,27 @@ each file should be named as the year of the data it contains. Example:</p>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p>initdb</p></td>
-<td class="text-left"><p><a class="reference internal" href="initdb.html"><span class="doc std std-doc">initdb.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="initdb.html"><span class="std std-doc">initdb.cwl</span></a></p></td>
 <td class="text-left"><p>Ensure that database utilities are at their latest version</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>load_raw_data</p></td>
-<td class="text-left"><p><a class="reference internal" href="load_raw_medicare.html"><span class="doc std std-doc">load_raw_medicare.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="load_raw_medicare.html"><span class="std std-doc">load_raw_medicare.cwl</span></a></p></td>
 <td class="text-left"><p>Load raw CMS Medicare data into the database</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>enrollments</p></td>
-<td class="text-left"><p><a class="reference internal" href="medicare_beneficiaries.html"><span class="doc std std-doc">medicare_beneficiaries.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="medicare_beneficiaries.html"><span class="std std-doc">medicare_beneficiaries.cwl</span></a></p></td>
 <td class="text-left"><p>Process beneficiaries enrollment data</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>admissions</p></td>
-<td class="text-left"><p><a class="reference internal" href="medicare_admissions.html"><span class="doc std std-doc">medicare_admissions.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="medicare_admissions.html"><span class="std std-doc">medicare_admissions.cwl</span></a></p></td>
 <td class="text-left"><p>Process medicare inpatient admissions (aka Medpar) data</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>qc</p></td>
-<td class="text-left"><p><a class="reference internal" href="medicare_qc.html"><span class="doc std std-doc">medicare_qc.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="medicare_qc.html"><span class="std std-doc">medicare_qc.cwl</span></a></p></td>
 <td class="text-left"><p>Build QC Tables</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>grant</p></td>
-<td class="text-left"><p><a class="reference internal" href="alter_database.html"><span class="doc std std-doc">alter_database.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="alter_database.html"><span class="std std-doc">alter_database.cwl</span></a></p></td>
 <td class="text-left"><p>Grants read access to the members of NSAPH group for newly created or updated tables</p></td>
 </tr>
 </tbody>

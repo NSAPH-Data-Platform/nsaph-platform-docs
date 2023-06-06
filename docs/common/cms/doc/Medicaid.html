@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,10 +98,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="index.html">Health Data</a> &raquo;</li>
-      <li>Handling Medicaid data</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Health Data</a></li>
+      <li class="breadcrumb-item active">Handling Medicaid data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/cms/doc/Medicaid.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -152,13 +156,13 @@ as CWL workflows.</p>
 </div>
 <div class="section" id="legacy-pipeline">
 <h2><a class="toc-backref" href="#id2">Legacy Pipeline</a><a class="headerlink" href="#legacy-pipeline" title="Permalink to this heading"></a></h2>
-<p>See <a class="reference internal" href="LegacyMedicaid.html#links-to-legacy-documentation"><span class="std std-doc">documentation and path references</span></a></p>
+<p>See <a class="reference internal" href="LegacyMedicaid.html#links-to-legacy-documentation"><span class="std std-ref">documentation and path references</span></a></p>
 </div>
 <div class="section" id="importing-raw-data">
 <h2><a class="toc-backref" href="#id3">Importing raw data</a><a class="headerlink" href="#importing-raw-data" title="Permalink to this heading"></a></h2>
 <div class="section" id="parsing-fts-files-to-generate-schema">
 <h3><a class="toc-backref" href="#id4">Parsing FTS files to generate schema</a><a class="headerlink" href="#parsing-fts-files-to-generate-schema" title="Permalink to this heading"></a></h3>
-<p><strong>Pipeline step</strong>: <a class="reference internal" href="pipeline/parse_fts.html"><span class="doc std std-doc">parse_fts</span></a></p>
+<p><strong>Pipeline step</strong>: <a class="reference internal" href="pipeline/parse_fts.html"><span class="std std-doc">parse_fts</span></a></p>
 <p>The first step is to parse File transfer summary (FTS)
 included with the data and generate YAML schema for
 raw data.</p>
@@ -170,7 +174,7 @@ data file. The FTS document provides the
 starting positions, the length and the generic format of
 each of the column (such as character, numeric or date)</p>
 <p>Parsing FTS is done by running module
-<a class="reference internal" href="members/create_schema_config.html"><span class="doc std std-doc">create_schema_config</span></a>.</p>
+<a class="reference internal" href="members/create_schema_config.html"><span class="std std-doc">create_schema_config</span></a>.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pyhton -m nsaph.cms.create_schema_config
 </pre></div>
 </div>
@@ -188,7 +192,7 @@ by running the following command:</p>
 <div class="section" id="data-model">
 <h2><a class="toc-backref" href="#id6">Data Model</a><a class="headerlink" href="#data-model" title="Permalink to this heading"></a></h2>
 <p>The resulting data model for Medicaid domain is defined by
-<a class="reference internal" href="members/medicaid_yaml.html"><span class="doc std std-doc">medicaid.yaml</span></a></p>
+<a class="reference internal" href="members/medicaid_yaml.html"><span class="std std-doc">medicaid.yaml</span></a></p>
 <p>Four main tables are used to fulfill user requests:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>|--- beneficiaries
     |--- enrollments
@@ -222,7 +226,7 @@ often hours but is much faster than importing raw data.</p>
 <div class="section" id="beneficiaries">
 <h3><a class="toc-backref" href="#id7">Beneficiaries</a><a class="headerlink" href="#beneficiaries" title="Permalink to this heading"></a></h3>
 <p><strong>Pipeline step</strong>: <a class="reference internal" href="pipeline/ingest.html"><span class="doc std std-doc">ingest</span></a></p>
-<p>See also <a class="reference internal" href="Medicare.html#creating-beneficiaries-table"><span class="std std-doc">creating Medicare Beneficiaries table</span></a></p>
+<p>See also <a class="reference internal" href="Medicare.html#creating-beneficiaries-table"><span class="std std-ref">creating Medicare Beneficiaries table</span></a></p>
 <div class="section" id="bene-id-column">
 <h4><a class="toc-backref" href="#id8">BENE_ID column</a><a class="headerlink" href="#bene-id-column" title="Permalink to this heading"></a></h4>
 <p>Beneficiaries table is based on BENE_ID column in the raw data.
@@ -320,7 +324,7 @@ this data.</p>
 </div>
 <div class="section" id="enrollments">
 <h3><a class="toc-backref" href="#id10">Enrollments</a><a class="headerlink" href="#enrollments" title="Permalink to this heading"></a></h3>
-<p>See also <a class="reference internal" href="Medicare.html#creating-enrollments-table"><span class="std std-doc">Medicare Enrollments</span></a> table.</p>
+<p>See also <a class="reference internal" href="Medicare.html#creating-enrollments-table"><span class="std std-ref">Medicare Enrollments</span></a> table.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Enrollments</span></code> table summarizes enrollments of
 beneficiaries in medicaid in specific states
 during specific years. From technical point of view

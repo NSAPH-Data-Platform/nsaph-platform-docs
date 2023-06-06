@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>The mcr_create_test_data Module</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The mcr_create_test_data Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/cms/doc/members/mcr_create_test_data.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -74,62 +78,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-cms.tools.mcr_create_test_data">
-<span id="the-mcr-create-test-data-module"></span><h1>The mcr_create_test_data Module<a class="headerlink" href="#module-cms.tools.mcr_create_test_data" title="Permalink to this heading"></a></h1>
-<p>Given original Medicare data, this module creates a small,
-randomly selected subset of the data for testing purposes.</p>
-<p>It does not remove PII!!!</p>
-<p>See also <a class="reference external" href="random_selector.html">Random selector for CSV files</a></p>
-<dl class="py class">
-<dt class="sig sig-object py" id="cms.tools.mcr_create_test_data.FTSTuple">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FTSTuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fts_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/cms/tools/mcr_create_test_data.html#FTSTuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.tools.mcr_create_test_data.FTSTuple" title="Permalink to this definition"></a></dt>
-<dd><dl class="py method">
-<dt class="sig sig-object py" id="cms.tools.mcr_create_test_data.FTSTuple.fts_path">
-<span class="sig-name descname"><span class="pre">fts_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/cms/tools/mcr_create_test_data.html#FTSTuple.fts_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.tools.mcr_create_test_data.FTSTuple.fts_path" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cms.tools.mcr_create_test_data.FTSTuple.dat_path">
-<span class="sig-name descname"><span class="pre">dat_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dat_file</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/cms/tools/mcr_create_test_data.html#FTSTuple.dat_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.tools.mcr_create_test_data.FTSTuple.dat_path" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cms.tools.mcr_create_test_data.find_fts_tuples">
-<span class="sig-name descname"><span class="pre">find_fts_tuples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cms.tools.mcr_create_test_data.FTSTuple" title="cms.tools.mcr_create_test_data.FTSTuple"><span class="pre">FTSTuple</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/cms/tools/mcr_create_test_data.html#find_fts_tuples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.tools.mcr_create_test_data.find_fts_tuples" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cms.tools.mcr_create_test_data.select">
-<span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/cms/tools/mcr_create_test_data.html#select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.tools.mcr_create_test_data.select" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="cms.tools.mcr_create_test_data.args">
-<span class="sig-name descname"><span class="pre">args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/cms/tools/mcr_create_test_data.html#args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cms.tools.mcr_create_test_data.args" title="Permalink to this definition"></a></dt>
-<dd><p>Parses command line arguments</p>
-<blockquote>
-<div><dl class="option-list">
-<dt><kbd><span class="option">--in <var>INPUT</var></span></kbd></dt>
-<dd><p>pattern to select incoming files</p>
-</dd>
-<dt><kbd><span class="option">--out <var>OUT</var></span></kbd></dt>
-<dd><p>Directory to output the random selection</p>
-</dd>
-<dt><kbd><span class="option">--selector <var>SELECTOR</var></span></kbd></dt>
-<dd><p>A float value specifying the share of data to be
-selected</p>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>arguments as dictionary</p>
-</dd>
-</dl>
-</dd></dl>
-
+  <div class="section" id="the-mcr-create-test-data-module">
+<h1>The mcr_create_test_data Module<a class="headerlink" href="#the-mcr-create-test-data-module" title="Permalink to this heading"></a></h1>
 </div>
 
 

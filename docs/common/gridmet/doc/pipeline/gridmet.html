@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -53,6 +57,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="wustl.html">Pipeline to ingest Pollution downloaded from WashU Box</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pm25_yearly_download.html">Pipeline to to aggregate data in NetCDF format over given geographies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/pipeline/aqs.html">Full EPA AQS Processing Pipeline</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/pipeline/airnow.html">Full EPA AirNow Processing Pipeline (including downloading shapefiles)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/pipeline/medicare.html">Medicare data ingestion and processing pipeline</a></li>
@@ -80,10 +85,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">Gridmet Computational Utilities</a> &raquo;</li>
-      <li>gridMET Pipeline</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Gridmet Computational Utilities</a></li>
+      <li class="breadcrumb-item active">gridMET Pipeline</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gridmet/doc/pipeline/gridmet.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,7 +100,7 @@
              
   <div class="section" id="gridmet-pipeline">
 <h1>gridMET Pipeline<a class="headerlink" href="#gridmet-pipeline" title="Permalink to this heading"></a></h1>
-<p><a class="reference internal" href="gridmetcwl_src.html"><span class="doc std std-doc">Source code</span></a></p>
+<p><a class="reference internal" href="gridmetcwl_src.html"><span class="std std-doc">Source code</span></a></p>
 <p><img alt="" src="../../../../_images/gridmet.png" /></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -254,15 +259,15 @@ for each given geography and ingests it into the database</p>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p>make_registry</p></td>
-<td class="text-left"><p><a class="reference internal" href="registry.html"><span class="doc std std-doc">registry.cwl</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="registry.html"><span class="std std-doc">registry.cwl</span></a></p></td>
 <td class="text-left"><p>Writes down YAML file with the database model</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>init_tables</p></td>
-<td class="text-left"><p><a class="reference internal" href="gridmet_1.html"><span class="doc std std-doc">sub-workflow</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="gridmet_1.html"><span class="std std-doc">sub-workflow</span></a></p></td>
 <td class="text-left"><p>creates or recreates database tables, one for each band</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>process</p></td>
-<td class="text-left"><p><a class="reference internal" href="gridmet_2.html"><span class="doc std std-doc">sub-workflow</span></a></p></td>
+<td class="text-left"><p><a class="reference internal" href="gridmet_2.html"><span class="std std-doc">sub-workflow</span></a></p></td>
 <td class="text-left"><p>Downloads raw data and aggregates it over shapes and time</p></td>
 </tr>
 </tbody>
