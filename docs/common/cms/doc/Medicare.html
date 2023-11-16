@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -91,10 +95,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="index.html">Health Data</a> &raquo;</li>
-      <li>Medicare Files Handling</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Health Data</a></li>
+      <li class="breadcrumb-item active">Medicare Files Handling</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/cms/doc/Medicare.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -209,20 +213,20 @@ only have original ResDac data for years 2011-2014 and 2016-2018.
 Therefore, the pipeline is unable to ingest the data for other years
 (1999-2010 and 2015).</p>
 </div>
-<p>See <a class="reference internal" href="#files-for-1999-to-2010"><span class="std std-doc">Files for 1999 to 2010</span></a> for more information.</p>
-<p>See <a class="reference internal" href="#ingesting-raw-files"><span class="std std-doc">Ingesting Raw Files</span></a> for processing details</p>
+<p>See <a class="reference internal" href="#files-for-1999-to-2010"><span class="std std-ref">Files for 1999 to 2010</span></a> for more information.</p>
+<p>See <a class="reference internal" href="#ingesting-raw-files"><span class="std std-ref">Ingesting Raw Files</span></a> for processing details</p>
 </div>
 <div class="section" id="processing-data-in-the-database">
 <h3><a class="toc-backref" href="#id4">Processing Data in the Database</a><a class="headerlink" href="#processing-data-in-the-database" title="Permalink to this heading"></a></h3>
 <p>During in-database processing all tables, views and materialized views
 are completely replaced. Old tables are dropped and new ones are created
 from scratch.</p>
-<p>See <a class="reference internal" href="#combining-raw-files-into-a-single-view"><span class="std std-doc">Combining raw files into a single view</span></a> for processing details.</p>
+<p>See <a class="reference internal" href="#combining-raw-files-into-a-single-view"><span class="std std-ref">Combining raw files into a single view</span></a> for processing details.</p>
 </div>
 <div class="section" id="medicare-pipeline-references">
 <h3><a class="toc-backref" href="#id5">Medicare Pipeline References</a><a class="headerlink" href="#medicare-pipeline-references" title="Permalink to this heading"></a></h3>
 <p>See <a class="reference internal" href="pipeline/medicare.html"><span class="doc std std-doc">Medicare data ingestion and processing pipeline</span></a> for the pipeline code</p>
-<p>See <a class="reference internal" href="members/medicare_yaml.html"><span class="doc std std-doc">Medicare data model definition</span></a> for formal
+<p>See <a class="reference internal" href="members/medicare_yaml.html"><span class="std std-doc">Medicare data model definition</span></a> for formal
 data model definition.</p>
 </div>
 </div>
@@ -298,8 +302,8 @@ in two directories:</p>
 names and types. We use this metadata to generate appropriate database schema.</p>
 <p>See the code for handling these files:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="members/mcr_sas2yaml.html"><span class="doc std std-doc">Metadata and data model</span></a></p></li>
-<li><p><a class="reference internal" href="members/mcr_sas2db.html"><span class="doc std std-doc">Ingesting data</span></a></p></li>
+<li><p><a class="reference internal" href="members/mcr_sas2yaml.html"><span class="std std-doc">Metadata and data model</span></a></p></li>
+<li><p><a class="reference internal" href="members/mcr_sas2db.html"><span class="std std-doc">Ingesting data</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="files-for-years-2011-and-later">
@@ -308,7 +312,7 @@ names and types. We use this metadata to generate appropriate database schema.</
 (FWF). For each file the structure is described in File Transfer
 Summary (FTS) file. Unfortunately these files are intended for reading by
 a human and is difficult to parse automatically. A
-<a class="reference internal" href="members/fts2yaml.html"><span class="doc std std-doc">partial parser</span></a> that
+<a class="reference internal" href="members/fts2yaml.html"><span class="std std-doc">partial parser</span></a> that
 relies on a known file type is implemented in Python. The information
 extarcted by the parser is used to:</p>
 <ul class="simple">
@@ -331,8 +335,8 @@ into two views:</p>
 <p>The figure below visualizes the database schema.</p>
 <a class="reference internal image-reference" href="../../../_images/medicare-db.png"><img alt="../../../_images/medicare-db.png" src="../../../_images/medicare-db.png" style="width: 600px;" /></a>
 <p>The tables above are defined in
-<a class="reference internal" href="members/medicare_yaml.html"><span class="doc std std-doc">Medicare data model definition</span></a>. This file
-uses <a class="reference internal" href="DataModellingExtensions.html"><span class="doc std std-doc">Extensions used for creating federated view of different years</span></a>.</p>
+<a class="reference internal" href="members/medicare_yaml.html"><span class="std std-doc">Medicare data model definition</span></a>. This file
+uses <a class="reference internal" href="DataModellingExtensions.html"><span class="std std-doc">Extensions used for creating federated view of different years</span></a>.</p>
 </div>
 <div class="section" id="cwl-workflows">
 <h3><a class="toc-backref" href="#id13">CWL workflows</a><a class="headerlink" href="#cwl-workflows" title="Permalink to this heading"></a></h3>
@@ -349,7 +353,7 @@ uses <a class="reference internal" href="DataModellingExtensions.html"><span cla
 into steps is purely technical. The reasons are
 given some limitations of readability in SQL.</p>
 <p>This step uses data modelling extensions described in
-<a class="reference internal" href="DataModellingExtensions.html"><span class="doc std std-doc">Extensions used for creating federated view of different years</span></a>.</p>
+<a class="reference internal" href="DataModellingExtensions.html"><span class="std std-doc">Extensions used for creating federated view of different years</span></a>.</p>
 <p>These steps are part of
 <a class="reference internal" href="pipeline/medicare_beneficiaries.html"><span class="doc std std-doc">Medicare Beneficiaries data in-database processing pipeline</span></a></p>
 <div class="section" id="first-step-initial-in-database-data-conditioning">
@@ -402,14 +406,14 @@ in a separate second step is that both <code class="docutils literal notranslate
 being cleansed in the first step.</p>
 <p>The second step is performed by a general loader utility
 based on the
-<a class="reference internal" href="members/medicare_yaml.html"><span class="doc std std-doc">Medicare data model definition</span></a>.</p>
+<a class="reference internal" href="members/medicare_yaml.html"><span class="std std-doc">Medicare data model definition</span></a>.</p>
 </div>
 </div>
 <div class="section" id="creating-beneficiaries-table">
 <h3><a class="toc-backref" href="#id17">Creating Beneficiaries table</a><a class="headerlink" href="#creating-beneficiaries-table" title="Permalink to this heading"></a></h3>
 <p>This is also part of
 <a class="reference internal" href="pipeline/medicare_beneficiaries.html"><span class="doc std std-doc">Medicare Beneficiaries data in-database processing pipeline</span></a></p>
-<p>See also <a class="reference internal" href="Medicaid.html#beneficiaries"><span class="std std-doc">creating Medicaid Beneficiaries table</span></a></p>
+<p>See also <a class="reference internal" href="Medicaid.html#beneficiaries"><span class="std std-ref">creating Medicaid Beneficiaries table</span></a></p>
 <p>This is also a two steps operation. The first step
 creates an SQL view and the second step stores the data
 as a real table.</p>
@@ -441,10 +445,10 @@ beneficiary. The value of this column is NULL for consistent records</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dod_earliest</span></code>: the earliest DOD found in the records for this
 beneficiary. The value of this column is NULL for consistent records</p></li>
 <li><p>Beneficiary id HLL hash (<code class="docutils literal notranslate"><span class="pre">bene</span></code> column), to be used for
-<code class="docutils literal notranslate"><span class="pre">approximate</span> <span class="pre">count</span> <span class="pre">distinct</span></code> queries. <a class="reference internal" href="UsingHLL.html"><span class="doc std std-doc">See more</span></a></p></li>
+<code class="docutils literal notranslate"><span class="pre">approximate</span> <span class="pre">count</span> <span class="pre">distinct</span></code> queries. <a class="reference internal" href="UsingHLL.html"><span class="std std-doc">See more</span></a></p></li>
 </ul>
 <p>This topic is discussed in more details in the
-<a class="reference internal" href="Medicaid.html#deduplication-and-data-cleansing"><span class="std std-doc">Medicaid documentation</span></a></p>
+<a class="reference internal" href="Medicaid.html#deduplication-and-data-cleansing"><span class="std std-ref">Medicaid documentation</span></a></p>
 </div>
 <div class="section" id="creating-enrollments-table">
 <h3><a class="toc-backref" href="#id18">Creating Enrollments table</a><a class="headerlink" href="#creating-enrollments-table" title="Permalink to this heading"></a></h3>
@@ -456,11 +460,11 @@ beneficiary. The value of this column is NULL for consistent records</p></li>
 enrollments in different states and tracks changes in eligibility
 (i.e. beginning of the eligibility and beneficiaries death) and
 changes in states and addresses.</p>
-<p>See also <a class="reference internal" href="Medicaid.html#enrollments"><span class="std std-doc">Medicaid Enrollments</span></a> and
-<a class="reference internal" href="Medicaid.html#eligibility"><span class="std std-doc">Medicaid Eligibility</span></a> tables. Please note, that
+<p>See also <a class="reference internal" href="Medicaid.html#enrollments"><span class="std std-ref">Medicaid Enrollments</span></a> and
+<a class="reference internal" href="Medicaid.html#eligibility"><span class="std std-ref">Medicaid Eligibility</span></a> tables. Please note, that
 since Medicare eligibility is not as volatile as Medicaid eligibility,
 i.e. it does not usually change month to month, there is no direct analog to
-<a class="reference internal" href="Medicaid.html#eligibility"><span class="std std-doc">Medicaid Eligibility</span></a> table.</p>
+<a class="reference internal" href="Medicaid.html#eligibility"><span class="std std-ref">Medicaid Eligibility</span></a> table.</p>
 <p>As most of the other tables, <strong>Enrollments</strong> table is created in two steps.
 The first step
 creates an SQL view and the second step stores the data
@@ -478,7 +482,7 @@ more efficient.</p>
 leaving in a given state during a given year. If beneficiary has moved
 from one state to another during the year, more than one record for such
 a beneficiary will be created in the table. This is consistent with
-<a class="reference internal" href="Medicaid.html#enrollments"><span class="std std-doc">Medicaid Enrollments</span></a>, though, arguably,
+<a class="reference internal" href="Medicaid.html#enrollments"><span class="std std-ref">Medicaid Enrollments</span></a>, though, arguably,
 makes less sense for Medicare.</p>
 </div>
 <div class="section" id="enrollments-data-cleansing">
@@ -559,7 +563,7 @@ ResDac record, hence, the county code was inferred from other data
 <li><p><code class="docutils literal notranslate"><span class="pre">fips3_valdiated</span></code>: A boolean column indicating that the value
 of county code is consistent with the values of state code and zip code.</p></li>
 <li><p>Beneficiary id HLL hash (<code class="docutils literal notranslate"><span class="pre">bene</span></code> column), to be used for
-<code class="docutils literal notranslate"><span class="pre">approximate</span> <span class="pre">count</span> <span class="pre">distinct</span></code> queries. <a class="reference internal" href="UsingHLL.html"><span class="doc std std-doc">See more</span></a></p></li>
+<code class="docutils literal notranslate"><span class="pre">approximate</span> <span class="pre">count</span> <span class="pre">distinct</span></code> queries. <a class="reference internal" href="UsingHLL.html"><span class="std std-doc">See more</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -604,7 +608,7 @@ admission and discharge dates and ICD codes.</p>
 <li><p>Added the following columns:</p>
 <ul>
 <li><p>Admission year, extracted from admission date</p></li>
-<li><p>Added <a class="reference internal" href="UsingHLL.html"><span class="doc std std-doc">HLL hashes</span></a> for:</p>
+<li><p>Added <a class="reference internal" href="UsingHLL.html"><span class="std std-doc">HLL hashes</span></a> for:</p>
 <ul>
 <li><p>Beneficiary id (<code class="docutils literal notranslate"><span class="pre">bene</span></code> column)</p></li>
 <li><p>Primary diagnosis at admission  (<code class="docutils literal notranslate"><span class="pre">pd_hll_hash</span></code>)</p></li>
@@ -634,7 +638,7 @@ copied to <code class="docutils literal notranslate"><span class="pre">medicare_
 </li>
 </ul>
 <p>See more information about handling records that have failed validation in:
-<a class="reference internal" href="../../core-platform/doc/Datamodels.html#invalid-record"><span class="std std-doc">Data Modeling</span></a></p>
+<a class="reference internal" href="../../core-platform/doc/Datamodels.html#invalid-record"><span class="std std-ref">Data Modeling</span></a></p>
 </div>
 </div>
 <div class="section" id="creating-qc-tables">
@@ -650,7 +654,7 @@ copied to <code class="docutils literal notranslate"><span class="pre">medicare_
 <li><p>Admissions QC</p></li>
 </ul>
 <p>These are aggregate tables, defined in
-<a class="reference internal" href="members/medicare_yaml.html"><span class="doc std std-doc">Medicare data model definition</span></a>
+<a class="reference internal" href="members/medicare_yaml.html"><span class="std std-doc">Medicare data model definition</span></a>
 (qc_enrollments and qc_admissions).</p>
 <p>In these tables we define dimensions and measures, including count measures
 and percent measures.</p>

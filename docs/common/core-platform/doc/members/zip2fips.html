@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>The zip2fips Module</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The zip2fips Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/core-platform/doc/members/zip2fips.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -74,40 +78,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-nsaph.util.zip2fips">
-<span id="the-zip2fips-module"></span><h1>The zip2fips Module<a class="headerlink" href="#module-nsaph.util.zip2fips" title="Permalink to this heading"></a></h1>
-<p>Utility to download ZIP to FIPS mapping from HUD site</p>
-<p><a class="reference external" href="https://www.huduser.gov/portal/datasets/usps_crosswalk.html">https://www.huduser.gov/portal/datasets/usps_crosswalk.html</a></p>
-<dl class="py class">
-<dt class="sig sig-object py" id="nsaph.util.zip2fips.Zip2FipsCrossWalk">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Zip2FipsCrossWalk</span></span><a class="reference internal" href="../../../../_modules/nsaph/util/zip2fips.html#Zip2FipsCrossWalk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph.util.zip2fips.Zip2FipsCrossWalk" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
-<dt class="sig sig-object py" id="nsaph.util.zip2fips.Zip2FipsCrossWalk.table">
-<span class="sig-name descname"><span class="pre">table</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'public.hud_zip2fips'</span></em><a class="headerlink" href="#nsaph.util.zip2fips.Zip2FipsCrossWalk.table" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nsaph.util.zip2fips.Zip2FipsCrossWalk.url_pattern">
-<span class="sig-name descname"><span class="pre">url_pattern</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://www.huduser.gov/portal/datasets/usps/ZIP_COUNTY_{month}{year}.xlsx'</span></em><a class="headerlink" href="#nsaph.util.zip2fips.Zip2FipsCrossWalk.url_pattern" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nsaph.util.zip2fips.Zip2FipsCrossWalk.m2q">
-<span class="sig-name descname"><span class="pre">m2q</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{1:</span> <span class="pre">'03',</span> <span class="pre">2:</span> <span class="pre">'06',</span> <span class="pre">3:</span> <span class="pre">'09',</span> <span class="pre">4:</span> <span class="pre">'12'}</span></em><a class="headerlink" href="#nsaph.util.zip2fips.Zip2FipsCrossWalk.m2q" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nsaph.util.zip2fips.Zip2FipsCrossWalk.download">
-<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quarter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="../../../../_modules/nsaph/util/zip2fips.html#Zip2FipsCrossWalk.download"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph.util.zip2fips.Zip2FipsCrossWalk.download" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nsaph.util.zip2fips.Zip2FipsCrossWalk.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph/util/zip2fips.html#Zip2FipsCrossWalk.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph.util.zip2fips.Zip2FipsCrossWalk.save" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+  <div class="section" id="the-zip2fips-module">
+<h1>The zip2fips Module<a class="headerlink" href="#the-zip2fips-module" title="Permalink to this heading"></a></h1>
 </div>
 
 

@@ -10,11 +10,11 @@ local:
 ---
 ```
 
-**Tool**. Runs: [gridmet.shapes](../../../gridmet/doc/members/shapes)
+**Tool**. Runs: nsaph_gis.shapes_downloader
 
 ## Description
 
-This tool downloads AirNow data from EPA website
+This tool downloads Shape files from US Census website
 
 
 ## Inputs

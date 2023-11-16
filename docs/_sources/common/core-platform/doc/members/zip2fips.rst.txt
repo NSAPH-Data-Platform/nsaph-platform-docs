@@ -6,7 +6,7 @@
 The zip2fips Module
 ============================================================================
 
-.. automodule:: nsaph.util.zip2fips
+.. automodule:: nsaph.crosswalks.zip2fips
    :members:
    :undoc-members:
 

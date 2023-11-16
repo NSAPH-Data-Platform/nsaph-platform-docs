@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,9 +67,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>epa.airnow_shapes</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">epa.airnow_shapes</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -106,14 +110,14 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="kn">from</span> <span class="nn">epa.airnow_ds_def</span> <span class="kn">import</span> <span class="n">AirNowContext</span>
-<span class="kn">from</span> <span class="nn">nsaph_gis.downloader</span> <span class="kn">import</span> <span class="n">GISDownloader</span>
+<span class="kn">from</span> <span class="nn">nsaph_gis.downloader</span> <span class="kn">import</span> <span class="n">GISDownloader</span><span class="p">,</span> <span class="n">CensusShapeCollection</span>
 
 
 <div class="viewcode-block" id="download_shapes"><a class="viewcode-back" href="../../common/epa/doc/members/airnow_shapes.html#epa.airnow_shapes.download_shapes">[docs]</a><span class="k">def</span> <span class="nf">download_shapes</span><span class="p">():</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">AirNowContext</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
 
     <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">GISDownloader</span><span class="o">.</span><span class="n">download_shapes</span><span class="p">(</span><span class="n">start</span><span class="o">.</span><span class="n">year</span><span class="p">)</span></div>
+    <span class="n">GISDownloader</span><span class="o">.</span><span class="n">download_shapes</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">start</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">CensusShapeCollection</span><span class="o">.</span><span class="n">tiger</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

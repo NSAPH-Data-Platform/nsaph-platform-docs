@@ -6,7 +6,7 @@
 The ssa2fips Module
 ============================================================================
 
-.. automodule:: nsaph.util.ssa2fips
+.. automodule:: nsaph.crosswalks.ssa2fips
    :members:
    :undoc-members:
 

@@ -29,25 +29,31 @@ shape files fo this year from US Census website
 | proxy                 | string?   |         | HTTP/HTTPS Proxy if required                                                          | 
 | downloads             | Directory |         |                                                                                       | 
 | geography             | string    |         |                                                                                       | 
-| band                  | string    |         |                                                                                       | 
+| variable              | string    |         |                                                                                       | 
+| component             | string[]  |         |                                                                                       | 
 | year                  | int       |         |                                                                                       | 
 | strategy              | string    |         | Rasterization strategy                                                                | 
 | shape_file_collection | string    | `tiger` | [Collection of shapefiles](https://www2.census.gov/geo/tiger),  either GENZ or TIGER  | 
+| table                 | string?   |         | Optional name ot the table where the aggregated data will be eventually stored        | 
 
 ## Outputs
 
-| Name           | Type   | Description | 
-|:---------------|:-------|:------------|
-| shapes         | File[] |             | 
-| aggregate_data | File   |             | 
-| aggregate_log  | File   |             | 
-| aggregate_err  | File   |             | 
+| Name              | Type   | Description | 
+|:------------------|:-------|:------------|
+| shapes            | File[] |             | 
+| consolidated_data | File   |             | 
+| aggregate_data    | File   |             | 
+| data_dictionary   | File   |             | 
+| aggregate_log     | File   |             | 
+| aggregate_err     | File   |             | 
 
 ## Steps
 
-| Name       | Runs                                      | Description                                                                                                   | 
-|:-----------|:------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
-| get_shapes | [get_shapes.cwl](get_shapes.md)           |                                                                                                               | 
-| findfile   | Evaluates JavaScript expression           | Given input directory, variable (band), year and month, evaluates the exepected file name for the input data  | 
-| aggregate  | [wustl_aggregate.cwl](wustl_aggregate.md) | Aggregate data over geographies                                                                               | 
+| Name                  | Runs                                                                | Description                                                                                                                | 
+|:----------------------|:--------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
+| get_shapes            | [get_shapes.cwl](get_shapes.md)                                     |                                                                                                                            | 
+| find_pm25_file        | [wustl_file_pattern.cwl](wustl_file_pattern.md)                     | Given input directory, variable (band), year and month, evaluates the expected file name for the main variable input data  | 
+| find_components_files | [wustl_file_pattern.cwl](wustl_file_pattern.md)                     | Given input directory, variable (band), year and month, evaluates the expected file name for the main variable input data  | 
+| consolidate           | [wustl_consolidate_components.cwl](wustl_consolidate_components.md) | consolidate components into one file                                                                                       | 
+| aggregate             | [wustl_aggregate.cwl](wustl_aggregate.md)                           | Aggregate data over geographies                                                                                            | 
 

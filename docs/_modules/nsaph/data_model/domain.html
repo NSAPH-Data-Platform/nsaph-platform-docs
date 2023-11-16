@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,10 +67,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-          <li><a href="../../nsaph.html">nsaph</a> &raquo;</li>
-      <li>nsaph.data_model.domain</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../nsaph.html">nsaph</a></li>
+      <li class="breadcrumb-item active">nsaph.data_model.domain</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -394,8 +398,8 @@
 <div class="viewcode-block" id="Domain.skip"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.skip">[docs]</a>    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">append_ddl</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s2">&quot;-- </span><span class="si">{}</span><span class="s2"> skipped;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">table</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Domain.get_select_from"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.get_select_from">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_select_from</span><span class="p">(</span><span class="n">definition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Identifier</span><span class="p">]]:</span>
+<div class="viewcode-block" id="Domain.get_select_from"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.get_select_from">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_select_from</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">definition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Identifier</span><span class="p">]]:</span>
         <span class="k">if</span> <span class="s2">&quot;create&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">definition</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="n">create</span> <span class="o">=</span> <span class="n">definition</span><span class="p">[</span><span class="s2">&quot;create&quot;</span><span class="p">]</span>

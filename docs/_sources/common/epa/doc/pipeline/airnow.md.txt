@@ -46,6 +46,7 @@ cwl-runner --parallel /opt/airflow/project/epa/src/cwl/airnow.cwl --database /op
 | to              | string  |         | End date for downolading, in YYYY-MM-DD format                                                                                                                 | 
 | parameter_code  | string  |         | Parameter code. Either a numeric code (e.g. 88101, 44201) or symbolic name (e.g. PM25, NO2). See more: [AQS Code List](https://www.epa.gov/aqs/aqs-code-list)  | 
 | table           | string  |         | Name of the table to be created in the database                                                                                                                | 
+| year            | int     |         |                                                                                                                                                                | 
 
 ## Outputs
 

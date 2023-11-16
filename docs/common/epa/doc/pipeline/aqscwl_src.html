@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,11 +87,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH EPA Package Description</a> &raquo;</li>
-          <li><a href="../cwl_tools.html">CWL Tools and Common Workflows</a> &raquo;</li>
-      <li>aqs.cwl</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH EPA Package Description</a></li>
+          <li class="breadcrumb-item"><a href="../cwl_tools.html">CWL Tools and Common Workflows</a></li>
+      <li class="breadcrumb-item active">aqs.cwl</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/epa/doc/pipeline/aqscwl_src.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -175,32 +179,15 @@
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Years to download</span>
 
 <span class="nt">steps</span><span class="p">:</span>
-  <span class="nt">states</span><span class="p">:</span>
-    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ensure_resource.cwl</span>
-    <span class="nt">doc</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">Ensures the presence of `us_states` table in the database.</span>
-      <span class="no">The table contains mapping between state names, ids</span>
-      <span class="no">(two letter abbreviations), FIPS codes and</span>
-      <span class="no">[ISO-3166-2 codes](https://en.wikipedia.org/wiki/ISO_3166-2)</span>
+  <span class="nt">initdb</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">initcoredb.cwl</span>
+    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure that database utilities are at their latest version</span>
     <span class="nt">in</span><span class="p">:</span>
       <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
       <span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">connection_name</span>
-      <span class="nt">table</span><span class="p">:</span>
-        <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;us_states&quot;</span>
-    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">]</span>
-  <span class="nt">iso</span><span class="p">:</span>
-    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ensure_resource.cwl</span>
-    <span class="nt">doc</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">Ensures the presence of `us_iso` table in the database.</span>
-      <span class="no">The table provides a mapping between states, counties and zip</span>
-      <span class="no">codes. It contains FIPS and</span>
-      <span class="no">[ISO-3166-2 codes](https://en.wikipedia.org/wiki/ISO_3166-2)</span>
-    <span class="nt">in</span><span class="p">:</span>
-      <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
-      <span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">connection_name</span>
-      <span class="nt">table</span><span class="p">:</span>
-        <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;us_iso&quot;</span>
-    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">]</span>
+    <span class="nt">out</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">log</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">err</span>
 
   <span class="nt">download</span><span class="p">:</span>
     <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">download_aqs.cwl</span>
@@ -234,6 +221,8 @@
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Uploads data into the database</span>
     <span class="nt">in</span><span class="p">:</span>
       <span class="nt">registry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">introspect/model</span>
+      <span class="nt">domain</span><span class="p">:</span>
+        <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;epa&quot;</span>
       <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
       <span class="nt">input</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">expand/data</span>
       <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
@@ -250,16 +239,25 @@
       <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
       <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
       <span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">connection_name</span>
-    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">]</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">,</span> <span class="nv">errors</span><span class="p p-Indicator">]</span>
+
+  <span class="nt">vacuum</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vacuum.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">depends_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index/log</span>
+      <span class="nt">registry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">introspect/model</span>
+      <span class="nt">domain</span><span class="p">:</span>
+        <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;epa&quot;</span>
+      <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
+      <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
+      <span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">connection_name</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">,</span> <span class="nv">errors</span><span class="p p-Indicator">]</span>
 
 
 <span class="nt">outputs</span><span class="p">:</span>
-  <span class="nt">resource1_log</span><span class="p">:</span>
+  <span class="nt">initdb_log</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
-    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">states/log</span>
-  <span class="nt">resource2_log</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
-    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">iso/log</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">initdb/log</span>
   <span class="nt">expand_log</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
     <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">expand/log</span>
@@ -272,6 +270,9 @@
   <span class="nt">index_log</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
     <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index/log</span>
+  <span class="nt">vacuum_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vacuum/log</span>
   <span class="nt">data</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
     <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">expand/data</span>
@@ -284,6 +285,12 @@
   <span class="nt">ingest_err</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
     <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest/errors</span>
+  <span class="nt">index_err</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index/errors</span>
+  <span class="nt">vacuum_err</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">vacuum/errors</span>
 </pre></div>
 </div>
 </div>

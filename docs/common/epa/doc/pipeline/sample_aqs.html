@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,11 +87,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH EPA Package Description</a> &raquo;</li>
-          <li><a href="../cwl_tools.html">CWL Tools and Common Workflows</a> &raquo;</li>
-      <li>Sample arguments to AQS pipeline</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH EPA Package Description</a></li>
+          <li class="breadcrumb-item"><a href="../cwl_tools.html">CWL Tools and Common Workflows</a></li>
+      <li class="breadcrumb-item active">Sample arguments to AQS pipeline</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/epa/doc/pipeline/sample_aqs.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,37 +105,9 @@
 <h1>Sample arguments to AQS pipeline<a class="headerlink" href="#sample-arguments-to-aqs-pipeline" title="Permalink to this heading"></a></h1>
 <div class="section" id="for-annual-no2-nitrogen-data">
 <h2>For annual NO2 (nitrogen) data<a class="headerlink" href="#for-annual-no2-nitrogen-data" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">database</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/airflow/dags/epa/database.ini</span>
-  <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
-<span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nsaph</span>
-<span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no2_annual</span>
-<span class="nt">aggregation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">annual</span>
-<span class="nt">parameter_code</span><span class="p">:</span> <span class="s">&quot;42602&quot;</span>
-<span class="nt">years</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="s">&quot;2019&quot;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&quot;2020&quot;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&quot;2021&quot;</span>
-<span class="nt">proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://10.240.64.17:3128</span>
-</pre></div>
-</div>
 </div>
 <div class="section" id="for-daily-pm25-small-particles-data">
 <h2>For daily PM25 (small particles) data<a class="headerlink" href="#for-daily-pm25-small-particles-data" title="Permalink to this heading"></a></h2>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">database</span><span class="p">:</span>
-  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/airflow/dags/epa/database.ini</span>
-  <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
-<span class="nt">connection_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nsaph</span>
-<span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pm25_daily</span>
-<span class="nt">aggregation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">daily</span>
-<span class="nt">parameter_code</span><span class="p">:</span> <span class="s">&quot;88101&quot;</span>
-<span class="nt">years</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="s">&quot;2019&quot;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&quot;2020&quot;</span>
-  <span class="p p-Indicator">-</span> <span class="s">&quot;2021&quot;</span>
-<span class="nt">proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://10.240.64.17:3128</span>
-</pre></div>
-</div>
 </div>
 </div>
 

@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,14 +49,26 @@
 <li class="toctree-l1"><a class="reference internal" href="rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domains.html">Data Domains</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data Processing Pipelines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="common/gridmet/doc/pipeline/gridmet.html">gridMET Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common/gridmet/doc/pipeline/wustl.html">Pipeline to ingest Pollution downloaded from WashU Box</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common/gridmet/doc/pipeline/pm25_yearly_download.html">Pipeline to to aggregate data in NetCDF format over given geographies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common/epa/doc/pipeline/aqs.html">Full EPA AQS Processing Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common/epa/doc/pipeline/airnow.html">Full EPA AirNow Processing Pipeline (including downloading shapefiles)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common/cms/doc/pipeline/medicare.html">Medicare data ingestion and processing pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common/cms/doc/pipeline/medicaid.html">Full Medicaid Processing Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="common/census/doc/pipeline/census_workflow.html">census_workflow.cwl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-pipelines">Running Pipelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tested-runners">Tested runners</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#providing-parameters-to-the-pipelines">Providing parameters to the pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-toil">Using Toil</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-pipelines">Testing pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-python-dependencies">Installing Python dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#published-and-tested-pipelines">Published and tested pipelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="common/gridmet/doc/pipeline/gridmet.html">gridMET Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common/gridmet/doc/pipeline/wustl.html">Pipeline to ingest Pollution downloaded from WashU Box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common/gridmet/doc/pipeline/pm25_yearly_download.html">Pipeline to aggregate data in NetCDF format over given geographies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common/epa/doc/pipeline/aqs.html">Full EPA AQS Processing Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common/epa/doc/pipeline/airnow.html">Full EPA AirNow Processing Pipeline (including downloading shapefiles)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common/cms/doc/pipeline/medicare.html">Medicare data ingestion and processing pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common/cms/doc/pipeline/medicaid.html">Full Medicaid Processing Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common/census/doc/pipeline/census_workflow.html">census_workflow.cwl</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="packages.html">Python Packages</a></li>
@@ -75,8 +91,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Data Processing Pipelines</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Data Processing Pipelines</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/pipelines.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,6 +104,135 @@
              
   <div class="section" id="data-processing-pipelines">
 <h1>Data Processing Pipelines<a class="headerlink" href="#data-processing-pipelines" title="Permalink to this heading"></a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#running-pipelines" id="id2">Running Pipelines</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tested-runners" id="id3">Tested runners</a></p></li>
+<li><p><a class="reference internal" href="#providing-parameters-to-the-pipelines" id="id4">Providing parameters to the pipelines</a></p></li>
+<li><p><a class="reference internal" href="#using-toil" id="id5">Using Toil</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#testing-pipelines" id="id6">Testing pipelines</a></p></li>
+<li><p><a class="reference internal" href="#installing-python-dependencies" id="id7">Installing Python dependencies</a></p></li>
+<li><p><a class="reference internal" href="#published-and-tested-pipelines" id="id8">Published and tested pipelines</a></p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>For the majority of computational studies, their data acquisition workflow can
+be represented as a data processing pipeline. A data processing pipeline
+consists of steps, each step being either a script, a binary executable, or a
+specific data transformation within a data warehouse. Some steps are dependent
+on the results of other steps. Therefore, every workflow can be represented as a
+directed acyclic graph (DAG), where steps are the nodes of the graph and
+dependencies are its edges. Pipeline topologies are complex as they provide for
+massive parallelization and multiple dependencies. When pipeline logic is
+expressed in a procedural programming language, the result is a very convoluted
+program that is economically ineffective to maintain. Fortunately, alternatives
+to procedural languages have been proposed and are widely used.</p>
+<p>To the full extent both repeatability and reproducibility of data processing
+pipelines is addressed by special descriptive domain specific languages (DSL).
+Three such languages have been developed by different communities that work
+primarily in bioinformatics. The most widely adopted is
+<a class="reference external" href="https://www.commonwl.org/">Common Workflow Language (CWL)</a>,
+the most popular in terms of studies that use it, the number of
+published workflows and the number of runtime platforms supporting execution of
+the workflows defined in CWL. The pipelines we publish here are all written
+in CWL.</p>
+<p>Descriptive workflow languages focus on explicit definition of the pipeline
+topology and insulation of the topology, inputs, requirements and outputs from
+the actual processing algorithms. Developed primarily by bioinformatics
+communities and mostly used by bioinformatics projects they expect the inputs to
+be in a few well-defined formats and orchestrate the work of a limited set of
+known tools. In other areas, for example, in population health research, the
+data comes from much more diverse sources, in diverse and often incompatible
+formats. Therefore, many steps (nodes in the pipeline topology) will be
+responsible for various data transformation operations.</p>
+</div>
+<div class="section" id="running-pipelines">
+<h2><a class="toc-backref" href="#id2">Running Pipelines</a><a class="headerlink" href="#running-pipelines" title="Permalink to this heading"></a></h2>
+<div class="section" id="tested-runners">
+<h3><a class="toc-backref" href="#id3">Tested runners</a><a class="headerlink" href="#tested-runners" title="Permalink to this heading"></a></h3>
+<p>CWL is “write once run anywhere” language. If a piepline one has developed
+runs on the developer’s laptop it is more or less guaranteed it will run
+in any on-prem cluster or cloud environment, provided a runner supporting
+a given environment is used. One can find the list of currently
+supported runners in
+<a class="reference external" href="https://www.commonwl.org/implementations/">CWL Implementations</a> page.</p>
+<p>We have used cwltool, CWL-Airflow and Toil in our development
+and production. Toil’s output is a little too verbose, but it has
+great features like ability to restart a pipeline from a failed
+step (even after minor corrections) and native support for AWS Batch.
+CWL-Airflow provides a nice graphical user interface.</p>
+<p>See <a class="reference external" href="https://toil.readthedocs.io/en/latest/">Toil documentation</a>
+for some details of running CWL workflows.</p>
+</div>
+<div class="section" id="providing-parameters-to-the-pipelines">
+<h3><a class="toc-backref" href="#id4">Providing parameters to the pipelines</a><a class="headerlink" href="#providing-parameters-to-the-pipelines" title="Permalink to this heading"></a></h3>
+<p>Parameters can be provided either as command line options
+with two dashes <code class="docutils literal notranslate"><span class="pre">--</span></code> or in YaML or JSON file.</p>
+<p>Note, that when using a YaML file, files and directories
+have to be specified in the following way:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">my_file</span><span class="p">:</span>
+  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/path/to/data.nc</span>
+  <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+<span class="nt">my_directory</span><span class="p">:</span>
+  <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/path/to/data/downloads</span>
+  <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Directory</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-toil">
+<h3><a class="toc-backref" href="#id5">Using Toil</a><a class="headerlink" href="#using-toil" title="Permalink to this heading"></a></h3>
+<p>A few hints if you are using Toil:</p>
+<ol class="arabic">
+<li><p>Install Toil with aws and cwl options:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> pip install toil[aws,cwl]
+</pre></div>
+</div>
+</li>
+<li><p>If you want to be able to restart a pipeline from a failed step you need to
+provide <code class="docutils literal notranslate"><span class="pre">--jobStore</span></code> option. To restart - give exactly the same options
+adding <code class="docutils literal notranslate"><span class="pre">--restart</span></code></p></li>
+</ol>
+<p>Here is an example of a command to execute a pipeline:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>toil-cwl-runner --retryCount <span class="m">1</span> --cleanWorkDir never <span class="se">\ </span>
+  --outdir /scratch/work/exposures/outputs <span class="se">\ </span>
+  --workDir /scratch/work/exposures <span class="se">\</span>
+  --jobStore /scratch/work/someDir123
+  pm25_yearly_download.cwl test_exposure_job.yml 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="testing-pipelines">
+<h2><a class="toc-backref" href="#id6">Testing pipelines</a><a class="headerlink" href="#testing-pipelines" title="Permalink to this heading"></a></h2>
+<p>Pipelines can be tested using included
+<a class="reference internal" href="common/core-platform/doc/DBT.html"><span class="doc std std-doc">DBT Pipeline Testing Framework</span></a></p>
+</div>
+<div class="section" id="installing-python-dependencies">
+<h2><a class="toc-backref" href="#id7">Installing Python dependencies</a><a class="headerlink" href="#installing-python-dependencies" title="Permalink to this heading"></a></h2>
+<p>The following requirements.txt file can be used to fetch all
+Python packages included in the platform.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git+https://github.com/NSAPH-Data-Platform/nsaph-gridmet.git@develop
+git+https://github.com/NSAPH-Data-Platform/nsaph-cms.git@develop
+git+https://github.com/NSAPH-Data-Platform/nsaph-epa.git@develop
+</pre></div>
+</div>
+<p>If you are running pipelines only from a specific domain, you can
+fetch only this domain, e.g., for exposures and climate:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/NSAPH-Data-Platform/nsaph-gridmet.git@develop
+</pre></div>
+</div>
+<p>or, for CMS data:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install git+https://github.com/NSAPH-Data-Platform/nsaph-cms.git@develop
+</pre></div>
+</div>
+</div>
+<div class="section" id="published-and-tested-pipelines">
+<h2><a class="toc-backref" href="#id8">Published and tested pipelines</a><a class="headerlink" href="#published-and-tested-pipelines" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="common/gridmet/doc/pipeline/gridmet.html">gridMET Pipeline</a><ul>
@@ -104,7 +249,7 @@
 <li class="toctree-l2"><a class="reference internal" href="common/gridmet/doc/pipeline/wustl.html#steps">Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="common/gridmet/doc/pipeline/pm25_yearly_download.html">Pipeline to to aggregate data in NetCDF format over given geographies</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="common/gridmet/doc/pipeline/pm25_yearly_download.html">Pipeline to aggregate data in NetCDF format over given geographies</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="common/gridmet/doc/pipeline/pm25_yearly_download.html#description">Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="common/gridmet/doc/pipeline/pm25_yearly_download.html#inputs">Inputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="common/gridmet/doc/pipeline/pm25_yearly_download.html#outputs">Outputs</a></li>
@@ -146,6 +291,7 @@
 </ul>
 </li>
 </ul>
+</div>
 </div>
 </div>
 

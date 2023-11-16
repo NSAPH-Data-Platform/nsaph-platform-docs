@@ -20,7 +20,7 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Uploader of the EPA Data to the database" href="ingest.html" />
+    <link rel="next" title="Universal uploader of the tabular data to the database" href="ingest.html" />
     <link rel="prev" title="Index Builder" href="index.html" /> 
 </head>
 
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,11 +87,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH EPA Package Description</a> &raquo;</li>
-          <li><a href="../cwl_tools.html">CWL Tools and Common Workflows</a> &raquo;</li>
-      <li>index.cwl</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH EPA Package Description</a></li>
+          <li class="breadcrumb-item"><a href="../cwl_tools.html">CWL Tools and Common Workflows</a></li>
+      <li class="breadcrumb-item active">index.cwl</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/epa/doc/pipeline/indexcwl_src.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -123,6 +127,8 @@
 <span class="nt">cwlVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1.2</span>
 <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CommandLineTool</span>
 <span class="nt">baseCommand</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">python</span><span class="p p-Indicator">,</span> <span class="nv">-m</span><span class="p p-Indicator">,</span> <span class="nv">nsaph.loader.index_builder</span><span class="p p-Indicator">]</span>
+<span class="nt">requirements</span><span class="p">:</span>
+  <span class="nt">InlineJavascriptRequirement</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
 
 <span class="nt">doc</span><span class="p">:</span> <span class="p p-Indicator">|</span>
   <span class="no">This tool builds all indices for the specified table.</span>
@@ -132,11 +138,18 @@
 <span class="nt">inputs</span><span class="p">:</span>
   <span class="c1">#$import: db.yaml</span>
   <span class="nt">registry</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File?</span>
+    <span class="nt">type</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">File?</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">string?</span>
     <span class="nt">inputBinding</span><span class="p">:</span>
       <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--registry</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="p p-Indicator">|</span>
       <span class="no">A path to the data model file</span>
+  <span class="nt">domain</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">the name of the domain</span>
+    <span class="nt">inputBinding</span><span class="p">:</span>
+      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--domain</span>
   <span class="nt">table</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">the name of the table</span>
@@ -152,13 +165,23 @@
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The name of the section in the database.ini file</span>
     <span class="nt">inputBinding</span><span class="p">:</span>
       <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--connection</span>
+  <span class="nt">incremental</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">boolean</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">inputBinding</span><span class="p">:</span>
+      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--incremental</span>
+  <span class="nt">force</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">boolean</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="nt">inputBinding</span><span class="p">:</span>
+      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--force</span>
   <span class="nt">depends_on</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File?</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Any?</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">a special field used to enforce dependencies and execution order</span>
 
+
 <span class="nt">arguments</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;epa&quot;</span>
-      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--domain</span>
+    <span class="p p-Indicator">-</span> <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;--autocommit&quot;</span>
 
 
 <span class="nt">outputs</span><span class="p">:</span>
@@ -166,6 +189,10 @@
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
     <span class="nt">outputBinding</span><span class="p">:</span>
       <span class="nt">glob</span><span class="p">:</span> <span class="s">&quot;*.log&quot;</span>
+  <span class="nt">errors</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stderr</span>
+
+<span class="nt">stderr</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">$(&quot;index-&quot; + inputs.table + &quot;.err&quot;)</span>
 </pre></div>
 </div>
 </div>
@@ -175,7 +202,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Index Builder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ingest.html" class="btn btn-neutral float-right" title="Uploader of the EPA Data to the database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ingest.html" class="btn btn-neutral float-right" title="Universal uploader of the tabular data to the database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

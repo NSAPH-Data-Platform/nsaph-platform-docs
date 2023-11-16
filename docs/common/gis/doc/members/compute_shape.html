@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -86,11 +90,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../packages.html">Python Packages Included in the Platform</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH GIS python package</a> &raquo;</li>
-          <li><a href="../python_components.html">GIS Python Modules</a> &raquo;</li>
-      <li>Observation values aggregation over shapes</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../packages.html">Python Packages Included in the Platform</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH GIS python package</a></li>
+          <li class="breadcrumb-item"><a href="../python_components.html">GIS Python Modules</a></li>
+      <li class="breadcrumb-item active">Observation values aggregation over shapes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gis/doc/members/compute_shape.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -109,10 +113,10 @@ an identifier for a geographic shape and the value of the band
 aggregated over the shape.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nsaph_gis.compute_shape.Record">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#Record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.Record" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">NoneType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#Record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.Record" title="Permalink to this definition"></a></dt>
 <dd><dl class="py attribute">
-<dt class="sig sig-object py" id="nsaph_gis.compute_shape.Record.mean">
-<span class="sig-name descname"><span class="pre">mean</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nsaph_gis.compute_shape.Record.mean" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.Record.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nsaph_gis.compute_shape.Record.value" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -123,12 +127,56 @@ aggregated over the shape.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.MultiRecord">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultiRecord</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">NoneType</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#MultiRecord"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.MultiRecord" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.MultiRecord.values">
+<span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nsaph_gis.compute_shape.MultiRecord.values" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.MultiRecord.prop">
+<span class="sig-name descname"><span class="pre">prop</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#nsaph_gis.compute_shape.MultiRecord.prop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="nsaph_gis.compute_shape.StatsCounter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StatsCounter</span></span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#StatsCounter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.StatsCounter" title="Permalink to this definition"></a></dt>
-<dd><dl class="py method">
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.StatsCounter.statistics">
+<span class="sig-name descname"><span class="pre">statistics</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mean'</span></em><a class="headerlink" href="#nsaph_gis.compute_shape.StatsCounter.statistics" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="nsaph_gis.compute_shape.StatsCounter.get_key_for_geography">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_key_for_geography</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shpfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geography</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/geo.html#nsaph_gis.constants.Geography" title="nsaph_gis.constants.Geography"><span class="pre">Geography</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span></span></span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#StatsCounter.get_key_for_geography"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.StatsCounter.get_key_for_geography" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.StatsCounter.prepare_stats">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prepare_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/strategy.html#nsaph_gis.constants.RasterizationStrategy" title="nsaph_gis.constants.RasterizationStrategy"><span class="pre">RasterizationStrategy</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">shpfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Affine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geography</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/geo.html#nsaph_gis.constants.Geography" title="nsaph_gis.constants.Geography"><span class="pre">Geography</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span></span></span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#StatsCounter.prepare_stats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.StatsCounter.prepare_stats" title="Permalink to this definition"></a></dt>
+<dd><p>Given a layer, i.e. a slice of a dataframe, and a shapefile
+returns an iterable of records, containing aggregated values
+of the observations over the shapes in the shapefile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.strategy"></span><strong>strategy</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.strategy">¶</a> – Rasterization strategy to be used</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.shpfile"></span><strong>shpfile</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.shpfile">¶</a> – A path to shapefile to be used</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.affine"></span><strong>affine</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.affine">¶</a> – An optional affine transformation to be applied to
+the coordinates</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.layer"></span><strong>layer</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.layer">¶</a> – A slice of dataframe, containing coordinates and values</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.geography"></span><strong>geography</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.prepare_stats.params.geography">¶</a> – WHat type of geography is to be used: zip codes
+or counties</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of statistics compute objects</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nsaph_gis.compute_shape.StatsCounter.process">
@@ -156,7 +204,71 @@ for this shape</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.StatsCounter.process_layers">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_layers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/strategy.html#nsaph_gis.constants.RasterizationStrategy" title="nsaph_gis.constants.RasterizationStrategy"><span class="pre">RasterizationStrategy</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">shpfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Affine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geography</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/geo.html#nsaph_gis.constants.Geography" title="nsaph_gis.constants.Geography"><span class="pre">Geography</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nsaph_gis.compute_shape.MultiRecord" title="nsaph_gis.compute_shape.MultiRecord"><span class="pre">MultiRecord</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#StatsCounter.process_layers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.StatsCounter.process_layers" title="Permalink to this definition"></a></dt>
+<dd><p>Given a layer, i.e. a slice of a dataframe, and a shapefile
+returns an iterable of records, containing aggregated values
+of the observations over the shapes in the shapefile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers.params.strategy"></span><strong>strategy</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers.params.strategy">¶</a> – Rasterization strategy to be used</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers.params.shpfile"></span><strong>shpfile</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers.params.shpfile">¶</a> – A path to shapefile to be used</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers.params.affine"></span><strong>affine</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers.params.affine">¶</a> – An optional affine transformation to be applied to
+the coordinates</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers.params.layers"></span><strong>layers</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers.params.layers">¶</a> – A list of slices of dataframe, containing coordinates
+and values</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers.params.geography"></span><strong>geography</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers.params.geography">¶</a> – WHat type of geography is to be used: zip codes
+or counties</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An iterable of records, containing an identifier
+of a certain shape with the aggregated value of the observation
+for this shape</p>
+</dd>
+</dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_layers_return_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/strategy.html#nsaph_gis.constants.RasterizationStrategy" title="nsaph_gis.constants.RasterizationStrategy"><span class="pre">RasterizationStrategy</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">shpfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Affine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geography</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gridmet/doc/geo.html#nsaph_gis.constants.Geography" title="nsaph_gis.constants.Geography"><span class="pre">Geography</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#nsaph_gis.compute_shape.MultiRecord" title="nsaph_gis.compute_shape.MultiRecord"><span class="pre">MultiRecord</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#StatsCounter.process_layers_return_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Given a layer, i.e. a slice of a dataframe, and a shapefile
+returns an iterable of records, containing aggregated values
+of the observations over the shapes in the shapefile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.strategy"></span><strong>strategy</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.strategy">¶</a> – Rasterization strategy to be used</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.shpfile"></span><strong>shpfile</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.shpfile">¶</a> – A path to shapefile to be used</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.affine"></span><strong>affine</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.affine">¶</a> – An optional affine transformation to be applied to
+the coordinates</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.layers"></span><strong>layers</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.layers">¶</a> – A list of slices of dataframe, containing coordinates
+and values</p></li>
+<li><p><span class="target" id="nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.geography"></span><strong>geography</strong><a class="paramlink headerlink reference internal" href="#nsaph_gis.compute_shape.StatsCounter.process_layers_return_dict.params.geography">¶</a> – WHat type of geography is to be used: zip codes
+or counties</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A List of records, containing an identifier
+of a certain shape with the aggregated value of the observation
+for this shape</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.AggregationError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AggregationError</span></span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#AggregationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.AggregationError" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="nsaph_gis.compute_shape.IncompatibleArgumentsError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IncompatibleArgumentsError</span></span><a class="reference internal" href="../../../../_modules/nsaph_gis/compute_shape.html#IncompatibleArgumentsError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nsaph_gis.compute_shape.IncompatibleArgumentsError" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </div>
 

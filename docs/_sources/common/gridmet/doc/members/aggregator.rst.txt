@@ -6,7 +6,7 @@
 The aggregator Module
 ============================================================================
 
-.. automodule:: pollution.aggregator
+.. automodule:: gridmet.aggregator
    :members:
    :undoc-members:
 

@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -61,8 +65,9 @@
 <li class="toctree-l3"><a class="reference internal" href="members/config.html">The config Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="members/gridmet_tools.html">The gridmet_tools Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="members/launcher.html">The launcher Module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="members/shapes.html">The shapes Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="members/task.html">The task Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/netCDF_file_processor.html">The netCDF_file_processor Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="members/wustl_file_processor.html">The wustl_file_processor Module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../census/doc/index.html">Census data manipulation tools</a></li>
@@ -87,12 +92,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="index.html">Gridmet Computational Utilities</a> &raquo;</li>
-          <li><a href="python_components.html">gridMET Python Modules</a> &raquo;</li>
-          <li><a href="classes.html">Main Classes</a> &raquo;</li>
-      <li>Task Object</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Gridmet Computational Utilities</a></li>
+          <li class="breadcrumb-item"><a href="python_components.html">gridMET Python Modules</a></li>
+          <li class="breadcrumb-item"><a href="classes.html">Main Classes</a></li>
+      <li class="breadcrumb-item active">Task Object</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/gridmet/doc/gridmet_task.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -106,7 +111,7 @@
 <h1>Task Object<a class="headerlink" href="#task-object" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="gridmet.task.GridmetTask">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GridmetTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridmetContext" title="gridmet.config.GridmetContext"><span class="pre">GridmetContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridmetVariable" title="gridmet.config.GridmetVariable"><span class="pre">GridmetVariable</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/gridmet/task.html#GridmetTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.task.GridmetTask" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GridmetTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridMETContext" title="gridmet.config.GridMETContext"><span class="pre">GridMETContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridmetVariable" title="gridmet.config.GridmetVariable"><span class="pre">GridmetVariable</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/gridmet/task.html#GridmetTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.task.GridmetTask" title="Permalink to this definition"></a></dt>
 <dd><p>Defines a task to download and process data for a single year and variable
 Instances of this class can be used to parallelize processing</p>
 <dl class="field-list simple">
@@ -120,7 +125,7 @@ Instances of this class can be used to parallelize processing</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="gridmet.task.GridmetTask.destination_file_name">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination_file_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridmetContext" title="gridmet.config.GridmetContext"><span class="pre">GridmetContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridmetVariable" title="gridmet.config.GridmetVariable"><span class="pre">GridmetVariable</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/gridmet/task.html#GridmetTask.destination_file_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.task.GridmetTask.destination_file_name" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination_file_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridMETContext" title="gridmet.config.GridMETContext"><span class="pre">GridMETContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridmetVariable" title="gridmet.config.GridmetVariable"><span class="pre">GridmetVariable</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/gridmet/task.html#GridmetTask.destination_file_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.task.GridmetTask.destination_file_name" title="Permalink to this definition"></a></dt>
 <dd><p>Constructs a file name for a given set of parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -138,7 +143,7 @@ Instances of this class can be used to parallelize processing</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gridmet.task.GridmetTask.find_shape_file">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_shape_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridmetContext" title="gridmet.config.GridmetContext"><span class="pre">GridmetContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="shapes.html#gridmet.config.Shape" title="gridmet.config.Shape"><span class="pre">Shape</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/gridmet/task.html#GridmetTask.find_shape_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.task.GridmetTask.find_shape_file" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_shape_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="members/config.html#gridmet.config.GridMETContext" title="gridmet.config.GridMETContext"><span class="pre">GridMETContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="shapes.html#gridmet.config.Shape" title="gridmet.config.Shape"><span class="pre">Shape</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/gridmet/task.html#GridmetTask.find_shape_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.task.GridmetTask.find_shape_file" title="Permalink to this definition"></a></dt>
 <dd><p>Finds shapefile for a given type of geographies for the
 closest available year</p>
 <dl class="field-list simple">

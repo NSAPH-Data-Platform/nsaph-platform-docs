@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -90,10 +94,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../guts.html">Data Platform Internals</a> &raquo;</li>
-          <li><a href="index.html">NSAPH Core Data Platform</a> &raquo;</li>
-      <li>Project (Directory) Loading Utility</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../guts.html">Data Platform Internals</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NSAPH Core Data Platform</a></li>
+      <li class="breadcrumb-item active">Project (Directory) Loading Utility</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/core-platform/doc/ProjectLoader.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -130,7 +134,7 @@ of the table is constructed from the relative path of the
 incoming data file with OS path separators (e.g. ‘/’) being
 replaced with underscores (‘_’).</p>
 <p>It might be a good idea, before actually ingesting data into the database to
-do a <a class="reference internal" href="#dry-runs-introspect-only"><span class="std std-doc">dry run</span></a> and visually examine the
+do a <a class="reference internal" href="#dry-runs-introspect-only">dry run</a> and visually examine the
 database schema created by Introspection utility.</p>
 <p>Loading into the database is performed using
 <a class="reference internal" href="members/data_loader.html"><span class="doc std std-doc">Data Loader</span></a> functionality.</p>
@@ -151,7 +155,7 @@ expected to be quoted</p></li>
 <li><p>index:   “unless excluded”  ## We will build indices for every column
 unless it is explicitly excluded</p></li>
 </ul>
-<p>See <a class="reference internal" href="Datamodels.html#domain"><span class="std std-doc">Domain options</span></a> for the descriptions
+<p>See <a class="reference internal" href="Datamodels.html#domain"><span class="std std-ref">Domain options</span></a> for the descriptions
 of these parameters.</p>
 <p>When a registry file is created it can be manually edited by user. The
 manual modifications will be preserved for subsequent runs.</p>
@@ -256,7 +260,7 @@ the project (see <a class="reference internal" href="Datamodels.html"><span clas
 the description of the format) without modifications in the database,
 use dry run. On the command line, just give :code:<code class="docutils literal notranslate"><span class="pre">--dryrun</span></code> option.</p>
 <p>Dry run will create “registry” file that can be manually examined and
-modified. The following command described <a class="reference internal" href="#sample-command"><span class="std std-doc">above</span></a>
+modified. The following command described <a class="reference internal" href="#sample-command">above</a>
 will perform dry run:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python -u -m nsaph.loader.project_loader --domain my_schema --data /data/incoming/valuable/data/ --registry my_temp_schema.yaml --dryrun --pattern *.csv 
 </pre></div>

@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,9 +67,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>cms.fts2yaml</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">cms.fts2yaml</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -296,10 +300,17 @@
             <span class="k">return</span> <span class="n">PG_DATE_TYPE</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Unexpected column type: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">))</span></div>
 
+<div class="viewcode-block" id="FTSColumn.get_description"><a class="viewcode-back" href="../../common/cms/doc/members/fts2yaml.html#cms.fts2yaml.FTSColumn.get_description">[docs]</a>    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+            <span class="s2">&quot;original_type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
+        <span class="p">}</span></div>
+
 <div class="viewcode-block" id="FTSColumn.to_dict"><a class="viewcode-back" href="../../common/cms/doc/members/fts2yaml.html#cms.fts2yaml.FTSColumn.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_sql_type</span><span class="p">(),</span>
-            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span>
         <span class="p">}</span></div>
 
 <div class="viewcode-block" id="FTSColumn.to_fwf_column"><a class="viewcode-back" href="../../common/cms/doc/members/fts2yaml.html#cms.fts2yaml.FTSColumn.to_fwf_column">[docs]</a>    <span class="k">def</span> <span class="nf">to_fwf_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FWFColumn</span><span class="p">:</span>
@@ -384,7 +395,12 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="k">raise</span></div>
+            <span class="k">raise</span>
+
+<div class="viewcode-block" id="MedicareFTSColumn.get_description"><a class="viewcode-back" href="../../common/cms/doc/members/fts2yaml.html#cms.fts2yaml.MedicareFTSColumn.get_description">[docs]</a>    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_description</span><span class="p">()</span>
+        <span class="n">desc</span><span class="p">[</span><span class="s2">&quot;long_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span>
+        <span class="k">return</span> <span class="n">desc</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">CMSFTS</span><span class="p">:</span>

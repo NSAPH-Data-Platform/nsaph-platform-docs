@@ -113,20 +113,21 @@ This library contains several packages, aimed to work with census shape files.
 
 <!-- end of section overview from gis -->
 
-### Pipelines
+### Data Processing and Loading Pipelines
 
-Ingestion and Processing pipelines for the **EPA** Environmental Protection Agency and **gridMET** datasets are ready to be used by any interested party. The pipeline that
-processes claims data from Medicaid which cannot be made publicly available can be
-tested only by users who have their own data user agreement with the Centers for
-Medicare and Medicaid Services **CMS** and have access to their own Medicaid
-claims data from ResDAC. The pipeline we publish processes Medicaid MAX (
-Medicaid Analytic Extract) Personal Summary (PS) and The Medicaid MAX (Medicaid
-Analytic Extract) Inpatient (IP) files. The following table 
-summarizes the included data processing pipelines. **Census** data is requested via the US Census Bureau data API.
+See [dedicated Pipelines page](pipelines) for additional details.
 
-Details of each of the data domains and corresponding pipelines are covered in the [Data Domains](domains) and [Data Processing Pipelines](pipelines) sections. 
+Fully tested and supported pipelines are listed in the
+[Pipelines](pipelines) page. At this moment, we have published processing
+pipelines for all [Data Domains](domains) except Demographics. However,
+it is not possible to test health data processing pipelines without
+access to the same health data that was used for their development.
 
-To include additional data in a deployed data-platform instance go to [Adding more data](adding_data) section.
+To include additional data in a deployed data-platform instance 
+go to [Adding more data](adding_data) section.
+
+Pipelines can be tested with
+[DBT Pipeline Testing Framework](common/core-platform/doc/DBT)
 
 ## Deployment
 

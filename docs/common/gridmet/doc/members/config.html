@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -57,8 +61,9 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">The config Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gridmet_tools.html">The gridmet_tools Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="launcher.html">The launcher Module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="shapes.html">The shapes Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="task.html">The task Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netCDF_file_processor.html">The netCDF_file_processor Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wustl_file_processor.html">The wustl_file_processor Module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../census/doc/index.html">Census data manipulation tools</a></li>
@@ -83,11 +88,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">Gridmet Computational Utilities</a> &raquo;</li>
-          <li><a href="../python_components.html">gridMET Python Modules</a> &raquo;</li>
-      <li>The config Module</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Gridmet Computational Utilities</a></li>
+          <li class="breadcrumb-item"><a href="../python_components.html">gridMET Python Modules</a></li>
+      <li class="breadcrumb-item active">The config Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gridmet/doc/members/config.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -253,62 +258,38 @@ and additional exposure variable types</p>
 <dd><p>Wind velocity at 10m: m/s</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetVariable.pm25">
-<span class="sig-name descname"><span class="pre">pm25</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pm25'</span></em><a class="headerlink" href="#gridmet.config.GridmetVariable.pm25" title="Permalink to this definition"></a></dt>
-<dd><p>PM25 exposure data</p>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="gridmet.config.OutputType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OutputType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/config.html#OutputType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.config.OutputType" title="Permalink to this definition"></a></dt>
+<dd><p>Type of teh output that the tool should produce</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetVariable.BCp">
-<span class="sig-name descname"><span class="pre">BCp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BCp'</span></em><a class="headerlink" href="#gridmet.config.GridmetVariable.BCp" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.OutputType.aggregation">
+<span class="sig-name descname"><span class="pre">aggregation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'aggregation'</span></em><a class="headerlink" href="#gridmet.config.OutputType.aggregation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetVariable.NH4p">
-<span class="sig-name descname"><span class="pre">NH4p</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NH4p'</span></em><a class="headerlink" href="#gridmet.config.GridmetVariable.NH4p" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetVariable.NITp">
-<span class="sig-name descname"><span class="pre">NITp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NITp'</span></em><a class="headerlink" href="#gridmet.config.GridmetVariable.NITp" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetVariable.OMp">
-<span class="sig-name descname"><span class="pre">OMp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'OMp'</span></em><a class="headerlink" href="#gridmet.config.GridmetVariable.OMp" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetVariable.SO4p">
-<span class="sig-name descname"><span class="pre">SO4p</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SO4p'</span></em><a class="headerlink" href="#gridmet.config.GridmetVariable.SO4p" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetVariable.SOILp">
-<span class="sig-name descname"><span class="pre">SOILp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SOILp'</span></em><a class="headerlink" href="#gridmet.config.GridmetVariable.SOILp" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetVariable.SSp">
-<span class="sig-name descname"><span class="pre">SSp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SSp'</span></em><a class="headerlink" href="#gridmet.config.GridmetVariable.SSp" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.OutputType.data_dictionary">
+<span class="sig-name descname"><span class="pre">data_dictionary</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'data_dictionary'</span></em><a class="headerlink" href="#gridmet.config.OutputType.data_dictionary" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GridmetContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/config.html#GridmetContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.config.GridmetContext" title="Permalink to this definition"></a></dt>
-<dd><p>Defines a context of a running a gridmet pipeline.</p>
+<dt class="sig sig-object py" id="gridmet.config.GridContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GridContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subclass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/config.html#GridContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.config.GridContext" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a configuration object to process aggregations and other tasks
+over data grids</p>
 <p>Constructor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><span class="target" id="gridmet.config.GridmetContext.params.doc"></span><strong>doc</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridmetContext.params.doc">¶</a> – Optional argument, specifying what to print as documentation</p>
+<dd class="field-odd"><p><span class="target" id="gridmet.config.GridContext.params.doc"></span><strong>doc</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridContext.params.doc">¶</a> – Optional argument, specifying what to print as documentation</p>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.variables">
-<span class="sig-name descname"><span class="pre">variables</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.variables" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.variables">
+<span class="sig-name descname"><span class="pre">variables</span></span><a class="headerlink" href="#gridmet.config.GridContext.variables" title="Permalink to this definition"></a></dt>
 <dd><p>Gridmet bands or variables</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -318,27 +299,27 @@ and additional exposure variable types</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.strategy">
-<span class="sig-name descname"><span class="pre">strategy</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.strategy" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.strategy">
+<span class="sig-name descname"><span class="pre">strategy</span></span><a class="headerlink" href="#gridmet.config.GridContext.strategy" title="Permalink to this definition"></a></dt>
 <dd><p>Rasterization strategy
 :type: RasterizationStrategy</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.destination">
-<span class="sig-name descname"><span class="pre">destination</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.destination" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.destination">
+<span class="sig-name descname"><span class="pre">destination</span></span><a class="headerlink" href="#gridmet.config.GridContext.destination" title="Permalink to this definition"></a></dt>
 <dd><p>Destination directory for the processed files</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.raw_downloads">
-<span class="sig-name descname"><span class="pre">raw_downloads</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.raw_downloads" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.raw_downloads">
+<span class="sig-name descname"><span class="pre">raw_downloads</span></span><a class="headerlink" href="#gridmet.config.GridContext.raw_downloads" title="Permalink to this definition"></a></dt>
 <dd><p>Directory for downloaded raw files</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.geography">
-<span class="sig-name descname"><span class="pre">geography</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.geography" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.geography">
+<span class="sig-name descname"><span class="pre">geography</span></span><a class="headerlink" href="#gridmet.config.GridContext.geography" title="Permalink to this definition"></a></dt>
 <dd><p>The type of geographic area over which we aggregate data</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -348,14 +329,14 @@ and additional exposure variable types</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.shapes_dir">
-<span class="sig-name descname"><span class="pre">shapes_dir</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.shapes_dir" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.shapes_dir">
+<span class="sig-name descname"><span class="pre">shapes_dir</span></span><a class="headerlink" href="#gridmet.config.GridContext.shapes_dir" title="Permalink to this definition"></a></dt>
 <dd><p>Directory containing shape files for geographies</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.shapes">
-<span class="sig-name descname"><span class="pre">shapes</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.shapes" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.shapes">
+<span class="sig-name descname"><span class="pre">shapes</span></span><a class="headerlink" href="#gridmet.config.GridContext.shapes" title="Permalink to this definition"></a></dt>
 <dd><p>Type of shapes to aggregate over, e.g. points, polygons</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -365,39 +346,107 @@ and additional exposure variable types</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.points">
-<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.points" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.points">
+<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#gridmet.config.GridContext.points" title="Permalink to this definition"></a></dt>
 <dd><p>Path to CSV file containing points</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.coordinates">
-<span class="sig-name descname"><span class="pre">coordinates</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.coordinates" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.coordinates">
+<span class="sig-name descname"><span class="pre">coordinates</span></span><a class="headerlink" href="#gridmet.config.GridContext.coordinates" title="Permalink to this definition"></a></dt>
 <dd><p>Column names for coordinates</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.metadata">
-<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#gridmet.config.GridmetContext.metadata" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><a class="headerlink" href="#gridmet.config.GridContext.metadata" title="Permalink to this definition"></a></dt>
 <dd><p>Column names for metadata</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.dates">
-<span class="sig-name descname"><span class="pre">dates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#gridmet.config.DateFilter" title="gridmet.config.DateFilter"><span class="pre">DateFilter</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#gridmet.config.GridmetContext.dates" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.extra_columns">
+<span class="sig-name descname"><span class="pre">extra_columns</span></span><a class="headerlink" href="#gridmet.config.GridContext.extra_columns" title="Permalink to this definition"></a></dt>
+<dd><p>Columns with constant values to be added to the output file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gridmet.config.GridContext.dates">
+<span class="sig-name descname"><span class="pre">dates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#gridmet.config.DateFilter" title="gridmet.config.DateFilter"><span class="pre">DateFilter</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#gridmet.config.GridContext.dates" title="Permalink to this definition"></a></dt>
 <dd><p>Filter on dates - for debugging purposes only</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gridmet.config.GridContext.statistics">
+<span class="sig-name descname"><span class="pre">statistics</span></span><a class="headerlink" href="#gridmet.config.GridContext.statistics" title="Permalink to this definition"></a></dt>
+<dd><p>Type of statistics</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gridmet.config.GridContext.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#gridmet.config.GridContext.description" title="Permalink to this definition"></a></dt>
+<dd><p>Description to be added to data dictionary</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gridmet.config.GridContext.table">
+<span class="sig-name descname"><span class="pre">table</span></span><a class="headerlink" href="#gridmet.config.GridContext.table" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the table where the aggregated data will be stored</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gridmet.config.GridContext.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#gridmet.config.GridContext.output" title="Permalink to this definition"></a></dt>
+<dd><p>Type of the output the tool should produce</p>
+</dd></dl>
+
 <dl class="py method">
-<dt class="sig sig-object py" id="gridmet.config.GridmetContext.validate">
-<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/config.html#GridmetContext.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.config.GridmetContext.validate" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="gridmet.config.GridContext.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/config.html#GridContext.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.config.GridContext.validate" title="Permalink to this definition"></a></dt>
 <dd><p>Subclasses can override this method to implement custom handling
 of command line arguments</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gridmet.config.GridmetContext.validate.params.attr"></span><strong>attr</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridmetContext.validate.params.attr">¶</a> – Command line argument name</p></li>
-<li><p><span class="target" id="gridmet.config.GridmetContext.validate.params.value"></span><strong>value</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridmetContext.validate.params.value">¶</a> – Value returned by argparse</p></li>
+<li><p><span class="target" id="gridmet.config.GridContext.validate.params.attr"></span><strong>attr</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridContext.validate.params.attr">¶</a> – Command line argument name</p></li>
+<li><p><span class="target" id="gridmet.config.GridContext.validate.params.value"></span><strong>value</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridContext.validate.params.value">¶</a> – Value returned by argparse</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>value to use</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gridmet.config.GridMETContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GridMETContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/config.html#GridMETContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.config.GridMETContext" title="Permalink to this definition"></a></dt>
+<dd><p>Defines a configuration object to process aggregations and other tasks
+over data grids containing gridMET data. Includes validation that
+a correct gridMET band is provided</p>
+<p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><span class="target" id="gridmet.config.GridMETContext.params.doc"></span><strong>doc</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridMETContext.params.doc">¶</a> – Optional argument, specifying what to print as documentation</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gridmet.config.GridMETContext.dates">
+<span class="sig-name descname"><span class="pre">dates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#gridmet.config.DateFilter" title="gridmet.config.DateFilter"><span class="pre">DateFilter</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#gridmet.config.GridMETContext.dates" title="Permalink to this definition"></a></dt>
+<dd><p>Filter on dates - for debugging purposes only</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gridmet.config.GridMETContext.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/gridmet/config.html#GridMETContext.validate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.config.GridMETContext.validate" title="Permalink to this definition"></a></dt>
+<dd><p>Subclasses can override this method to implement custom handling
+of command line arguments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gridmet.config.GridMETContext.validate.params.attr"></span><strong>attr</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridMETContext.validate.params.attr">¶</a> – Command line argument name</p></li>
+<li><p><span class="target" id="gridmet.config.GridMETContext.validate.params.value"></span><strong>value</strong><a class="paramlink headerlink reference internal" href="#gridmet.config.GridMETContext.validate.params.value">¶</a> – Value returned by argparse</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

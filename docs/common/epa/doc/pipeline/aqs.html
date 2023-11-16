@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,20 +49,27 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../rationale.html">What is Data Platform</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../domains.html">Data Domains</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/pipeline/gridmet.html">gridMET Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/pipeline/wustl.html">Pipeline to ingest Pollution downloaded from WashU Box</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../gridmet/doc/pipeline/pm25_yearly_download.html">Pipeline to to aggregate data in NetCDF format over given geographies</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Full EPA AQS Processing Pipeline</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#inputs">Inputs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#outputs">Outputs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#steps">Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../pipelines.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../pipelines.html#running-pipelines">Running Pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../pipelines.html#testing-pipelines">Testing pipelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../pipelines.html#installing-python-dependencies">Installing Python dependencies</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../pipelines.html#published-and-tested-pipelines">Published and tested pipelines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../gridmet/doc/pipeline/gridmet.html">gridMET Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../gridmet/doc/pipeline/wustl.html">Pipeline to ingest Pollution downloaded from WashU Box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../gridmet/doc/pipeline/pm25_yearly_download.html">Pipeline to aggregate data in NetCDF format over given geographies</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Full EPA AQS Processing Pipeline</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outputs">Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps">Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="airnow.html">Full EPA AirNow Processing Pipeline (including downloading shapefiles)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/pipeline/medicare.html">Medicare data ingestion and processing pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/pipeline/medicaid.html">Full Medicaid Processing Pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../census/doc/pipeline/census_workflow.html">census_workflow.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="airnow.html">Full EPA AirNow Processing Pipeline (including downloading shapefiles)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cms/doc/pipeline/medicare.html">Medicare data ingestion and processing pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cms/doc/pipeline/medicaid.html">Full Medicaid Processing Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../census/doc/pipeline/census_workflow.html">census_workflow.cwl</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../packages.html">Python Packages</a></li>
@@ -81,11 +92,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH EPA Package Description</a> &raquo;</li>
-          <li><a href="../cwl_tools.html">CWL Tools and Common Workflows</a> &raquo;</li>
-      <li>Full EPA AQS Processing Pipeline</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH EPA Package Description</a></li>
+          <li class="breadcrumb-item"><a href="../cwl_tools.html">CWL Tools and Common Workflows</a></li>
+      <li class="breadcrumb-item active">Full EPA AQS Processing Pipeline</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/epa/doc/pipeline/aqs.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,7 +108,7 @@
              
   <div class="section" id="full-epa-aqs-processing-pipeline">
 <h1>Full EPA AQS Processing Pipeline<a class="headerlink" href="#full-epa-aqs-processing-pipeline" title="Permalink to this heading"></a></h1>
-<p><a class="reference internal" href="aqscwl_src.html"><span class="doc std std-doc">Source code</span></a></p>
+<p><a class="reference internal" href="aqscwl_src.html"><span class="std std-doc">Source code</span></a></p>
 <p><img alt="" src="../../../../_images/aqs.png" /></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -117,7 +128,7 @@ and ingests the data into the database</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cwl-runner aqs.cwl sample_aqs_annual.yml
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="sample_aqs.html"><span class="doc std std-doc">sample_aqs_annual.yml</span></a></p>
+<p>See <a class="reference internal" href="sample_aqs.html"><span class="std std-doc">sample_aqs_annual.yml</span></a></p>
 <p>Or</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cwl-runner /opt/airflow/project/epa/src/cwl/aqs.cwl --database /opt/airflow/project/database.ini --connection_name nsaph2 --agregation annual --parameter_code PM25 --table pm25_annual --proxy <span class="nv">$HTTP_PROXY</span>
 </pre></div>
@@ -182,27 +193,27 @@ and ingests the data into the database</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>resource1_log</p></td>
+<tr class="row-even"><td class="text-left"><p>initdb_log</p></td>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>resource2_log</p></td>
+<tr class="row-odd"><td class="text-left"><p>expand_log</p></td>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>expand_log</p></td>
+<tr class="row-even"><td class="text-left"><p>introspect_log</p></td>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>introspect_log</p></td>
+<tr class="row-odd"><td class="text-left"><p>ingest_log</p></td>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>ingest_log</p></td>
+<tr class="row-even"><td class="text-left"><p>index_log</p></td>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>index_log</p></td>
+<tr class="row-odd"><td class="text-left"><p>vacuum_log</p></td>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 </tr>
@@ -222,6 +233,14 @@ and ingests the data into the database</p>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 </tr>
+<tr class="row-even"><td class="text-left"><p>index_err</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>vacuum_err</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -235,32 +254,32 @@ and ingests the data into the database</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>states</p></td>
-<td class="text-left"><p><a class="reference internal" href="ensure_resource.html"><span class="doc std std-doc">ensure_resource.cwl</span></a></p></td>
-<td class="text-left"><p>Ensures the presence of <code class="docutils literal notranslate"><span class="pre">us_states</span></code> table in the database. The table contains mapping between state names, ids (two letter abbreviations), FIPS codes and <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-2">ISO-3166-2 codes</a></p></td>
+<tr class="row-even"><td class="text-left"><p>initdb</p></td>
+<td class="text-left"><p><a class="reference internal" href="initcoredb.html"><span class="std std-doc">initcoredb.cwl</span></a></p></td>
+<td class="text-left"><p>Ensure that database utilities are at their latest version</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>iso</p></td>
-<td class="text-left"><p><a class="reference internal" href="ensure_resource.html"><span class="doc std std-doc">ensure_resource.cwl</span></a></p></td>
-<td class="text-left"><p>Ensures the presence of <code class="docutils literal notranslate"><span class="pre">us_iso</span></code> table in the database. The table provides a mapping between states, counties and zip codes. It contains FIPS and <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-2">ISO-3166-2 codes</a></p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>download</p></td>
-<td class="text-left"><p><a class="reference internal" href="download_aqs.html"><span class="doc std std-doc">download_aqs.cwl</span></a></p></td>
+<tr class="row-odd"><td class="text-left"><p>download</p></td>
+<td class="text-left"><p><a class="reference internal" href="download_aqs.html"><span class="std std-doc">download_aqs.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>expand</p></td>
-<td class="text-left"><p><a class="reference internal" href="expand_aqs.html"><span class="doc std std-doc">expand_aqs.cwl</span></a></p></td>
+<tr class="row-even"><td class="text-left"><p>expand</p></td>
+<td class="text-left"><p><a class="reference internal" href="expand_aqs.html"><span class="std std-doc">expand_aqs.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>introspect</p></td>
-<td class="text-left"><p><a class="reference internal" href="introspect.html"><span class="doc std std-doc">introspect.cwl</span></a></p></td>
+<tr class="row-odd"><td class="text-left"><p>introspect</p></td>
+<td class="text-left"><p><a class="reference internal" href="introspect.html"><span class="std std-doc">introspect.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>ingest</p></td>
-<td class="text-left"><p><a class="reference internal" href="ingest.html"><span class="doc std std-doc">ingest.cwl</span></a></p></td>
+<tr class="row-even"><td class="text-left"><p>ingest</p></td>
+<td class="text-left"><p><a class="reference internal" href="ingest.html"><span class="std std-doc">ingest.cwl</span></a></p></td>
 <td class="text-left"><p>Uploads data into the database</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>index</p></td>
-<td class="text-left"><p><a class="reference internal" href="index.html"><span class="doc std std-doc">index.cwl</span></a></p></td>
+<tr class="row-odd"><td class="text-left"><p>index</p></td>
+<td class="text-left"><p><a class="reference internal" href="index.html"><span class="std std-doc">index.cwl</span></a></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>vacuum</p></td>
+<td class="text-left"><p><a class="reference internal" href="vacuum.html"><span class="std std-doc">vacuum.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
 </tbody>

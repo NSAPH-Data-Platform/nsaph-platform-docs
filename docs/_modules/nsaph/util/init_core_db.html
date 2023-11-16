@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,10 +67,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Module code</a> &raquo;</li>
-          <li><a href="../../nsaph.html">nsaph</a> &raquo;</li>
-      <li>nsaph.util.init_core_db</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../nsaph.html">nsaph</a></li>
+      <li class="breadcrumb-item active">nsaph.util.init_core_db</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -140,7 +144,7 @@
     <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">ppp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;python&quot;</span><span class="p">:</span>
             <span class="k">break</span>
-        <span class="k">if</span> <span class="n">ppp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;site-packages&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ppp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;site-packages&quot;</span><span class="p">,</span> <span class="s2">&quot;dist-packages&quot;</span><span class="p">]:</span>
             <span class="n">n</span> <span class="o">+=</span> <span class="mi">2</span>
             <span class="k">break</span>
         <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>

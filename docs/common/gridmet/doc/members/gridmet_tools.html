@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -57,8 +61,9 @@
 <li class="toctree-l3"><a class="reference internal" href="config.html">The config Module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">The gridmet_tools Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="launcher.html">The launcher Module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="shapes.html">The shapes Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="task.html">The task Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netCDF_file_processor.html">The netCDF_file_processor Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wustl_file_processor.html">The wustl_file_processor Module</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../census/doc/index.html">Census data manipulation tools</a></li>
@@ -83,11 +88,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">Gridmet Computational Utilities</a> &raquo;</li>
-          <li><a href="../python_components.html">gridMET Python Modules</a> &raquo;</li>
-      <li>The gridmet_tools Module</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Gridmet Computational Utilities</a></li>
+          <li class="breadcrumb-item"><a href="../python_components.html">gridMET Python Modules</a></li>
+      <li class="breadcrumb-item active">The gridmet_tools Module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/gridmet/doc/members/gridmet_tools.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -139,7 +144,7 @@ given a year and a band</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gridmet.gridmet_tools.check_shape_file">
-<span class="sig-name descname"><span class="pre">check_shape_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geography_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/gridmet/gridmet_tools.html#check_shape_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.gridmet_tools.check_shape_file" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">check_shape_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geography_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">[typing.Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">&lt;class</span> <span class="pre">'list'&gt;]</span></span></span><a class="reference internal" href="../../../../_modules/gridmet/gridmet_tools.html#check_shape_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gridmet.gridmet_tools.check_shape_file" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

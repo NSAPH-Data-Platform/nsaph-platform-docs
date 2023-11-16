@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Using HyperLogLog (HLL) hashes for count approximations</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using HyperLogLog (HLL) hashes for count approximations</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/common/cms/doc/UsingHLL.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -76,10 +80,22 @@
              
   <div class="section" id="using-hyperloglog-hll-hashes-for-count-approximations">
 <h1>Using HyperLogLog (HLL) hashes for count approximations<a class="headerlink" href="#using-hyperloglog-hll-hashes-for-count-approximations" title="Permalink to this heading"></a></h1>
-<p>Background info: see <a class="reference external" href="https://en.wikipedia.org/wiki/HyperLogLog">Wikipedia</a></p>
+<p>HyperLogLog is an algorithm to estimate cardinality in extremely
+large datasets using little memory and time.
+This simple but extremely powerful algorithm aims to answer a question:
+How to estimate the number of unique values (aka cardinality)
+within a very large dataset? This question is called Count-distinct
+problem in Computer Science or Cardinality Estimation Problem
+in Applied Mathematics. We will call it Cardinality Estimation
+Problem in this article because it sounds more impressive.</p>
+<p>Background info: see
+<a class="reference external" href="https://towardsdatascience.com/hyperloglog-a-simple-but-powerful-algorithm-for-data-scientists-aed50fe47869">HyperLogLog: A Simple but Powerful Algorithm for Data Scientists</a></p>
+<p>Also <a class="reference external" href="https://en.wikipedia.org/wiki/HyperLogLog">Wikipedia</a></p>
 <p>We use
 <a class="reference external" href="https://github.com/citusdata/postgresql-hll">PostgreSQL HLL Extension</a>
-to facilitate approximate queries.</p>
+to facilitate approximate <strong>COUNT DISTINCT</strong> queries. For example, to estimate
+a number of beneficiaries that ever lived in a certain zip code, or a group of
+zip codes.</p>
 </div>
 
 

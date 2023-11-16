@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="Index Builder" href="index.html" />
-    <link rel="prev" title="Tool retrieving county or zip shapefiles from Census website" href="get_shapes.html" /> 
+    <link rel="prev" title="Downloader of AirNow Data" href="get_shapes.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,11 +87,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH EPA Package Description</a> &raquo;</li>
-          <li><a href="../cwl_tools.html">CWL Tools and Common Workflows</a> &raquo;</li>
-      <li>get_shapes.cwl</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH EPA Package Description</a></li>
+          <li class="breadcrumb-item"><a href="../cwl_tools.html">CWL Tools and Common Workflows</a></li>
+      <li class="breadcrumb-item active">get_shapes.cwl</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/epa/doc/pipeline/get_shapescwl_src.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,12 +104,12 @@
   <div class="section" id="get-shapes-cwl">
 <h1>get_shapes.cwl<a class="headerlink" href="#get-shapes-cwl" title="Permalink to this heading"></a></h1>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/env cwl-runner</span>
-<span class="c1">### Tool retrieving county or zip shapefiles from Census website</span>
+<span class="c1">### Downloader of AirNow Data</span>
 <span class="c1">#  Copyright (c) 2021. Harvard University</span>
 <span class="c1">#</span>
 <span class="c1">#  Developed by Research Software Engineering,</span>
 <span class="c1">#  Faculty of Arts and Sciences, Research Computing (FAS RC)</span>
-<span class="c1">#  Author: Michael A Bouzinier</span>
+<span class="c1">#  Author: Quantori LLC</span>
 <span class="c1">#</span>
 <span class="c1">#  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
 <span class="c1">#  you may not use this file except in compliance with the License.</span>
@@ -122,43 +126,47 @@
 
 <span class="nt">cwlVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1.2</span>
 <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CommandLineTool</span>
-<span class="nt">baseCommand</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">python</span><span class="p p-Indicator">,</span> <span class="nv">-m</span><span class="p p-Indicator">,</span> <span class="nv">epa.airnow_shapes</span><span class="p p-Indicator">]</span>
+<span class="nt">baseCommand</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">python</span><span class="p p-Indicator">,</span> <span class="nv">-m</span><span class="p p-Indicator">,</span> <span class="nv">nsaph_gis.shapes_downloader</span><span class="p p-Indicator">]</span>
+
 <span class="nt">requirements</span><span class="p">:</span>
-  <span class="nt">InlineJavascriptRequirement</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+  <span class="nt">ResourceRequirement</span><span class="p">:</span>
+    <span class="nt">coresMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
   <span class="nt">EnvVarRequirement</span><span class="p">:</span>
     <span class="nt">envDef</span><span class="p">:</span>
-      <span class="nt">HTTPS_PROXY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">$(inputs.proxy)</span>
-      <span class="nt">HTTP_PROXY</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">$(inputs.proxy)</span>
+      <span class="nt">HTTP_PROXY</span><span class="p">:</span> <span class="s">&quot;$(&#39;proxy&#39;</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">inputs?</span><span class="nv"> </span><span class="s">inputs.proxy:</span><span class="nv"> </span><span class="s">null)&quot;</span>
+      <span class="nt">HTTPS_PROXY</span><span class="p">:</span> <span class="s">&quot;$(&#39;proxy&#39;</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">inputs?</span><span class="nv"> </span><span class="s">inputs.proxy:</span><span class="nv"> </span><span class="s">null)&quot;</span>
+      <span class="nt">NO_PROXY</span><span class="p">:</span> <span class="s">&quot;localhost,127.0.0.1,172.17.0.1&quot;</span>
+
 
 <span class="nt">doc</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-  <span class="no">This tool downloads AirNow data from EPA website</span>
+  <span class="no">This tool downloads Shape files from US Census website</span>
 
 <span class="nt">inputs</span><span class="p">:</span>
   <span class="nt">proxy</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string?</span>
     <span class="nt">default</span><span class="p">:</span> <span class="s">&quot;&quot;</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">HTTP/HTTPS Proxy if required</span>
-  <span class="nt">parameter_code</span><span class="p">:</span>
+  <span class="nt">year</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Calendar year, for which we are downloading shape file</span>
+    <span class="nt">inputBinding</span><span class="p">:</span>
+      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--year</span>
+  <span class="nt">geo</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">geography type, zip, zcta or county</span>
+    <span class="nt">inputBinding</span><span class="p">:</span>
+      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--geography</span>
+  <span class="nt">collection</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tiger</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">Parameter code. Either a numeric code (e.g. 88101, 44201)</span>
-      <span class="no">or symbolic name (e.g. PM25, NO2).</span>
-      <span class="no">See more: [AQS Code List](https://www.epa.gov/aqs/aqs-code-list)</span>
+      <span class="no">[Collection of shapefiles](https://www2.census.gov/geo/tiger), </span>
+      <span class="no">either GENZ or TIGER</span>
     <span class="nt">inputBinding</span><span class="p">:</span>
-      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--parameters</span>
-  <span class="nt">from</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
-    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Start date for downolading, in YYYY-MM-DD format</span>
-    <span class="nt">inputBinding</span><span class="p">:</span>
-      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--from</span>
-  <span class="nt">to</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
-    <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">End date for downolading, in YYYY-MM-DD format</span>
-    <span class="nt">inputBinding</span><span class="p">:</span>
-      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--to</span>
+      <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--collection</span>
 
 <span class="nt">outputs</span><span class="p">:</span>
-  <span class="nt">shapes</span><span class="p">:</span>
+  <span class="nt">shape_files</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File[]</span>
     <span class="nt">outputBinding</span><span class="p">:</span>
       <span class="nt">glob</span><span class="p">:</span> <span class="s">&quot;*.shp&quot;</span>
@@ -175,7 +183,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="get_shapes.html" class="btn btn-neutral float-left" title="Tool retrieving county or zip shapefiles from Census website" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="get_shapes.html" class="btn btn-neutral float-left" title="Downloader of AirNow Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="index.html" class="btn btn-neutral float-right" title="Index Builder" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>medicaid.cwl</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">medicaid.cwl</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/cms/doc/pipeline/medicaidcwl_src.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -167,7 +171,7 @@
     <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">,</span> <span class="nv">model</span><span class="p p-Indicator">,</span> <span class="nv">errors</span><span class="p p-Indicator">]</span>
 
   <span class="nt">load_ps</span><span class="p">:</span>
-    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest.cwl</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest_cms.cwl</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Loads Patient Summaries</span>
     <span class="nt">in</span><span class="p">:</span>
       <span class="nt">registry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fts/model</span>
@@ -191,7 +195,7 @@
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vacuum_err</span>
 
   <span class="nt">load_ip</span><span class="p">:</span>
-    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest.cwl</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest_cms.cwl</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Loads inpatient admissions</span>
     <span class="nt">in</span><span class="p">:</span>
       <span class="nt">depends_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">load_ps/vacuum_log</span>
@@ -299,7 +303,7 @@
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vacuum_err</span>
 
   <span class="nt">load_admissions</span><span class="p">:</span>
-    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest.cwl</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest_cms.cwl</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Processes and loads inpatient admissions</span>
     <span class="nt">in</span><span class="p">:</span>
       <span class="nt">depends_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">create_eligibility/vacuum_log</span>

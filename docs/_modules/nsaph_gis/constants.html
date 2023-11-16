@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,9 +67,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>nsaph_gis.constants</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">nsaph_gis.constants</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -86,7 +90,10 @@
 <div class="viewcode-block" id="RasterizationStrategy"><a class="viewcode-back" href="../../common/gridmet/doc/strategy.html#nsaph_gis.constants.RasterizationStrategy">[docs]</a><span class="k">class</span> <span class="nc">RasterizationStrategy</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    `Rasterization Strategy  &lt;https://pythonhosted.org/rasterstats/manual.html#rasterization-strategy&gt;`_</span>
-<span class="sd">    to rasterize a vector</span>
+<span class="sd">    to rasterize a vector.</span>
+
+<span class="sd">    While `downscale` strategy provides the best accuracy it requires</span>
+<span class="sd">    significantly more resources, especially RAM.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span>
@@ -113,6 +120,12 @@
 <span class="sd">    A combination of &quot;default&quot; rasterization strategy with </span>
 <span class="sd">    affine transformation with downscaling factor = 5</span>
 <span class="sd">    </span>
+<span class="sd">    Effectively, the grid is interpolated with intermediate nodes,</span>
+<span class="sd">    increasing the number of nodes by the factor of 25 (5 x 5). Hence,</span>
+<span class="sd">    the accuracy is better, especially for complex and small shapes,</span>
+<span class="sd">    however, the aggregation will require 25 times more memory (RAM)</span>
+<span class="sd">    and will run slower.</span>
+<span class="sd">    </span>
 <span class="sd">    See `get_affine_transform &lt;../../../gridmet/doc/gridmet_tools.html#gridmet.gridmet_tools.get_affine_transform&gt;`_</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
@@ -122,7 +135,8 @@
     <span class="nb">zip</span> <span class="o">=</span> <span class="s1">&#39;zip&#39;</span>
     <span class="n">zcta</span> <span class="o">=</span> <span class="s1">&#39;zcta&#39;</span>
     <span class="n">county</span> <span class="o">=</span> <span class="s1">&#39;county&#39;</span>
-    <span class="n">custom</span> <span class="o">=</span> <span class="s1">&#39;custom&#39;</span></div>
+    <span class="n">custom</span> <span class="o">=</span> <span class="s1">&#39;custom&#39;</span>
+    <span class="nb">all</span>    <span class="o">=</span> <span class="s1">&#39;all&#39;</span></div>
 </pre></div>
 
            </div>

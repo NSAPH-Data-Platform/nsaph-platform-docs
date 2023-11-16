@@ -28,7 +28,8 @@ the processing steps are loaded into the database
 
 ## Outputs
 
-| Name | Type | Description | 
-|:-----|:-----|:------------|
-| log  | File |             | 
+| Name   | Type   | Description | 
+|:-------|:-------|:------------|
+| log    | File   |             | 
+| errors | stderr |             | 
 

@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -47,7 +51,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#nsaph-utilities">NSAPH Utilities</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#core-platform">Core Platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gis-utilities">GIS Utilities</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pipelines">Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-processing-and-loading-pipelines">Data Processing and Loading Pipelines</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a><ul>
@@ -81,8 +85,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>NSAPH Data Platform: Documentation Home</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">NSAPH Data Platform: Documentation Home</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/home.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,7 +108,7 @@
 <li><p><a class="reference internal" href="#nsaph-utilities" id="id3">NSAPH Utilities</a></p></li>
 <li><p><a class="reference internal" href="#core-platform" id="id4">Core Platform</a></p></li>
 <li><p><a class="reference internal" href="#gis-utilities" id="id5">GIS Utilities</a></p></li>
-<li><p><a class="reference internal" href="#pipelines" id="id6">Pipelines</a></p></li>
+<li><p><a class="reference internal" href="#data-processing-and-loading-pipelines" id="id6">Data Processing and Loading Pipelines</a></p></li>
 </ul>
 </li>
 <li><p><a class="reference internal" href="#deployment" id="id7">Deployment</a></p>
@@ -126,7 +130,7 @@ and we have chosen
 For deployment, we have selected CWL-Airflow to take advantage of the excellent
 user interface allowing for the control of the actual execution process.
 The data is eventually stored in a PostgreSQL DBMS; many processing steps
-in the <a class="reference internal" href="#pipelines"><span class="std std-ref">included data processing pipelines</span></a>
+in the <a class="reference internal" href="pipelines.html"><span class="doc std std-doc">included data processing pipelines</span></a>
 are being run inside the database itself.</p>
 <p>The data platform is based on a combination of an
 <a class="reference external" href="https://en.wikipedia.org/wiki/Infrastructure_as_code">Infrastructure as Code (IaC) approach</a>
@@ -134,10 +138,10 @@ and CWL. Beside tools written in widely used languages such as
 Python, C/C++ and
 Java, the platform also supports tools written in R and PL/pgSQL.
 Data platform consists of several <a class="reference internal" href="packages.html"><span class="doc std std-doc">python packages</span></a>,
-a <a class="reference internal" href="#deployment"><span class="std std-doc">package to deploy the platform</span></a>
+a <a class="reference internal" href="#deployment">package to deploy the platform</a>
 using <a class="reference external" href="https://cwl-airflow.readthedocs.io/en/latest/">CWL-Airflow</a>
 and a number of data ingestion pipelines.
-<a class="reference internal" href="#pipelines"><span class="std std-ref">Data ingestion pipelines</span></a>
+<a class="reference internal" href="pipelines.html"><span class="doc std std-doc">Data ingestion pipelines</span></a>
 process data from external sources and load it into the database.</p>
 <p>A discussion on what are the aims of this data platform and how reproducible research can benefit from such product is provided in the
 <a class="reference internal" href="rationale.html"><span class="doc std std-doc">What is Data Platform</span></a> section.</p>
@@ -208,18 +212,18 @@ and counties. See more information in the
 <p>This library contains several packages, aimed to work with census shape files.</p>
 <!-- end of section overview from gis -->
 </div>
-<div class="section" id="pipelines">
-<h3><a class="toc-backref" href="#id6">Pipelines</a><a class="headerlink" href="#pipelines" title="Permalink to this heading"></a></h3>
-<p>Ingestion and Processing pipelines for the <strong>EPA</strong> Environmental Protection Agency and <strong>gridMET</strong> datasets are ready to be used by any interested party. The pipeline that
-processes claims data from Medicaid which cannot be made publicly available can be
-tested only by users who have their own data user agreement with the Centers for
-Medicare and Medicaid Services <strong>CMS</strong> and have access to their own Medicaid
-claims data from ResDAC. The pipeline we publish processes Medicaid MAX (
-Medicaid Analytic Extract) Personal Summary (PS) and The Medicaid MAX (Medicaid
-Analytic Extract) Inpatient (IP) files. The following table
-summarizes the included data processing pipelines. <strong>Census</strong> data is requested via the US Census Bureau data API.</p>
-<p>Details of each of the data domains and corresponding pipelines are covered in the <a class="reference internal" href="domains.html"><span class="doc std std-doc">Data Domains</span></a> and <a class="reference internal" href="#pipelines"><span class="std std-ref">Data Processing Pipelines</span></a> sections.</p>
-<p>To include additional data in a deployed data-platform instance go to <a class="reference internal" href="adding_data.html"><span class="doc std std-doc">Adding more data</span></a> section.</p>
+<div class="section" id="data-processing-and-loading-pipelines">
+<h3><a class="toc-backref" href="#id6">Data Processing and Loading Pipelines</a><a class="headerlink" href="#data-processing-and-loading-pipelines" title="Permalink to this heading"></a></h3>
+<p>See <a class="reference internal" href="pipelines.html"><span class="doc std std-doc">dedicated Pipelines page</span></a> for additional details.</p>
+<p>Fully tested and supported pipelines are listed in the
+<a class="reference internal" href="pipelines.html"><span class="doc std std-doc">Pipelines</span></a> page. At this moment, we have published processing
+pipelines for all <a class="reference internal" href="domains.html"><span class="doc std std-doc">Data Domains</span></a> except Demographics. However,
+it is not possible to test health data processing pipelines without
+access to the same health data that was used for their development.</p>
+<p>To include additional data in a deployed data-platform instance
+go to <a class="reference internal" href="adding_data.html"><span class="doc std std-doc">Adding more data</span></a> section.</p>
+<p>Pipelines can be tested with
+<a class="reference internal" href="common/core-platform/doc/DBT.html"><span class="doc std std-doc">DBT Pipeline Testing Framework</span></a></p>
 </div>
 </div>
 <div class="section" id="deployment">
@@ -246,7 +250,7 @@ customized for Harvard FAS RC environment.</p>
 <div class="section" id="terms-and-acronyms">
 <h2><a class="toc-backref" href="#id9">Terms and Acronyms</a><a class="headerlink" href="#terms-and-acronyms" title="Permalink to this heading"></a></h2>
 <p>Included
-<a class="reference internal" href="glossary.html"><span class="doc std std-doc">Glossary</span></a> provides some information about
+<a class="reference internal" href="glossary.html"><span class="std std-doc">Glossary</span></a> provides some information about
 acronyms and other terms used throughout this documentation.</p>
 <p>Additionaly, <a class="reference internal" href="genindex.html"><span class="std std-ref">General Index</span></a> and <a class="reference internal" href="py-modindex.html"><span class="std std-ref">Python Module Index</span></a> englobe all the pieces of the Data Platform together.</p>
 </div>

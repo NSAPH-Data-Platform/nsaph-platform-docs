@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,11 +87,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH EPA Package Description</a> &raquo;</li>
-          <li><a href="../cwl_tools.html">CWL Tools and Common Workflows</a> &raquo;</li>
-      <li>airnow.cwl</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH EPA Package Description</a></li>
+          <li class="breadcrumb-item"><a href="../cwl_tools.html">CWL Tools and Common Workflows</a></li>
+      <li class="breadcrumb-item active">airnow.cwl</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/epa/doc/pipeline/airnowcwl_src.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -175,22 +179,26 @@
   <span class="nt">table</span><span class="p">:</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Name of the table to be created in the database</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+  <span class="nt">year</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">int</span>
 
 <span class="nt">steps</span><span class="p">:</span>
   <span class="nt">get_shapes</span><span class="p">:</span>
     <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">get_shapes.cwl</span>
     <span class="nt">in</span><span class="p">:</span>
-      <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">from</span>
-      <span class="nt">to</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">to</span>
-      <span class="nt">parameter_code</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">parameter_code</span>
+      <span class="nt">year</span><span class="p">:</span>
+        <span class="nt">valueFrom</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">$(String(inputs.yy))</span>
+      <span class="nt">yy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
+      <span class="nt">geo</span><span class="p">:</span>
+        <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;all&quot;</span>
       <span class="nt">proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">proxy</span>
-    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">shapes</span><span class="p p-Indicator">]</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">shape_files</span><span class="p p-Indicator">]</span>
 
   <span class="nt">download</span><span class="p">:</span>
     <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">download_airnow.cwl</span>
     <span class="nt">in</span><span class="p">:</span>
       <span class="nt">api-key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">api-key</span>
-      <span class="nt">shapes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">get_shapes/shapes</span>
+      <span class="nt">shapes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">get_shapes/shape_files</span>
       <span class="nt">from</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">from</span>
       <span class="nt">to</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">to</span>
       <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
@@ -213,6 +221,8 @@
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Uploads data into the database</span>
     <span class="nt">in</span><span class="p">:</span>
       <span class="nt">registry</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">introspect/model</span>
+      <span class="nt">domain</span><span class="p">:</span>
+        <span class="nt">valueFrom</span><span class="p">:</span> <span class="s">&quot;epa&quot;</span>
       <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">table</span>
       <span class="nt">input</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">download/data</span>
       <span class="nt">database</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
@@ -247,7 +257,7 @@
 <span class="nt">outputs</span><span class="p">:</span>
   <span class="nt">shapes_data</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File[]</span>
-    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">get_shapes/shapes</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">get_shapes/shape_files</span>
   <span class="nt">download_log</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
     <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">download/log</span>

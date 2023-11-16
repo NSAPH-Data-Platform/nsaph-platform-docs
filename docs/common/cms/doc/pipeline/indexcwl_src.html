@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,8 +67,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>index.cwl</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">index.cwl</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/cms/doc/pipeline/indexcwl_src.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -149,7 +153,7 @@
     <span class="nt">inputBinding</span><span class="p">:</span>
       <span class="nt">prefix</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--force</span>
   <span class="nt">depends_on</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File?</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Any?</span>
     <span class="nt">doc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">a special field used to enforce dependencies and execution order</span>
 
 
@@ -165,7 +169,7 @@
   <span class="nt">errors</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stderr</span>
 
-<span class="nt">stderr</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">$(&quot;index_&quot; + inputs.table + &quot;.err&quot;)</span>
+<span class="nt">stderr</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">$(&quot;index-&quot; + inputs.table + &quot;.err&quot;)</span>
 </pre></div>
 </div>
 </div>

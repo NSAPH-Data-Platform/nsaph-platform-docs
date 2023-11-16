@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uploader of the gridMET Data to the database &mdash; NSAPH Data Platform 0.0.2 documentation</title>
+  <title>Universal uploader of the tabular data to the database &mdash; NSAPH Data Platform 0.0.2 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -71,7 +75,7 @@
 <li class="toctree-l3"><a class="reference internal" href="census_densitycwl_src.html">census_density.cwl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="census_ingest.html">census_ingest.cwl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="census_ingest_1.html">Sub-workflow <em>store</em> from census_ingest.cwl</a></li>
-<li class="toctree-l3"><a class="reference internal" href="census_ingest_1cwl_src.html">tmp1iqyuxiocensus_ingest.cwl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="census_ingest_1cwl_src.html">tmpxr2j4j6vcensus_ingest.cwl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="census_ingestcwl_src.html">census_ingest.cwl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="census_interpolate.html">census_interpolate.cwl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="census_interpolatecwl_src.html">census_interpolate.cwl</a></li>
@@ -83,7 +87,7 @@
 <li class="toctree-l3"><a class="reference internal" href="census_writecwl_src.html">census_write.cwl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html">Index Builder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="indexcwl_src.html">index.cwl</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Uploader of the gridMET Data to the database</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Universal uploader of the tabular data to the database</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#inputs">Inputs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#outputs">Outputs</a></li>
@@ -116,10 +120,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../domains.html">Data Domains</a> &raquo;</li>
-          <li><a href="../index.html">NSAPH Census Pipelines</a> &raquo;</li>
-      <li>Uploader of the gridMET Data to the database</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NSAPH Census Pipelines</a></li>
+      <li class="breadcrumb-item active">Universal uploader of the tabular data to the database</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/common/census/doc/pipeline/ingest.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -129,9 +133,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="uploader-of-the-gridmet-data-to-the-database">
-<h1>Uploader of the gridMET Data to the database<a class="headerlink" href="#uploader-of-the-gridmet-data-to-the-database" title="Permalink to this heading"></a></h1>
-<p><a class="reference internal" href="ingestcwl_src.html"><span class="doc std std-doc">Source code</span></a></p>
+  <div class="section" id="universal-uploader-of-the-tabular-data-to-the-database">
+<h1>Universal uploader of the tabular data to the database<a class="headerlink" href="#universal-uploader-of-the-tabular-data-to-the-database" title="Permalink to this heading"></a></h1>
+<p><a class="reference internal" href="ingestcwl_src.html"><span class="std std-doc">Source code</span></a></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
@@ -142,7 +146,7 @@
 <p><strong>Tool</strong>. Runs: <a class="reference internal" href="../../../core-platform/doc/members/data_loader.html"><span class="doc std std-doc">nsaph.loader.data_loader</span></a></p>
 <div class="section" id="description">
 <h2><a class="toc-backref" href="#id1">Description</a><a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
-<p>This tool uploads the data to the database</p>
+<p>This tool ingests tabular data, usually in CSV format into the database</p>
 </div>
 <div class="section" id="inputs">
 <h2><a class="toc-backref" href="#id2">Inputs</a><a class="headerlink" href="#inputs" title="Permalink to this heading"></a></h2>
@@ -166,7 +170,7 @@
 <td class="text-left"><p>the name of the table to be created</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>database</p></td>
-<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>File</p></td>
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>Path to database connection file, usually database.ini</p></td>
 </tr>
@@ -175,37 +179,42 @@
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>The name of the section in the database.ini file</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>input</p></td>
-<td class="text-left"><p>File[]</p></td>
+<tr class="row-even"><td class="text-left"><p>domain</p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>input</p></td>
+<td class="text-left"><p>[‘File’, ‘File[]’]</p></td>
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>A path the downloaded data files</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>pattern</p></td>
+<tr class="row-even"><td class="text-left"><p>pattern</p></td>
 <td class="text-left"><p>string</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">*.csv*</span></code></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>threads</p></td>
+<tr class="row-odd"><td class="text-left"><p>threads</p></td>
 <td class="text-left"><p>int</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
 <td class="text-left"><p>number of threads, concurrently writing into the database</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>page_size</p></td>
+<tr class="row-even"><td class="text-left"><p>page_size</p></td>
 <td class="text-left"><p>int</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1000</span></code></p></td>
 <td class="text-left"><p>explicit page size for the database</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>log_frequency</p></td>
+<tr class="row-odd"><td class="text-left"><p>log_frequency</p></td>
 <td class="text-left"><p>long</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">100000</span></code></p></td>
 <td class="text-left"><p>informational logging occurs every specified number of records</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>limit</p></td>
+<tr class="row-even"><td class="text-left"><p>limit</p></td>
 <td class="text-left"><p>long?</p></td>
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>if specified, the process will stop after ingesting the specified number of records</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>depends_on</p></td>
+<tr class="row-odd"><td class="text-left"><p>depends_on</p></td>
 <td class="text-left"><p>Any?</p></td>
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>a special field used to enforce dependencies and execution order</p></td>

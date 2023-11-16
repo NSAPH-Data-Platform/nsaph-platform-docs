@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> NSAPH Data Platform
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NSAPH Data Platform
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -63,9 +67,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      <li>gridmet.config</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">gridmet.config</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -219,29 +223,28 @@
     <span class="n">vpd</span> <span class="o">=</span> <span class="s2">&quot;vpd&quot;</span>
     <span class="sd">&quot;&quot;&quot;Mean vapor pressure deficit: kPa&quot;&quot;&quot;</span>
     <span class="n">vs</span> <span class="o">=</span> <span class="s2">&quot;vs&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Wind velocity at 10m: m/s&quot;&quot;&quot;</span>
-
-    <span class="c1"># PM25 and components</span>
-    <span class="n">pm25</span> <span class="o">=</span> <span class="s2">&quot;pm25&quot;</span>
-    <span class="sd">&quot;&quot;&quot;PM25 exposure data&quot;&quot;&quot;</span>
-    <span class="n">BCp</span> <span class="o">=</span> <span class="s2">&quot;BCp&quot;</span>
-    <span class="n">NH4p</span> <span class="o">=</span> <span class="s2">&quot;NH4p&quot;</span>
-    <span class="n">NITp</span> <span class="o">=</span> <span class="s2">&quot;NITp&quot;</span>
-    <span class="n">OMp</span> <span class="o">=</span> <span class="s2">&quot;OMp&quot;</span>
-    <span class="n">SO4p</span> <span class="o">=</span> <span class="s2">&quot;SO4p&quot;</span>
-    <span class="n">SOILp</span> <span class="o">=</span> <span class="s2">&quot;SOILp&quot;</span>
-    <span class="n">SSp</span> <span class="o">=</span> <span class="s2">&quot;SSp&quot;</span></div>
+    <span class="sd">&quot;&quot;&quot;Wind velocity at 10m: m/s&quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="GridmetContext"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridmetContext">[docs]</a><span class="k">class</span> <span class="nc">GridmetContext</span><span class="p">(</span><span class="n">Context</span><span class="p">):</span>
+<div class="viewcode-block" id="OutputType"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.OutputType">[docs]</a><span class="k">class</span> <span class="nc">OutputType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Defines a context of a running a gridmet pipeline.</span>
+<span class="sd">    Type of teh output that the tool should produce</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">aggregation</span>     <span class="o">=</span> <span class="s2">&quot;aggregation&quot;</span>
+    <span class="n">data_dictionary</span> <span class="o">=</span> <span class="s2">&quot;data_dictionary&quot;</span></div>
+
+
+<div class="viewcode-block" id="GridContext"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridContext">[docs]</a><span class="k">class</span> <span class="nc">GridContext</span><span class="p">(</span><span class="n">Context</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines a configuration object to process aggregations and other tasks</span>
+<span class="sd">    over data grids</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">_variables</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;variables&quot;</span><span class="p">,</span>
                           <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Gridmet bands or variables&quot;</span><span class="p">,</span>
                           <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;var&quot;</span><span class="p">],</span>
-                          <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">multiple</span><span class="p">,</span>
-                          <span class="n">valid_values</span><span class="o">=</span><span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">GridmetVariable</span><span class="p">])</span>
+                          <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">multiple</span><span class="p">)</span>
     <span class="n">_strategy</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;strategy&quot;</span><span class="p">,</span>
                          <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">],</span>
                          <span class="n">default</span><span class="o">=</span><span class="n">RasterizationStrategy</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
@@ -291,6 +294,17 @@
                             <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">multiple</span><span class="p">,</span>
                             <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
                             <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Column names for metadata&quot;</span><span class="p">)</span>
+    <span class="n">_extra_columns</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;extra_columns&quot;</span><span class="p">,</span>
+                              <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;extra&quot;</span><span class="p">],</span>
+                              <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">multiple</span><span class="p">,</span>
+                              <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                              <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Columns with constant values to be added to the output file&quot;</span>
+    <span class="p">)</span>
+    <span class="n">_statistics</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;statistics&quot;</span><span class="p">,</span>
+                           <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">single</span><span class="p">,</span>
+                           <span class="n">default</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+                           <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Type of statistics&quot;</span>
+                           <span class="p">)</span>
     <span class="n">_dates</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;dates&quot;</span><span class="p">,</span>
                       <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Filter dates - for debugging purposes only&quot;</span><span class="p">,</span>
                       <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -299,8 +313,27 @@
                        <span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Path to shape files&quot;</span><span class="p">,</span>
                        <span class="p">)</span>
+    <span class="n">_description</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">,</span>
+                   <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">single</span><span class="p">,</span>
+                   <span class="n">default</span><span class="o">=</span><span class="s2">&quot;Dorieh data model for aggregations of netCDF data&quot;</span><span class="p">,</span>
+                   <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Description to be added to data dictionary&quot;</span>
+                   <span class="p">)</span>
+    <span class="n">_table</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;table&quot;</span><span class="p">,</span>
+          <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;Name of the table where the aggregated data will be stored&quot;</span><span class="p">,</span>
+          <span class="nb">type</span> <span class="o">=</span> <span class="nb">str</span><span class="p">,</span>
+          <span class="n">required</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+          <span class="n">aliases</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">],</span>
+          <span class="n">default</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+          <span class="n">cardinality</span> <span class="o">=</span> <span class="n">Cardinality</span><span class="o">.</span><span class="n">single</span>
+          <span class="p">)</span>
+    <span class="n">_output</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">,</span>
+                       <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">],</span>
+                       <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">multiple</span><span class="p">,</span>
+                       <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="n">OutputType</span><span class="o">.</span><span class="n">aggregation</span><span class="o">.</span><span class="n">value</span><span class="p">],</span>
+                       <span class="n">help</span><span class="o">=</span><span class="s2">&quot;What the tool should output&quot;</span><span class="p">,</span>
+                       <span class="n">valid_values</span><span class="o">=</span><span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">OutputType</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subclass</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">doc</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor</span>
 <span class="sd">        </span>
@@ -347,23 +380,65 @@
         <span class="sd">&#39;&#39;&#39;Column names for coordinates&#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="sd">&#39;&#39;&#39;Column names for metadata&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_columns</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&#39;&#39;&#39;Columns with constant values to be added to the output file&#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dates</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DateFilter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="sd">&#39;&#39;&#39;Filter on dates - for debugging purposes only&#39;&#39;&#39;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">GridmetContext</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">statistics</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&#39;&#39;&#39;Type of statistics&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&#39;&#39;&#39;Description to be added to data dictionary&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&#39;&#39;&#39;Name of the table where the aggregated data will be stored&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&#39;&#39;&#39;Type of the output the tool should produce&#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="GridmetContext.validate"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridmetContext.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">subclass</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">GridContext</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">include_default</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">subclass</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">include_default</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_attrs</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">attr</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">GridContext</span><span class="o">.</span><span class="vm">__dict__</span>
+                <span class="k">if</span> <span class="n">attr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;_&#39;</span> <span class="ow">and</span> <span class="n">attr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;_&#39;</span>
+            <span class="p">]</span>
+
+<div class="viewcode-block" id="GridContext.validate"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridContext.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">value</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">GridmetVariable</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shapes</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">Shape</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_geography</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Geography</span><span class="p">[</span><span class="n">value</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strategy</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">RasterizationStrategy</span><span class="p">[</span><span class="n">value</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">OutputType</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dates</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">DateFilter</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div></div>
+
+
+<div class="viewcode-block" id="GridMETContext"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridMETContext">[docs]</a><span class="k">class</span> <span class="nc">GridMETContext</span><span class="p">(</span><span class="n">GridContext</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines a configuration object to process aggregations and other tasks</span>
+<span class="sd">    over data grids containing gridMET data. Includes validation that</span>
+<span class="sd">    a correct gridMET band is provided</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># _variables = Argument(&quot;variables&quot;,</span>
+    <span class="c1">#                       help=&quot;Gridmet bands or variables&quot;,</span>
+    <span class="c1">#                       aliases=[&quot;var&quot;],</span>
+    <span class="c1">#                       cardinality=Cardinality.multiple,</span>
+    <span class="c1">#                       valid_values=[v.value for v in GridmetVariable])</span>
+    <span class="n">GridContext</span><span class="o">.</span><span class="n">_variables</span><span class="o">.</span><span class="n">valid_values</span><span class="o">=</span><span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">GridmetVariable</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">GridMETContext</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GridMETContext.validate"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridMETContext.validate">[docs]</a>    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_variables</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">GridmetVariable</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">value</span></div></div>
 </pre></div>
 
