@@ -1,0 +1,38 @@
+# push_datasource_def.cwl
+
+
+ [Source code](push_datasource_defcwl_src.md) 
+
+
+![](push_datasource_def.png)
+
+```{contents}
+---
+local:
+---
+```
+
+**Workflow**
+
+## Inputs
+
+| Name       | Type | Default | Description | 
+|:-----------|:-----|:--------|:------------|
+| datasource | File |         |             | 
+| depends_on | Any  | `none`  |             | 
+
+## Outputs
+
+| Name | Type | Description | 
+|:-----|:-----|:------------|
+| out  | File |             | 
+| err  | File |             | 
+
+## Steps
+
+| Name   | Runs  | Description | 
+|:-------|:------|:------------|
+| copy   | ['/usr/bin/docker', 'cp'] |             | 
+| import | ['/usr/bin/docker', 'exec', 'superset_app', 'superset', 'import_datasources'] |             | 
+| log    | cat   |             | 
+

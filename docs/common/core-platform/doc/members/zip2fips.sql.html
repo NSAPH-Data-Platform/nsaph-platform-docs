@@ -127,6 +127,20 @@
 <span class="c1">--  limitations under the License.</span>
 <span class="c1">--</span>
 
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">public</span><span class="mf">.</span><span class="n">state2fips</span><span class="p">(</span>
+    <span class="n">state_code</span> <span class="nb">VARCHAR</span>
+<span class="p">)</span> <span class="k">RETURNS</span> <span class="nb">VARCHAR</span>
+<span class="k">IMMUTABLE</span>
+<span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
+<span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
+<span class="k">DECLARE</span> <span class="n">s</span> <span class="nb">VARCHAR</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">SELECT</span> <span class="n">fips2</span> <span class="k">FROM</span> <span class="n">public</span><span class="mf">.</span><span class="n">us_states</span> <span class="k">WHERE</span> <span class="n">state_id</span> <span class="o">=</span> <span class="n">state_code</span> <span class="k">INTO</span> <span class="n">s</span><span class="p">;</span>
+    <span class="k">RETURN</span> <span class="n">s</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$</span><span class="dl">body</span><span class="s">$</span>
+<span class="p">;</span>
+
 <span class="cm">/*</span>
 <span class="cm"> Purpose:</span>
 <span class="cm"> Responsible for in-database mapping between postal zip codes</span>
@@ -140,8 +154,12 @@
     <span class="k">YEAR</span><span class="p">,</span>
     <span class="k">MONTH</span><span class="p">,</span>
     <span class="n">string_agg</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">fips2s</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">states</span><span class="p">,</span>
-    <span class="p">(</span>   <span class="k">SELECT</span>
-            <span class="n">fips3s</span>
+    <span class="n">string_agg</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">usps_zip_pref_state</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">pref_state</span><span class="p">,</span>
+    <span class="n">string_agg</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">usps_zip_pref_city</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">city</span><span class="p">,</span>
+    <span class="k">CASE</span> <span class="k">WHEN</span> <span class="n">string_agg</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">usps_zip_pref_state</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">THEN</span>  <span class="n">public</span><span class="mf">.</span><span class="n">state2fips</span><span class="p">(</span><span class="n">string_agg</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">usps_zip_pref_state</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">))</span>
+    <span class="k">ELSE</span> <span class="p">(</span>   <span class="k">SELECT</span>
+            <span class="n">fips2s</span>
         <span class="k">FROM</span>
             <span class="n">public</span><span class="mf">.</span><span class="n">hud_zip2fips</span> <span class="k">AS</span> <span class="n">y</span>
         <span class="k">WHERE</span>
@@ -151,7 +169,20 @@
         <span class="k">ORDER</span> <span class="k">BY</span>
             <span class="n">res_ratio</span> <span class="k">DESC</span>
         <span class="k">LIMIT</span>
-            <span class="mf">1</span><span class="p">)</span> <span class="k">AS</span> <span class="n">fips3</span><span class="p">,</span>
+            <span class="mf">1</span><span class="p">)</span>
+        <span class="k">END</span> <span class="k">AS</span> <span class="n">fips2</span><span class="p">,</span>
+    <span class="p">(</span>   <span class="k">SELECT</span>
+        <span class="n">fips3s</span>
+        <span class="k">FROM</span>
+        <span class="n">public</span><span class="mf">.</span><span class="n">hud_zip2fips</span> <span class="k">AS</span> <span class="n">y</span>
+        <span class="k">WHERE</span>
+        <span class="n">y</span><span class="mf">.</span><span class="n">zip</span> <span class="o">=</span> <span class="n">x</span><span class="mf">.</span><span class="n">zip</span>
+        <span class="k">AND</span> <span class="n">y</span><span class="mf">.</span><span class="k">year</span> <span class="o">=</span> <span class="n">x</span><span class="mf">.</span><span class="k">year</span>
+        <span class="k">AND</span> <span class="n">y</span><span class="mf">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">x</span><span class="mf">.</span><span class="k">month</span>
+        <span class="k">ORDER</span> <span class="k">BY</span>
+        <span class="n">res_ratio</span> <span class="k">DESC</span>
+        <span class="k">LIMIT</span>
+        <span class="mf">1</span><span class="p">)</span> <span class="k">AS</span> <span class="n">fips3</span><span class="p">,</span>
     <span class="p">(</span>   <span class="k">SELECT</span>
             <span class="n">res_ratio</span>
         <span class="k">FROM</span>
@@ -184,6 +215,8 @@
 
 <span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">z2f_yz1_idx</span> <span class="k">on</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span> <span class="p">(</span><span class="k">year</span><span class="p">,</span> <span class="n">zip</span><span class="p">)</span> <span class="k">include</span> <span class="p">(</span><span class="n">fips3</span><span class="p">);</span>
 <span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">z2f_z2_idx</span> <span class="k">on</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span> <span class="p">(</span><span class="n">zip</span><span class="p">);</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">z2f_f2_idx</span> <span class="k">on</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span> <span class="p">(</span><span class="n">fips2</span><span class="p">);</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">z2f_f3_idx</span> <span class="k">on</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span> <span class="p">(</span><span class="n">fips3</span><span class="p">);</span>
 <span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">z2f_r_idx</span> <span class="k">on</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span> <span class="p">(</span><span class="n">ratio</span><span class="p">);</span>
 <span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">z2f_c_idx</span> <span class="k">on</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span> <span class="p">(</span><span class="n">num_counties</span><span class="p">);</span>
 <span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">z2f_exact_idx</span> <span class="k">on</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span> <span class="p">((</span><span class="mf">1</span><span class="p">))</span> <span class="k">WHERE</span> <span class="k">not</span> <span class="n">exact</span><span class="p">;</span>
@@ -197,6 +230,7 @@
 <span class="k">DECLARE</span> <span class="n">fips</span> <span class="nb">int</span><span class="p">;</span>
 <span class="k">BEGIN</span>
     <span class="k">IF</span> <span class="n">_year</span> <span class="o">&lt;</span> <span class="mf">2010</span> <span class="k">THEN</span> <span class="n">_year</span> <span class="o">:=</span> <span class="mf">2010</span><span class="p">;</span> <span class="k">END</span> <span class="k">IF</span><span class="p">;</span>
+    <span class="k">IF</span> <span class="n">_year</span> <span class="o">&gt;</span> <span class="mf">2021</span> <span class="k">THEN</span> <span class="n">_year</span> <span class="o">:=</span> <span class="mf">2021</span><span class="p">;</span> <span class="k">END</span> <span class="k">IF</span><span class="p">;</span>
     <span class="k">SELECT</span> <span class="n">fips3</span> <span class="k">into</span> <span class="n">fips</span> <span class="k">FROM</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span>
         <span class="k">WHERE</span> <span class="k">year</span> <span class="o">=</span> <span class="n">_year</span> <span class="k">and</span> <span class="n">zip</span> <span class="o">=</span> <span class="n">_zip</span>
     <span class="k">LIMIT</span> <span class="mf">1</span><span class="p">;</span>
@@ -221,6 +255,58 @@
 <span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
 <span class="p">;</span>
 
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="s s-Name">&quot;public&quot;</span><span class="mf">.</span><span class="s s-Name">&quot;zip_to_state&quot;</span> <span class="p">(</span>
+    <span class="n">_year</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_zip</span> <span class="nb">int</span>
+<span class="p">)</span>  <span class="k">RETURNS</span> <span class="nb">char</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
+  <span class="k">IMMUTABLE</span>
+<span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
+<span class="k">DECLARE</span> <span class="n">fips</span> <span class="nb">varchar</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="n">fips</span> <span class="o">:=</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip_to_fips5</span><span class="p">(</span><span class="n">_year</span><span class="p">,</span> <span class="n">_zip</span><span class="p">);</span>
+    <span class="k">RETURN</span> <span class="n">public</span><span class="mf">.</span><span class="n">fips2state</span><span class="p">(</span><span class="k">substring</span><span class="p">(</span><span class="n">fips</span><span class="p">,</span> <span class="mf">1</span><span class="p">,</span> <span class="mf">2</span><span class="p">));</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
+<span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="s s-Name">&quot;public&quot;</span><span class="mf">.</span><span class="s s-Name">&quot;zip_to_city&quot;</span> <span class="p">(</span>
+    <span class="n">_year</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_zip</span> <span class="nb">int</span>
+<span class="p">)</span>  <span class="k">RETURNS</span> <span class="nb">char</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
+  <span class="k">IMMUTABLE</span>
+<span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
+<span class="k">DECLARE</span> <span class="n">cty</span> <span class="nb">varchar</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">IF</span> <span class="n">_year</span> <span class="o">&lt;</span> <span class="mf">2010</span> <span class="k">THEN</span> <span class="n">_year</span> <span class="o">:=</span> <span class="mf">2010</span><span class="p">;</span> <span class="k">END</span> <span class="k">IF</span><span class="p">;</span>
+    <span class="k">IF</span> <span class="n">_year</span> <span class="o">&gt;</span> <span class="mf">2021</span> <span class="k">THEN</span> <span class="n">_year</span> <span class="o">:=</span> <span class="mf">2021</span><span class="p">;</span> <span class="k">END</span> <span class="k">IF</span><span class="p">;</span>
+    <span class="k">SELECT</span> <span class="n">city</span> <span class="k">into</span> <span class="n">cty</span> <span class="k">FROM</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span>
+    <span class="k">WHERE</span> <span class="k">year</span> <span class="o">=</span> <span class="n">_year</span> <span class="k">and</span> <span class="n">zip</span> <span class="o">=</span> <span class="n">_zip</span>
+    <span class="k">LIMIT</span> <span class="mf">1</span><span class="p">;</span>
+    <span class="k">IF</span> <span class="n">cty</span> <span class="k">is</span> <span class="k">NULL</span> <span class="k">AND</span> <span class="n">_year</span> <span class="o">&lt;</span> <span class="mf">2021</span> <span class="k">THEN</span>
+        <span class="k">RETURN</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip_to_city</span><span class="p">(</span><span class="n">_year</span> <span class="o">+</span> <span class="mf">1</span><span class="p">,</span> <span class="n">_zip</span><span class="p">);</span>
+<span class="k">END</span> <span class="k">IF</span><span class="p">;</span>
+<span class="k">RETURN</span> <span class="n">cty</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
+<span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="s s-Name">&quot;public&quot;</span><span class="mf">.</span><span class="s s-Name">&quot;zip_to_fips5&quot;</span> <span class="p">(</span>
+    <span class="n">_year</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_zip</span> <span class="nb">int</span>
+<span class="p">)</span>  <span class="k">RETURNS</span> <span class="nb">char</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
+  <span class="k">IMMUTABLE</span>
+<span class="k">AS</span> <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
+<span class="k">DECLARE</span> <span class="n">fips</span> <span class="nb">varchar</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+    <span class="k">IF</span> <span class="n">_year</span> <span class="o">&lt;</span> <span class="mf">2010</span> <span class="k">THEN</span> <span class="n">_year</span> <span class="o">:=</span> <span class="mf">2010</span><span class="p">;</span> <span class="k">END</span> <span class="k">IF</span><span class="p">;</span>
+    <span class="k">IF</span> <span class="n">_year</span> <span class="o">&gt;</span> <span class="mf">2021</span> <span class="k">THEN</span> <span class="n">_year</span> <span class="o">:=</span> <span class="mf">2021</span><span class="p">;</span> <span class="k">END</span> <span class="k">IF</span><span class="p">;</span>
+        <span class="k">SELECT</span> <span class="n">fips2</span> <span class="o">||</span> <span class="n">fips3</span> <span class="k">into</span> <span class="n">fips</span> <span class="k">FROM</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip2fips</span>
+        <span class="k">WHERE</span> <span class="k">year</span> <span class="o">=</span> <span class="n">_year</span> <span class="k">and</span> <span class="n">zip</span> <span class="o">=</span> <span class="n">_zip</span>
+    <span class="k">LIMIT</span> <span class="mf">1</span><span class="p">;</span>
+    <span class="k">IF</span> <span class="n">fips</span> <span class="k">is</span> <span class="k">NULL</span> <span class="k">AND</span> <span class="n">_year</span> <span class="o">&lt;</span> <span class="mf">2021</span> <span class="k">THEN</span>
+        <span class="k">RETURN</span> <span class="n">public</span><span class="mf">.</span><span class="n">zip_to_fips5</span><span class="p">(</span><span class="n">_year</span> <span class="o">+</span> <span class="mf">1</span><span class="p">,</span> <span class="n">_zip</span><span class="p">);</span>
+<span class="k">END</span> <span class="k">IF</span><span class="p">;</span>
+<span class="k">RETURN</span> <span class="n">fips</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$</span><span class="dl">body</span><span class="s">$</span> <span class="k">LANGUAGE</span> <span class="n">plpgsql</span>
+<span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="s s-Name">&quot;public&quot;</span><span class="mf">.</span><span class="s s-Name">&quot;is_zip_to_fips_exact&quot;</span> <span class="p">(</span>
     <span class="n">_year</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_zip</span> <span class="nb">int</span>
@@ -284,6 +370,8 @@
 <span class="k">END</span><span class="p">;</span>
 <span class="s">$</span><span class="dl">body</span><span class="s">$</span>
 <span class="p">;</span>
+
+
 <span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">public</span><span class="mf">.</span><span class="n">fips2state_iso</span><span class="p">(</span>
     <span class="n">state_fips</span> <span class="nb">VARCHAR</span>
 <span class="p">)</span> <span class="k">RETURNS</span> <span class="nb">VARCHAR</span>

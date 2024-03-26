@@ -20,6 +20,7 @@ local:
 |:----------------|:-------|:--------|:------------|
 | connection_name | string |         |             | 
 | database        | File   |         |             | 
+| domain          | string |         |             | 
 | registry        | File   |         |             | 
 | table           | string |         |             | 
 

@@ -1,0 +1,36 @@
+# tx_annual_zip.cwl
+
+
+ [Source code](tx_annual_zipcwl_src.md) 
+
+
+![](tx_annual_zip.png)
+
+```{contents}
+---
+local:
+---
+```
+
+**Workflow**
+
+## Inputs
+
+| Name       | Type   | Default | Description | 
+|:-----------|:-------|:--------|:------------|
+| PYTHONPATH | string |         | PYTHONPATH  | 
+
+## Outputs
+
+| Name          | Type | Description | 
+|:--------------|:-----|:------------|
+| analysis_log  | File |             | 
+| ingestion_log | File |             | 
+| indexing_log  | File |             | 
+
+## Steps
+
+| Name   | Runs                    | Description | 
+|:-------|:------------------------|:------------|
+| import | [import.cwl](import.md) |             | 
+

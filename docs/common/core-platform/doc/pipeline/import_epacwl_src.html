@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>import_epa.cwl &mdash; NSAPH Data Platform 0.0.2 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/nsaph.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rationale.html">What is Data Platform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../domains.html">Data Domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../packages.html">Python Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guts.html">Data Platform Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../adding_data.html">Adding more data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Terms and Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docindices.html">Indices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NSAPH Data Platform</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">import_epa.cwl</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/common/core-platform/doc/pipeline/import_epacwl_src.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="import-epa-cwl">
+<h1>import_epa.cwl<a class="headerlink" href="#import-epa-cwl" title="Permalink to this heading"></a></h1>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/env cwl-runner</span>
+
+<span class="nt">cwlVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1.1</span>
+<span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Workflow</span>
+
+<span class="nt">requirements</span><span class="p">:</span>
+  <span class="nt">SubworkflowFeatureRequirement</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+  <span class="nt">InlineJavascriptRequirement</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+  <span class="nt">StepInputExpressionRequirement</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+
+<span class="nt">inputs</span><span class="p">:</span>
+  <span class="nt">year</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&quot;1990:2020&quot;</span>
+  <span class="nt">aggregation</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&quot;annual&quot;</span>
+  <span class="nt">parameter_code</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&quot;88101&quot;</span>
+  <span class="nt">csv_name</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+  <span class="nt">db_connection_params</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">default</span><span class="p">:</span>
+      <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+      <span class="nt">location</span><span class="p">:</span> <span class="s">&quot;/opt/projects/nsaph/database.ini&quot;</span>
+  <span class="nt">db_name</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&quot;postgresql&quot;</span>
+  <span class="nt">PYTHONPATH</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="s">&quot;/opt/projects/nsaph/src/python&quot;</span>
+  <span class="nt">force</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">boolean</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+  <span class="nt">increment</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">boolean</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">outputs</span><span class="p">:</span>
+  <span class="nt">job</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo/job</span>
+  <span class="nt">data</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">download/csv</span>
+  <span class="nt">analysis_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analyze/log</span>
+  <span class="nt">table_def</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analyze/table_def</span>
+  <span class="nt">datasource_def</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analyze/datasource_def</span>
+  <span class="nt">ingestion_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest/log</span>
+  <span class="nt">indexing_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index/log</span>
+  <span class="nt">link_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">link/log</span>
+  <span class="nt">push_ds_log</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">push_ds/out</span>
+  <span class="nt">push_ds_err</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">File</span>
+    <span class="nt">outputSource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">push_ds/err</span>
+
+
+
+<span class="nt">steps</span><span class="p">:</span>
+  <span class="nt">echo</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span>
+      <span class="nt">class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CommandLineTool</span>
+      <span class="nt">baseCommand</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo</span>
+      <span class="nt">inputs</span><span class="p">:</span>
+        <span class="nt">year</span><span class="p">:</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+          <span class="nt">inputBinding</span><span class="p">:</span>
+            <span class="nt">prefix</span><span class="p">:</span> <span class="s">&quot;year:&quot;</span>
+            <span class="nt">position</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+        <span class="nt">aggregation</span><span class="p">:</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+          <span class="nt">inputBinding</span><span class="p">:</span>
+            <span class="nt">prefix</span><span class="p">:</span> <span class="s">&quot;aggregation:&quot;</span>
+            <span class="nt">position</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+        <span class="nt">parameter_code</span><span class="p">:</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+          <span class="nt">inputBinding</span><span class="p">:</span>
+            <span class="nt">prefix</span><span class="p">:</span> <span class="s">&quot;parameter_code:&quot;</span>
+            <span class="nt">position</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+        <span class="nt">csv_name</span><span class="p">:</span>
+          <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+          <span class="nt">inputBinding</span><span class="p">:</span>
+            <span class="nt">prefix</span><span class="p">:</span> <span class="s">&quot;csv_name:&quot;</span>
+            <span class="nt">position</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+      <span class="nt">outputs</span><span class="p">:</span>
+        <span class="nt">job</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stdout</span>
+      <span class="nt">stdout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">job.txt</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">year</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
+      <span class="nt">aggregation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">aggregation</span>
+      <span class="nt">parameter_code</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">parameter_code</span>
+      <span class="nt">csv_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">csv_name</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">job</span><span class="p p-Indicator">]</span>
+  <span class="nt">download</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">arepa.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">year</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">year</span>
+      <span class="nt">aggregation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">aggregation</span>
+      <span class="nt">parameter_code</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">parameter_code</span>
+      <span class="nt">output_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">csv_name</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">csv</span><span class="p p-Indicator">]</span>
+  <span class="nt">analyze</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analyze.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">PYTHONPATH</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PYTHONPATH</span>
+      <span class="nt">data_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">download/csv</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">table_def</span><span class="p p-Indicator">,</span> <span class="nv">datasource_def</span><span class="p p-Indicator">,</span> <span class="nv">log</span><span class="p p-Indicator">]</span>
+
+  <span class="nt">ingest</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">PYTHONPATH</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PYTHONPATH</span>
+      <span class="nt">table_def</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analyze/table_def</span>
+      <span class="nt">data_file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">download/csv</span>
+      <span class="nt">db_connection_params</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db_connection_params</span>
+      <span class="nt">db_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db_name</span>
+      <span class="nt">force</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">force</span>
+      <span class="nt">increment</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">increment</span>
+    <span class="nt">out</span><span class="p">:</span>
+      <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">]</span>
+
+  <span class="nt">index</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">index_obs.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">PYTHONPATH</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PYTHONPATH</span>
+      <span class="nt">table_def</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analyze/table_def</span>
+      <span class="nt">db_connection_params</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db_connection_params</span>
+      <span class="nt">db_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db_name</span>
+      <span class="nt">force</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">force</span>
+      <span class="nt">increment</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">increment</span>
+      <span class="nt">depends_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest/log</span>
+    <span class="nt">out</span><span class="p">:</span>
+      <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">]</span>
+
+  <span class="nt">link</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">link_gis.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">PYTHONPATH</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PYTHONPATH</span>
+      <span class="nt">table_def</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analyze/table_def</span>
+      <span class="nt">db_connection_params</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db_connection_params</span>
+      <span class="nt">db_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db_name</span>
+      <span class="nt">depends_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ingest/log</span>
+    <span class="nt">out</span><span class="p">:</span>
+      <span class="p p-Indicator">[</span><span class="nv">log</span><span class="p p-Indicator">]</span>
+
+  <span class="nt">push_ds</span><span class="p">:</span>
+    <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">push_datasource_def.cwl</span>
+    <span class="nt">in</span><span class="p">:</span>
+      <span class="nt">datasource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analyze/datasource_def</span>
+      <span class="nt">depends_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">link/log</span>
+    <span class="nt">out</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">out</span><span class="p p-Indicator">,</span><span class="nv">err</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Harvard University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

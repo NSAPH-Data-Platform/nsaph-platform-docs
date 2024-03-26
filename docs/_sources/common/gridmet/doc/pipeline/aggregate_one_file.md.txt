@@ -33,6 +33,7 @@ shape files fo this year from US Census website
 | component             | string[]  |         |                                                                                       | 
 | year                  | int       |         |                                                                                       | 
 | strategy              | string    |         | Rasterization strategy                                                                | 
+| ram                   | string    | `2GB`   | Runtime memory, available to the process                                              | 
 | shape_file_collection | string    | `tiger` | [Collection of shapefiles](https://www2.census.gov/geo/tiger),  either GENZ or TIGER  | 
 | table                 | string?   |         | Optional name ot the table where the aggregated data will be eventually stored        | 
 
@@ -55,5 +56,5 @@ shape files fo this year from US Census website
 | find_pm25_file        | [wustl_file_pattern.cwl](wustl_file_pattern.md)                     | Given input directory, variable (band), year and month, evaluates the expected file name for the main variable input data  | 
 | find_components_files | [wustl_file_pattern.cwl](wustl_file_pattern.md)                     | Given input directory, variable (band), year and month, evaluates the expected file name for the main variable input data  | 
 | consolidate           | [wustl_consolidate_components.cwl](wustl_consolidate_components.md) | consolidate components into one file                                                                                       | 
-| aggregate             | [wustl_aggregate.cwl](wustl_aggregate.md)                           | Aggregate data over geographies                                                                                            | 
+| aggregate             | [aggregate_wustl.cwl](aggregate_wustl.md)                           | Aggregate data over geographies                                                                                            | 
 

@@ -122,10 +122,12 @@
 <span class="kn">import</span> <span class="nn">yaml</span>
 
 <span class="kn">from</span> <span class="nn">nsaph.util.cwl_collect_outputs</span> <span class="kn">import</span> <span class="n">collect</span>
+<span class="kn">from</span> <span class="nn">nsaph.util.cwl_generator</span> <span class="kn">import</span> <span class="n">CWLGenerator</span>
 
 
-<div class="viewcode-block" id="CWLTestGenerator"><a class="viewcode-back" href="../../../common/core-platform/doc/members/gen_dbt_cwl.html#nsaph.dbt.gen_dbt_cwl.CWLTestGenerator">[docs]</a><span class="k">class</span> <span class="nc">CWLTestGenerator</span><span class="p">:</span>
+<div class="viewcode-block" id="CWLTestGenerator"><a class="viewcode-back" href="../../../common/core-platform/doc/members/gen_dbt_cwl.html#nsaph.dbt.gen_dbt_cwl.CWLTestGenerator">[docs]</a><span class="k">class</span> <span class="nc">CWLTestGenerator</span><span class="p">(</span><span class="n">CWLGenerator</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_to_pipeline</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path_to_test</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">path_to_test</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">path_to_pipeline</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.cwl&quot;</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">path_to_test</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.cwl&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path_to_pipeline</span> <span class="o">=</span> <span class="n">path_to_pipeline</span>
@@ -141,27 +143,15 @@
         <span class="k">return</span>
 
 <div class="viewcode-block" id="CWLTestGenerator.generate"><a class="viewcode-back" href="../../../common/core-platform/doc/members/gen_dbt_cwl.html#nsaph.dbt.gen_dbt_cwl.CWLTestGenerator.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write_header</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">write_inputs</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_header</span><span class="p">(</span>
+            <span class="n">requirements</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cwl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requirements&quot;</span><span class="p">),</span>
+            <span class="n">comment</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Test harness for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">basename</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_test_inputs</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write_steps</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">write_outputs</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="CWLTestGenerator.write_header"><a class="viewcode-back" href="../../../common/core-platform/doc/members/gen_dbt_cwl.html#nsaph.dbt.gen_dbt_cwl.CWLTestGenerator.write_header">[docs]</a>    <span class="k">def</span> <span class="nf">write_header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">requirements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cwl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;requirements&quot;</span><span class="p">)</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">test</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#!/usr/bin/env cwl-runner&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### Test harness for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">basename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cwlVersion: v1.2&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;class: Workflow&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">requirements</span><span class="p">:</span>
-                <span class="n">block</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span><span class="s2">&quot;requirements&quot;</span><span class="p">:</span> <span class="n">requirements</span><span class="p">},</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-        <span class="k">return</span></div>
-
-<div class="viewcode-block" id="CWLTestGenerator.write_inputs"><a class="viewcode-back" href="../../../common/core-platform/doc/members/gen_dbt_cwl.html#nsaph.dbt.gen_dbt_cwl.CWLTestGenerator.write_inputs">[docs]</a>    <span class="k">def</span> <span class="nf">write_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CWLTestGenerator.write_test_inputs"><a class="viewcode-back" href="../../../common/core-platform/doc/members/gen_dbt_cwl.html#nsaph.dbt.gen_dbt_cwl.CWLTestGenerator.write_test_inputs">[docs]</a>    <span class="k">def</span> <span class="nf">write_test_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="p">,</span> <span class="s2">&quot;at&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">test</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# All inputs of original pipeline, remove what is not needed&quot;</span>
                   <span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
@@ -170,10 +160,7 @@
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;File&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;doc&quot;</span><span class="p">:</span> <span class="s2">&quot;File containing SQL test script&quot;</span>
             <span class="p">}</span>
-            <span class="k">if</span> <span class="n">inputs</span><span class="p">:</span>
-                <span class="n">block</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="n">inputs</span><span class="p">},</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">test</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">write_inputs</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
         <span class="k">return</span></div>
 
 <div class="viewcode-block" id="CWLTestGenerator.write_steps"><a class="viewcode-back" href="../../../common/core-platform/doc/members/gen_dbt_cwl.html#nsaph.dbt.gen_dbt_cwl.CWLTestGenerator.write_steps">[docs]</a>    <span class="k">def</span> <span class="nf">write_steps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

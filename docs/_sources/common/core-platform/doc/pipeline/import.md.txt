@@ -1,0 +1,50 @@
+# import.cwl
+
+
+ [Source code](importcwl_src.md) 
+
+
+![](import.png)
+
+```{contents}
+---
+local:
+---
+```
+
+**Workflow**
+
+## Inputs
+
+| Name                 | Type    | Default                                                             | Description | 
+|:---------------------|:--------|:--------------------------------------------------------------------|:------------|
+| data_file            | File    |                                                                     |             | 
+| metadata             | File?   |                                                                     |             | 
+| db_connection_params | File    | `{'class': 'File', 'location': '/opt/projects/nsaph/database.ini'}` |             | 
+| db_name              | string  | `postgresql`                                                        |             | 
+| PYTHONPATH           | string  | `/home/nsaph/projects/nsaph/src/python`                             |             | 
+| force                | boolean |                                                                     |             | 
+| increment            | boolean |                                                                     |             | 
+| superset             | boolean | `True`                                                              |             | 
+
+## Outputs
+
+| Name           | Type | Description | 
+|:---------------|:-----|:------------|
+| analysis_log   | File |             | 
+| table_def      | File |             | 
+| datasource_def | File |             | 
+| ingestion_log  | File |             | 
+| indexing_log   | File |             | 
+| push_ds_log    | File |             | 
+| push_ds_err    | File |             | 
+
+## Steps
+
+| Name    | Runs                                              | Description | 
+|:--------|:--------------------------------------------------|:------------|
+| analyze | [analyze.cwl](analyze.md)                         |             | 
+| ingest  | [ingest.cwl](ingest.md)                           |             | 
+| index   | [index_obs.cwl](index_obs.md)                     |             | 
+| push_ds | [push_datasource_def.cwl](push_datasource_def.md) |             | 
+

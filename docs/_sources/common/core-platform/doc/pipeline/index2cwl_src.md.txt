@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# index2.cwl
+
+```{literalinclude} ../../src/cwl/index2.cwl
+---
+language: yaml
+---
+```
+

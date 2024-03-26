@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aggregates data in NetCDF file over given geographies &mdash; NSAPH Data Platform 0.0.2 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/nsaph.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="aggregate_wustl.cwl" href="aggregate_wustlcwl_src.html" />
+    <link rel="prev" title="aggregate_one_file.cwl" href="aggregate_one_filecwl_src.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            NSAPH Data Platform
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../home.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rationale.html">What is Data Platform</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../domains.html">Data Domains</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../cms/doc/index.html">Health</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Climate</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#what-is-gridmet">What is gridMET?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#using-command-line-gridmet-utility">Using command line gridMET utility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#python-modules">Python modules</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#cwl-pipelines-and-tools">CWL pipelines and tools</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="add_daily_data.html">Downloader of gridMET Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="add_daily_datacwl_src.html">add_daily_data.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="add_data.html">Uploader of the gridMET Data to the database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="add_datacwl_src.html">add_data.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aggregate_daily.html">Tool aggregating a NetCDF grid file over shapes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aggregate_dailycwl_src.html">aggregate_daily.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aggregate_one_file.html">Workflow to aggregate and ingest NetCDF files for one year</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aggregate_one_filecwl_src.html">aggregate_one_file.cwl</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Aggregates data in NetCDF file over given geographies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aggregate_wustlcwl_src.html">aggregate_wustl.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="download.html">Downloader of gridMET Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="downloadcwl_src.html">download.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="get_shapes.html">Downloader of AirNow Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="get_shapescwl_src.html">get_shapes.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet.html">Pipeline to aggregate data from Climatology Lab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_1.html">Sub-workflow <em>init_tables</em> from gridmet.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_1cwl_src.html">tmpd5z66z6qgridmet.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_dwnl_only.html">gridMET Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_dwnl_only_1.html">Sub-workflow <em>process</em> from gridmet_dwnl_only.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_dwnl_only_1cwl_src.html">tmp9pmq12ragridmet_dwnl_only.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_dwnl_onlycwl_src.html">gridmet_dwnl_only.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_local_shapes.html">gridMET Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_local_shapes_1.html">Sub-workflow <em>process</em> from gridmet_local_shapes.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_local_shapes_1cwl_src.html">tmprm194zk3gridmet_local_shapes.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_local_shapescwl_src.html">gridmet_local_shapes.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_one_file.html">Workflow to aggregate and ingest one gridMET file in NetCDF format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmet_one_filecwl_src.html">gridmet_one_file.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridmetcwl_src.html">gridmet.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html">Index Builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="indexcwl_src.html">index.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ingest.html">Universal uploader of the tabular data to the database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ingestcwl_src.html">ingest.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="initdb.html">Database initializer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="initdbcwl_src.html">initdb.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pm25_yearly_download.html">Pipeline to aggregate data in NetCDF format over given geographies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pm25_yearly_downloadcwl_src.html">pm25_yearly_download.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="registry.html">Model YAML Writer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="registrycwl_src.html">registry.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reset.html">Generic Table (View/Materialized View) Initializer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resetcwl_src.html">reset.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run_test.html">Runs an SQL Test Script, presumably generated by DBT Utility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run_testcwl_src.html">run_test.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_gridmet.html">Test harness for gridmet.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_gridmetcwl_src.html">test_gridmet.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_pm25_yearly_download.html">Test harness for pm25_yearly_download.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test_pm25_yearly_downloadcwl_src.html">test_pm25_yearly_download.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vacuum.html">Table tuner tool (running VACUUM)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vacuumcwl_src.html">vacuum.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl.html">Pipeline to ingest Pollution downloaded from WashU Box</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl_consolidate_components.html">wustl_consolidate_components.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl_consolidate_componentscwl_src.html">wustl_consolidate_components.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl_file_pattern.html">Expression evaluator to format a file name for pollution files downloaded from WashU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl_file_patterncwl_src.html">wustl_file_pattern.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl_one_file.html">Workflow to aggregate and ingest one file in NetCDF format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl_one_filecwl_src.html">wustl_one_file.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl_one_year.html">Workflow to aggregate and ingest NetCDF files for one year</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustl_one_yearcwl_src.html">wustl_one_year.cwl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="wustlcwl_src.html">wustl.cwl</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../epa/doc/index.html">Pollution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../census/doc/index.html">Demographics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../pipelines.html">Data Processing Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../packages.html">Python Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guts.html">Data Platform Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../adding_data.html">Adding more data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Terms and Acronyms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docindices.html">Indices</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NSAPH Data Platform</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../domains.html">Data Domains</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Gridmet Computational Utilities</a></li>
+      <li class="breadcrumb-item active">Aggregates data in NetCDF file over given geographies</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/common/gridmet/doc/pipeline/aggregate_wustl.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="aggregates-data-in-netcdf-file-over-given-geographies">
+<h1>Aggregates data in NetCDF file over given geographies<a class="headerlink" href="#aggregates-data-in-netcdf-file-over-given-geographies" title="Permalink to this heading"></a></h1>
+<p><a class="reference internal" href="aggregate_wustlcwl_src.html"><span class="std std-doc">Source code</span></a></p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
+<li><p><a class="reference internal" href="#inputs" id="id2">Inputs</a></p></li>
+<li><p><a class="reference internal" href="#outputs" id="id3">Outputs</a></p></li>
+</ul>
+</div>
+<p><strong>Tool</strong>. Runs: pollution.wustl_file_processor</p>
+<div class="section" id="description">
+<h2><a class="toc-backref" href="#id1">Description</a><a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>This tool aggregates data in NetCDF or GeoTiff file over provided shapes
+(zip codes or counties). It produces mean values over shape.</p>
+<p>The tool expects one value for every variable in every grid node.
+The variables are expected to be formatted as they are for
+<a class="reference external" href="https://sites.wustl.edu/acag/datasets/surface-pm2-5/">Atmospheric Composition Analysis Group of Washington University</a></p>
+<p>See also <a class="reference internal" href="aggregate_daily.html"><span class="doc std std-doc">aggregate_daily.cwl</span></a> - a tool, that expects
+multiple (daily) values at every grid node.</p>
+</div>
+<div class="section" id="inputs">
+<h2><a class="toc-backref" href="#id2">Inputs</a><a class="headerlink" href="#inputs" title="Permalink to this heading"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>Name</p></th>
+<th class="text-left head"><p>Type</p></th>
+<th class="text-left head"><p>Default</p></th>
+<th class="text-left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>strategy</p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">downscale</span></code></p></td>
+<td class="text-left"><p>Rasterization strategy</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>ram</p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2GB</span></code></p></td>
+<td class="text-left"><p>Runtime memory, available to the process</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>shapes_dir</p></td>
+<td class="text-left"><p>Directory?</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>band</p></td>
+<td class="text-left"><p>string[]</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>geography</p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Type of geography: zip codes or counties</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>netcdf_data</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Path to downloaded file</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>shape_files</p></td>
+<td class="text-left"><p>File[]?</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Paths to shape files</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>output_type</p></td>
+<td class="text-left"><p>string[]</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">['aggregation',</span> <span class="pre">'data_dictionary']</span></code></p></td>
+<td class="text-left"><p>What to output as the result of executing the tool</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>table</p></td>
+<td class="text-left"><p>string?</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Optional name ot the table where the aggregated data will be eventually stored</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="outputs">
+<h2><a class="toc-backref" href="#id3">Outputs</a><a class="headerlink" href="#outputs" title="Permalink to this heading"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>Name</p></th>
+<th class="text-left head"><p>Type</p></th>
+<th class="text-left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>log</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>csv_data</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p>The output CSV file, containing mean values of the given variable over given geographies. Each line contains date, geo id (zip or county FIPS) and value</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>data_dictionary</p></td>
+<td class="text-left"><p>File</p></td>
+<td class="text-left"><p>Data dictionary for teh aggregated data</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>errors</p></td>
+<td class="text-left"><p>stderr</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="aggregate_one_filecwl_src.html" class="btn btn-neutral float-left" title="aggregate_one_file.cwl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="aggregate_wustlcwl_src.html" class="btn btn-neutral float-right" title="aggregate_wustl.cwl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Harvard University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

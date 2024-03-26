@@ -1,0 +1,29 @@
+# arepa-r.cwl
+
+
+ [Source code](arepa-rcwl_src.md) 
+
+
+```{contents}
+---
+local:
+---
+```
+
+**Tool**. Runs: /opt/projects/nsaph/src/r/download_epa.R
+
+## Inputs
+
+| Name           | Type   | Default     | Description | 
+|:---------------|:-------|:------------|:------------|
+| year           | string | `1990:2020` |             | 
+| aggregation    | string | `annual`    |             | 
+| output_path    | string |             |             | 
+| parameter_code | string | `88101`     |             | 
+
+## Outputs
+
+| Name | Type | Description | 
+|:-----|:-----|:------------|
+| csv  | File |             | 
+

@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# import_adi.cwl
+
+```{literalinclude} ../../src/cwl/import_adi.cwl
+---
+language: yaml
+---
+```
+

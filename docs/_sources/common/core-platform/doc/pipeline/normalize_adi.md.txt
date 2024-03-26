@@ -1,0 +1,30 @@
+# normalize_adi.cwl
+
+
+ [Source code](normalize_adicwl_src.md) 
+
+
+```{contents}
+---
+local:
+---
+```
+
+**Tool**. Runs: [nsaph.adi](../../../core-platform/doc/members/adi)
+
+## Inputs
+
+| Name                 | Type   | Default | Description | 
+|:---------------------|:-------|:--------|:------------|
+| depends_on           | Any    | `none`  |             | 
+| PYTHONPATH           | string |         | PYTHONPATH  | 
+| table_def            | File   |         |             | 
+| db_connection_params | File   |         |             | 
+| db_name              | string |         |             | 
+
+## Outputs
+
+| Name | Type | Description | 
+|:-----|:-----|:------------|
+| log  | File |             | 
+

@@ -220,7 +220,10 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">on_monitor</span><span class="p">:</span>
             <span class="n">pid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pid</span><span class="p">(</span><span class="n">connxn</span><span class="p">)</span>
             <span class="n">on_monitor</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">monitor</span><span class="o">.</span><span class="n">log_activity</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
-        <span class="n">DBActivityMonitor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">on_monitor</span><span class="p">)</span></div></div>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">DBActivityMonitor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">on_monitor</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">x</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exception</span> <span class="o">=</span> <span class="n">x</span></div></div>
 
 
 </pre></div>

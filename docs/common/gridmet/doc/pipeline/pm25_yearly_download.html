@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="pm25_yearly_download.cwl" href="pm25_yearly_downloadcwl_src.html" />
-    <link rel="prev" title="ingest.cwl" href="ingestcwl_src.html" /> 
+    <link rel="prev" title="initdb.cwl" href="initdbcwl_src.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,7 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../pipelines.html#testing-pipelines">Testing pipelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../pipelines.html#installing-python-dependencies">Installing Python dependencies</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../../../pipelines.html#published-and-tested-pipelines">Published and tested pipelines</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="gridmet.html">gridMET Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gridmet.html">Pipeline to aggregate data from Climatology Lab</a></li>
 <li class="toctree-l3"><a class="reference internal" href="wustl.html">Pipeline to ingest Pollution downloaded from WashU Box</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Pipeline to aggregate data in NetCDF format over given geographies</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
@@ -201,25 +201,30 @@ with similar options:</p>
 </tr>
 <tr class="row-even"><td class="text-left"><p>strategy</p></td>
 <td class="text-left"><p>string</p></td>
-<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">downscale</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">auto</span></code></p></td>
 <td class="text-left"><p>Rasterization strategy, see <a class="reference external" href="https://nsaph-data-platform.github.io/nsaph-platform-docs/common/gridmet/doc/strategy.html">documentation</a> for the list of supported values and explanations</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>shape_file_collection</p></td>
+<tr class="row-odd"><td class="text-left"><p>ram</p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2GB</span></code></p></td>
+<td class="text-left"><p>Runtime memory, available to the process</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>shape_file_collection</p></td>
 <td class="text-left"><p>string</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tiger</span></code></p></td>
 <td class="text-left"><p><a class="reference external" href="https://www2.census.gov/geo/tiger">Collection of shapefiles</a>,  either GENZ or TIGER</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>database</p></td>
+<tr class="row-odd"><td class="text-left"><p>database</p></td>
 <td class="text-left"><p>File</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">{'path':</span> <span class="pre">'database.ini',</span> <span class="pre">'class':</span> <span class="pre">'File'}</span></code></p></td>
 <td class="text-left"><p>Path to database connection file, usually database.ini.  This argument is ignored if <code class="docutils literal notranslate"><span class="pre">connection_name</span></code> == <code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>connection_name</p></td>
+<tr class="row-even"><td class="text-left"><p>connection_name</p></td>
 <td class="text-left"><p>string</p></td>
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>The name of the section in the database.ini file or a literal <code class="docutils literal notranslate"><span class="pre">None</span></code> to skip over database ingestion step</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>table</p></td>
+<tr class="row-odd"><td class="text-left"><p>table</p></td>
 <td class="text-left"><p>string</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">pm25_aggregated</span></code></p></td>
 <td class="text-left"><p>The name of the table to store teh aggregated data in</p></td>
@@ -298,23 +303,27 @@ with similar options:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>process</p></td>
+<tr class="row-even"><td class="text-left"><p>initdb</p></td>
+<td class="text-left"><p><a class="reference internal" href="initdb.html"><span class="std std-doc">initdb.cwl</span></a></p></td>
+<td class="text-left"><p>Ensure that database utilities are at their latest version</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>process</p></td>
 <td class="text-left"><p><a class="reference internal" href="aggregate_one_file.html"><span class="std std-doc">aggregate_one_file.cwl</span></a></p></td>
 <td class="text-left"><p>Downloads raw data and aggregates it over shapes and time</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>extract_data_dictionary</p></td>
+<tr class="row-even"><td class="text-left"><p>extract_data_dictionary</p></td>
 <td class="text-left"><p>Evaluates JavaScript expression</p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>ingest</p></td>
+<tr class="row-odd"><td class="text-left"><p>ingest</p></td>
 <td class="text-left"><p><a class="reference internal" href="ingest.html"><span class="std std-doc">ingest.cwl</span></a></p></td>
 <td class="text-left"><p>Uploads data into the database</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>index</p></td>
+<tr class="row-even"><td class="text-left"><p>index</p></td>
 <td class="text-left"><p><a class="reference internal" href="index.html"><span class="std std-doc">index.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>vacuum</p></td>
+<tr class="row-odd"><td class="text-left"><p>vacuum</p></td>
 <td class="text-left"><p><a class="reference internal" href="vacuum.html"><span class="std std-doc">vacuum.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
@@ -327,7 +336,7 @@ with similar options:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ingestcwl_src.html" class="btn btn-neutral float-left" title="ingest.cwl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="initdbcwl_src.html" class="btn btn-neutral float-left" title="initdb.cwl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="pm25_yearly_downloadcwl_src.html" class="btn btn-neutral float-right" title="pm25_yearly_download.cwl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

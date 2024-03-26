@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# push_datasource_def.cwl
+
+```{literalinclude} ../../src/cwl/push_datasource_def.cwl
+---
+language: yaml
+---
+```
+

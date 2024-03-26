@@ -1,0 +1,30 @@
+# link_gis.cwl
+
+
+ [Source code](link_giscwl_src.md) 
+
+
+```{contents}
+---
+local:
+---
+```
+
+**Tool**. Runs: [nsaph.link_gis](../../../core-platform/doc/members/link_gis)
+
+## Inputs
+
+| Name                 | Type   | Default | Description | 
+|:---------------------|:-------|:--------|:------------|
+| depends_on           | Any    | `none`  |             | 
+| PYTHONPATH           | string |         | PYTHONPATH  | 
+| table_def            | File   |         |             | 
+| db_connection_params | File   |         |             | 
+| db_name              | string |         |             | 
+
+## Outputs
+
+| Name | Type | Description | 
+|:-----|:-----|:------------|
+| log  | File |             | 
+

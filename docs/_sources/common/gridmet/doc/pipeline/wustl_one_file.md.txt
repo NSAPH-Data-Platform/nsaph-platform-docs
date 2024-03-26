@@ -23,19 +23,20 @@ aggregated data into the database
 
 ## Inputs
 
-| Name            | Type      | Default | Description            | 
-|:----------------|:----------|:--------|:-----------------------|
-| depends_on      | Any?      |         |                        | 
-| downloads       | Directory |         |                        | 
-| geography       | string    |         |                        | 
-| year            | int       |         |                        | 
-| month           | int       |         |                        | 
-| band            | string    | `pm25`  |                        | 
-| table           | string    |         |                        | 
-| shape_files     | File[]    |         | Paths to shape files   | 
-| strategy        | string    |         | Rasterization strategy | 
-| database        | File      |         |                        | 
-| connection_name | string    |         |                        | 
+| Name            | Type      | Default | Description                              | 
+|:----------------|:----------|:--------|:-----------------------------------------|
+| depends_on      | Any?      |         |                                          | 
+| downloads       | Directory |         |                                          | 
+| geography       | string    |         |                                          | 
+| year            | int       |         |                                          | 
+| month           | int       |         |                                          | 
+| band            | string    | `pm25`  |                                          | 
+| table           | string    |         |                                          | 
+| shape_files     | File[]    |         | Paths to shape files                     | 
+| strategy        | string    |         | Rasterization strategy                   | 
+| ram             | string    | `2GB`   | Runtime memory, available to the process | 
+| database        | File      |         |                                          | 
+| connection_name | string    |         |                                          | 
 
 ## Outputs
 
@@ -52,6 +53,6 @@ aggregated data into the database
 | Name      | Runs                                      | Description                                                                                                   | 
 |:----------|:------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
 | findfile  | Evaluates JavaScript expression           | Given input directory, variable (band), year and month, evaluates the exepected file name for the input data  | 
-| aggregate | [wustl_aggregate.cwl](wustl_aggregate.md) | Aggregate data over geographies                                                                               | 
+| aggregate | [aggregate_wustl.cwl](aggregate_wustl.md) | Aggregate data over geographies                                                                               | 
 | ingest    | [add_data.cwl](add_data.md)               | Ingests the aggregated data into the database                                                                 | 
 

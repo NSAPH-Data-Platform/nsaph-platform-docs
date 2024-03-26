@@ -189,7 +189,7 @@
 
 <div class="viewcode-block" id="GridmetVariable"><a class="viewcode-back" href="../../common/gridmet/doc/members/config.html#gridmet.config.GridmetVariable">[docs]</a><span class="k">class</span> <span class="nc">GridmetVariable</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    `Gridmet Bands &lt;https://gee.stac.cloud/WUtw2spmec7AM9rk6xMXUtStkMtbviDtHK?t=bands&gt;`_</span>
+<span class="sd">    `GridMET Bands &lt;https://developers.google.com/earth-engine/datasets/catalog/IDAHO_EPSCOR_GRIDMET#bands&gt;`_</span>
 <span class="sd">    and additional exposure variable types</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">bi</span> <span class="o">=</span> <span class="s2">&quot;bi&quot;</span>
@@ -306,7 +306,10 @@
                            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Type of statistics&quot;</span>
                            <span class="p">)</span>
     <span class="n">_dates</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;dates&quot;</span><span class="p">,</span>
-                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Filter dates - for debugging purposes only&quot;</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Filter dates, can be used &quot;</span>
+                           <span class="o">+</span> <span class="s2">&quot;to paralellize computations &quot;</span>
+                           <span class="o">+</span> <span class="s2">&quot;(e.g., over months) and &quot;</span>
+                           <span class="o">+</span> <span class="s2">&quot;for debugging purposes&quot;</span><span class="p">,</span>
                       <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">_shape_files</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;shape_files&quot;</span><span class="p">,</span>
                        <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">multiple</span><span class="p">,</span>
@@ -332,6 +335,11 @@
                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="n">OutputType</span><span class="o">.</span><span class="n">aggregation</span><span class="o">.</span><span class="n">value</span><span class="p">],</span>
                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;What the tool should output&quot;</span><span class="p">,</span>
                        <span class="n">valid_values</span><span class="o">=</span><span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">OutputType</span><span class="p">])</span>
+    <span class="n">_ram</span> <span class="o">=</span> <span class="n">Argument</span><span class="p">(</span><span class="s2">&quot;ram&quot;</span><span class="p">,</span>
+                    <span class="n">cardinality</span><span class="o">=</span><span class="n">Cardinality</span><span class="o">.</span><span class="n">single</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Runtime memory available to the process&quot;</span><span class="p">,</span>
+                    <span class="n">default</span><span class="o">=</span><span class="s2">&quot;2G&quot;</span>
+    <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subclass</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">doc</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -392,6 +400,8 @@
         <span class="sd">&#39;&#39;&#39;Name of the table where the aggregated data will be stored&#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="sd">&#39;&#39;&#39;Type of the output the tool should produce&#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ram</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&#39;&#39;&#39;Runtime memory available to the process&#39;&#39;&#39;</span>
 
         <span class="k">if</span> <span class="n">subclass</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">GridContext</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">include_default</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
@@ -415,6 +425,26 @@
         <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dates</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">DateFilter</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ram</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">nv</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">postfix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+                    <span class="n">nv</span> <span class="o">+=</span> <span class="n">c</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">postfix</span> <span class="o">+=</span> <span class="n">c</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nv</span><span class="p">)</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+                <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">,</span>
+                <span class="s2">&quot;g&quot;</span><span class="p">:</span> <span class="mi">1000000000</span><span class="p">,</span>
+                <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="mi">1000000000000</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">postfix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid value for RAM: &quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">m</span>
         <span class="k">return</span> <span class="n">value</span></div></div>
 
 

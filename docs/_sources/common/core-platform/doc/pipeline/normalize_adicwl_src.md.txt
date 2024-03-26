@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# normalize_adi.cwl
+
+```{literalinclude} ../../src/cwl/normalize_adi.cwl
+---
+language: yaml
+---
+```
+

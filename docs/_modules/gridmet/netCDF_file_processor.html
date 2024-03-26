@@ -112,9 +112,11 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">nsaph_utils.utils.io_utils</span> <span class="kn">import</span> <span class="n">sizeof_fmt</span>
 
 <span class="kn">from</span> <span class="nn">gridmet.gridmet_tools</span> <span class="kn">import</span> <span class="n">find_shape_file</span>
 <span class="kn">from</span> <span class="nn">nsaph</span> <span class="kn">import</span> <span class="n">init_logging</span>
@@ -203,7 +205,8 @@
             <span class="n">strategy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">strategy</span><span class="p">,</span>
             <span class="n">shapefile</span><span class="o">=</span><span class="n">shape_file</span><span class="p">,</span>
             <span class="n">geography</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">geography</span><span class="p">,</span>
-            <span class="n">extra_columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_columns</span>
+            <span class="n">extra_columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_columns</span><span class="p">,</span>
+            <span class="n">ram</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">ram</span>
         <span class="p">)</span>
         <span class="k">return</span></div>
 
@@ -217,6 +220,7 @@
         <span class="k">return</span> <span class="n">of</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="NetCDFFile.execute"><a class="viewcode-back" href="../../common/gridmet/doc/members/netCDF_file_processor.html#gridmet.netCDF_file_processor.NetCDFFile.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">OutputType</span><span class="o">.</span><span class="n">aggregation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">infile</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
@@ -233,18 +237,25 @@
                 <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Input file was not found. Created empty file: </span><span class="si">{}</span><span class="s2">&quot;</span>
                              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">of</span><span class="p">)))</span>
         <span class="k">if</span> <span class="n">OutputType</span><span class="o">.</span><span class="n">data_dictionary</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
-            <span class="n">registry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span><span class="o">.</span><span class="n">get_registry</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">get_domain_name</span><span class="p">(),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">get_table_name</span><span class="p">(),</span>
-            <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">description</span>
-            <span class="p">)</span>
+            <span class="n">registry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_registry</span><span class="p">()</span>
             <span class="n">of</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">destination</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_domain_name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.yaml&quot;</span>
             <span class="p">)</span>
             <span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="n">of</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
                 <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">registry</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created data dictionary: &quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">of</span><span class="p">))</span>
-        <span class="k">return</span></div></div>
+        <span class="c1"># Info:</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span><span class="o">.</span><span class="n">perf</span><span class="o">.</span><span class="n">total_time</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span><span class="o">.</span><span class="n">perf</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Resources: &quot;</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="NetCDFFile.get_registry"><a class="viewcode-back" href="../../common/gridmet/doc/members/netCDF_file_processor.html#gridmet.netCDF_file_processor.NetCDFFile.get_registry">[docs]</a>    <span class="k">def</span> <span class="nf">get_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">aggregator</span><span class="o">.</span><span class="n">get_registry</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_domain_name</span><span class="p">(),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_table_name</span><span class="p">(),</span>
+            <span class="n">description</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">description</span>
+        <span class="p">)</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

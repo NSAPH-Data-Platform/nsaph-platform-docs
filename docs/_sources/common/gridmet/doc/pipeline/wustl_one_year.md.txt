@@ -24,19 +24,21 @@ shape files fo this year from US Census website
 
 ## Inputs
 
-| Name            | Type      | Default | Description                  | 
-|:----------------|:----------|:--------|:-----------------------------|
-| depends_on      | Any?      |         |                              | 
-| proxy           | string?   |         | HTTP/HTTPS Proxy if required | 
-| downloads       | Directory |         |                              | 
-| geography       | string    |         |                              | 
-| table           | string    |         |                              | 
-| band            | string    | `pm25`  |                              | 
-| months          | int[]     |         |                              | 
-| year            | int       |         |                              | 
-| strategy        | string    |         | Rasterization strategy       | 
-| database        | File      |         |                              | 
-| connection_name | string    |         |                              | 
+| Name                  | Type      | Default | Description                                                                           | 
+|:----------------------|:----------|:--------|:--------------------------------------------------------------------------------------|
+| depends_on            | Any?      |         |                                                                                       | 
+| proxy                 | string?   |         | HTTP/HTTPS Proxy if required                                                          | 
+| downloads             | Directory |         |                                                                                       | 
+| geography             | string    |         |                                                                                       | 
+| shape_file_collection | string    | `tiger` | [Collection of shapefiles](https://www2.census.gov/geo/tiger),  either GENZ or TIGER  | 
+| table                 | string    |         |                                                                                       | 
+| band                  | string    | `pm25`  |                                                                                       | 
+| months                | int[]     |         |                                                                                       | 
+| year                  | int       |         |                                                                                       | 
+| strategy              | string    |         | Rasterization strategy                                                                | 
+| ram                   | string    | `2GB`   | Runtime memory, available to the process                                              | 
+| database              | File      |         |                                                                                       | 
+| connection_name       | string    |         |                                                                                       | 
 
 ## Outputs
 

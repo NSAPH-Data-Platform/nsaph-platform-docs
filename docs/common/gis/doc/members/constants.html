@@ -141,7 +141,24 @@ combine results, e.g. using arithmetic means</p>
 <dt class="sig sig-object py" id="nsaph_gis.constants.RasterizationStrategy.downscale">
 <span class="sig-name descname"><span class="pre">downscale</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'downscale'</span></em><a class="headerlink" href="#nsaph_gis.constants.RasterizationStrategy.downscale" title="Permalink to this definition"></a></dt>
 <dd><p>A combination of “default” rasterization strategy with 
-affine transformation with downscaling factor = 5</p>
+affine transformation with downscaling. Downscaling factor 
+is computed based on the grid size and runtime memory available 
+to the process.</p>
+<p>Effectively, the grid is interpolated with intermediate nodes,
+increasing the number of nodes by the factor of 25 (5 x 5). Hence,
+the accuracy is better, especially for complex and small shapes,
+however, the aggregation will require 25 times more memory (RAM)
+and will run slower.</p>
+<p>See <a class="reference external" href="../../../gridmet/doc/gridmet_tools.html#gridmet.gridmet_tools.get_affine_transform">get_affine_transform</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nsaph_gis.constants.RasterizationStrategy.auto">
+<span class="sig-name descname"><span class="pre">auto</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'auto'</span></em><a class="headerlink" href="#nsaph_gis.constants.RasterizationStrategy.auto" title="Permalink to this definition"></a></dt>
+<dd><p>A combination of “all_touched” rasterization strategy with 
+affine transformation with downscaling. Downscaling factor 
+is computed based on the grid size and runtime memory available 
+to the process.</p>
 <p>Effectively, the grid is interpolated with intermediate nodes,
 increasing the number of nodes by the factor of 25 (5 x 5). Hence,
 the accuracy is better, especially for complex and small shapes,

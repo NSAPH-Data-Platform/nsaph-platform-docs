@@ -98,6 +98,7 @@
 <span class="c1">#  limitations under the License.</span>
 <span class="c1">#</span>
 <span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">import</span> <span class="nn">rasterio</span>
@@ -276,9 +277,21 @@
 
 
 <span class="n">geolocator</span> <span class="o">=</span> <span class="n">geopy</span><span class="o">.</span><span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s1">&#39;NSAPH&#39;</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="get_address"><a class="viewcode-back" href="../../common/gridmet/doc/members/gridmet_tools.html#gridmet.gridmet_tools.get_address">[docs]</a><span class="k">def</span> <span class="nf">get_address</span><span class="p">(</span><span class="n">latitude</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">longitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="n">location</span> <span class="o">=</span> <span class="n">geolocator</span><span class="o">.</span><span class="n">reverse</span><span class="p">((</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">location</span></div>
+
+
+<div class="viewcode-block" id="estimate_optimal_downscaling_factor"><a class="viewcode-back" href="../../common/gridmet/doc/members/gridmet_tools.html#gridmet.gridmet_tools.estimate_optimal_downscaling_factor">[docs]</a><span class="k">def</span> <span class="nf">estimate_optimal_downscaling_factor</span><span class="p">(</span><span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ram</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">ram</span> <span class="o">/</span> <span class="mi">1000000000</span>
+    <span class="n">max_size</span> <span class="o">=</span> <span class="mf">50000000.0</span>
+    <span class="n">max_size</span> <span class="o">*=</span> <span class="n">x</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">max_size</span> <span class="o">/</span> <span class="n">size</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">f</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

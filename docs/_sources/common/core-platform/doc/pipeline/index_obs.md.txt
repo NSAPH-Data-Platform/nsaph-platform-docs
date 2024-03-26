@@ -1,0 +1,32 @@
+# index_obs.cwl
+
+
+ [Source code](index_obscwl_src.md) 
+
+
+```{contents}
+---
+local:
+---
+```
+
+**Tool**. Runs: [nsaph.index](../../../core-platform/doc/members/index)
+
+## Inputs
+
+| Name                 | Type    | Default | Description | 
+|:---------------------|:--------|:--------|:------------|
+| PYTHONPATH           | string  |         | PYTHONPATH  | 
+| depends_on           | File    |         |             | 
+| table_def            | File    |         |             | 
+| db_connection_params | File    |         |             | 
+| db_name              | string  |         |             | 
+| force                | boolean |         |             | 
+| increment            | boolean |         |             | 
+
+## Outputs
+
+| Name | Type | Description | 
+|:-----|:-----|:------------|
+| log  | File |             | 
+

@@ -1,0 +1,57 @@
+# import_epa.cwl
+
+
+ [Source code](import_epacwl_src.md) 
+
+
+![](import_epa.png)
+
+```{contents}
+---
+local:
+---
+```
+
+**Workflow**
+
+## Inputs
+
+| Name                 | Type    | Default                                                             | Description | 
+|:---------------------|:--------|:--------------------------------------------------------------------|:------------|
+| year                 | string  | `1990:2020`                                                         |             | 
+| aggregation          | string  | `annual`                                                            |             | 
+| parameter_code       | string  | `88101`                                                             |             | 
+| csv_name             | string  |                                                                     |             | 
+| db_connection_params | File    | `{'class': 'File', 'location': '/opt/projects/nsaph/database.ini'}` |             | 
+| db_name              | string  | `postgresql`                                                        |             | 
+| PYTHONPATH           | string  | `/opt/projects/nsaph/src/python`                                    |             | 
+| force                | boolean |                                                                     |             | 
+| increment            | boolean |                                                                     |             | 
+
+## Outputs
+
+| Name           | Type | Description | 
+|:---------------|:-----|:------------|
+| job            | File |             | 
+| data           | File |             | 
+| analysis_log   | File |             | 
+| table_def      | File |             | 
+| datasource_def | File |             | 
+| ingestion_log  | File |             | 
+| indexing_log   | File |             | 
+| link_log       | File |             | 
+| push_ds_log    | File |             | 
+| push_ds_err    | File |             | 
+
+## Steps
+
+| Name     | Runs                                              | Description | 
+|:---------|:--------------------------------------------------|:------------|
+| echo     | echo                                              |             | 
+| download | [arepa.cwl](arepa.md)                             |             | 
+| analyze  | [analyze.cwl](analyze.md)                         |             | 
+| ingest   | [ingest.cwl](ingest.md)                           |             | 
+| index    | [index_obs.cwl](index_obs.md)                     |             | 
+| link     | [link_gis.cwl](link_gis.md)                       |             | 
+| push_ds  | [push_datasource_def.cwl](push_datasource_def.md) |             | 
+

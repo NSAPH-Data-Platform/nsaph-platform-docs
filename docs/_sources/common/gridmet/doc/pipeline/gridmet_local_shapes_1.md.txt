@@ -46,10 +46,10 @@ local:
 
 ## Steps
 
-| Name    | Runs                      | Description                    | 
-|:--------|:--------------------------|:-------------------------------|
-| index   | [index.cwl](index.md)     |                                | 
-| ingest  | [ingest.cwl](ingest.md)   | Uploads data into the database | 
-| process | [process.cwl](process.md) | Processes data                 | 
-| vacuum  | [vacuum.cwl](vacuum.md)   |                                | 
+| Name    | Runs                                    | Description                    | 
+|:--------|:----------------------------------------|:-------------------------------|
+| index   | [index.cwl](index.md)                   |                                | 
+| ingest  | [ingest.cwl](ingest.md)                 | Uploads data into the database | 
+| process | [add_daily_data.cwl](add_daily_data.md) | Processes data                 | 
+| vacuum  | [vacuum.cwl](vacuum.md)                 |                                | 
 

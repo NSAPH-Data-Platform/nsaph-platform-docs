@@ -20,7 +20,7 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Aggregates data in NetCDF file over given geographies" href="wustl_aggregate.html" />
+    <link rel="next" title="wustl_consolidate_components.cwl" href="wustl_consolidate_components.html" />
     <link rel="prev" title="vacuum.cwl" href="vacuumcwl_src.html" /> 
 </head>
 
@@ -54,7 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../pipelines.html#testing-pipelines">Testing pipelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../pipelines.html#installing-python-dependencies">Installing Python dependencies</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../../../pipelines.html#published-and-tested-pipelines">Published and tested pipelines</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="gridmet.html">gridMET Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gridmet.html">Pipeline to aggregate data from Climatology Lab</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Pipeline to ingest Pollution downloaded from WashU Box</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#inputs">Inputs</a></li>
@@ -145,35 +145,45 @@ aggregated data into the database</p>
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>Do we even need this parameter, as we isntead downloading shapes?</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>downloads</p></td>
+<tr class="row-even"><td class="text-left"><p>shape_file_collection</p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">tiger</span></code></p></td>
+<td class="text-left"><p><a class="reference external" href="https://www2.census.gov/geo/tiger">Collection of shapefiles</a>,  either GENZ or TIGER</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>downloads</p></td>
 <td class="text-left"><p>Directory</p></td>
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>Directory, containing files, downloaded and unpacked from WUSTL box</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>geography</p></td>
+<tr class="row-even"><td class="text-left"><p>geography</p></td>
 <td class="text-left"><p>string</p></td>
 <td class="text-left"><p></p></td>
 <td class="text-left"><p>Type of geography: zip codes or counties Valid values: “zip” or “county”</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>years</p></td>
+<tr class="row-odd"><td class="text-left"><p>years</p></td>
 <td class="text-left"><p>int[]</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[2000,</span> <span class="pre">2001,</span> <span class="pre">2002,</span> <span class="pre">2003,</span> <span class="pre">2004,</span> <span class="pre">2005,</span> <span class="pre">2006,</span> <span class="pre">2007,</span> <span class="pre">2008,</span> <span class="pre">2009,</span> <span class="pre">2010,</span> <span class="pre">2011,</span> <span class="pre">2012,</span> <span class="pre">2013,</span> <span class="pre">2014,</span> <span class="pre">2015,</span> <span class="pre">2016,</span> <span class="pre">2017,</span> <span class="pre">2018]</span></code></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>months</p></td>
+<tr class="row-even"><td class="text-left"><p>months</p></td>
 <td class="text-left"><p>int[]</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9,</span> <span class="pre">10,</span> <span class="pre">11,</span> <span class="pre">12]</span></code></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>band</p></td>
+<tr class="row-odd"><td class="text-left"><p>band</p></td>
 <td class="text-left"><p>string</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">pm25</span></code></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>strategy</p></td>
+<tr class="row-even"><td class="text-left"><p>strategy</p></td>
 <td class="text-left"><p>string</p></td>
 <td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">downscale</span></code></p></td>
 <td class="text-left"><p>Rasterization strategy</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>ram</p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2GB</span></code></p></td>
+<td class="text-left"><p>Runtime memory, available to the process</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p>database</p></td>
 <td class="text-left"><p>File</p></td>
@@ -255,23 +265,27 @@ aggregated data into the database</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>make_table_name</p></td>
+<tr class="row-even"><td class="text-left"><p>initdb</p></td>
+<td class="text-left"><p><a class="reference internal" href="initdb.html"><span class="std std-doc">initdb.cwl</span></a></p></td>
+<td class="text-left"><p>Ensure that database utilities are at their latest version</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>make_table_name</p></td>
 <td class="text-left"><p>Evaluates JavaScript expression</p></td>
 <td class="text-left"><p>Given variable and geography type (zip/county) evaluates table name</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>init_tables</p></td>
+<tr class="row-even"><td class="text-left"><p>init_tables</p></td>
 <td class="text-left"><p><a class="reference internal" href="reset.html"><span class="std std-doc">reset.cwl</span></a></p></td>
 <td class="text-left"><p>creates or recreates database tables, one for each band and geography</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>process</p></td>
+<tr class="row-odd"><td class="text-left"><p>process</p></td>
 <td class="text-left"><p><a class="reference internal" href="wustl_one_year.html"><span class="std std-doc">wustl_one_year.cwl</span></a></p></td>
 <td class="text-left"><p>Downloads raw data and aggregates it over shapes and time</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>index</p></td>
+<tr class="row-even"><td class="text-left"><p>index</p></td>
 <td class="text-left"><p><a class="reference internal" href="index.html"><span class="std std-doc">index.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>vacuum</p></td>
+<tr class="row-odd"><td class="text-left"><p>vacuum</p></td>
 <td class="text-left"><p><a class="reference internal" href="vacuum.html"><span class="std std-doc">vacuum.cwl</span></a></p></td>
 <td class="text-left"><p></p></td>
 </tr>
@@ -285,7 +299,7 @@ aggregated data into the database</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="vacuumcwl_src.html" class="btn btn-neutral float-left" title="vacuum.cwl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="wustl_aggregate.html" class="btn btn-neutral float-right" title="Aggregates data in NetCDF file over given geographies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="wustl_consolidate_components.html" class="btn btn-neutral float-right" title="wustl_consolidate_components.cwl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

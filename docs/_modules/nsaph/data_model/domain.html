@@ -83,7 +83,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Domain is a Python module dedicated to</span>
 <span class="sd">generation of various SQL required for manipulation</span>
-<span class="sd">with data in a certain knowledge domain</span>
+<span class="sd">with data in certain knowledge domain</span>
 
 <span class="sd">See </span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -109,7 +109,7 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Set</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">import</span> <span class="nn">copy</span>
 
@@ -117,6 +117,7 @@
 <span class="kn">from</span> <span class="nn">sqlparse.sql</span> <span class="kn">import</span> <span class="n">Identifier</span><span class="p">,</span> <span class="n">IdentifierList</span><span class="p">,</span> <span class="n">Token</span>
 <span class="kn">from</span> <span class="nn">sqlparse.tokens</span> <span class="kn">import</span> <span class="n">Wildcard</span>
 
+<span class="kn">from</span> <span class="nn">nsaph.operations.domain_operations</span> <span class="kn">import</span> <span class="n">DomainOperations</span>
 <span class="kn">from</span> <span class="nn">nsaph_utils.utils.io_utils</span> <span class="kn">import</span> <span class="n">as_dict</span>
 
 <span class="kn">from</span> <span class="nn">nsaph.data_model.utils</span> <span class="kn">import</span> <span class="n">basename</span><span class="p">,</span> <span class="n">split</span>
@@ -354,20 +355,8 @@
         <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="Domain.drop"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.drop">[docs]</a>    <span class="k">def</span> <span class="nf">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="n">tables</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_dependent</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
-        <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
-                <span class="n">obj</span> <span class="o">=</span> <span class="n">tables</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
-                <span class="k">if</span> <span class="s2">&quot;create&quot;</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
-                    <span class="n">kind</span> <span class="o">=</span> <span class="n">obj</span><span class="p">[</span><span class="s2">&quot;create&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">kind</span> <span class="o">=</span> <span class="s2">&quot;TABLE&quot;</span>
-                <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;DROP </span><span class="si">{TABLE}</span><span class="s2"> IF EXISTS </span><span class="si">{}</span><span class="s2"> CASCADE&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">TABLE</span><span class="o">=</span><span class="n">kind</span><span class="p">)</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
-                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">autocommit</span><span class="p">:</span>
-                <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">]</span></div>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This method is deprecated&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DomainOperations</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Domain.spillover_table"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.spillover_table">[docs]</a>    <span class="k">def</span> <span class="nf">spillover_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">definition</span><span class="p">):</span>
         <span class="k">if</span> <span class="s2">&quot;invalid.records&quot;</span> <span class="ow">in</span> <span class="n">definition</span><span class="p">:</span>
@@ -412,6 +401,10 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">IdentifierList</span><span class="p">):</span>
                 <span class="n">token</span> <span class="o">=</span> <span class="n">t</span>
                 <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">t</span><span class="o">.</span><span class="n">ttype</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Wildcard&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">t</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">Identifier</span><span class="p">):</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">t</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">token</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="n">identifiers</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">token</span><span class="o">.</span><span class="n">get_identifiers</span><span class="p">()]</span>
@@ -982,23 +975,8 @@
         <span class="k">return</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="Domain.create"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">list_of_tables</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">list_of_tables</span><span class="p">:</span>
-                <span class="n">statements</span> <span class="o">=</span> <span class="p">[</span><span class="n">ddl</span> <span class="k">for</span> <span class="n">ddl</span> <span class="ow">in</span>  <span class="bp">self</span><span class="o">.</span><span class="n">common_ddl</span><span class="p">]</span>
-                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">list_of_tables</span><span class="p">:</span>
-                    <span class="n">statements</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ddl_by_table</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">fqn</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span>
-                <span class="c1"># statements = [</span>
-                <span class="c1">#     s for s in self.ddl if self.matches(s, list_of_tables) or s.startswith(&quot;CREATE SCHEMA&quot;)</span>
-                <span class="c1"># ]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">statements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ddl</span>
-            <span class="k">for</span> <span class="n">statement</span> <span class="ow">in</span> <span class="n">statements</span><span class="p">:</span>
-                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
-            <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">statements</span><span class="p">)</span>
-            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">connection</span><span class="o">.</span><span class="n">autocommit</span><span class="p">:</span>
-                <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Schema and all tables for domain </span><span class="si">{}</span><span class="s2"> have been created&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">))</span></div>
+        <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;This method is deprecated&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DomainOperations</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">,</span> <span class="n">list_of_tables</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Domain.add_fk_validation"><a class="viewcode-back" href="../../../common/core-platform/doc/members/domain.html#nsaph.data_model.domain.Domain.add_fk_validation">[docs]</a>    <span class="k">def</span> <span class="nf">add_fk_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">pk</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">pt</span><span class="p">,</span> <span class="n">fk_columns</span><span class="p">):</span>
         <span class="n">columns_as_dict</span> <span class="o">=</span> <span class="p">{}</span>

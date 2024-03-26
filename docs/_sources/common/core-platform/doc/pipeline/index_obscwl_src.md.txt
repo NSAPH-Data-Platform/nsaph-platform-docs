@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# index_obs.cwl
+
+```{literalinclude} ../../src/cwl/index_obs.cwl
+---
+language: yaml
+---
+```
+

@@ -177,7 +177,7 @@
         <span class="p p-Indicator">-</span> <span class="nt">fips2</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="s">&#39;(SELECT</span><span class="nv"> </span><span class="s">fips2</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">public.us_states</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">s</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">s.ssa2</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">&quot;state&quot;)&#39;</span>
             <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2 digit state FIPS, see https://en.wikipedia.org/wiki/Federal_Information_Processing_Standard_state_code</span>
-            <span class="nt">reference</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">https://www.census.gov/library/reference/code-lists/ansi.html#state</span>
+            <span class="nt">reference</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">https://www.census.gov/library/reference/code-lists/ansi.html#states</span>
         <span class="p p-Indicator">-</span> <span class="nt">zip</span><span class="p">:</span>
             <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INT</span>
             <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">US Postal ZIP code, the first 5 digits of it</span>
@@ -412,6 +412,25 @@
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_admsn_day_cd</span>
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">admsn_day_cd</span>
               <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">admsnday</span>
+
+        <span class="p p-Indicator">-</span> <span class="nt">src_admsn_cd</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CHAR(1)</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">src_ip_admsn_cd</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">src_adms</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_src_ip_admsn_cd</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;{column_name}::VARCHAR&quot;</span>
+
+        <span class="p p-Indicator">-</span> <span class="nt">dschrg_dstntn_cd</span><span class="p">:</span>
+            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CHAR(2)</span>
+            <span class="nt">source</span><span class="p">:</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dschrg_dstntn_cd</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dstntncd</span>
+              <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">medpar_dschrg_dstntn_cd</span>
+            <span class="nt">cast</span><span class="p">:</span>
+              <span class="nt">numeric</span><span class="p">:</span> <span class="s">&quot;TRIM(to_char({column_name},</span><span class="nv"> </span><span class="s">&#39;99&#39;))&quot;</span>
+              <span class="s">&#39;*&#39;</span><span class="p p-Indicator">:</span> <span class="s">&quot;{column_name}::VARCHAR&quot;</span>
 
         <span class="p p-Indicator">-</span> <span class="nt">dschrgcd</span><span class="p">:</span>
             <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CHAR(1)</span>
@@ -657,6 +676,7 @@
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;MAX(buyin_cvg_count)&quot;</span>
         <span class="p p-Indicator">-</span> <span class="nt">dual_indicators</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="s">&quot;(SELECT</span><span class="nv"> </span><span class="s">MAX(dual_indicators)</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">medicare.mbsf_d</span><span class="nv"> </span><span class="s">AS</span><span class="nv"> </span><span class="s">d</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">medicare._ps.year</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">d.year</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">medicare._ps.bene_id</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">d.bene_id)&quot;</span>
+            <span class="nt">requires</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">medicare.mbsf_d</span>
         <span class="p p-Indicator">-</span> <span class="nt">dual_cvg_count</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="p p-Indicator">|</span>
               <span class="no">(CASE</span>
@@ -665,6 +685,7 @@
                      <span class="no">COALESCE((SELECT MAX(dual_mo) FROM medicare.mbsf_d AS d WHERE medicare._ps.year = d.year and medicare._ps.bene_id = d.bene_id), 0)</span>
                  <span class="no">ELSE NULL</span>
               <span class="no">END)</span>
+            <span class="nt">requires</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">medicare.mbsf_d</span>
         <span class="p p-Indicator">-</span> <span class="nt">state_count</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="p p-Indicator">|</span>
               <span class="no">(</span>
@@ -674,6 +695,7 @@
                   <span class="no">_ps.bene_id = ps2.bene_id</span>
                   <span class="no">AND _ps.year = ps2.year</span>
               <span class="no">)</span>
+            <span class="nt">requires</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">medicare._ps</span>
         <span class="p p-Indicator">-</span> <span class="nt">died</span><span class="p">:</span>
             <span class="nt">source</span><span class="p">:</span> <span class="p p-Indicator">|</span>
               <span class="no">CASE EXTRACT (YEAR from MAX(dod))</span>
@@ -812,6 +834,8 @@
                   <span class="no">discharge_date,</span>
                   <span class="no">adm_day_of_week,</span>
                   <span class="no">dschrgcd,</span>
+                  <span class="no">dschrg_dstntn_cd,</span>
+                  <span class="no">src_admsn_cd,</span>
                   <span class="no">btrim(diag1) As primary_diagnosis,</span>
                   <span class="no">array_remove(ARRAY[</span>
                   <span class="no">btrim(btrim(diag1)),</span>

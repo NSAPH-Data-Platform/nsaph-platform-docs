@@ -1,0 +1,12 @@
+---
+orphan: true
+---
+
+# analyze.cwl
+
+```{literalinclude} ../../src/cwl/analyze.cwl
+---
+language: yaml
+---
+```
+

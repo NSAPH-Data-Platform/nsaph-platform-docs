@@ -1,0 +1,29 @@
+# arepa.cwl
+
+
+ [Source code](arepacwl_src.md) 
+
+
+```{contents}
+---
+local:
+---
+```
+
+**Tool**. Runs: /dependencies/data-platform/src/r/download_epa.R
+
+## Inputs
+
+| Name           | Type   | Default     | Description | 
+|:---------------|:-------|:------------|:------------|
+| year           | string | `1990:2020` |             | 
+| aggregation    | string | `annual`    |             | 
+| output_path    | string |             |             | 
+| parameter_code | string | `88101`     |             | 
+
+## Outputs
+
+| Name | Type | Description | 
+|:-----|:-----|:------------|
+| csv  | File |             | 
+

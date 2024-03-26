@@ -118,7 +118,25 @@
     <span class="n">downscale</span> <span class="o">=</span> <span class="s1">&#39;downscale&#39;</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A combination of &quot;default&quot; rasterization strategy with </span>
-<span class="sd">    affine transformation with downscaling factor = 5</span>
+<span class="sd">    affine transformation with downscaling. Downscaling factor </span>
+<span class="sd">    is computed based on the grid size and runtime memory available </span>
+<span class="sd">    to the process. </span>
+<span class="sd">    </span>
+<span class="sd">    Effectively, the grid is interpolated with intermediate nodes,</span>
+<span class="sd">    increasing the number of nodes by the factor of 25 (5 x 5). Hence,</span>
+<span class="sd">    the accuracy is better, especially for complex and small shapes,</span>
+<span class="sd">    however, the aggregation will require 25 times more memory (RAM)</span>
+<span class="sd">    and will run slower.</span>
+<span class="sd">    </span>
+<span class="sd">    See `get_affine_transform &lt;../../../gridmet/doc/gridmet_tools.html#gridmet.gridmet_tools.get_affine_transform&gt;`_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">auto</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A combination of &quot;all_touched&quot; rasterization strategy with </span>
+<span class="sd">    affine transformation with downscaling. Downscaling factor </span>
+<span class="sd">    is computed based on the grid size and runtime memory available </span>
+<span class="sd">    to the process. </span>
 <span class="sd">    </span>
 <span class="sd">    Effectively, the grid is interpolated with intermediate nodes,</span>
 <span class="sd">    increasing the number of nodes by the factor of 25 (5 x 5). Hence,</span>

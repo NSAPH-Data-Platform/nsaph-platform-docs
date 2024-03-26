@@ -330,15 +330,19 @@ in a special audit table.</p>
 <td><p>no</p></td>
 <td><p><a class="reference internal" href="#source">source</a> of the data</p></td>
 </tr>
-<tr class="row-even"><td><p>index</p></td>
+<tr class="row-even"><td><p>requires</p></td>
+<td><p>no</p></td>
+<td><p>List of tables and views required to compute this column. Should be used if <code class="docutils literal notranslate"><span class="pre">source</span></code> is a SQL statement referencing other tables.</p></td>
+</tr>
+<tr class="row-odd"><td><p>index</p></td>
 <td><p>no</p></td>
 <td><p>Override default to build an index based on this column. Possible values: true/false/dictionary, specifying index name and/or parameters</p></td>
 </tr>
-<tr class="row-odd"><td><p>description</p></td>
+<tr class="row-even"><td><p>description</p></td>
 <td><p>no</p></td>
 <td><p>description of this domain to be included in auto-generated documentation</p></td>
 </tr>
-<tr class="row-even"><td><p>reference</p></td>
+<tr class="row-odd"><td><p>reference</p></td>
 <td><p>no</p></td>
 <td><p>URL with external documentation</p></td>
 </tr>
